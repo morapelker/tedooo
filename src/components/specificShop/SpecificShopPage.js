@@ -2,17 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/shopActions'
 import {bindActionCreators} from 'redux';
-import {RefreshIndicator} from "material-ui";
 import SpecificShopData from "./SpecificShopData";
 import dragscroll from '../../../node_modules/dragscroll/dragscroll';
-
-const style = {
-    refresh: {
-        display: 'inline-block',
-        backgroundColor: 'transparent',
-        position: 'relative',
-    },
-};
+import RefreshIndicator from "../common/RefreshIndicator";
 
 class SpecificShopPage extends Component {
 
@@ -61,14 +53,7 @@ class SpecificShopPage extends Component {
         return (
             <div style={{height: '100%'}}>
                 {this.state.busy ?
-                    <RefreshIndicator
-                        size={50}
-                        left={0}
-                        top={0}
-                        loadingColor="#FF9800"
-                        status="loading"
-                        style={style.refresh}
-                    />
+                    <RefreshIndicator />
                     : this.state.shop === undefined ? 'no data' :
                         <SpecificShopData imgSelected={this.imageSelected}
                                           addFavoritesAction={this.props.actions.addShopFavorites}

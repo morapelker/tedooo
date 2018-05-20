@@ -83,7 +83,7 @@ const InfoColumn = (props) => {
                                 labels={props.shop.contact_info.map(info => info.number)}/>
 
             <div className='infoBox'>
-                <QRCode value={props.shop.qr_code} fgColor='#ffffff' bgColor='#3CBF95'/>
+                <QRCode value={props.shop.qr_code} fgColor='#3CBF95' bgColor='#ffffff'/>
             </div>
 
         </div>

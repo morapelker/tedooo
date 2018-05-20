@@ -2,9 +2,9 @@ import React from 'react';
 import ShopLine from "./ShopLine";
 
 const style = {
-    width: '60%',
-    margin: '0 auto',
-    marginTop: '20px'
+    width: '40%',
+    marginTop: '20px',
+    margin: 'auto'
 };
 
 const GenericShopsPage = (props) => {

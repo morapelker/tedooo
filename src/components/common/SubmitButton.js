@@ -5,7 +5,7 @@ import './commonCss.css'
 
 const SubmitButton = (props) => {
     return (
-        <Button style={props.style} className={'btnSubmit'} color={"inherit"}
+        <Button disabled={props.disabled} style={props.style} className={'btnSubmit'} color={"inherit"}
                 variant='fab'
                 onClick={props.submit}
                 mini={true}>

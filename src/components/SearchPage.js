@@ -3,22 +3,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/shopActions'
 import TextFieldContainer from "./TextFieldContainer";
-import {RaisedButton, RefreshIndicator} from "material-ui";
 import './search.css';
 import {withRouter} from "react-router-dom";
+import RefreshIndicator from "./common/RefreshIndicator";
+import TedooButton from "./common/TedooButton";
+import SubmitButton from "./common/SubmitButton";
 
-
-const style = {
-    margin: 5,
-    container: {
-        position: 'relative',
-    },
-    refresh: {
-        backgroundColor: 'transparent',
-        display: 'inline-block',
-        position: 'relative',
-    }
-};
 
 class SearchPage extends Component {
     constructor(props, context) {
@@ -54,15 +44,14 @@ class SearchPage extends Component {
         this.textChanged = this.textChanged.bind(this);
         this.getIndexForShopId = this.getIndexForShopId.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
-        this.generalClicked = this.generalClicked.bind(this);
         this.submit = this.submit.bind(this);
     }
 
-    generalClicked() {
+    generalClicked = () => {
         this.setState({
             segStatus: 1
         });
-    }
+    };
 
     specificClicked() {
         this.setState({
@@ -80,18 +69,18 @@ class SearchPage extends Component {
         const index = this.getIndexForShopId(e.target.id);
         if (this.state.segStatus === 1) {
             const generalFields = this.state.generalFields;
-            generalFields[index].value=e.target.value;
+            generalFields[index].value = e.target.value;
             this.setState({generalFields});
         } else {
             const specificFields = this.state.specificFields;
-            specificFields[index].value=e.target.value;
+            specificFields[index].value = e.target.value;
             this.setState({specificFields});
         }
     }
 
     submit() {
         this.setState({
-           busy: true
+            busy: true
         });
         const searchParams = (this.state.segStatus === 1) ? {
             test: 'test',
@@ -100,9 +89,9 @@ class SearchPage extends Component {
             phoneNumber: this.state.specificFields[0].value
         };
 
-        this.props.actions.findShop(searchParams).then(()=>{
+        this.props.actions.findShop(searchParams).then(() => {
             this.setState({
-                busy:false
+                busy: false
             });
             const results = this.props.state.results;
             if (results.length === 0)
@@ -121,10 +110,21 @@ class SearchPage extends Component {
                 <h1>Search</h1>
                 <p/>
                 <div className='segContainer'>
-                    <RaisedButton onClick={this.generalClicked} label="General"
-                                  primary={this.state.segStatus === 1} style={style}/>
-                    <RaisedButton onClick={this.specificClicked} label="Specific Shop"
-                                  primary={this.state.segStatus === 2} style={style}/>
+                    <TedooButton onClick={this.generalClicked} text={"General"}
+                                 selected={this.state.segStatus === 1}
+                                 selectedTextColor={'#3CBF95'}
+                                 deselectedTextColor={'white'}
+                                 selectedBackground={'white'}
+                                 clearBackground={'#3CBF95'}
+                    />
+                    <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
+                                 selected={this.state.segStatus === 2}
+                                 selectedTextColor={'#3CBF95'}
+                                 deselectedTextColor={'white'}
+                                 selectedBackground={'white'}
+                                 clearBackground={'#3CBF95'}
+                                 style={{marginLeft: 10}}
+                    />
                 </div>
                 {this.state.segStatus === 1 ?
                     <TextFieldContainer textChanged={this.textChanged}
@@ -132,19 +132,9 @@ class SearchPage extends Component {
                     <TextFieldContainer textChanged={this.textChanged}
                                         fields={this.state.specificFields}/>}
                 <p/>
-                <RaisedButton label='Submit' onClick={this.submit} primary={true}
-                              disabled={this.state.busy} />
-                <p />
-                {this.state.busy ? <div style={style.container}>
-                    <RefreshIndicator
-                        size={50}
-                        left={0}
-                        top={0}
-                        loadingColor="#FF9800"
-                        status="loading"
-                        style={style.refresh}
-                    />
-                </div> : null}
+                {this.state.busy ? <RefreshIndicator/> :
+                    <SubmitButton submit={this.submit}/>
+                }
 
             </div>
         );

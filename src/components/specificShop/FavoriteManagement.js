@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
-import {Input} from "reactstrap";
-import RemoveIcon from 'material-ui/svg-icons/content/remove';
 import Button from "@material-ui/core/Button/Button";
 import './SpecificShop.css'
-import SubmitButton from "../common/SubmitButton";
+import {
+    Dialog,
+    DialogTitle,
+    DialogActions,
+    DialogContent,
+} from "@material-ui/core/index";
+import {Input} from "reactstrap";
+import TedooButton from "../common/TedooButton";
 
 const styles = {
     root: {
@@ -12,7 +17,7 @@ const styles = {
         margin: '0 auto',
         flexDirection: 'column',
         width: '80%',
-        height: '20%'
+        height: '5%'
     }
 };
 
@@ -22,7 +27,7 @@ class FavoriteManagement extends Component {
 
         this.state = {
             name: props.name,
-            addingToFavorites: false
+            open: false
         };
 
         this.txtChanged = this.txtChanged.bind(this);
@@ -36,46 +41,45 @@ class FavoriteManagement extends Component {
     }
 
     submit() {
-        console.log('submit', this.state.name);
         this.props.addFavoritesAction(this.props.shop._id, this.props.shop.name, this.state.name);
-        this.setState({addingToFavorites: false})
+        this.setState({open: false})
     }
 
     closeFavoritesWindow() {
-        this.setState({addingToFavorites: false, name: this.props.name})
+        this.setState({open: false})
     }
 
     openFavoritesWindow() {
-        this.setState({addingToFavorites: true})
+        this.setState({open: true})
     }
 
     render() {
         return (
             <div style={styles.root}>
                 <p/>
-                <Button id={'addToFavoritesButton'} variant={'raised'} color={'primary'}
-                        onClick={this.openFavoritesWindow}>Add
-                    to favorites</Button>
-                <p/>
-                {this.state.addingToFavorites &&
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '100%'
-                }}>
-                    <Input style={{width: '60%'}}
-                           onChange={this.txtChanged}
-                           placeholder='Name' value={this.state.name}/>
-                    <Button variant={'fab'} id={'favRemoveButton'} color={'secondary'}
-                            onClick={this.closeFavoritesWindow}>
-                        <RemoveIcon/>
-                    </Button>
-                    <SubmitButton style={{
-                        marginLeft: 10
-                    }} id={'favAddButton'} submit={this.submit}/>
-                </div>}
-
+                <TedooButton style={{minWidth: 200}} id={'addToFavoritesButton'}
+                             selected={true}
+                             selectedTextColor={'#3CBF95'}
+                             selectedBackground={'white'}
+                        onClick={this.openFavoritesWindow} text={'Add to favorites'} />
+                <Dialog
+                    open={this.state.open}
+                    onClose={this.closeFavoritesWindow}
+                    aria-labelledby="form-dialog-title"
+                >
+                    <DialogTitle id="form-dialog-title">Add to favorites</DialogTitle>
+                    <DialogContent>
+                        <Input onChange={this.txtChanged} value={this.state.name} placeholder={'Name'} />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.closeFavoritesWindow} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={this.submit} color="primary">
+                            Add
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }

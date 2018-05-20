@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/shopActions'
 import GenericShopsPage from "../common/GenericShopsPage";
-import {RefreshIndicator} from "material-ui";
 import shopApi from "../../api/shopApi";
 import {Button} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import RefreshIndicator from "../common/RefreshIndicator";
 
 class MyShops extends Component {
 
@@ -32,18 +32,7 @@ class MyShops extends Component {
             <div>
                 {this.props.shops === undefined && this.props.authentication.token !== '' &&
                 <div style={{display: 'flex', flexDirection: 'column'}}>
-                    <RefreshIndicator
-                        size={50}
-                        left={0}
-                        top={0}
-                        loadingColor="#FF9800"
-                        status="loading"
-                        style={{
-                            backgroundColor: 'transparent',
-                            position: 'relative',
-                            alignSelf: 'center'
-                        }}
-                    />
+                    <RefreshIndicator style={{alignSelf: 'center'}} />
                 </div>}
                 {this.props.authentication.token !== '' && this.props.shops !== undefined &&
                 <GenericShopsPage name={'My Shops'} shopSelected={this.shopSelected}

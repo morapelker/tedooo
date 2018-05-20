@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import TextFieldContainer from "../TextFieldContainer";
 import './authentication.css';
-import {RefreshIndicator} from "material-ui";
 import SubmitButton from "../common/SubmitButton";
+import RefreshIndicator from "../common/RefreshIndicator";
 
 class Login extends Component {
     constructor(props, context) {
@@ -52,18 +52,7 @@ class Login extends Component {
                                         textChanged={this.textChanged}
                                         fields={this.state.fields}/>
                     {this.state.busy ?
-                        <RefreshIndicator
-                            size={50}
-                            left={0}
-                            top={0}
-                            loadingColor="#FF9800"
-                            status="loading"
-                            style={{
-                                backgroundColor: 'transparent',
-                                position: 'relative',
-                                alignSelf: 'center'
-                            }}
-                        />
+                        <RefreshIndicator style={{alignSelf: 'center'}} />
                         :
                         <SubmitButton submit={this.submitForm} />}
 

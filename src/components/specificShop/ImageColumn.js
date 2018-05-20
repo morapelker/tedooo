@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 
 import TitleLabel from "../common/TitleLabel";
-import {RefreshIndicator} from "material-ui";
 import Img from 'react-image'
 import './SpecificShop.css';
+import RefreshIndicator from "../common/RefreshIndicator";
 
 
 const styles = {
     leftDiv: {
-        height: '75%',
+        height: '90%',
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
@@ -89,14 +89,7 @@ class ImageColumn extends Component {
                             {this.props.shop.img_links.map((link, index) => (
                                 <Img key={index} className={'smallImg'} style={styles.smallImg}
                                      src={link} loader={
-                                    <RefreshIndicator
-                                        size={50}
-                                        left={0}
-                                        top={0}
-                                        loadingColor="#FF9800"
-                                        status="loading"
-                                        style={styles.refresh}
-                                    />
+                                    <RefreshIndicator />
                                 } onDragStart={e => {
                                     e.preventDefault();
                                 }} onClick={() => {
@@ -112,14 +105,7 @@ class ImageColumn extends Component {
                         </div>
                         <div style={styles.bigImgDiv}>
                             <Img style={styles.bigImg} src={this.state.bigImgUrl}
-                                 loader={<RefreshIndicator
-                                     size={50}
-                                     left={0}
-                                     top={0}
-                                     loadingColor="#FF9800"
-                                     status="loading"
-                                     style={styles.refresh}
-                                 />}/>
+                                 loader={<RefreshIndicator />}/>
 
                         </div>
                     </div>

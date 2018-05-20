@@ -11,8 +11,8 @@ const styles = {
         marginTop: 20
     }, leftDiv: {
         flexGrow: 3,
+        width: '75%',
         height: '100%',
-        maxWidth: '60%',
         display: 'flex',
         flexDirection: 'column',
     }

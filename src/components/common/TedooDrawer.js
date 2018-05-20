@@ -18,6 +18,7 @@ class TedooDrawer extends Component {
     logout() {
         this.props.actions.logOut();
         this.handleClose();
+        this.props.history.push('/');
     }
 
     handleOpen() {
