@@ -1,0 +1,77 @@
+import React, {Component} from 'react';
+import TextFieldContainer from "../TextFieldContainer";
+import './authentication.css';
+import {RefreshIndicator} from "material-ui";
+import SubmitButton from "../common/SubmitButton";
+
+class Login extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            busy: false,
+            fields: [{
+                name: 'username',
+                placeholder: 'Username',
+                value: ''
+            }, {
+                name: 'password',
+                placeholder: 'Password',
+                type: 'password',
+                value: ''
+            }],
+            error: undefined
+        };
+
+        this.textChanged = this.textChanged.bind(this);
+        this.submitForm = this.submitForm.bind(this);
+    }
+
+    textChanged(e) {
+        const index = e.target.id === 'username' ? 0 : 1;
+        const fields = this.state.fields;
+        fields[index].value = e.target.value;
+        this.setState({fields, error: undefined});
+    }
+
+    submitForm() {
+        this.setState({busy: true});
+        this.props.login(this.state.fields[0].value, this.state.fields[1].value).then(() => {
+            this.props.history.push("/");
+        }).catch(error => {
+            this.setState({error: error.message, busy: false})
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Login</h1>
+                <h4 style={{color: 'red'}}>{this.state.error}</h4>
+                <div className="searchContainer">
+                    <TextFieldContainer enterClicked={this.submitForm}
+                                        textChanged={this.textChanged}
+                                        fields={this.state.fields}/>
+                    {this.state.busy ?
+                        <RefreshIndicator
+                            size={50}
+                            left={0}
+                            top={0}
+                            loadingColor="#FF9800"
+                            status="loading"
+                            style={{
+                                backgroundColor: 'transparent',
+                                position: 'relative',
+                                alignSelf: 'center'
+                            }}
+                        />
+                        :
+                        <SubmitButton submit={this.submitForm} />}
+
+                </div>
+
+            </div>
+        );
+    }
+}
+
+export default Login;

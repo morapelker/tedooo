@@ -1,0 +1,24 @@
+
+.btnSubmit {
+    background-color: white;
+    color: white;
+    align-self: center;
+}
+
+.btnSubmit:hover {
+    background-color: #eeeeee;
+}
+
+.btnSubmit:focus {
+    outline: none;
+}
+
+#tipRoot {
+    display: flex;
+}
+
+#tipImg {
+    object-fit: scale-down;
+    max-width: 100%;
+    max-height: 100%;
+}
