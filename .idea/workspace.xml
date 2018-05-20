@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="" />
+    <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/TipView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TipView.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -17,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FavoriteManagement.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FavoriteManagement.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/FavoriteManagement.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="62" column="41" lean-forward="true" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
+            <state relative-caret-position="468">
+              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -38,14 +43,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericShopsPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+            <state relative-caret-position="260">
+              <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="11" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.2301483b.js.map" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build/static/js/main.2301483b.js.map">
+          <provider editor-type-id="sourcemapFileViewerProvider" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret column="11842" selection-start-column="11842" selection-end-column="11842" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddShop.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TipView.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/common/TipView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="26">
+              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -90,43 +123,9 @@
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="854">
-              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageColumn.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-547">
-              <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <element signature="e#2992#3066#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpecificShop.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShop.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SubmitButton.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/SubmitButton.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -149,7 +148,13 @@
     <findStrings>
       <find>vh</find>
       <find>props.</find>
+      <find>withStyles.js</find>
+      <find>/node_modules/@material-ui/core/es/styles/withStyles.js</find>
+      <find>/es/</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -194,10 +199,8 @@
         <option value="$PROJECT_DIR$/src/components/common/TedooDrawer.js" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/common/commonCss.css" />
         <option value="$PROJECT_DIR$/src/components/common/TipView2.js" />
-        <option value="$PROJECT_DIR$/src/components/common/TipView.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" />
         <option value="$PROJECT_DIR$/src/components/common/SubmitButton.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" />
@@ -205,6 +208,8 @@
         <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/FavoriteManagement.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/components/common/TipView.js" />
       </list>
     </option>
   </component>
@@ -229,6 +234,7 @@
     <option name="width" value="2560" />
     <option name="height" value="1346" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -472,23 +478,25 @@
       <workItem from="1526720355034" duration="4384000" />
       <workItem from="1526739027418" duration="14642000" />
       <workItem from="1526803696670" duration="862000" />
-      <workItem from="1526807748744" duration="7315000" />
+      <workItem from="1526807748744" duration="8443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96746000" />
+    <option name="totallyTimeSpent" value="97874000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="2560" height="1346" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.09570697" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32789558" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32855436" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32789558" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.22267537" />
       <window_info id="Favorites" order="2" sideWeight="0.38608307" side_tool="true" weight="0.22528554" />
@@ -500,7 +508,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32925835" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,9 +529,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/assets/infoIcon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/phone.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -684,16 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Authentication/authentication.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -752,13 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="13" selection-start-line="6" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/authentication.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -784,16 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/TipView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -837,7 +814,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
-          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -854,7 +831,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-547">
-          <caret line="20" column="10" lean-forward="true" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#2992#3066#0" />
@@ -885,7 +862,7 @@
     <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="854">
-          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -911,11 +888,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/specificShop/FavoriteManagement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="62" column="41" lean-forward="true" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
+        <state relative-caret-position="468">
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/static/js/main.2301483b.js.map">
+      <provider editor-type-id="sourcemapFileViewerProvider" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret column="11842" selection-start-column="11842" selection-end-column="11842" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/TipView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
         </state>
       </provider>
     </entry>

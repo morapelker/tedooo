@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "@material-ui/core/es/Button/Button";
+import Button from "@material-ui/core/Button/Button";
 import ReactTooltip from 'react-tooltip'
 
 const TipView = (props) => {
