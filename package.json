@@ -33,6 +33,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start": "node index.js",
-    "heroku-postbuild": "cd tedooo && npm install && npm run build"
+    "heroku-postbuild": "cd balooreact && npm install && npm run build"
   }
 }
