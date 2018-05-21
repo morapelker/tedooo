@@ -20,10 +20,10 @@ export function updateMyShops(shops) {
     }
 }
 
-export function addShopHistory(id, name) {
+export function addShopHistory(shop) {
     return {
         type: ADD_SHOP_HISTORY,
-        id, name
+        shop
     }
 }
 

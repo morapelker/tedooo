@@ -24,7 +24,6 @@ class MyShops extends Component {
 
             })
         }
-        this.shopSelected = this.shopSelected.bind(this);
     }
 
     render() {
@@ -35,7 +34,10 @@ class MyShops extends Component {
                     <RefreshIndicator style={{alignSelf: 'center'}} />
                 </div>}
                 {this.props.authentication.token !== '' && this.props.shops !== undefined &&
-                <GenericShopsPage name={'My Shops'} shopSelected={this.shopSelected}
+                <GenericShopsPage
+                    history={this.props.history}
+                    addHistoryAction={this.props.actions.addShopHistory}
+                    name={'My Shops'}
                                   shops={this.props.shops}/>}
                 {this.props.authentication.token === '' && <div style={{
                     display: 'flex',
@@ -50,11 +52,6 @@ class MyShops extends Component {
             </div>
 
         );
-    }
-
-    shopSelected(shopId, shopName) {
-        this.props.history.push("/results/" + shopId);
-        this.props.actions.addShopHistory(shopId, shopName);
     }
 }
 

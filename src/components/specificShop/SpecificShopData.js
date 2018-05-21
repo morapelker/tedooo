@@ -10,8 +10,7 @@ const styles = {
         height: '100%',
         marginTop: 20
     }, leftDiv: {
-        flexGrow: 3,
-        width: '75%',
+        flex: 3,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',

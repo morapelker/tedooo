@@ -27,6 +27,7 @@ h3 {
 }
 
 .titleLabel {
+    text-transform: capitalize;
     color: white;
     font-size: 2em;
     font-family: Skia, sans-serif;

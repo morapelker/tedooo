@@ -7,6 +7,14 @@ const style = {
     margin: 'auto'
 };
 
+const shopSelected = (props, shop) => {
+    return () => {
+        props.history.push("/results/" + shop._id);
+        props.addHistoryAction(shop);
+    };
+
+};
+
 const GenericShopsPage = (props) => {
     return (
         <div style={style}>
@@ -15,7 +23,7 @@ const GenericShopsPage = (props) => {
             <p/>
             {props.shops.map((result, index) => (
                 <div key={index}>
-                    <ShopLine deleteMethod={props.deleteMethod} shopSelected={props.shopSelected}
+                    <ShopLine deleteMethod={props.deleteMethod} parentData={props} shopSelected={shopSelected}
                               shop={result}/>
                     <br/>
                 </div>

@@ -15,7 +15,6 @@ class FavoritesPage extends Component {
             idToDelete: 0
         };
 
-        this.shopSelected = this.shopSelected.bind(this);
         this.deleteFavorite = this.deleteFavorite.bind(this);
         this.deleteFavConfirmed = this.deleteFavConfirmed.bind(this);
         this.closeAlert = this.closeAlert.bind(this);
@@ -36,8 +35,11 @@ class FavoritesPage extends Component {
         ];
         return (
             <div>
-                <GenericShopsPage name={'Favorites'} deleteMethod={this.deleteFavorite}
-                                  shopSelected={this.shopSelected} shops={this.props.shops}/>
+                <GenericShopsPage
+                    history={this.props.history}
+                    addHistoryAction={this.props.actions.addShopHistory}
+                    name={'Favorites'} deleteMethod={this.deleteFavorite}
+                                  shops={this.props.shops}/>
                 <Dialog
                     actions={dialogActions}
                     modal={false}
@@ -62,11 +64,6 @@ class FavoritesPage extends Component {
 
     deleteFavorite(id) {
         this.setState({dialogOpen: true, idToDelete: id});
-    }
-
-    shopSelected(shopId, shopName) {
-        this.props.history.push("/results/" + shopId);
-        this.props.actions.addShopHistory(shopId, shopName);
     }
 }
 

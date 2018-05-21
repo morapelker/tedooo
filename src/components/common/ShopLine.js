@@ -2,12 +2,6 @@ import React from 'react';
 import TedooButton from "./TedooButton";
 import Button from "@material-ui/core/Button/Button";
 
-const shopSelected = (realFunc, id, name) => (
-    () => {
-        realFunc(id, name);
-    }
-);
-
 const deleteHelper = (realFunc, id) => (
     () => {
         realFunc(id);
@@ -51,7 +45,7 @@ const ShopLine = (props) => {
                 selected={true}
                 selectedTextColor={'#3CBF95'}
                 selectedBackground={'white'}
-                onClick={shopSelected(props.shopSelected, props.shop._id, (props.shop.favName || props.shop.name))}
+                onClick={props.shopSelected(props.parentData, props.shop)}
                 text={props.shop.favName || props.shop.name}/>
         </div>
     );

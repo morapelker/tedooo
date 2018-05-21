@@ -2,7 +2,7 @@ import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 
 const defaultStyle = {
-    textTransform: 'none',
+    textTransform: 'capitalize',
     borderRadius: 10,
 };
 

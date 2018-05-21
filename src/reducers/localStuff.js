@@ -9,11 +9,11 @@ export default (state = {history: [], favorites: []}, action) => {
     switch (action.type) {
         case ADD_SHOP_HISTORY: {
             const history = Object.assign([], state.history);
-            const index = history.map(his => his._id).indexOf(action.id);
+            const index = history.map(his => his._id).indexOf(action.shop._id);
             if (index !== 0) {
                 if (index !== -1)
                     history.splice(index, 1);
-                history.splice(0, 0, {_id: action.id, name: action.name});
+                history.splice(0, 0, {_id: action.shop._id, name: action.shop.name, shopNumber: action.shop.shopNumber});
                 return Object.assign({}, state, {history});
             } else {
                 return state;

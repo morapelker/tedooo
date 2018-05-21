@@ -34,8 +34,7 @@ Button:focus {
 }
 
 .infoRoot {
-    flex-grow: 1;
-    width: 25%;
+    flex: 1;
     margin-right: 10px;
     height: 100%;
     display: flex;

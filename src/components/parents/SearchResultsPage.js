@@ -5,23 +5,14 @@ import * as actions from '../../actions/shopActions'
 import GenericShopsPage from "../common/GenericShopsPage";
 
 class SearchResultsPage extends Component {
-
-    constructor(props, context) {
-        super(props, context);
-        this.shopSelected = this.shopSelected.bind(this);
-    }
-
     render() {
         return (
             <div>
-                <GenericShopsPage name={'Results'} shopSelected={this.shopSelected} shops={this.props.results} />
+                <GenericShopsPage history={this.props.history}
+                                  addHistoryAction={this.props.actions.addShopHistory}
+                                  name={'Results'} shops={this.props.results}/>
             </div>
         );
-    }
-
-    shopSelected(shopId, shopName) {
-        this.props.history.push("/results/" + shopId);
-        this.props.actions.addShopHistory(shopId, shopName)
     }
 }
 
