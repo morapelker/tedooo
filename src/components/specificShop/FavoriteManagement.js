@@ -21,12 +21,18 @@ const styles = {
     }
 };
 
+const shopNumber = str => {
+    if (str.length === 0)
+        return '';
+    return ' (' + (str.toUpperCase() || str) + ')';
+};
+
 class FavoriteManagement extends Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
-            name: props.name,
+            name: props.shop.name + shopNumber(props.shop.shop_number),
             open: false
         };
 
@@ -41,7 +47,7 @@ class FavoriteManagement extends Component {
     }
 
     submit() {
-        this.props.addFavoritesAction(this.props.shop._id, this.props.shop.name, this.state.name);
+        this.props.addFavoritesAction(this.props.shop._id, this.props.shop.name, this.state.name, this.props.shop.shop_number);
         this.setState({open: false})
     }
 
@@ -61,7 +67,7 @@ class FavoriteManagement extends Component {
                              selected={true}
                              selectedTextColor={'#3CBF95'}
                              selectedBackground={'white'}
-                        onClick={this.openFavoritesWindow} text={'Add to favorites'} />
+                             onClick={this.openFavoritesWindow} text={'Add to favorites'}/>
                 <Dialog
                     open={this.state.open}
                     onClose={this.closeFavoritesWindow}
@@ -69,7 +75,8 @@ class FavoriteManagement extends Component {
                 >
                     <DialogTitle id="form-dialog-title">Add to favorites</DialogTitle>
                     <DialogContent>
-                        <Input onChange={this.txtChanged} value={this.state.name} placeholder={'Name'} />
+                        <Input onChange={this.txtChanged} value={this.state.name}
+                               placeholder={'Name'}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.closeFavoritesWindow} color="primary">

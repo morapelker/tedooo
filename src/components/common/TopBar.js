@@ -206,6 +206,20 @@ class TopBar extends Component {
                     }}>
                         <ListItemText primary="History"/>
                     </ListItem>
+                    {this.props.auth.admin === true && <div>
+                        <Divider />
+                        <h3 style={{marginTop: 5, color: 'red'}}>Admin</h3>
+                        <ListItem button onClick={() => {
+                            this.handleNavigation('/categories')
+                        }}>
+                            <ListItemText primary="Manage Categories"/>
+                        </ListItem>
+                        <ListItem button onClick={() => {
+                            this.handleNavigation('/markets')
+                        }}>
+                            <ListItemText primary="Manage Markets"/>
+                        </ListItem>
+                    </div>}
                 </List>
                 <Divider/>
             </Drawer>

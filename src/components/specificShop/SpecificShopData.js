@@ -22,7 +22,7 @@ const SpecificShopData = (props) => {
         <div style={styles.root}>
             <div style={styles.leftDiv}>
                 <ImageColumn shop={props.shop} />
-                <FavoriteManagement addFavoritesAction={props.addFavoritesAction} name={props.shop.name} shop={props.shop} />
+                <FavoriteManagement addFavoritesAction={props.addFavoritesAction} shop={props.shop} />
             </div>
             <InfoColumn ownShop={props.ownShop} shop={props.shop} />
         </div>

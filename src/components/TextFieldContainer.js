@@ -7,6 +7,10 @@ const TextFieldContainer = (props) => {
             {props.fields.map((field, index) => (
                 <div key={index}>
                     <Input
+                        style={{
+                            borderRadius: 10,
+                            fontFamily: 'Skia, sans-serif'
+                        }}
                         type={field.type || 'text'}
                         id={field.name}
                         value={field.value || ''}

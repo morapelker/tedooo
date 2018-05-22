@@ -13,7 +13,7 @@ export default (state = {history: [], favorites: []}, action) => {
             if (index !== 0) {
                 if (index !== -1)
                     history.splice(index, 1);
-                history.splice(0, 0, {_id: action.shop._id, name: action.shop.name, shopNumber: action.shop.shopNumber});
+                history.splice(0, 0, {_id: action.shop._id, name: (action.shop.favName || action.shop.name), shop_number: action.shop.shop_number});
                 return Object.assign({}, state, {history});
             } else {
                 return state;

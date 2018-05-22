@@ -33,7 +33,12 @@ const style = {
     }
 };
 
+const capitalize = str => {
+  return str.toUpperCase() || str;
+};
+
 const ShopLine = (props) => {
+    const text = (props.shop.favName || props.shop.name) + (props.shop.shop_number ? ' (' + capitalize(props.shop.shop_number) + ')' : '');
     return (
         <div style={style.container}>
             {props.deleteMethod !== undefined ?
@@ -46,7 +51,7 @@ const ShopLine = (props) => {
                 selectedTextColor={'#3CBF95'}
                 selectedBackground={'white'}
                 onClick={props.shopSelected(props.parentData, props.shop)}
-                text={props.shop.favName || props.shop.name}/>
+                text={text}/>
         </div>
     );
 };
