@@ -136,6 +136,7 @@ class ShopApi {
     }
 
     static async findShop(props) {
+        console.log(props);
         try {
             let url = '';
             if (props.hasOwnProperty('id'))

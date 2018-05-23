@@ -83,8 +83,6 @@ class SearchPage extends Component {
             busy: true
         });
         const searchParams = (this.state.segStatus === 1) ? {
-            test: 'test',
-            test2: 'test2'
         } : {
             phoneNumber: this.state.specificFields[0].value
         };
