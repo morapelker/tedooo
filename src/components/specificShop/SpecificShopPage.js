@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import SpecificShopData from "./SpecificShopData";
 import dragscroll from '../../../node_modules/dragscroll/dragscroll';
 import RefreshIndicator from "../common/RefreshIndicator";
+import './SpecificShop.css'
 
 class SpecificShopPage extends Component {
 
@@ -51,7 +52,7 @@ class SpecificShopPage extends Component {
     render() {
         setTimeout(()=>{dragscroll.reset()}, 300);
         return (
-            <div style={{height: '100%'}}>
+            <div className={'specificShopContainer'}>
                 {this.state.busy ?
                     <RefreshIndicator />
                     : this.state.shop === undefined ? 'no data' :
@@ -59,6 +60,9 @@ class SpecificShopPage extends Component {
                                           addFavoritesAction={this.props.actions.addShopFavorites}
                                           bigImgSrc={this.state.bigImgSrc}
                                           ownShop={this.state.ownShop}
+                                          admin={this.props.authentication.admin}
+                                          actions={this.props.actions}
+                                          token={this.props.authentication.token}
                                           shop={this.state.shop}/>}
             </div>
         );

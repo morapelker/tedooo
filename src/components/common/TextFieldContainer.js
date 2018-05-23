@@ -1,15 +1,16 @@
 import React from 'react';
 import {Form, Input} from "reactstrap";
+import './commonCss.css'
 
 const TextFieldContainer = (props) => {
     return (
         <Form>
             {props.fields.map((field, index) => (
                 <div key={index}>
-                    <Input
+                    <Input className={'inputField'}
                         style={{
                             borderRadius: 10,
-                            fontFamily: 'Skia, sans-serif'
+                            fontFamily: 'Skia, sans-serif',
                         }}
                         type={field.type || 'text'}
                         id={field.name}

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/shopActions'
-import TextFieldContainer from "../TextFieldContainer";
+import TextFieldContainer from "../common/TextFieldContainer";
 import SubmitButton from "../common/SubmitButton";
 
 const styles = {

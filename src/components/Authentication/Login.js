@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import TextFieldContainer from "../TextFieldContainer";
+import TextFieldContainer from "../common/TextFieldContainer";
 import './authentication.css';
 import SubmitButton from "../common/SubmitButton";
 import RefreshIndicator from "../common/RefreshIndicator";

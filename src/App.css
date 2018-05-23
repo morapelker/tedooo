@@ -15,6 +15,12 @@ h1 {
     font-weight: lighter;
 }
 
+h2 {
+    color: white;
+    font-family: Skia, sans-serif;
+    font-weight: lighter;
+}
+
 h3 {
     font-family: Skia, sans-serif;
 }
@@ -39,6 +45,10 @@ h3 {
 
 .smallImg {
     height: 100%;
+}
+
+.MuiPaper-root-15 {
+    min-width: 18%;
 }
 
 .dragscroll {

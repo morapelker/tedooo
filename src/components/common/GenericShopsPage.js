@@ -21,14 +21,14 @@ const GenericShopsPage = (props) => {
             <p/>
             <h1>{props.name}</h1>
             <p/>
-            {props.shops.map((result, index) => (
+            {props.shops ? props.shops.map((result, index) => (
                 <div key={index}>
                     <ShopLine deleteMethod={props.deleteMethod} parentData={props} shopSelected={shopSelected}
                               shop={result}/>
                     <br/>
                 </div>
 
-            ))}
+            )) : <h2>No pending shops</h2>};
         </div>
     );
 };

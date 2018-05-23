@@ -8,7 +8,7 @@ import RefreshIndicator from "../common/RefreshIndicator";
 
 const styles = {
     leftDiv: {
-        height: '90%',
+        flex: 9,
         width: '100%',
         display: 'flex',
         flexDirection: 'column'
@@ -19,7 +19,8 @@ const styles = {
         height: '100%',
         padding: 5,
         display: 'flex',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        backgroundColor: 'black'
     },
     imgList: {
         marginLeft: 10,
@@ -28,17 +29,20 @@ const styles = {
         display: 'flex',
         flexWrap: 'nowrap',
         overflowX: 'auto',
-        height: '15%',
-        minHeight: 60,
+        height: 60,
         paddingRight: 5,
         paddingLeft: 5
     }, smallImg: {
         border: '1px black solid',
-        minWidth: '25%',
+        width: 50,
+        height: 50,
+        marginLeft: 12,
         objectFit: 'cover',
+        borderWidth: 3,
     }, bigImg: {
         maxWidth: '100%',
         maxHeight: '100%',
+        marginBottom: 5,
         objectFit: 'contain',
         flex: 1,
     }, refresh: {
@@ -62,7 +66,7 @@ const mouseMove = (e) => {
 class ImageColumn extends Component {
     constructor(props, context) {
         super(props, context);
-        const bigImgUrl = (this.props.shop.img_links.length > 0) ? this.props.shop.img_links[0] : '';
+        const bigImgUrl = (this.props.shop.img_links && this.props.shop.img_links.length > 0) ? this.props.shop.img_links[0] : '';
         this.state = {
             bigImgUrl: bigImgUrl
         }
@@ -72,7 +76,7 @@ class ImageColumn extends Component {
         return (
             <div style={styles.leftDiv}>
                 <TitleLabel text={this.props.shop.name}/>
-                {this.props.shop.img_links.length > 0 ?
+                {this.props.shop.img_links && this.props.shop.img_links.length > 0 ?
                     <div style={{
                         height: '100%',
                         width: '100%',
@@ -87,7 +91,7 @@ class ImageColumn extends Component {
                             mouseDown = false;
                         }} onMouseMove={mouseMove} className={'dragscroll'} style={styles.imgList}>
                             {this.props.shop.img_links.map((link, index) => (
-                                <Img key={index} className={'smallImg'} style={styles.smallImg}
+                                <Img key={index} className={'smallImg'} style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
                                      src={link} loader={
                                     <RefreshIndicator />
                                 } onDragStart={e => {

@@ -9,71 +9,35 @@ import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
 import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop";
-import TopBar from "./common/TopBar";
+import Header from "./common/Header";
 import * as actions from "../actions/authenticationActions";
 import {bindActionCreators} from 'redux';
-
-const style = {
-    bar: {
-        backgroundColor: '#3CBF95',
-        boxShadow: 'none',
-        width: '5%'
-    },
-    dot: {
-        backgroundColor: 'white',
-        width: 50,
-        height: 50,
-        marginLeft: 10,
-        borderRadius: 40
-    },
-    dotContainer: {
-        display: 'flex',
-        width: 310,
-        marginTop: 10,
-        margin: '0 auto',
-        justifyContent: 'space-around'
-    }
-
-};
+import PendingShops from "./parents/PendingShops";
 
 class MainApp extends Component {
-
     render() {
+        const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome ') + this.props.state.firstName));
+
         return (
             <div style={{height: '100%'}}>
                 <BrowserRouter>
-                    <TopBar logOut={this.props.actions.logOut} auth={this.props.state}>
-                        <div style={{height: '100%'}}>
-                            <Switch>
-                                <Route exact path='/' component={SearchPage}/>
-                                <Route exact path='/results' component={SearchResults}/>
-                                <Route exact path='/history' component={HistoryPage}/>
-                                <Route exact path='/favorites' component={FavoritesPage}/>
-                                <Route exact path='/login' component={AuthenticationPage}/>
-                                <Route exact path='/myshops' component={MyShops}/>
-                                <Route exact path='/addshop' component={AddShop}/>
-                                <Route path='/results/:id' component={SpecificShop}/>
-                            </Switch>
-                        </div>
-                    </TopBar>
-                </BrowserRouter>
-                <div style={{
-                    margin: '0 auto',
-                    pointerEvents: 'none',
-                    position: 'absolute',
-                    width: '100%',
-                    top: 10,
-                    zIndex: 999,
-                    display: 'flex',
-                    flexDirection: 'column'
-                }}>
-                    <div style={style.dotContainer}>
-                        <span style={style.dot}/>
-                        <span style={style.dot}/>
-                        <span style={style.dot}/>
+                    <div style={{width: '100%', height: '100%', flexDirection: 'column'}}>
+                        <Header logOut={this.props.actions.logOut} history={this.props.history} auth={this.props.state} title={title} />
+                        <div style={{height: '50px'}} />
+                        <Switch>
+                            <Route exact path='/' component={SearchPage}/>
+                            <Route exact path='/results' component={SearchResults}/>
+                            <Route exact path='/history' component={HistoryPage}/>
+                            <Route exact path='/favorites' component={FavoritesPage}/>
+                            <Route exact path='/login' component={AuthenticationPage}/>
+                            <Route exact path='/myshops' component={MyShops}/>
+                            <Route exact path='/addshop' component={AddShop}/>
+                            <Route exact path='/pending' component={PendingShops}/>
+                            <Route path='/results/:id' component={SpecificShop}/>
+                        </Switch>
                     </div>
-                    <h3 style={{color: 'white', marginTop: 10}}>Tedooo</h3>
-                </div>
+
+                </BrowserRouter>
             </div>
 
         );

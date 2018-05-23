@@ -17,7 +17,7 @@ const styles = {
         margin: '0 auto',
         flexDirection: 'column',
         width: '80%',
-        height: '5%'
+        flex: 1
     }
 };
 

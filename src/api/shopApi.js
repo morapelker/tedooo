@@ -113,6 +113,27 @@ class ShopApi {
         }
     }
 
+    static async alterShop(id, props, token) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(props)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't update");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
 
     static async findShop(props) {
         try {
@@ -121,8 +142,17 @@ class ShopApi {
                 url = `?_id=${props['id']}`;
             else if (props.hasOwnProperty('userid'))
                 url = `?userId=${props['userid']}`;
+            else {
+                url = '?';
+                for (const property in props) {
+                    if (props.hasOwnProperty(property)) {
+                        url += `&${property}=${props[property]}`;
+                    }
+                }
+            }
+
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/' + url
+                'https://baloofeathers.herokuapp.com/shops' + url
             );
             let responseJson = await response.json();
             return responseJson.data;

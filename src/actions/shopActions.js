@@ -2,7 +2,7 @@ import {
     ADD_SHOP_FAVORITE,
     ADD_SHOP_HISTORY, DELETE_FAVORITE_SHOP,
     DELETE_HISTORY_SHOP,
-    FIND_SHOP_SUCCESS, UPDATE_MY_SHOPS
+    FIND_SHOP_SUCCESS, SHOP_ALTERED, UPDATE_MY_SHOPS
 } from "./shopConstants";
 import shopApi from '../api/shopApi';
 
@@ -17,6 +17,13 @@ export function updateMyShops(shops) {
     return {
         type: UPDATE_MY_SHOPS,
         shops
+    }
+}
+
+export function alterShopSuccess(shop) {
+    return {
+        type: SHOP_ALTERED,
+        shop
     }
 }
 
@@ -62,6 +69,16 @@ export function findShop(props) {
     return function(dispatch) {
         return shopApi.findShop(props).then(shops => {
             dispatch(findShopSuccess(shops));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function alterShop(id, props, token) {
+    return function(dispatch) {
+        return shopApi.alterShop(id, props, token).then(shop => {
+            dispatch(alterShopSuccess(shop));
         }).catch(error => {
             throw(error);
         });

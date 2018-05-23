@@ -29,6 +29,10 @@
     margin-left: 10px;
 }
 
+.specificShopContainer {
+    height: calc(90% - 55px);
+}
+
 Button:focus {
     outline: none;
 }

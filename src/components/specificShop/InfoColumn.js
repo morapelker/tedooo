@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './SpecificShop.css';
 import InfoLabelContainer from "./InfoLabelContainer";
 import QRCode from 'qrcode.react';
 import TipView from "../common/TipView";
+import SubmitButton from "../common/SubmitButton";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core/index";
+import Input from "@material-ui/core/Input/Input";
+import Button from "@material-ui/core/Button/Button";
 
 const typeFromShop = shop => {
     switch (shop.authorized) {
         case '2':
             return 'error';
-        case '1':
-            return 'warning';
         case '0':
+            return 'warning';
+        case '1':
             return 'success';
         default:
             return ''
@@ -21,9 +25,9 @@ const textFromShop = shop => {
     switch (shop.authorized) {
         case '2':
             return shop.authorized_description;
-        case '1':
-            return 'Your shop is pending approval';
         case '0':
+            return 'Your shop is pending approval';
+        case '1':
             return 'Your shop has been approved and is now visible to users';
         default:
             return ''
@@ -34,9 +38,9 @@ const colorFromShop = shop => {
     switch (shop.authorized) {
         case '2':
             return 'red';
-        case '1':
-            return 'orange';
         case '0':
+            return 'orange';
+        case '1':
             return 'white';
         default:
             return ''
@@ -47,47 +51,108 @@ const imageSourceFromShop = shop => {
     switch (shop.authorized) {
         case '2':
             return '/assets/infoIcon.png';
-        case '1':
-            return '/assets/infoIcon.png';
         case '0':
+            return '/assets/infoIcon.png';
+        case '1':
             return '/assets/check.png';
         default:
             return '';
     }
 };
 
-const InfoColumn = (props) => {
-    return (
-        <div className={'infoRoot'}>
-            {props.ownShop &&
-            <TipView style={{
-                height: 36,
-                width: 36,
-                alignSelf: 'flex-end',
-                alignItems: 'center',
-                display: 'flex'
-            }} text={textFromShop(props.shop)}
-                     type={typeFromShop(props.shop)}
-                     imageSource={imageSourceFromShop(props.shop)}
-                     color={colorFromShop(props.shop)}
-            />}
+class InfoColumn extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {open: false, text: ''};
+    }
 
-            <InfoLabelContainer img='/assets/infoIcon.png' labels={[
-                props.shop.address,
-                props.shop.market_name,
-                'Shop Number: ' + props.shop.shop_number,
-                'Category: ' + props.shop.category
-            ]}/>
+    closeWindow = () => {
+        console.log('close');
+        this.setState({open: false});
+    };
 
-            <InfoLabelContainer img='/assets/phone.png'
-                                labels={props.shop.contact_info.map(info => info.number)}/>
+    deny = () => {
+        console.log('deny', this.state.text);
+        this.setState({open: false});
+        console.log(this.props.token);
+        this.props.actions.alterShop(this.props.shop._id, {authorized: '2', authorized_description: this.state.text}, this.props.token);
+    };
 
-            <div className='infoBox'>
-                <QRCode value={props.shop.qr_code} fgColor='#3CBF95' bgColor='#ffffff'/>
+    accept = () => {
+        console.log('accept');
+        this.setState({open: false});
+        this.props.actions.alterShop(this.props.shop._id, {authorized: '1'}, this.props.token);
+    };
+
+    txtChanged = (e) => {
+      this.setState({text: e.target.value});
+    };
+
+    render() {
+        return (
+            <div className={'infoRoot'} style={{width: '25%'}}>
+                <div style={{
+                    display: 'flex',
+                    alignSelf: 'flex-end',
+                    alignItems: 'flex-end'
+                }}>
+                    {this.props.ownShop &&
+                    <TipView style={{
+                        height: 36,
+                        width: 36,
+                        alignItems: 'center',
+                        display: 'flex'
+                    }} text={textFromShop(this.props.shop)}
+                             type={typeFromShop(this.props.shop)}
+                             imageSource={imageSourceFromShop(this.props.shop)}
+                             color={colorFromShop(this.props.shop)}
+                    />}
+                    {this.props.admin && <SubmitButton image={'authorize'} style={{marginLeft: 10}} submit={()=>{
+                        this.setState({open: true});
+                    }} />}
+                    <Dialog
+                        open={this.state.open}
+                        onClose={this.closeFavoritesWindow}
+                        aria-labelledby="form-dialog-title"
+                    >
+                        <DialogTitle id="form-dialog-title">Shop approval</DialogTitle>
+                        <DialogContent>
+                            <Input onChange={this.txtChanged} value={this.state.text}
+                                   placeholder={'Additional Text'}/>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.closeWindow} color="inherit">
+                                Ignore
+                            </Button>
+                            <Button onClick={this.deny} color="secondary">
+                                Deny
+                            </Button>
+                            <Button onClick={this.accept} color="primary">
+                                Approve
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+
+
+                <InfoLabelContainer img='/assets/infoIcon.png' labels={[
+                    this.props.shop.address,
+                    this.props.shop.market_name,
+                    'Shop Number: ' + this.props.shop.shop_number,
+                    'Category: ' + this.props.shop.category
+                ]}/>
+
+                {this.props.shop.contact_info && <InfoLabelContainer img='/assets/phone.png'
+                                                                labels={this.props.shop.contact_info.map(info => info.number)}/>}
+
+
+                <div className='infoBox'>
+                    <QRCode value={this.props.shop.qr_code} fgColor='#3CBF95' bgColor='#ffffff'/>
+                </div>
+
             </div>
-
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default InfoColumn;

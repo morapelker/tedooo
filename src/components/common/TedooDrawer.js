@@ -1,91 +1,96 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Drawer, FlatButton, MenuItem} from "material-ui";
-import * as actions from '../../actions/authenticationActions'
-import {bindActionCreators} from 'redux';
-import { Dialog, DialogActions, DialogContent, DialogContentText, Button, DialogTitle } from '@material-ui/core/';
+import React from 'react';
+import {ListItem, ListItemText, List, IconButton, Drawer, Divider, Badge} from "@material-ui/core";
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
-class TedooDrawer extends Component {
 
-    constructor(props, context) {
-        super(props, context);
-        this.state = {open: false};
-        this.logout = this.logout.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleOpen = this.handleOpen.bind(this);
-    }
-
-    logout() {
-        this.props.actions.logOut();
-        this.handleClose();
-        this.props.history.push('/');
-    }
-
-    handleOpen() {
-        this.setState({open: true})
-    }
-
-    handleClose() {
-        this.setState({open: false})
-    }
-
-    render() {
-        return (
-            <div>
-                <Drawer open={this.props.open}>
-                    <FlatButton label="Close" onClick={this.props.closeMethod} primary={true}/>
-                    {this.props.state.token === '' ?
-                        <MenuItem onClick={this.props.navBarClicked('/login')}>Login</MenuItem> :
+const TedooDrawer = props => {
+    return (
+        <Drawer open={props.open} onClose={props.closeMenu}>
+            <div
+                tabIndex={0}
+                role="button"
+                onClick={props.closeMenu}
+                onKeyDown={props.closeMenu}
+            >
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'flex-end'
+                }}>
+                    <h3 style={{flex: 1, marginLeft: 15}}>{props.title}</h3>
+                    <IconButton>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                <Divider/>
+                <List>
+                    {props.auth.token === '' ?
+                        <ListItem button onClick={() => {
+                            props.handleNavigation('/login')
+                        }}>
+                            <ListItemText primary="Login"/>
+                        </ListItem> :
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column'
                         }}>
-                            <h3>{this.props.state.admin ? 'Hey boss ' : 'Welcome '} {this.props.state.firstName}</h3>
-                            <MenuItem onClick={this.handleOpen}>Logout</MenuItem>
-                            <MenuItem onClick={this.props.navBarClicked('/myshops')}>My Shops</MenuItem>
-                            <MenuItem onClick={this.props.navBarClicked('/addshop')}>Add Shop</MenuItem>
+                            <ListItem button onClick={() => {
+                                props.logout();
+                            }}>
+                                <ListItemText primary="Logout"/>
+                            </ListItem>
+                            <ListItem button onClick={() => {
+                                props.handleNavigation('/myshops')
+                            }}>
+                                <ListItemText primary="My Shops"/>
+                            </ListItem>
+                            <ListItem button onClick={() => {
+                                props.handleNavigation('/addshop')
+                            }}>
+                                <ListItemText primary="Add Shop"/>
+                            </ListItem>
                         </div>}
-                    <MenuItem onClick={this.props.navBarClicked('/')}>Search</MenuItem>
-                    <MenuItem onClick={this.props.navBarClicked('/favorites')}>Favorites</MenuItem>
-                    <MenuItem onClick={this.props.navBarClicked('/history')}>History</MenuItem>
-                </Drawer>
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
-                >
-                    <DialogTitle id="alert-dialog-title">{"Logout?"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            Are you sure you want to log out?
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} variant="raised">
-                            Stay Logged in
-                        </Button>
-                        <Button onClick={this.logout} variant="raised" color={'primary'}>
-                            Logout
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                    <ListItem button onClick={() => {
+                        props.handleNavigation('/')
+                    }}>
+                        <ListItemText primary="Search"/>
+                    </ListItem>
+                    <ListItem button onClick={() => {
+                        props.handleNavigation('/favorites')
+                    }}>
+                        <ListItemText primary="Favorites"/>
+                    </ListItem>
+                    <ListItem button onClick={() => {
+                        props.handleNavigation('/history')
+                    }}>
+                        <ListItemText primary="History"/>
+                    </ListItem>
+                    {props.auth.admin === true && <div>
+                        <Divider />
+                        <h3 style={{marginTop: 5, color: 'red', marginLeft: 15}}>Admin</h3>
+                        <ListItem button onClick={() => {
+                            props.handleNavigation('/categories')
+                        }}>
+                            <ListItemText primary="Manage Categories"/>
+                        </ListItem>
+                        <ListItem button onClick={() => {
+                            props.handleNavigation('/markets')
+                        }}>
+                            <ListItemText primary="Manage Markets"/>
+                        </ListItem>
+                        <Badge badgeContent={4} color="secondary">
+                            <ListItem button onClick={() => {
+                                props.handleNavigation('/pending')
+                            }}>
+                                <ListItemText primary="Pending Shops"/>
+                            </ListItem>
+                        </Badge>
+
+                    </div>}
+                </List>
+                <Divider/>
             </div>
+        </Drawer>
+    );
+};
 
-        );
-    }
-}
-
-function mapStateToProps(state) {
-    return {
-        state: state.saved.authentication
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TedooDrawer);
+export default TedooDrawer;

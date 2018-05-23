@@ -10,7 +10,7 @@ const styles = {
         height: '100%',
         marginTop: 20
     }, leftDiv: {
-        flex: 3,
+        width: '75%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -24,7 +24,7 @@ const SpecificShopData = (props) => {
                 <ImageColumn shop={props.shop} />
                 <FavoriteManagement addFavoritesAction={props.addFavoritesAction} shop={props.shop} />
             </div>
-            <InfoColumn ownShop={props.ownShop} shop={props.shop} />
+            <InfoColumn token={props.token} actions={props.actions} admin={props.admin} ownShop={props.ownShop} shop={props.shop} />
         </div>
     );
 };
