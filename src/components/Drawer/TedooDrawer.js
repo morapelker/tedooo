@@ -20,13 +20,15 @@ const TedooDrawer = props => {
     if (props.auth.token === '')
         data.push({text: 'Login', selector: props.handleNavigation, parameter: '/login'});
     else {
-        data.push({text: 'Logout', selector: props.logout});
         data.push({text: 'My Shops', selector: props.handleNavigation, parameter: '/myshops'});
         data.push({text: 'Add Shop', selector: props.handleNavigation, parameter: '/addshop'});
     }
     data.push({text: 'Search', selector: props.handleNavigation, parameter: '/'});
     data.push({text: 'Favorites', selector: props.handleNavigation, parameter: '/favorites'});
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
+
+    if (props.auth.token !== '')
+        data.push({text: 'Logout', selector: props.logout});
 
     if (props.auth.admin === true) {
         data.push({

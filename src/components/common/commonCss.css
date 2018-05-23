@@ -1,16 +1,6 @@
 
 .btnSubmit {
-    background-color: white;
-    color: white;
     align-self: center;
-}
-
-.btnSubmit:hover {
-    background-color: #eeeeee;
-}
-
-.btnSubmit:focus {
-    outline: none;
 }
 
 #tipRoot {

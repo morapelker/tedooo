@@ -114,6 +114,7 @@ class SearchPage extends Component {
                                  deselectedTextColor={'white'}
                                  selectedBackground={'white'}
                                  clearBackground={'#3CBF95'}
+                                 style={{width: 120}}
                     />
                     <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
                                  selected={this.state.segStatus === 2}
@@ -121,7 +122,8 @@ class SearchPage extends Component {
                                  deselectedTextColor={'white'}
                                  selectedBackground={'white'}
                                  clearBackground={'#3CBF95'}
-                                 style={{marginLeft: 10}}
+                                 style={{marginLeft: 10, width: 120}}
+
                     />
                 </div>
                 {this.state.segStatus === 1 ?
