@@ -16,7 +16,6 @@ class MyShops extends Component {
         this.state = {};
 
         if (props.shops === undefined && props.authentication.token !== '') {
-            console.log('find shops');
             shopApi.findShop({userid: this.props.authentication.userId}).then(shops => {
                 this.props.actions.updateMyShops(shops);
             }).catch(err => {

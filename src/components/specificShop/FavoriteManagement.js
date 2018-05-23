@@ -10,17 +10,6 @@ import {
 import {Input} from "reactstrap";
 import TedooButton from "../common/TedooButton";
 
-const styles = {
-    root: {
-        display: 'flex',
-        alignItems: 'center',
-        margin: '0 auto',
-        flexDirection: 'column',
-        width: '80%',
-        flex: 1
-    }
-};
-
 const shopNumber = str => {
     if (str.length === 0)
         return '';
@@ -61,7 +50,7 @@ class FavoriteManagement extends Component {
 
     render() {
         return (
-            <div style={styles.root}>
+            <div style={this.props.style}>
                 <p/>
                 <TedooButton style={{minWidth: 200}} id={'addToFavoritesButton'}
                              selected={true}

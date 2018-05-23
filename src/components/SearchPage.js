@@ -14,6 +14,7 @@ class SearchPage extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
+            error: false,
             busy: false,
             generalFields: [
                 {
@@ -23,20 +24,24 @@ class SearchPage extends Component {
                 },
                 {
                     name: 'shopNumber',
-                    placeholder: 'Shop Number'
+                    placeholder: 'Shop Number',
+                    value: ''
                 },
                 {
                     name: 'category',
-                    placeholder: 'Category'
+                    placeholder: 'Category',
+                    value: ''
                 },
                 {
                     name: 'city',
-                    placeholder: 'City'
+                    placeholder: 'City',
+                    value: ''
                 }
             ], specificFields: [
                 {
                     name: 'phoneNumber',
-                    placeholder: 'Phone Number/WeChat ID'
+                    placeholder: 'Phone Number/WeChat ID',
+                    value: ''
                 }
             ],
             segStatus: 1
@@ -80,24 +85,40 @@ class SearchPage extends Component {
 
     submit() {
         this.setState({
-            busy: true
+            busy: true,
+            error: false
         });
-        const searchParams = (this.state.segStatus === 1) ? {
-        } : {
-            phoneNumber: this.state.specificFields[0].value
-        };
+        let searchParams;
+        if (this.state.segStatus === 1) {
+            searchParams = {};
+            if (this.state.generalFields[0].value.length > 0)
+                searchParams['market_name'] = this.state.generalFields[0].value;
+            if (this.state.generalFields[1].value.length > 0)
+                searchParams['shop_number'] = this.state.generalFields[1].value;
+            if (this.state.generalFields[2].value.length > 0)
+                searchParams['category'] = this.state.generalFields[2].value;
+            if (this.state.generalFields[3].value.length > 0)
+                searchParams['city'] = this.state.generalFields[3].value;
+        } else
+            searchParams = {phoneNumber: this.state.specificFields[0].value};
 
         this.props.actions.findShop(searchParams).then(() => {
-            this.setState({
-                busy: false
-            });
+
             const results = this.props.state.results;
-            if (results.length === 0)
-                console.log('no results found');
-            else if (results.length === 1)
-                this.props.history.push("/results/" + results[0]._id);
-            else
-                this.props.history.push("/results/");
+            if (results.length === 0) {
+                this.setState({
+                    busy: false,
+                    error: true
+                });
+            } else {
+                this.setState({
+                    busy: false
+                });
+                if (results.length === 1)
+                    this.props.history.push("/results/" + results[0]._id);
+                else
+                    this.props.history.push("/results/");
+            }
         });
     }
 
@@ -127,14 +148,16 @@ class SearchPage extends Component {
                     />
                 </div>
                 {this.state.segStatus === 1 ?
-                    <TextFieldContainer textChanged={this.textChanged}
+                    <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
                                         fields={this.state.generalFields}/> :
-                    <TextFieldContainer textChanged={this.textChanged}
+                    <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
                                         fields={this.state.specificFields}/>}
                 <p/>
-                {this.state.busy ? <RefreshIndicator/> :
+                {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}} /> :
                     <SubmitButton submit={this.submit}/>
                 }
+                {this.state.error &&
+                <h3 style={{color: 'red', fontWeight: 'normal', marginTop: 10}}>No shops found</h3>}
 
             </div>
         );

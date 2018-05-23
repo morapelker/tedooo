@@ -11,7 +11,9 @@ const styles = {
     },
     primary: {
         color: '#3CBF95',
-        opacity: 1
+        opacity: 1,
+        fontFamily: 'Skia, sans-serif',
+        fontWeight: 'lighter'
     }
 };
 
@@ -19,12 +21,14 @@ const TedooDrawer = props => {
     let data = [];
     if (props.auth.token === '')
         data.push({text: 'Login', selector: props.handleNavigation, parameter: '/login'});
-    else {
+
+    data.push({text: 'Search', selector: props.handleNavigation, parameter: '/'});
+    data.push({text: 'Favorites', selector: props.handleNavigation, parameter: '/favorites'});
+
+    if (props.auth.token !== ''){
         data.push({text: 'My Shops', selector: props.handleNavigation, parameter: '/myshops'});
         data.push({text: 'Add Shop', selector: props.handleNavigation, parameter: '/addshop'});
     }
-    data.push({text: 'Search', selector: props.handleNavigation, parameter: '/'});
-    data.push({text: 'Favorites', selector: props.handleNavigation, parameter: '/favorites'});
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
 
     if (props.auth.token !== '')

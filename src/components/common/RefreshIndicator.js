@@ -5,7 +5,6 @@ const style = {
     backgroundColor: 'white',
     display: 'inline-block',
     position: 'relative',
-    margin: '0 auto'
 };
 
 const RefreshIndicator = (props) => {

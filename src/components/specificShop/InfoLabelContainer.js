@@ -16,7 +16,8 @@ const InfoLabelContainer = (props) => {
         <div className='infoBox'>
             <Img src={props.img} style={style.imgInfo}/>
             {props.labels.map((txt, index) => (
-                <label key={index} style={{marginLeft: (5 * index)}} className='infoLabel'>{txt}</label>
+                <label key={index} style={{marginLeft: (5 * index), fontFamily: 'Skia, sans-serif',
+                }} className='infoLabel'>{txt}</label>
             ))}
         </div>
     );

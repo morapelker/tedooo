@@ -7,12 +7,6 @@ import RefreshIndicator from "../common/RefreshIndicator";
 
 
 const styles = {
-    leftDiv: {
-        flex: 9,
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column'
-    },
     bigImgDiv: {
         marginLeft: 10,
         marginRight: 10,
@@ -39,6 +33,7 @@ const styles = {
         marginLeft: 12,
         objectFit: 'cover',
         borderWidth: 3,
+        cursor: 'pointer'
     }, bigImg: {
         maxWidth: '100%',
         maxHeight: '100%',
@@ -49,17 +44,6 @@ const styles = {
         backgroundColor: 'transparent',
         display: 'inline-block',
         position: 'relative'
-    }
-};
-
-let isDragging = false;
-let mouseDown = false;
-let startingPos = [];
-
-const mouseMove = (e) => {
-    if (mouseDown) {
-        if (e.pageX - startingPos[0] > 5)
-            isDragging = true;
     }
 };
 
@@ -74,7 +58,7 @@ class ImageColumn extends Component {
 
     render() {
         return (
-            <div style={styles.leftDiv}>
+            <div style={this.props.style}>
                 <TitleLabel text={this.props.shop.name}/>
                 {this.props.shop.img_links && this.props.shop.img_links.length > 0 ?
                     <div style={{
@@ -84,32 +68,27 @@ class ImageColumn extends Component {
                         display: 'flex',
                     }}>
 
-                        <div onMouseDown={(e) => {
-                            mouseDown = true;
-                            startingPos = [e.pageX, e.pageY];
-                        }} onMouseUp={() => {
-                            mouseDown = false;
-                        }} onMouseMove={mouseMove} className={'dragscroll'} style={styles.imgList}>
+                        <div style={styles.imgList}>
                             {this.props.shop.img_links.map((link, index) => (
-                                <Img key={index} className={'smallImg'} style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
+                                <Img key={index} className={'smallImg'}
+                                     style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
                                      src={link} loader={
-                                    <RefreshIndicator />
+                                    <RefreshIndicator/>
                                 } onDragStart={e => {
                                     e.preventDefault();
                                 }} onClick={() => {
-                                    if (!isDragging) {
-                                        this.setState({
-                                            bigImgUrl: link
-                                        })
-                                    }
-                                    isDragging = false;
+                                    this.setState({
+                                        bigImgUrl: link
+                                    });
                                 }}/>
 
                             ))}
                         </div>
                         <div style={styles.bigImgDiv}>
                             <Img style={styles.bigImg} src={this.state.bigImgUrl}
-                                 loader={<RefreshIndicator />}/>
+                                 loader={<RefreshIndicator style={{
+                                     margin: '0 auto'
+                                 }}/>}/>
 
                         </div>
                     </div>

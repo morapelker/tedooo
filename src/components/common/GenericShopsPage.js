@@ -3,6 +3,7 @@ import ShopLine from "./ShopLine";
 
 const style = {
     width: '40%',
+    minWidth: 300,
     marginTop: '20px',
     margin: 'auto'
 };

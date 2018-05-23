@@ -23,7 +23,7 @@ class MainApp extends Component {
                 <BrowserRouter>
                     <div style={{width: '100%', height: '100%', flexDirection: 'column'}}>
                         <Header logOut={this.props.actions.logOut} history={this.props.history} auth={this.props.state} title={title} />
-                        <div style={{height: '50px'}} />
+                        <div style={{height: '100px'}} />
                         <Switch>
                             <Route exact path='/' component={SearchPage}/>
                             <Route exact path='/results' component={SearchResults}/>

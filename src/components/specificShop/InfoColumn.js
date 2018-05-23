@@ -67,19 +67,15 @@ class InfoColumn extends Component {
     }
 
     closeWindow = () => {
-        console.log('close');
         this.setState({open: false});
     };
 
     deny = () => {
-        console.log('deny', this.state.text);
         this.setState({open: false});
-        console.log(this.props.token);
         this.props.actions.alterShop(this.props.shop._id, {authorized: '2', authorized_description: this.state.text}, this.props.token);
     };
 
     accept = () => {
-        console.log('accept');
         this.setState({open: false});
         this.props.actions.alterShop(this.props.shop._id, {authorized: '1'}, this.props.token);
     };
@@ -90,7 +86,7 @@ class InfoColumn extends Component {
 
     render() {
         return (
-            <div className={'infoRoot'} style={{width: '25%'}}>
+            <div className={'infoRoot'} style={this.props.style}>
                 <div style={{
                     display: 'flex',
                     alignSelf: 'flex-end',
@@ -101,13 +97,14 @@ class InfoColumn extends Component {
                         height: 36,
                         width: 36,
                         alignItems: 'center',
-                        display: 'flex'
+                        display: 'flex',
+                        marginRight: 10
                     }} text={textFromShop(this.props.shop)}
                              type={typeFromShop(this.props.shop)}
                              imageSource={imageSourceFromShop(this.props.shop)}
                              color={colorFromShop(this.props.shop)}
                     />}
-                    {this.props.admin && <SubmitButton image={'authorize'} style={{marginLeft: 10}} submit={()=>{
+                    {this.props.admin && <SubmitButton image={'authorize'} submit={()=>{
                         this.setState({open: true});
                     }} />}
                     <Dialog
