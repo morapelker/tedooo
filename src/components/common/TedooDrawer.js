@@ -1,5 +1,5 @@
 import React from 'react';
-import {ListItem, ListItemText, List, IconButton, Drawer, Divider, Badge} from "@material-ui/core";
+import {ListItem, ListItemText, List, IconButton, Drawer, Divider} from "@material-ui/core";
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 
@@ -77,13 +77,11 @@ const TedooDrawer = props => {
                         }}>
                             <ListItemText primary="Manage Markets"/>
                         </ListItem>
-                        <Badge badgeContent={4} color="secondary">
-                            <ListItem button onClick={() => {
-                                props.handleNavigation('/pending')
-                            }}>
-                                <ListItemText primary="Pending Shops"/>
-                            </ListItem>
-                        </Badge>
+                        <ListItem button onClick={() => {
+                            props.handleNavigation('/pending')
+                        }}>
+                            <ListItemText primary="Pending Shops"/>
+                        </ListItem>
 
                     </div>}
                 </List>

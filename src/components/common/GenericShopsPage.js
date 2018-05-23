@@ -19,7 +19,7 @@ const GenericShopsPage = (props) => {
     return (
         <div style={style}>
             <p/>
-            <h1>{props.name}</h1>
+            <h3>{props.name}</h3>
             <p/>
             {props.shops ? props.shops.map((result, index) => (
                 <div key={index}>
@@ -28,7 +28,7 @@ const GenericShopsPage = (props) => {
                     <br/>
                 </div>
 
-            )) : <h2>No pending shops</h2>};
+            )) : <h2>No shops</h2>}
         </div>
     );
 };

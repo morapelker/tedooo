@@ -2,9 +2,12 @@ import React from 'react';
 import Button from "@material-ui/core/Button/Button";
 
 const defaultStyle = {
-    textTransform: 'capitalize',
-    borderRadius: 10,
-};
+        textTransform: 'capitalize',
+        borderRadius: 10,
+        fontFamily: 'Skia, sans-serif',
+        fontWeight: 'lighter',
+    }
+;
 
 const TedooButton = (props) => {
     const style = props.selected ? {
@@ -20,7 +23,8 @@ const TedooButton = (props) => {
 
 
     return (
-        <Button style={Object.assign({}, defaultStyle, style, props.style)} onClick={props.onClick} variant={'raised'}>
+        <Button style={Object.assign({}, defaultStyle, style, props.style)} onClick={props.onClick}
+                variant={'raised'}>
             {props.text}
         </Button>
     );

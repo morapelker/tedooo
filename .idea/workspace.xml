@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="sd">
-      <change afterPath="$PROJECT_DIR$/public/assets/authorize.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/ButtonAppBar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/parents/PendingShops.js" afterDir="false" />
+    <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/shopActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/shopActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/shopConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/shopConstants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/shopApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/shopApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Authentication/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Authentication/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainApp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TextFieldContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SubmitButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SubmitButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/TedooButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TedooButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/TedooDrawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TedooDrawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/TopBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/commonCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/commonCss.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/parents/AddShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/AddShop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/FavoriteManagement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/FavoriteManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShop.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShop.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/shopReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/shopReducer.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,22 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SpecificShopPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="856">
-              <caret line="59" column="98" lean-forward="true" selection-start-line="59" selection-start-column="98" selection-end-line="59" selection-end-column="98" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PendingShops.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parents/PendingShops.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
+            <state relative-caret-position="493">
               <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -69,11 +37,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfoColumn.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/InfoColumn.js">
+      <file leaf-file-name="SearchPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="124" column="38" selection-start-line="124" selection-start-column="38" selection-end-line="124" selection-end-column="38" />
+            <state relative-caret-position="189">
+              <caret line="103" column="5" lean-forward="true" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyShops.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/parents/MyShops.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddShop.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="451">
+              <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -84,26 +73,29 @@
       <file leaf-file-name="SearchResultsPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="156">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageColumn.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
+      <file leaf-file-name="Header.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/Header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="78" column="45" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+            <state relative-caret-position="246">
+              <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericShopsPage.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
+      <file leaf-file-name="ButtonAppBar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/ButtonAppBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="778">
-              <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+            <state relative-caret-position="852">
+              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -111,20 +103,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopApi.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
+      <file leaf-file-name="TedooDrawer.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/common/TedooDrawer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+            <state relative-caret-position="26">
+              <caret line="1" column="65" selection-start-line="1" selection-start-column="65" selection-end-line="1" selection-end-column="65" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopReducer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/shopReducer.js">
+      <file leaf-file-name="GenericShopsPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+            <state relative-caret-position="302">
+              <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,20 +127,8 @@
       <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="856">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpecificShopData.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="52">
+              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -189,7 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/parents/AddShop.js" />
         <option value="$PROJECT_DIR$/src/components/Authentication/authentication.css" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/components/common/TipView2.js" />
@@ -201,9 +183,7 @@
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/common/RefreshIndicator.js" />
-        <option value="$PROJECT_DIR$/src/components/SearchPage.js" />
         <option value="$PROJECT_DIR$/src/components/search.css" />
-        <option value="$PROJECT_DIR$/src/components/common/TedooButton.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/parents/HistoryPage.js" />
         <option value="$PROJECT_DIR$/src/components/parents/FavoritesPage.js" />
@@ -222,8 +202,6 @@
         <option value="$PROJECT_DIR$/src/components/TextFieldContainer.js" />
         <option value="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" />
         <option value="$PROJECT_DIR$/src/components/common/commonCss.css" />
-        <option value="$PROJECT_DIR$/src/components/common/TedooDrawer.js" />
-        <option value="$PROJECT_DIR$/src/components/common/ButtonAppBar.js" />
         <option value="$PROJECT_DIR$/src/components/common/Header.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShop.css" />
         <option value="$PROJECT_DIR$/src/components/MainApp.js" />
@@ -238,8 +216,13 @@
         <option value="$PROJECT_DIR$/src/reducers/shopReducer.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" />
         <option value="$PROJECT_DIR$/src/components/parents/PendingShops.js" />
-        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/components/common/TedooButton.js" />
+        <option value="$PROJECT_DIR$/src/components/common/ButtonAppBar.js" />
         <option value="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/components/SearchPage.js" />
+        <option value="$PROJECT_DIR$/src/components/parents/AddShop.js" />
+        <option value="$PROJECT_DIR$/src/components/common/TedooDrawer.js" />
       </list>
     </option>
   </component>
@@ -509,7 +492,7 @@
       <workItem from="1526901701733" duration="977000" />
       <workItem from="1526906249992" duration="2191000" />
       <workItem from="1526993590910" duration="2693000" />
-      <workItem from="1527063147709" duration="17826000" />
+      <workItem from="1527063147709" duration="18720000" />
     </task>
     <task id="LOCAL-00001" summary="sd">
       <created>1526908926159</created>
@@ -518,18 +501,25 @@
       <option name="project" value="LOCAL" />
       <updated>1526908926159</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="sd">
+      <created>1527086174821</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1527086174821</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139706000" />
+    <option name="totallyTimeSpent" value="140600000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2560" height="1347" extended-state="6" />
+    <frame x="1" y="23" width="2560" height="1347" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.09570697" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.09570697" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -537,7 +527,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32782823" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2216789" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.2216789" />
       <window_info id="Favorites" order="2" sideWeight="0.38608307" side_tool="true" weight="0.22528554" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -565,7 +555,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/common/tileData.js" />
     <entry file="file://$PROJECT_DIR$/src/components/common/TopBar2.js" />
     <entry file="file://$PROJECT_DIR$/src/components/Authentication/Login.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -688,47 +677,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/TedooDrawer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="76" column="27" lean-forward="true" selection-start-line="76" selection-start-column="27" selection-end-line="76" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/search.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ButtonAppBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1421">
-          <caret line="72" column="15" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/Header.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="48" column="80" selection-start-line="48" selection-start-column="80" selection-end-line="48" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,13 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="23" column="30" lean-forward="true" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/MyShops.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -784,16 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/TedooButton.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -835,16 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
           <caret line="6" column="41" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="878">
-          <caret line="155" column="15" selection-start-line="155" selection-start-column="15" selection-end-line="155" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -916,17 +841,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
+    <entry file="file://$PROJECT_DIR$/src/components/search.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="312">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/PendingShops.js">
+    <entry file="file://$PROJECT_DIR$/src/components/common/TedooButton.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+        <state relative-caret-position="182">
+          <caret line="7" column="30" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -935,18 +870,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        <state relative-caret-position="52">
+          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/PendingShops.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="778">
-          <caret line="30" column="20" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+        <state relative-caret-position="302">
+          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="103" column="5" lean-forward="true" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/MyShops.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/ButtonAppBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="852">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/TedooDrawer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="1" column="65" selection-start-line="1" selection-start-column="65" selection-end-line="1" selection-end-column="65" />
         </state>
       </provider>
     </entry>

@@ -74,7 +74,7 @@ class AddShop extends Component {
         return (
             <div style={styles.mainDiv}>
                 <p/>
-                <h1>Add Shop</h1>
+                <h3>Add Shop</h3>
                 <p/>
                 <TextFieldContainer textChanged={this.textChanged}
                                     fields={this.state.fields}/>

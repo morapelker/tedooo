@@ -9,21 +9,12 @@
     height: 80px;
 }
 
-h1 {
+h1, h2, h3 {
     color: white;
     font-family: Skia, sans-serif;
     font-weight: lighter;
 }
 
-h2 {
-    color: white;
-    font-family: Skia, sans-serif;
-    font-weight: lighter;
-}
-
-h3 {
-    font-family: Skia, sans-serif;
-}
 
 .App-header {
     background-color: #222;

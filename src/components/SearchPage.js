@@ -107,7 +107,7 @@ class SearchPage extends Component {
         return (
             <div className='searchContainer'>
                 <p/>
-                <h1>Search</h1>
+                <h3>Search</h3>
                 <p/>
                 <div className='segContainer'>
                     <TedooButton onClick={this.generalClicked} text={"General"}
