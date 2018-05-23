@@ -9,14 +9,14 @@ import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
 import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop";
-import Header from "./common/Header";
+import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 
 class MainApp extends Component {
     render() {
-        const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome ') + this.props.state.firstName));
+        const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
 
         return (
             <div style={{height: '100%'}}>
