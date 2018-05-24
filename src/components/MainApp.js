@@ -14,6 +14,7 @@ import * as actions from "../actions/authenticationActions";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
+import MediaQuery from "react-responsive";
 
 class MainApp extends Component {
     render() {
@@ -22,21 +23,36 @@ class MainApp extends Component {
         return (
             <div style={{height: '100%'}}>
                 <BrowserRouter>
-                    <div style={{width: '100%', height: '100%', flexDirection: 'column'}}>
-                        <Header logOut={this.props.actions.logOut} history={this.props.history} auth={this.props.state} title={title} />
-                        <div style={{height: '100px'}} />
-                        <Switch>
-                            <Route exact path='/' component={SearchPage}/>
-                            <Route exact path='/results' component={SearchResults}/>
-                            <Route exact path='/history' component={HistoryPage}/>
-                            <Route exact path='/favorites' component={FavoritesPage}/>
-                            <Route exact path='/login' component={AuthenticationPage}/>
-                            <Route exact path='/myshops' component={MyShops}/>
-                            <Route exact path='/addshop' component={AddShop}/>
-                            <Route exact path='/pending' component={PendingShops}/>
-                            <Route exact path='/categories' component={Categories}/>
-                            <Route path='/results/:id' component={SpecificShop}/>
-                        </Switch>
+                    <div style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column'
+                    }}>
+                        <Header logOut={this.props.actions.logOut} history={this.props.history}
+                                auth={this.props.state} title={title}/>
+                        <MediaQuery query="(min-width: 801px)">
+                            <div style={{
+                                marginTop: 50
+                            }} />
+                        </MediaQuery>
+                        <div style={{
+                            flex: 1
+                        }}>
+                            <Switch>
+                                <Route exact path='/' component={SearchPage}/>
+                                <Route exact path='/results' component={SearchResults}/>
+                                <Route exact path='/history' component={HistoryPage}/>
+                                <Route exact path='/favorites' component={FavoritesPage}/>
+                                <Route exact path='/login' component={AuthenticationPage}/>
+                                <Route exact path='/myshops' component={MyShops}/>
+                                <Route exact path='/addshop' component={AddShop}/>
+                                <Route exact path='/pending' component={PendingShops}/>
+                                <Route exact path='/categories' component={Categories}/>
+                                <Route path='/results/:id' component={SpecificShop}/>
+                            </Switch>
+                        </div>
+
                     </div>
 
                 </BrowserRouter>
