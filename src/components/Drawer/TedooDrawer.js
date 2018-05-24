@@ -2,7 +2,7 @@ import React from 'react';
 import {ListItem, ListItemText, List, Drawer} from "@material-ui/core";
 import DrawerTitle from "./DrawerTitle";
 import {withStyles} from '@material-ui/core/styles';
-import {Divider} from "@material-ui/core/es/index";
+import {Divider} from "@material-ui/core/index";
 
 const styles = {
     divider: {
