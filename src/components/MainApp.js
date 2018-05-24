@@ -13,6 +13,7 @@ import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
+import Categories from "./parents/Categories";
 
 class MainApp extends Component {
     render() {
@@ -33,6 +34,7 @@ class MainApp extends Component {
                             <Route exact path='/myshops' component={MyShops}/>
                             <Route exact path='/addshop' component={AddShop}/>
                             <Route exact path='/pending' component={PendingShops}/>
+                            <Route exact path='/categories' component={Categories}/>
                             <Route path='/results/:id' component={SpecificShop}/>
                         </Switch>
                     </div>

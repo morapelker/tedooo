@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/shopActions'
 import {bindActionCreators} from 'redux';
 import SpecificShopData from "./SpecificShopData";
-import dragscroll from '../../../node_modules/dragscroll/dragscroll';
 import RefreshIndicator from "../common/RefreshIndicator";
 import './SpecificShop.css'
 
@@ -50,7 +49,6 @@ class SpecificShopPage extends Component {
     }
 
     render() {
-        setTimeout(()=>{dragscroll.reset()}, 300);
         return (
             <div className={'specificShopContainer'}>
                 {this.state.busy ?

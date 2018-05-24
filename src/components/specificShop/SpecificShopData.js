@@ -60,7 +60,7 @@ const SpecificShopData = (props) => {
                     </div>
                     <InfoColumn style={styles.infoCol} token={props.token} actions={props.actions} admin={props.admin}
                                 ownShop={props.ownShop} shop={props.shop}/>
-                </div>s
+                </div>
             </MediaQuery>
             <MediaQuery query="(max-device-width: 800px)">
                 <div style={styles.rootSmall}>

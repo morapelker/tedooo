@@ -54,13 +54,15 @@ class SearchPage extends Component {
 
     generalClicked = () => {
         this.setState({
-            segStatus: 1
+            segStatus: 1,
+            error: false
         });
     };
 
     specificClicked() {
         this.setState({
-            segStatus: 2
+            segStatus: 2,
+            error: false
         });
     }
 
@@ -153,7 +155,7 @@ class SearchPage extends Component {
                     <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
                                         fields={this.state.specificFields}/>}
                 <p/>
-                {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}} /> :
+                {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
                     <SubmitButton submit={this.submit}/>
                 }
                 {this.state.error &&

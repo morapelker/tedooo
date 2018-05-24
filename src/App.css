@@ -41,19 +41,8 @@ h1, h2, h3 {
     min-width: 18%;
 }
 
-.dragscroll {
-    cursor: grab;
-}
-
 button {
     text-transform: none;
-}
-
-.dragscroll:active {
-    cursor : -webkit-grabbing;
-    cursor : -moz-grabbing;
-    cursor : -o-grabbing;
-    cursor : grabbing;
 }
 
 .App-title {
