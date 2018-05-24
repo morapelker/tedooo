@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import MediaTypeTest from "../specificShop/MediaTypeTest";
 
 class Categories extends Component {
     constructor(props, context) {
@@ -14,7 +13,6 @@ class Categories extends Component {
                 height: '100%',
                 backgroundColor: 'red'
             }}>
-                <MediaTypeTest />
             </div>
         );
     }
