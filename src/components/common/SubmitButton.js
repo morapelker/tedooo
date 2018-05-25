@@ -25,6 +25,9 @@ const SubmitButton = (props) => {
                 color="primary"
                 className={classNames(classes.margin, classes.cssRoot)}
                 onClick={props.submit}
+                style={{
+                    boxShadow: 'none'
+                }}
                 mini={true}>
             <Img style={{
                 maxWidth: '100%',
