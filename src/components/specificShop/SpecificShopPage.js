@@ -50,7 +50,9 @@ class SpecificShopPage extends Component {
 
     render() {
         return (
-            <div className={'specificShopContainer'}>
+            <div className={'specificShopContainer'} style={{
+                height: '100%'
+            }}>
                 {this.state.busy ?
                     <RefreshIndicator />
                     : this.state.shop === undefined ? 'no data' :

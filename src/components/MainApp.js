@@ -21,7 +21,7 @@ class MainApp extends Component {
         const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
 
         return (
-            <div style={{height: '100%'}}>
+            <div style={{height: '100%', overflow: 'hidden'}}>
                 <BrowserRouter>
                     <div style={{
                         width: '100%',
@@ -37,7 +37,8 @@ class MainApp extends Component {
                             }} />
                         </MediaQuery>
                         <div style={{
-                            flex: 1
+                            flex: 1,
+                            overflow: 'hidden'
                         }}>
                             <Switch>
                                 <Route exact path='/' component={SearchPage}/>
