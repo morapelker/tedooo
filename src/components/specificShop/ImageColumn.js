@@ -13,8 +13,8 @@ const styles = {
         height: '100%',
         padding: 5,
         display: 'flex',
-        alignItems: 'flex-end',
-        backgroundColor: 'black'
+        marginTop: 55,
+        alignItems: 'center',
     },
     imgList: {
         marginLeft: 10,
@@ -66,6 +66,7 @@ class ImageColumn extends Component {
                         width: '100%',
                         flexDirection: 'column-reverse',
                         display: 'flex',
+                        backgroundColor: 'black',
                     }}>
 
                         <div style={styles.imgList}>

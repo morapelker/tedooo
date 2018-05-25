@@ -51,7 +51,7 @@ const styles = {
 const SpecificShopData = (props) => {
     return (
         <div style={{width: '100%', height: '100%'}}>
-            <MediaQuery query="(min-width: 801px)">
+            <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>
                         <ImageColumn style={styles.imgCol} shop={props.shop}/>
@@ -62,7 +62,7 @@ const SpecificShopData = (props) => {
                                 ownShop={props.ownShop} shop={props.shop}/>
                 </div>
             </MediaQuery>
-            <MediaQuery query="(max-width: 800px)">
+            <MediaQuery query="(max-width: 519px)">
                 <div style={styles.rootSmall}>
 
                     <div style={styles.leftDivSmall}>

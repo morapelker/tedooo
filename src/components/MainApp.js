@@ -21,7 +21,7 @@ class MainApp extends Component {
         const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
 
         return (
-            <div style={{height: '100%', overflow: 'hidden'}}>
+            <div style={{height: '100%'}}>
                 <BrowserRouter>
                     <div style={{
                         width: '100%',

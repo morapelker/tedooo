@@ -72,7 +72,10 @@ class InfoColumn extends Component {
 
     deny = () => {
         this.setState({open: false});
-        this.props.actions.alterShop(this.props.shop._id, {authorized: '2', authorized_description: this.state.text}, this.props.token);
+        this.props.actions.alterShop(this.props.shop._id, {
+            authorized: '2',
+            authorized_description: this.state.text
+        }, this.props.token);
     };
 
     accept = () => {
@@ -81,7 +84,7 @@ class InfoColumn extends Component {
     };
 
     txtChanged = (e) => {
-      this.setState({text: e.target.value});
+        this.setState({text: e.target.value});
     };
 
     render() {
@@ -104,9 +107,9 @@ class InfoColumn extends Component {
                              imageSource={imageSourceFromShop(this.props.shop)}
                              color={colorFromShop(this.props.shop)}
                     />}
-                    {this.props.admin && <SubmitButton image={'authorize'} submit={()=>{
+                    {this.props.admin && <SubmitButton image={'authorize'} submit={() => {
                         this.setState({open: true});
-                    }} />}
+                    }}/>}
                     <Dialog
                         open={this.state.open}
                         onClose={this.closeFavoritesWindow}
@@ -130,22 +133,23 @@ class InfoColumn extends Component {
                         </DialogActions>
                     </Dialog>
                 </div>
+                <div>
+                    <InfoLabelContainer img='/assets/infoIcon.png' labels={[
+                        this.props.shop.address,
+                        this.props.shop.market_name,
+                        'Shop Number: ' + this.props.shop.shop_number,
+                        'Category: ' + this.props.shop.category
+                    ]}/>
 
+                    {this.props.shop.contact_info && <InfoLabelContainer img='/assets/phone.png'
+                                                                         labels={this.props.shop.contact_info.map(info => info.number)}/>}
+                    <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}>
+                        <QRCode value={this.props.shop.qr_code} fgColor='#3CBF95'
+                                bgColor='#ffffff'/>
+                    </div>
 
-                <InfoLabelContainer img='/assets/infoIcon.png' labels={[
-                    this.props.shop.address,
-                    this.props.shop.market_name,
-                    'Shop Number: ' + this.props.shop.shop_number,
-                    'Category: ' + this.props.shop.category
-                ]}/>
-
-                {this.props.shop.contact_info && <InfoLabelContainer img='/assets/phone.png'
-                                                                labels={this.props.shop.contact_info.map(info => info.number)}/>}
-
-
-                <div className='infoBox'>
-                    <QRCode value={this.props.shop.qr_code} fgColor='#3CBF95' bgColor='#ffffff'/>
                 </div>
+
 
             </div>
         );
