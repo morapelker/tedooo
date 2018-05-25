@@ -10,9 +10,8 @@ const styles = {
     bigImgDiv: {
         marginLeft: 10,
         marginRight: 10,
-        height: '100%',
+        height: 'calc(100% - 120px)',
         padding: 5,
-        display: 'flex',
         marginTop: 55,
         alignItems: 'center',
     },
@@ -35,11 +34,10 @@ const styles = {
         borderWidth: 3,
         cursor: 'pointer'
     }, bigImg: {
-        maxWidth: '100%',
-        maxHeight: '100%',
+        width: '100%',
+        height: '100%',
         marginBottom: 5,
         objectFit: 'contain',
-        flex: 1,
     }, refresh: {
         backgroundColor: 'transparent',
         display: 'inline-block',
@@ -85,7 +83,7 @@ class ImageColumn extends Component {
 
                             ))}
                         </div>
-                        <div style={styles.bigImgDiv}>
+                        <div className={'bigImgContainer'} style={styles.bigImgDiv}>
                             <Img style={styles.bigImg} src={this.state.bigImgUrl}
                                  loader={<RefreshIndicator style={{
                                      margin: '0 auto'

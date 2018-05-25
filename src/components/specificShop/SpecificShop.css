@@ -38,6 +38,10 @@ Button:focus {
     outline: none;
 }
 
+.bigImageContainer {
+    height: 40%;
+}
+
 .infoRoot {
     flex: 1;
     margin-right: 10px;

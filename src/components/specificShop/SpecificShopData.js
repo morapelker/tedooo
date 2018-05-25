@@ -25,6 +25,7 @@ const styles = {
         flexDirection: 'column',
     }, leftDivSmall: {
         width: '100%',
+        height: '100%',
         display: 'flex',
         marginBottom: 15,
         flexDirection: 'column',
@@ -38,6 +39,7 @@ const styles = {
         minHeight: 75
     }, imgCol: {
         width: '100%',
+        height: '100%',
         display: 'flex',
         flexDirection: 'column',
         flex: 9,
