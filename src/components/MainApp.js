@@ -15,6 +15,7 @@ import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
 import MediaQuery from "react-responsive";
+import Markets from "./parents/Markets";
 
 class MainApp extends Component {
     render() {
@@ -50,6 +51,7 @@ class MainApp extends Component {
                                 <Route exact path='/addshop' component={AddShop}/>
                                 <Route exact path='/pending' component={PendingShops}/>
                                 <Route exact path='/categories' component={Categories}/>
+                                <Route exact path='/markets' component={Markets}/>
                                 <Route path='/results/:id' component={SpecificShop}/>
                             </Switch>
                         </div>

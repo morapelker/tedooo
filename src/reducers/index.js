@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux'
 import shops from './shopReducer'
+import manager from './manager'
 import local from './localStuff'
 import {persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -14,7 +15,8 @@ const persistedReducer = persistReducer(persistConfig, combineReducers({local, a
 
 const rootReducer = combineReducers({
     shops,
-    saved: persistedReducer
+    saved: persistedReducer,
+    manager
 });
 
 export default rootReducer;

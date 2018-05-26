@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/shopActions'
+import * as managerActions from '../actions/manager'
 import TextFieldContainer from "./common/TextFieldContainer";
 import './search.css';
 import {withRouter} from "react-router-dom";
@@ -20,7 +21,10 @@ class SearchPage extends Component {
                 {
                     name: 'marketName',
                     placeholder: 'Market Name',
-                    value: ''
+                    value: '',
+                    type: 'select',
+                    suggestions: this.props.manager.markets,
+                    selector: this.marketChanged
                 },
                 {
                     name: 'shopNumber',
@@ -35,7 +39,10 @@ class SearchPage extends Component {
                 {
                     name: 'city',
                     placeholder: 'City',
-                    value: ''
+                    value: '',
+                    type: 'select',
+                    suggestions: this.props.manager.cities,
+                    selector: this.cityChanged
                 }
             ], specificFields: [
                 {
@@ -44,12 +51,20 @@ class SearchPage extends Component {
                     value: ''
                 }
             ],
-            segStatus: 1
+            segStatus: 1,
         };
         this.textChanged = this.textChanged.bind(this);
         this.getIndexForShopId = this.getIndexForShopId.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
+        if (this.props.manager.markets.length === 0) {
+            this.props.managerActions.loadMarkets().then(() => {
+                const generalFields = this.state.generalFields;
+                generalFields[0].suggestions = this.props.manager.markets;
+                generalFields[3].suggestions = this.props.manager.cities;
+                this.setState({generalFields});
+            });
+        }
     }
 
     generalClicked = () => {
@@ -124,6 +139,19 @@ class SearchPage extends Component {
         });
     }
 
+    cityChanged = (event, {newValue}) => {
+        const generalFields = this.state.generalFields;
+        generalFields[3].value = newValue;
+        this.setState({generalFields});
+    };
+
+
+    marketChanged = (event, {newValue}) => {
+        const generalFields = this.state.generalFields;
+        generalFields[0].value = newValue;
+        this.setState({generalFields});
+    };
+
     render() {
         return (
             <div className='searchContainer'>
@@ -149,6 +177,7 @@ class SearchPage extends Component {
 
                     />
                 </div>
+
                 {this.state.segStatus === 1 ?
                     <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
                                         fields={this.state.generalFields}/> :
@@ -168,13 +197,15 @@ class SearchPage extends Component {
 
 function mapStateToProps(state) {
     return {
-        state: state.shops
+        state: state.shops,
+        manager: state.manager,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch),
+        managerActions: bindActionCreators(managerActions, dispatch)
     };
 }
 
