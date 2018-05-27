@@ -11,7 +11,9 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         width: '30%',
-        margin: '0 auto'
+        height: '100%',
+        margin: '0 auto',
+        minWidth: 300
     }
 };
 
@@ -85,15 +87,25 @@ class AddShop extends Component {
                 <p/>
                 <h3>Add Shop</h3>
                 <p/>
-                <TextFieldContainer textChanged={this.textChanged}
-                                    fields={this.state.fields}/>
-                <p/>
-                <Captcha style={{
-                    margin: '0 auto',
-                    marginBottom: 20
-                }} onChange={this.onChange}/>
-                {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
-                <SubmitButton submit={this.submit}/>
+                <div style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'auto',
+                    marginBottom: 10
+                }}>
+                    <TextFieldContainer textChanged={this.textChanged}
+                                        fields={this.state.fields}/>
+                    <p/>
+                    <Captcha style={{
+                        alignSelf: 'center',
+                        marginBottom: 20
+                    }} onChange={this.onChange}/>
+                    {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
+                    <SubmitButton submit={this.submit}/>
+                </div>
+
             </div>
         );
     }
