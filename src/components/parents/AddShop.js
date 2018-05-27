@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/shopActions'
 import TextFieldContainer from "../common/TextFieldContainer";
 import SubmitButton from "../common/SubmitButton";
+import Captcha from "../common/Captcha";
 
 const styles = {
     mainDiv: {
@@ -18,6 +19,7 @@ class AddShop extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
+            captchaComplete: false,
             fields: [
                 {
                     name: 'marketName',
@@ -61,14 +63,21 @@ class AddShop extends Component {
 
     textChanged(e) {
         const index = this.getIndexForShopId(e.target.id);
-        const { fields } = this.state;
+        const {fields} = this.state;
         fields[index].value = e.target.value;
         this.setState({fields});
     }
 
     submit() {
-        console.log('submit');
+        if (this.state.captchaComplete)
+            console.log('submit');
+        else
+            this.setState({error: 'You must complete the captcha before submitting'});
     }
+
+    onChange = (e) => {
+        this.setState({captchaComplete: true, error: undefined});
+    };
 
     render() {
         return (
@@ -78,6 +87,12 @@ class AddShop extends Component {
                 <p/>
                 <TextFieldContainer textChanged={this.textChanged}
                                     fields={this.state.fields}/>
+                <p/>
+                <Captcha style={{
+                    margin: '0 auto',
+                    marginBottom: 20
+                }} onChange={this.onChange}/>
+                {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
                 <SubmitButton submit={this.submit}/>
             </div>
         );
