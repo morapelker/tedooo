@@ -15,6 +15,7 @@ const TextFieldContainer = (props) => {
                             suggestions={field.suggestions}
                             id={field.name}
                             name={field.name}
+                            onBlur={field.onBlur}
                             onChange={field.selector}/>
                         :
                         <Input className={'inputField'}

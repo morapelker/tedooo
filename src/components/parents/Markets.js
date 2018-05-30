@@ -17,6 +17,11 @@ class Markets extends Component {
                     value: '',
                     placeholder: 'Name'
                 },{
+                    name: 'address',
+                    value: '',
+                    placeholder: 'Address'
+                },
+                {
                     name: 'city',
                     value: '',
                     placeholder: 'City'
@@ -32,7 +37,8 @@ class Markets extends Component {
         });
         const market = {
             name: this.state.fields[0].value,
-            city: this.state.fields[1].value
+            address: this.state.fields[1].value,
+            city: this.state.fields[2].value
         };
         console.log(market);
         this.props.actions.createMarket(market).then(mar=>{
@@ -52,8 +58,10 @@ class Markets extends Component {
         const {id, value} = e.target;
         if (id === 'name')
             fields[0].value = value;
-        else
+        else if (id === 'address')
             fields[1].value = value;
+        else
+            fields[2].value = value;
         this.setState({
             fields
         })

@@ -10,6 +10,23 @@ import RefreshIndicator from "./common/RefreshIndicator";
 import TedooButton from "./common/TedooButton";
 import SubmitButton from "./common/SubmitButton";
 
+function marketNamesFromMarkets(markets) {
+    let marketNames = [];
+    markets.forEach(market => {
+        if (!marketNames.includes(market.name))
+            marketNames.push(market.name);
+    });
+    return marketNames.map(market => ({label: market}));
+}
+
+function citiesFromMarkets(markets) {
+    let cities = [];
+    markets.forEach(market => {
+        if (!cities.includes(market.city))
+            cities.push(market.city);
+    });
+    return cities.map(city => ({label: city}));
+}
 
 class SearchPage extends Component {
     constructor(props, context) {
@@ -23,7 +40,7 @@ class SearchPage extends Component {
                     placeholder: 'Market Name',
                     value: '',
                     type: 'select',
-                    suggestions: this.props.manager.markets,
+                    suggestions: marketNamesFromMarkets(this.props.manager.markets),
                     selector: this.marketChanged
                 },
                 {
@@ -41,7 +58,7 @@ class SearchPage extends Component {
                     placeholder: 'City',
                     value: '',
                     type: 'select',
-                    suggestions: this.props.manager.cities,
+                    suggestions: citiesFromMarkets(this.props.manager.markets),
                     selector: this.cityChanged
                 }
             ], specificFields: [
@@ -60,8 +77,8 @@ class SearchPage extends Component {
         if (this.props.manager.markets.length === 0) {
             this.props.managerActions.loadMarkets().then(() => {
                 const generalFields = this.state.generalFields;
-                generalFields[0].suggestions = this.props.manager.markets;
-                generalFields[3].suggestions = this.props.manager.cities;
+                generalFields[0].suggestions = marketNamesFromMarkets(this.props.manager.markets);
+                generalFields[3].suggestions = citiesFromMarkets(this.props.manager.markets);
                 this.setState({generalFields});
             });
         }

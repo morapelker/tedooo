@@ -14,6 +14,7 @@ class Captcha extends Component {
                 ref="recaptcha"
                 sitekey="6LdauFsUAAAAAPB6GnpSpXBlhMQYEONW74evUdGm"
                 onChange={this.props.onChange}
+                onExpired={this.props.onExpired}
             />
         );
     }

@@ -65,7 +65,7 @@ function getSuggestions(value, suggestions) {
         ? []
         : suggestions.filter(suggestion => {
             const keep =
-                count < 5 && suggestion.label.toLowerCase().slice(0, inputLength) === inputValue;
+                count < 5 && suggestion.label.toLowerCase().includes(inputValue);
 
             if (keep) {
                 count += 1;
@@ -136,6 +136,7 @@ class AutoCompleteField extends React.Component {
                     placeholder: this.props.placeholder,
                     value: this.props.value,
                     onChange: this.props.onChange,
+                    onBlur: this.props.onBlur,
                     id: this.props.id,
                     name: this.props.name,
                     style: {

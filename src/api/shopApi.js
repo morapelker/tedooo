@@ -113,6 +113,28 @@ class ShopApi {
         }
     }
 
+    static async addShop(shop, token) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/shops/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(shop)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't add");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async alterShop(id, props, token) {
         let response;
         try {
@@ -142,6 +164,8 @@ class ShopApi {
                 url = `?_id=${props['id']}`;
             else if (props.hasOwnProperty('userid'))
                 url = `?userId=${props['userid']}`;
+            else if (props.hasOwnProperty('phoneNumber'))
+                url = `?contact_info.number=${props['phoneNumber']}`;
             else {
                 url = '?';
                 for (const property in props) {
