@@ -16,6 +16,8 @@ import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
 import MediaQuery from "react-responsive";
 import Markets from "./parents/Markets";
+import AboutPage from "./parents/AboutPage";
+import Register from "./Authentication/Register";
 
 class MainApp extends Component {
     render() {
@@ -47,11 +49,13 @@ class MainApp extends Component {
                                 <Route exact path='/history' component={HistoryPage}/>
                                 <Route exact path='/favorites' component={FavoritesPage}/>
                                 <Route exact path='/login' component={AuthenticationPage}/>
+                                <Route exact path='/register' component={Register}/>
                                 <Route exact path='/myshops' component={MyShops}/>
                                 <Route exact path='/addshop' component={AddShop}/>
                                 <Route exact path='/pending' component={PendingShops}/>
                                 <Route exact path='/categories' component={Categories}/>
                                 <Route exact path='/markets' component={Markets}/>
+                                <Route exact path='/about' component={AboutPage}/>
                                 <Route path='/results/:id' component={SpecificShop}/>
                             </Switch>
                         </div>

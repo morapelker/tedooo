@@ -1,6 +1,28 @@
 import jwt_decode from 'jwt-decode';
 
 class authenticationApi {
+
+    static async register(user) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/users/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(user)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't register");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return true;
+    }
+
     static async login(username, password) {
         let response;
         try {

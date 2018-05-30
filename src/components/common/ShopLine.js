@@ -25,7 +25,8 @@ const style = {
         width: 40,
         borderStyle: 'solid',
         borderWidth: 1,
-        padding: 5
+        padding: 5,
+        alignSelf: 'center'
     },
     btnStyle: {
         flexGrow: 1,
@@ -49,7 +50,8 @@ const ShopLine = (props) => {
             {props.deleteMethod !== undefined ?
                 <Button style={style.removeIcon}
                         onClick={deleteHelper(props.deleteMethod, props.shop._id)} variant={'fab'}
-                        color={'inherit'}><img src={'assets/x.png'} alt={'delete'} style={{
+                        color={'inherit'}>
+                    <img src={'assets/x.png'} alt={'delete'} style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'contain'
@@ -58,8 +60,8 @@ const ShopLine = (props) => {
             {avatarUrl.length > 0 &&
             <Img style={{
                 borderRadius: '50%',
-                width: 30,
-                height: 30,
+                width: 70,
+                height: 70,
                 objectFit: 'cover',
                 marginRight: 10,
                 marginLeft: 10,
@@ -71,7 +73,7 @@ const ShopLine = (props) => {
                      alignSelf: 'center',
                      marginLeft: 10,
                      marginRight: 10,
-                 }} size={30}/>}
+                 }} size={70}/>}
             />
             }
 

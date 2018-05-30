@@ -30,6 +30,7 @@ const TedooDrawer = props => {
         data.push({text: 'Add Shop', selector: props.handleNavigation, parameter: '/addshop'});
     }
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
+    data.push({text: 'About Us', selector: props.handleNavigation, parameter: '/about'});
 
     if (props.auth.token !== '')
         data.push({text: 'Logout', selector: props.logout});

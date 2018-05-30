@@ -32,6 +32,8 @@ class Markets extends Component {
 
 
     submit = () => {
+        if (this.state.busy)
+            return;
         this.setState({
             busy: true
         });

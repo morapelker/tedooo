@@ -7,7 +7,7 @@ import GenericShopsPage from "../common/GenericShopsPage";
 class SearchResultsPage extends Component {
     render() {
         return (
-            <div>
+            <div style={{height: '100%', overflow: 'auto'}}>
                 <GenericShopsPage history={this.props.history}
                                   addHistoryAction={this.props.actions.addShopHistory}
                                   name={'Results'} shops={this.props.results}/>

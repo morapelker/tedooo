@@ -3,6 +3,7 @@ import TextFieldContainer from "../common/TextFieldContainer";
 import './authentication.css';
 import SubmitButton from "../common/SubmitButton";
 import RefreshIndicator from "../common/RefreshIndicator";
+import {Link} from "react-router-dom";
 
 class Login extends Component {
     constructor(props, context) {
@@ -34,6 +35,8 @@ class Login extends Component {
     }
 
     submitForm() {
+        if (this.state.busy)
+            return;
         this.setState({busy: true});
         this.props.login(this.state.fields[0].value, this.state.fields[1].value).then(() => {
             this.props.history.push("/");
@@ -55,7 +58,22 @@ class Login extends Component {
                     {this.state.busy ?
                         <RefreshIndicator style={{alignSelf: 'center'}} />
                         :
-                        <SubmitButton submit={this.submitForm} />}
+                        <div className={'submitDiv'}>
+                            <SubmitButton submit={this.submitForm} />
+                            <div style={{
+                                flex: 1
+                            }} />
+                            <Link to={'/register'} style={{
+                                marginLeft: 10,
+                                alignSelf: 'center',
+                                color: 'white',
+                                textAlign: 'right',
+                                flex: 1
+                            }}>
+                                <span>Register</span>
+                            </Link>
+                        </div>
+                        }
 
                 </div>
 

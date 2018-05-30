@@ -118,6 +118,8 @@ class SearchPage extends Component {
     }
 
     submit() {
+        if (this.state.busy)
+            return;
         this.setState({
             busy: true,
             error: false

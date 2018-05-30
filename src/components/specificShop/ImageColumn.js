@@ -4,7 +4,6 @@ import TitleLabel from "../common/TitleLabel";
 import Img from 'react-image'
 import './SpecificShop.css';
 import RefreshIndicator from "../common/RefreshIndicator";
-import {Fade} from "reactstrap";
 
 
 const styles = {
@@ -52,17 +51,8 @@ class ImageColumn extends Component {
         const bigImgUrl = (this.props.shop.img_links && this.props.shop.img_links.length > 0) ? this.props.shop.img_links[0] : '';
         this.state = {
             bigImgUrl: bigImgUrl,
-            showSmallContainer: false
         }
     }
-
-    onMouseEnter = () => {
-        this.setState({showSmallContainer: true});
-    };
-
-    onMouseLeave = () => {
-        this.setState({showSmallContainer: false});
-    };
 
     render() {
         return (
@@ -76,27 +66,23 @@ class ImageColumn extends Component {
                         display: 'flex',
                         backgroundColor: 'black',
                     }}
-                         onMouseEnter={this.onMouseEnter}
-                         onMouseLeave={this.onMouseLeave}
                     >
 
                         <div style={styles.imgList}>
-                            <Fade in={this.state.showSmallContainer}>
-                                {this.props.shop.img_links.map((link, index) => (
-                                    <Img key={index} className={'smallImg'}
-                                         style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
-                                         src={link} loader={
-                                        <RefreshIndicator/>
-                                    } onDragStart={e => {
-                                        e.preventDefault();
-                                    }} onClick={() => {
-                                        this.setState({
-                                            bigImgUrl: link
-                                        });
-                                    }}/>
+                            {this.props.shop.img_links.map((link, index) => (
+                                <Img key={index} className={'smallImg'}
+                                     style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
+                                     src={link} loader={
+                                    <RefreshIndicator/>
+                                } onDragStart={e => {
+                                    e.preventDefault();
+                                }} onClick={() => {
+                                    this.setState({
+                                        bigImgUrl: link
+                                    });
+                                }}/>
 
-                                ))}
-                            </Fade>
+                            ))}
                         </div>
                         <div className={'bigImgContainer'} style={styles.bigImgDiv}>
                             <Img style={styles.bigImg} src={this.state.bigImgUrl}
