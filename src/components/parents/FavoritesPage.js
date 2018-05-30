@@ -33,6 +33,7 @@ class FavoritesPage extends Component {
                 onClick={this.deleteFavConfirmed}
             />,
         ];
+        console.log(this.props.shops);
         return (
             <div>
                 <GenericShopsPage

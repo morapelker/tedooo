@@ -55,10 +55,10 @@ export function deleteFavoriteShop(id) {
     }
 }
 
-export function addShopFavorites(id, name, favName) {
+export function addShopFavorites(id, name, favName, avatar) {
     return {
         type: ADD_SHOP_FAVORITE,
-        id, name, favName
+        id, name, favName, avatar
     }
 }
 

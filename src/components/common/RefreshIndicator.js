@@ -10,7 +10,7 @@ const style = {
 const RefreshIndicator = (props) => {
     return (
         <RefreshIndicator2
-            size={50}
+            size={props.size || 50}
             left={0}
             top={0}
             loadingColor="#3CBF95"

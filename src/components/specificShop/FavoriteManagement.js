@@ -36,7 +36,10 @@ class FavoriteManagement extends Component {
     }
 
     submit() {
-        this.props.addFavoritesAction(this.props.shop._id, this.props.shop.name, this.state.name, this.props.shop.shop_number);
+        const avatar = this.props.shop.avatar ? this.props.shop.avatar : (
+            this.props.shop.img_links && this.props.shop.img_links.length > 0 ? this.props.shop.img_links[0] : ''
+        );
+        this.props.addFavoritesAction(this.props.shop._id, this.props.shop.name, this.state.name, avatar);
         this.setState({open: false})
     }
 
