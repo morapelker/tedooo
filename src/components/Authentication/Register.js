@@ -27,25 +27,20 @@ class Register extends Component {
             captchaComplete: false,
             fields: [
                 {
-                    name: 'username',
                     placeholder: 'Username',
                     value: ''
                 }, {
-                    name: 'password',
                     placeholder: 'Password',
                     value: '',
                     type: 'password'
                 }, {
-                    name: 'password2',
                     placeholder: 'Confirm Password',
                     value: '',
                     type: 'password'
                 }, {
-                    name: 'firstName',
                     placeholder: 'First Name',
                     value: ''
                 }, {
-                    name: 'lastName',
                     placeholder: 'Last Name',
                     value: ''
                 }
@@ -65,13 +60,8 @@ class Register extends Component {
         });
     };
 
-    getIndexForShopId = id => {
-        return this.state.fields.map(field => (field.name)).indexOf(id);
-    };
-
-
     textChanged = e => {
-        const index = this.getIndexForShopId(e.target.id);
+        const index = e.target.id;
         const {fields} = this.state;
         fields[index].value = e.target.value;
         this.setState({fields});

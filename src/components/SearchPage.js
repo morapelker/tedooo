@@ -71,7 +71,6 @@ class SearchPage extends Component {
             segStatus: 1,
         };
         this.textChanged = this.textChanged.bind(this);
-        this.getIndexForShopId = this.getIndexForShopId.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
         if (this.props.manager.markets.length === 0) {
@@ -98,14 +97,8 @@ class SearchPage extends Component {
         });
     }
 
-    getIndexForShopId(id) {
-        if (this.state.segStatus === 1)
-            return this.state.generalFields.map(field => (field.name)).indexOf(id);
-        return this.state.specificFields.map(field => (field.name)).indexOf(id);
-    }
-
     textChanged(e) {
-        const index = this.getIndexForShopId(e.target.id);
+        const index = e.target.id;
         if (this.state.segStatus === 1) {
             const generalFields = this.state.generalFields;
             generalFields[index].value = e.target.value;

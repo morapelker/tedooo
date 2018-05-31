@@ -11,11 +11,9 @@ class Login extends Component {
         this.state = {
             busy: false,
             fields: [{
-                name: 'username',
                 placeholder: 'Username',
                 value: ''
             }, {
-                name: 'password',
                 placeholder: 'Password',
                 type: 'password',
                 value: ''
@@ -28,7 +26,7 @@ class Login extends Component {
     }
 
     textChanged(e) {
-        const index = e.target.id === 'username' ? 0 : 1;
+        const index = e.target.id;
         const fields = this.state.fields;
         fields[index].value = e.target.value;
         this.setState({fields, error: undefined});

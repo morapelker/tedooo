@@ -13,6 +13,7 @@ const TedooButton = (props) => {
     const style = props.selected ? {
         backgroundColor: props.selectedBackground,
         color: props.selectedTextColor,
+
     } : {
         backgroundColor: props.clearBackground,
         color: props.deselectedTextColor,

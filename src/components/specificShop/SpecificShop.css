@@ -18,6 +18,10 @@
     color: #ffffff;
 }
 
+.classname123 {
+    border-radius: 50%;
+}
+
 #addToFavoritesButton {
     max-width: 60%;
 }

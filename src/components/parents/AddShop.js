@@ -11,7 +11,7 @@ const styles = {
     mainDiv: {
         display: 'flex',
         flexDirection: 'column',
-        width: '30%',
+        width: '40%',
         height: '100%',
         margin: '0 auto',
         minWidth: 300
@@ -33,7 +33,6 @@ class AddShop extends Component {
             captchaComplete: false,
             fields: [
                 {
-                    name: 'marketName',
                     placeholder: 'Market Name',
                     value: '',
                     type: 'select',
@@ -41,25 +40,49 @@ class AddShop extends Component {
                     selector: this.marketChanged,
                     onBlur: this.marketBlurred
                 }, {
-                    name: 'name',
                     placeholder: 'Name',
                     value: ''
                 }, {
-                    name: 'shopNumber',
                     placeholder: 'Shop Number',
                     value: ''
                 }, {
-                    name: 'category',
                     placeholder: 'Category',
                     value: ''
                 }, {
-                    name: 'phoneNumber',
                     placeholder: 'Phone Number',
-                    value: ''
+                    value: '',
+                    expandable: true,
+                    parent: 4,
                 }, {
-                    name: 'wechatId',
+                    placeholder: 'Phone Number',
+                    value: '',
+                    expandable: true,
+                    minorable: true,
+                    hidden: true,
+                    parent: 4
+                }, {
+                    placeholder: 'Phone Number',
+                    value: '',
+                    hidden: true,
+                    minorable: true,
+                    parent: 4
+                }, {
                     placeholder: 'WeChat ID',
-                    value: ''
+                    value: '',
+                    expandable: true,
+                    parent: 7
+                }, {
+                    placeholder: 'WeChat ID',
+                    value: '',
+                    hidden: true,
+                    minorable: true,
+                    parent: 7
+                }, {
+                    placeholder: 'WeChat ID',
+                    value: '',
+                    hidden: true,
+                    minorable: true,
+                    parent: 7
                 }
             ],
             market: {
@@ -69,7 +92,6 @@ class AddShop extends Component {
             },
             lastMarketString: '',
         };
-        this.getIndexForShopId = this.getIndexForShopId.bind(this);
         this.textChanged = this.textChanged.bind(this);
         this.submit = this.submit.bind(this);
         if (this.props.manager.markets.length === 0) {
@@ -80,6 +102,74 @@ class AddShop extends Component {
             });
         }
     }
+
+    updateFields = () => {
+        const {fields} = this.state;
+        const num = this.getNumOfItems(4);
+        fields[4] = Object.assign({}, fields[4], {expandable: (num < 3), minorable: (num > 1)});
+        fields[5] = Object.assign({}, fields[5], {expandable: (num < 3), minorable: (num > 1)});
+        fields[6] = Object.assign({}, fields[6], {expandable: (num < 3), minorable: (num > 1)});
+
+        const num2 = this.getNumOfItems(7);
+        fields[7] = Object.assign({}, fields[7], {expandable: (num2 < 3), minorable: (num2 > 1)});
+        fields[8] = Object.assign({}, fields[8], {expandable: (num2 < 3), minorable: (num2 > 1)});
+        fields[9] = Object.assign({}, fields[9], {expandable: (num2 < 3), minorable: (num2 > 1)});
+        this.setState({fields});
+    };
+
+    onMinor = index => {
+        const {fields} = this.state;
+        const parent = fields[index].parent;
+        const numOfItems = this.getNumOfItems(parent);
+        if (numOfItems === 1) {
+            fields[index].value = '';
+        } else if (numOfItems === 2) {
+            if (index === parent)
+                fields[parent].value = fields[parent + 1].value;
+            fields[parent + 1].hidden = true;
+        } else {
+            fields[parent + 2].hidden = true;
+            if (index !== parent + 2){
+                if (index === parent) {
+                    fields[parent].value = fields[parent + 1].value;
+                }
+                fields[parent + 1].value = fields[parent + 2].value;
+            }
+        }
+        this.updateFields();
+    };
+
+    onExtend = (index) => {
+        const {fields} = this.state;
+        const parent = fields[index].parent;
+        const numOfItems = this.getNumOfItems(parent);
+        if (numOfItems === 1) {
+            fields[parent + 1].hidden = false;
+            fields[parent + 1].value = '';
+        } else if (numOfItems === 2) {
+            if (index === parent) {
+                fields[index + 2].value = fields[index + 1].value;
+                fields[index + 1].value = '';
+            } else
+                fields[parent + 2].value = '';
+            fields[parent + 2].hidden = false;
+
+        } else {
+            return;
+        }
+        this.updateFields();
+    };
+
+    getNumOfItems = parent => {
+        const {fields} = this.state;
+        if (fields[parent + 1].hidden)
+            return 1;
+        else if (fields[parent + 2].hidden)
+            return 2;
+        else
+            return 3;
+    };
+
 
     marketBlurred = () => {
         const {fields} = this.state;
@@ -109,12 +199,8 @@ class AddShop extends Component {
         }
     };
 
-    getIndexForShopId(id) {
-        return this.state.fields.map(field => (field.name)).indexOf(id);
-    }
-
     textChanged(e) {
-        const index = this.getIndexForShopId(e.target.id);
+        const index = e.target.id;
         const {fields} = this.state;
         fields[index].value = e.target.value;
         this.setState({fields});
@@ -191,7 +277,9 @@ class AddShop extends Component {
                     overflow: 'auto',
                     marginBottom: 10
                 }}>
-                    <TextFieldContainer textChanged={this.textChanged}
+                    <TextFieldContainer onMinor={this.onMinor} onExtend={this.onExtend}
+                                        textChanged={this.textChanged}
+                                        fromAddShop={true}
                                         fields={this.state.fields}/>
                     <p/>
                     <Captcha style={{

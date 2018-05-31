@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Button from "@material-ui/core/Button/Button";
 import './SpecificShop.css'
 import {
     Dialog,
@@ -9,11 +8,35 @@ import {
 } from "@material-ui/core/index";
 import {Input} from "reactstrap";
 import TedooButton from "../common/TedooButton";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const shopNumber = str => {
     if (str.length === 0)
         return '';
     return ' (' + (str.toUpperCase() || str) + ')';
+};
+
+const styles = {
+    paper: {
+        borderRadius: 20
+    },
+    button: {
+        borderWidth: 1,
+        borderStyle: 'solid',
+        boxShadow: 'none',
+        width: 150,
+        height: 40,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    rootActions: {
+        marginBottom: 10,
+        paddingRight: 15,
+        paddingLeft: 15
+    },
+    rootContent: {
+        paddingBottom: 10,
+    }
 };
 
 class FavoriteManagement extends Component {
@@ -52,6 +75,7 @@ class FavoriteManagement extends Component {
     }
 
     render() {
+        const {classes} = this.props;
         return (
             <div style={this.props.style}>
                 <p/>
@@ -64,19 +88,38 @@ class FavoriteManagement extends Component {
                     open={this.state.open}
                     onClose={this.closeFavoritesWindow}
                     aria-labelledby="form-dialog-title"
+                    classes={{
+                        paper: classes.paper,
+                    }}
                 >
-                    <DialogTitle id="form-dialog-title">Add to favorites</DialogTitle>
-                    <DialogContent>
-                        <Input onChange={this.txtChanged} value={this.state.name}
+                    <DialogTitle id="form-dialog-title" disableTypography={true}><h4 style={{
+                        textAlign: 'center',
+                        width: '100%',
+                        color: '#3CBF95'
+                    }}>Add to favorites</h4></DialogTitle>
+                    <DialogContent classes={{
+                        root: classes.rootContent
+                    }}>
+                        <Input style={{
+                            borderRadius: 10,
+                        }} onChange={this.txtChanged} value={this.state.name}
                                placeholder={'Name'}/>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.closeFavoritesWindow} color="primary">
-                            Cancel
-                        </Button>
-                        <Button onClick={this.submit} color="primary">
-                            Add
-                        </Button>
+                    <DialogActions classes={{
+                        root: classes.rootActions
+                    }}>
+                        <TedooButton style={styles.button} selected={true}
+                                     selectedTextColor={'white'}
+                                     selectedBackground={'#3CBF95'}
+                                     onClick={this.closeFavoritesWindow}
+                                     text={'Cancel'}
+                        />
+                        <TedooButton style={styles.button} selected={true}
+                                     selectedTextColor={'#3CBF95'}
+                                     selectedBackground={'white'}
+                                     onClick={this.submit}
+                                     text={'Add'}
+                        />
                     </DialogActions>
                 </Dialog>
             </div>
@@ -84,4 +127,4 @@ class FavoriteManagement extends Component {
     }
 }
 
-export default FavoriteManagement;
+export default withStyles(styles)(FavoriteManagement);

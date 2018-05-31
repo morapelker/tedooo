@@ -9,8 +9,36 @@ import {
     DialogContentText,
     DialogTitle,
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import TedooButton from "../common/TedooButton";
 
+const styles = {
+    paper: {
+        borderRadius: 20
+    },
+    button: {
+        borderWidth: 1,
+        borderStyle: 'solid',
+        boxShadow: 'none',
+        width: 150,
+        height: 40,
+        marginLeft: 10,
+        marginRight: 10
+    },
+    rootActions: {
+        marginBottom: 10,
+        paddingRight: 15,
+        paddingLeft: 15
+    },
+    rootContent: {
+        paddingBottom: 10,
+    },dialogLabel: {
+        textAlign: 'center',
+        fontSize: '1.2em',
+        color: '#3CBF95',
+        fontFamily: 'Skia'
+    }
+};
 
 class Header extends Component {
     constructor(props, context) {
@@ -45,6 +73,7 @@ class Header extends Component {
     };
 
     render() {
+        const {classes} = this.props;
         return (
             <div>
                 <ButtonAppBar openMenu={this.openMenu} />
@@ -54,20 +83,40 @@ class Header extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description"
+                    classes={{
+                        paper: classes.paper,
+                    }}
                 >
-                    <DialogTitle id="alert-dialog-title">{"Logout?"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
+                    <DialogTitle id="form-dialog-title" disableTypography={true}><h4 style={{
+                        textAlign: 'center',
+                        width: '100%',
+                        color: '#3CBF95',
+                        fontWeight: 'bold'
+                    }}>Logout</h4></DialogTitle>
+                    <DialogContent classes={{
+                        root: classes.rootContent
+                    }}>
+                        <DialogContentText classes={{
+                            root: classes.dialogLabel
+                        }} id="alert-dialog-description">
                             Are you sure you want to log out?
                         </DialogContentText>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} variant="raised">
-                            Stay Logged in
-                        </Button>
-                        <Button onClick={this.logout} variant="raised" color={'primary'}>
-                            Logout
-                        </Button>
+                    <DialogActions classes={{
+                        root: classes.rootActions
+                    }}>
+                        <TedooButton style={styles.button} selected={true}
+                                     selectedTextColor={'white'}
+                                     selectedBackground={'#3CBF95'}
+                                     onClick={this.handleClose}
+                                     text={'Stay logged in'}
+                        />
+                        <TedooButton style={styles.button} selected={true}
+                                     selectedTextColor={'#3CBF95'}
+                                     selectedBackground={'white'}
+                                     onClick={this.logout}
+                                     text={'Logout'}
+                        />
                     </DialogActions>
                 </Dialog>
             </div>
@@ -75,4 +124,4 @@ class Header extends Component {
     }
 }
 
-export default withRouter(Header);
+export default withStyles(styles)(withRouter(Header));

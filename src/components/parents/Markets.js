@@ -13,16 +13,13 @@ class Markets extends Component {
             busy: false,
             fields: [
                 {
-                    name: 'name',
                     value: '',
                     placeholder: 'Name'
                 },{
-                    name: 'address',
                     value: '',
                     placeholder: 'Address'
                 },
                 {
-                    name: 'city',
                     value: '',
                     placeholder: 'City'
                 }
@@ -58,12 +55,7 @@ class Markets extends Component {
     textChanged = e => {
         const fields = this.state.fields;
         const {id, value} = e.target;
-        if (id === 'name')
-            fields[0].value = value;
-        else if (id === 'address')
-            fields[1].value = value;
-        else
-            fields[2].value = value;
+        fields[id].value = value;
         this.setState({
             fields
         })
