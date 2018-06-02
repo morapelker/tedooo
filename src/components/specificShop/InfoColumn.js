@@ -7,6 +7,8 @@ import SubmitButton from "../common/SubmitButton";
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core/index";
 import Input from "@material-ui/core/Input/Input";
 import Button from "@material-ui/core/Button/Button";
+import {withRouter} from "react-router-dom";
+import {Link} from "react-router-dom/umd/react-router-dom";
 
 const typeFromShop = shop => {
     switch (shop.authorized) {
@@ -101,15 +103,27 @@ class InfoColumn extends Component {
                         width: 36,
                         alignItems: 'center',
                         display: 'flex',
-                        marginRight: 10
+                        position: 'absolute',
+                        right: 30,
+                        top: 30,
                     }} text={textFromShop(this.props.shop)}
                              type={typeFromShop(this.props.shop)}
                              imageSource={imageSourceFromShop(this.props.shop)}
                              color={colorFromShop(this.props.shop)}
                     />}
+                    {this.props.ownShop &&
+                    <Link to={'/addshop/' + this.props.match.params.id}>
+                        <img src="/assets/pencil.png" alt={''} style={{
+                            width: 40,
+                            height: 40,
+                            objectFit: 'contain',
+                            marginRight: 10
+                        }} />
+                    </Link> }
                     {this.props.admin && <SubmitButton image={'authorize'} submit={() => {
                         this.setState({open: true});
                     }}/>}
+
                     <Dialog
                         open={this.state.open}
                         onClose={this.closeFavoritesWindow}
@@ -122,7 +136,7 @@ class InfoColumn extends Component {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.closeWindow} color="inherit">
-                                Ignore
+                                Cancel
                             </Button>
                             <Button onClick={this.deny} color="secondary">
                                 Deny
@@ -156,4 +170,4 @@ class InfoColumn extends Component {
     }
 }
 
-export default InfoColumn;
+export default withRouter(InfoColumn);

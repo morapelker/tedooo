@@ -29,6 +29,8 @@ class SpecificShopPage extends Component {
             this.props.actions.findShopById(this.props.match.params.id).then(() => {
                 const shop = this.props.cachedShops[this.props.match.params.id];
                 if (shop !== undefined) {
+                    if (shop.img_links && shop.img_links.length > 0)
+                        this.props.actions.updateAvatar(shop._id, shop.img_links[0]);
                     this.setState({
                         busy: false,
                         shop,

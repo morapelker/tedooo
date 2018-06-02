@@ -33,9 +33,8 @@ class FavoritesPage extends Component {
                 onClick={this.deleteFavConfirmed}
             />,
         ];
-        console.log(this.props.shops);
         return (
-            <div>
+            <div style={{height: '100%', overflow: 'auto'}}>
                 <GenericShopsPage
                     history={this.props.history}
                     addHistoryAction={this.props.actions.addShopHistory}

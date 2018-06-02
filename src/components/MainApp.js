@@ -8,7 +8,7 @@ import HistoryPage from "./parents/HistoryPage";
 import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
 import MyShops from "./parents/MyShops";
-import AddShop from "./parents/AddShop";
+import AddShop from "./parents/AddShop/AddShop";
 import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
 import {bindActionCreators} from 'redux';
@@ -18,6 +18,9 @@ import MediaQuery from "react-responsive";
 import Markets from "./parents/Markets";
 import AboutPage from "./parents/AboutPage";
 import Register from "./Authentication/Register";
+import Layout from "./helpers/Layout";
+import SettingsPage from "./parents/SettingsPage";
+import StorePage from "./parents/Store/StorePage";
 
 class MainApp extends Component {
     render() {
@@ -52,10 +55,14 @@ class MainApp extends Component {
                                 <Route exact path='/register' component={Register}/>
                                 <Route exact path='/myshops' component={MyShops}/>
                                 <Route exact path='/addshop' component={AddShop}/>
+                                <Route exact path='/addshop/:id' component={AddShop}/>
                                 <Route exact path='/pending' component={PendingShops}/>
+                                <Route exact path='/store' component={StorePage}/>
+                                <Route exact path='/settings' component={SettingsPage}/>
                                 <Route exact path='/categories' component={Categories}/>
                                 <Route exact path='/markets' component={Markets}/>
                                 <Route exact path='/about' component={AboutPage}/>
+                                <Route exact path='/layout' component={Layout}/>
                                 <Route path='/results/:id' component={SpecificShop}/>
                             </Switch>
                         </div>

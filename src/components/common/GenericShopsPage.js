@@ -5,7 +5,7 @@ const style = {
     width: '40%',
     minWidth: 300,
     marginTop: '20px',
-    margin: 'auto'
+    margin: 'auto',
 };
 
 const shopSelected = (props, shop) => {
@@ -22,7 +22,7 @@ const GenericShopsPage = (props) => {
             <p/>
             <h3>{props.name}</h3>
             <p/>
-            {props.shops ? props.shops.map((result, index) => (
+            {props.shops && props.shops.length > 0 ? props.shops.map((result, index) => (
                 <div key={index}>
                     <ShopLine deleteMethod={props.deleteMethod} parentData={props} shopSelected={shopSelected}
                               shop={result}/>

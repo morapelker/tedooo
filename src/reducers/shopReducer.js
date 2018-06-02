@@ -1,27 +1,46 @@
-import {FIND_SHOP_SUCCESS, SHOP_ALTERED, UPDATE_MY_SHOPS} from "../actions/shopConstants";
+import {
+    ADD_SHOP_SUCCESS,
+    FIND_SHOP_SUCCESS,
+    SHOP_ALTERED, SHOP_DELETED,
+    UPDATE_MY_SHOPS
+} from "../actions/shopConstants";
 import {LOGOUT} from "../actions/authenticationConstants";
 
-export default (state = {results: [], cachedShops: {}, myShops: undefined, pendingShops: undefined}, action) => {
+export default (state = {results: [], cachedShops: {}, myShops: undefined, pendingShops: undefined, lastAddedId: ''}, action) => {
     switch (action.type) {
+        case ADD_SHOP_SUCCESS: {
+            const {shop} = action;
+            const cachedShops = Object.assign({}, state.cachedShops);
+            cachedShops[shop._id] = shop;
+            return Object.assign({}, state, {cachedShops, lastAddedId: shop._id});
+        }
+        case SHOP_DELETED: {
+            const {id} = action;
+            const cachedShops = Object.assign({}, state.cachedShops);
+            cachedShops[id] = undefined;
+            const myShops = Object.assign([], state.myShops);
+            const index = myShops.map(shop => shop._id).indexOf(id);
+            if (index >= 0)
+                myShops.splice(index,  1);
+            return Object.assign({}, state, {cachedShops, myShops});
+        }
         case SHOP_ALTERED: {
             const {shop} = action;
             const cachedShops = Object.assign({}, state.cachedShops);
-            if (cachedShops.hasOwnProperty(shop._id))
-                cachedShops[shop._id] = shop;
-            return Object.assign({}, state, {cachedShops});
+            cachedShops[shop._id] = shop;
+            return Object.assign({}, state, {cachedShops, lastAddedId: shop._id});
         }
         case FIND_SHOP_SUCCESS: {
             const cachedShops = Object.assign({}, state.cachedShops);
             let pendingShops;
+            if (!state.pendingShops)
+                pendingShops = [];
+            else
+                pendingShops = Object.assign([], state.pendingShops);
             action.shops.forEach(shop => {
                 if (!cachedShops.hasOwnProperty(shop._id))
                     cachedShops[shop._id] = shop;
                 if (shop.authorized === '0') {
-                    if (!state.pendingShops)
-                        pendingShops = [];
-                    else
-                        pendingShops = Object.assign({}, state.pendingShops);
-
                     const index = pendingShops.map(shop => shop._id).indexOf(shop._id);
                     if (index === -1)
                         pendingShops.push({_id: shop._id, name: shop.name, shop_number: shop.shop_number});

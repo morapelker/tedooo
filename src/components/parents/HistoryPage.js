@@ -13,10 +13,12 @@ class SearchResultsPage extends Component {
 
     render() {
         return (
-            <GenericShopsPage
-                history={this.props.history}
-                addHistoryAction={this.props.actions.addShopHistory}
-                name={'History'} deleteMethod={this.deleteHistory} shops={this.props.shops}/>
+            <div style={{height: '100%', overflow: 'auto'}}>
+                <GenericShopsPage
+                    history={this.props.history}
+                    addHistoryAction={this.props.actions.addShopHistory}
+                    name={'History'} deleteMethod={this.deleteHistory} shops={this.props.shops}/>
+            </div>
         );
     }
 

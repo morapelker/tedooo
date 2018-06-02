@@ -7,7 +7,8 @@ import {Divider} from "@material-ui/core/index";
 const styles = {
     divider: {
         backgroundColor: '#3CBF95',
-        opacity: 0.4
+        opacity: 0.4,
+        height: 3
     },
     primary: {
         color: '#3CBF95',
@@ -28,12 +29,18 @@ const TedooDrawer = props => {
     if (props.auth.token !== ''){
         data.push({text: 'My Shops', selector: props.handleNavigation, parameter: '/myshops'});
         data.push({text: 'Add Shop', selector: props.handleNavigation, parameter: '/addshop'});
+        data.push({text: 'Store', selector: props.handleNavigation, parameter: '/store'});
     }
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
+
+    if (props.auth.token !== '') {
+        data.push({text: 'Account Settings', selector: props.handleNavigation, parameter: '/settings'});
+    }
     data.push({text: 'About Us', selector: props.handleNavigation, parameter: '/about'});
 
-    if (props.auth.token !== '')
+    if (props.auth.token !== '') {
         data.push({text: 'Logout', selector: props.logout});
+    }
 
     if (props.auth.admin === true) {
         data.push({

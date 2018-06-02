@@ -43,6 +43,9 @@ class Register extends Component {
                 }, {
                     placeholder: 'Last Name',
                     value: ''
+                }, {
+                    placeholder: 'WeChat ID',
+                    value: ''
                 }
             ]
         };

@@ -2,11 +2,36 @@ import {
     ADD_SHOP_FAVORITE,
     ADD_SHOP_HISTORY,
     DELETE_FAVORITE_SHOP,
-    DELETE_HISTORY_SHOP
+    DELETE_HISTORY_SHOP, UPDATE_AVATAR
 } from "../actions/shopConstants";
 
 export default (state = {history: [], favorites: []}, action) => {
     switch (action.type) {
+        case UPDATE_AVATAR: {
+            // console.log(action);
+            // const {id, avatar} = action;
+            // const history = Object.assign([], state.history);
+            // const favorites = Object.assign([], state.favorites);
+            // let found = false;
+            // console.log(history);
+            // history.forEach((his, i) => {
+            //     if (his._id === id && his.avatar !== avatar) {
+            //         found = true;
+            //         history[i].avatar = avatar;
+            //     }
+            // });
+            // favorites.forEach((fav, i) => {
+            //     if (fav._id === id && fav.avatar !== avatar) {
+            //         found = true;
+            //         favorites[i].avatar = avatar;
+            //     }
+            // });
+            // console.log(found, id,  avatar);
+            // if (found)
+            //     return state;
+            // else
+                return state;
+        }
         case ADD_SHOP_HISTORY: {
             const history = Object.assign([], state.history);
             const index = history.map(his => his._id).indexOf(action.shop._id);

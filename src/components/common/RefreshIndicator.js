@@ -13,7 +13,7 @@ const RefreshIndicator = (props) => {
             size={props.size || 50}
             left={0}
             top={0}
-            loadingColor="#3CBF95"
+            loadingColor={props.loadingColor || '#3CBF95'}
             status="loading"
             style={Object.assign({}, style, props.style)}
         />

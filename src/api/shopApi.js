@@ -157,6 +157,27 @@ class ShopApi {
         return responseJson;
     }
 
+    static async deleteShop(id, token) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't delete");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async findShop(props) {
         try {
             let url = '';
