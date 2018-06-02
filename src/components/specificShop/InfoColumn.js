@@ -103,7 +103,7 @@ class InfoColumn extends Component {
                         width: 36,
                         alignItems: 'center',
                         display: 'flex',
-                        position: 'absolute',
+                        position: 'fixed',
                         right: 30,
                         top: 30,
                     }} text={textFromShop(this.props.shop)}

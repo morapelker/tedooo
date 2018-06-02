@@ -3,6 +3,7 @@ import InfoColumn from "./InfoColumn";
 import FavoriteManagement from "./FavoriteManagement";
 import ImageColumn from "./ImageColumn";
 import MediaQuery from 'react-responsive';
+import StoreImageLayout from "../parents/Store/StoreImageLayout";
 
 const styles = {
     root: {
@@ -52,7 +53,12 @@ const styles = {
 
 const SpecificShopData = (props) => {
     return (
-        <div style={{width: '100%', height: '100%'}}>
+        <div style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative'
+        }}>
+            <StoreImageLayout edit={true} purchasedItems={props.shop.purchased_items} />
             <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>

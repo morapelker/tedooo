@@ -10,6 +10,19 @@ class managerApi {
             return [];
         }
     }
+
+    static async loadStoreItems() {
+        try {
+            let response = await fetch(
+                'https://baloofeathers.herokuapp.com/store/'
+            );
+            let responseJson = await response.json();
+            return responseJson.data;
+        } catch (error) {
+            return [];
+        }
+    }
+
     static async createMarket(market) {
         try {
             const response = await fetch(
