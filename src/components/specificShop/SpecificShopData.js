@@ -4,6 +4,7 @@ import FavoriteManagement from "./FavoriteManagement";
 import ImageColumn from "./ImageColumn";
 import MediaQuery from 'react-responsive';
 import StoreImageLayout from "../parents/Store/StoreImageLayout";
+import CartControl from "./CartControl";
 
 const styles = {
     root: {
@@ -58,7 +59,7 @@ const SpecificShopData = (props) => {
             height: '100%',
             position: 'relative'
         }}>
-            <StoreImageLayout edit={true} purchasedItems={props.shop.purchased_items} />
+            <StoreImageLayout selector={props.placeImageSelector} edit={props.edit} purchasedItems={props.shop.purchased_items} />
             <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>
@@ -82,6 +83,9 @@ const SpecificShopData = (props) => {
                                 ownShop={props.ownShop} shop={props.shop} />
                 </div>
             </MediaQuery>
+            {props.transactions && props.transactions.length > 0 &&
+            <CartControl selector={props.editSelector} transactions={props.transactions} />
+            }
         </div>
     );
 };

@@ -9,7 +9,7 @@ const baseStyle = {
 
 const StoreImage = props => {
     return (
-        <div style={Object.assign({}, props.edit && baseStyle, props.style, {
+        <div onClick={props.onClick} style={Object.assign({}, props.edit && baseStyle, props.style, {
             position: 'absolute',
             height: 100,
             width: 100})}>

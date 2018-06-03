@@ -28,10 +28,6 @@ h1, h2, h3 {
     font-size: 2em;
 }
 
-::-webkit-scrollbar {
-    display: none
-}
-
 .smallImg {
     height: 100%;
 }

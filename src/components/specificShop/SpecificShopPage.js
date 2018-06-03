@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/shopActions'
+import * as transactionActions from "../../actions/storeActions";
 import {bindActionCreators} from 'redux';
 import SpecificShopData from "./SpecificShopData";
 import RefreshIndicator from "../common/RefreshIndicator";
@@ -17,14 +18,16 @@ class SpecificShopPage extends Component {
                 busy: false,
                 addingToFavorites: false,
                 favoritesName: shop.name,
-                ownShop: shop.userId === props.authentication.userId
+                ownShop: shop.userId === props.authentication.userId,
+                editing: false
             };
         } else {
             this.state = {
                 shop: {},
                 busy: true,
                 addingToFavorites: false,
-                favoritesName: ''
+                favoritesName: '',
+                editing: false
             };
             this.props.actions.findShopById(this.props.match.params.id).then(() => {
                 const shop = this.props.cachedShops[this.props.match.params.id];
@@ -36,19 +39,36 @@ class SpecificShopPage extends Component {
                         shop,
                         addingToFavorites: false,
                         favoritesName: shop.name,
-                        ownShop: shop.userId === props.authentication.userId
+                        ownShop: shop.userId === props.authentication.userId,
+                        editing: false
                     });
                 } else {
                     this.setState({
                         shop: undefined,
                         busy: false,
                         addingToFavorites: false,
-                        favoritesName: ''
+                        favoritesName: '',
+                        editing: false
                     });
                 }
             });
         }
+        if (!this.props.transactions && this.props.authentication.token.length > 0) {
+            console.log('load transactions');
+            this.props.transactionActions.loadTransactions(this.props.authentication.token)
+        }
     }
+
+    placeImage = (index, item) => {
+        console.log(index,  item);
+    };
+
+    startEditing = (item) => {
+        console.log(item);
+        this.setState({
+            editing: true
+        });
+    };
 
     render() {
         return (
@@ -65,6 +85,10 @@ class SpecificShopPage extends Component {
                                           admin={this.props.authentication.admin}
                                           actions={this.props.actions}
                                           token={this.props.authentication.token}
+                                          transactions={this.props.transactions}
+                                          edit={this.state.editing}
+                                          editSelector={this.startEditing}
+                                          placeImageSelector={this.placeImage}
                                           shop={this.state.shop}/>}
             </div>
         );
@@ -74,13 +98,15 @@ class SpecificShopPage extends Component {
 function mapStateToProps(state) {
     return {
         authentication: state.saved.authentication,
-        cachedShops: state.shops.cachedShops
+        cachedShops: state.shops.cachedShops,
+        transactions: state.transactions.transactions
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch),
+        transactionActions: bindActionCreators(transactionActions, dispatch),
     };
 }
 

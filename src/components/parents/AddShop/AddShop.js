@@ -12,7 +12,7 @@ import RefreshIndicator from "../../common/RefreshIndicator";
 import ImgUploader from "./ImgUploader";
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
-import IconButton from "@material-ui/core/es/IconButton/IconButton";
+import IconButton from "@material-ui/core/IconButton/IconButton";
 import MessageBox from "../../common/MessageBox";
 
 const styles = {

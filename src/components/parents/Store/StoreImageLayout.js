@@ -6,18 +6,23 @@ const StoreImageLayout = props => {
         <div style={{
             width: '100%',
             height: '100%',
-            zIndex: 999,
+            zIndex: 998,
             position: 'absolute',
             left: 0,
             top: 0,
         }}>
-            <StoreImage edit={props.edit}
+            <StoreImage onClick={()=>{
+                props.selector(0, 2)
+            }} edit={props.edit}
                         item={props.items && props.items[0]}
                         style={{
                 left: 50,
                 top: 100
             }} />
             <StoreImage
+                onClick={()=>{
+                    props.selector(1, 2)
+                }}
                 edit={props.edit}
                 item={props.items && props.items[1]}
                 style={{
