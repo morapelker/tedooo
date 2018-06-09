@@ -135,11 +135,35 @@ class ShopApi {
         return responseJson;
     }
 
+    static async placeItem(props, token) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/transactions/', {
+                // 'http://localhost:3030/transactions/', {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(props)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't update");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async alterShop(id, props, token) {
         let response;
         try {
             response = await fetch(
                 'https://baloofeathers.herokuapp.com/shops/' + id, {
+                // 'http://localhost:3030/shops/' + id, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',

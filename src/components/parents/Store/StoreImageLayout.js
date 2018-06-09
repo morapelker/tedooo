@@ -1,52 +1,46 @@
 import React from 'react';
 import StoreImage from "./StoreImage";
 
+const items = [
+    {
+        left: 50,
+        top: 100
+    }, {
+        right: 50,
+        top: 100
+    }, {
+        right: 50,
+        bottom: 100
+    }, {
+        left: 250,
+        bottom: 100
+    }, {
+        left: '65%',
+        top: 25
+    }
+];
+
 const StoreImageLayout = props => {
     return (
         <div style={{
             width: '100%',
             height: '100%',
-            zIndex: 998,
             position: 'absolute',
             left: 0,
             top: 0,
         }}>
-            <StoreImage onClick={()=>{
-                props.selector(0, 2)
-            }} edit={props.edit}
-                        item={props.items && props.items[0]}
-                        style={{
-                left: 50,
-                top: 100
-            }} />
-            <StoreImage
-                onClick={()=>{
-                    props.selector(1, 2)
-                }}
-                edit={props.edit}
-                item={props.items && props.items[1]}
-                style={{
-                right: 50,
-                top: 100
-            }} />
-            <StoreImage edit={props.edit}
-                        item={props.items && props.items[2]}
-                        style={{
-                right: 50,
-                bottom: 100
-            }} />
-            <StoreImage edit={props.edit}
-                        item={props.items && props.items[3]}
-                        style={{
-                left: 250,
-                bottom: 100
-            }} />
-            <StoreImage edit={props.edit}
-                        item={props.items && props.items[4]}
-                        style={{
-                left: '65%',
-                top: 25
-            }} />
+            {items.map((item, index) => (
+                <StoreImage
+                    ownShop={props.ownShop}
+                    index={index}
+                    deleteImage={props.deleteImage}
+                    loading={props.loadingImage[index] || false}
+                    key={index} onClick={()=>{
+                    props.selector(index)
+                }} edit={props.edit}
+                            item={props.shop.items && props.shop.items[index]}
+                            style={item} />
+            ))}
         </div>
     );
 };

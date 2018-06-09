@@ -24,7 +24,8 @@ const styles = {
         overflowX: 'auto',
         height: 60,
         paddingRight: 5,
-        paddingLeft: 5
+        paddingLeft: 5,
+        zIndex: 10
     }, smallImg: {
         border: '1px black solid',
         width: 50,

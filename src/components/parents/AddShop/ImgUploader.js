@@ -7,6 +7,8 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Button from "@material-ui/core/Button/Button";
 import withStyles from "@material-ui/core/styles/withStyles";
+import Reorder from 'react-reorder';
+import SmallImageContainer from "./SmallImageContainer";
 
 const styles = () => ({
     root: {
@@ -74,26 +76,36 @@ class ImgUploader extends Component {
                     marginRight: 41,
                     display: 'flex'
                 }}>
-                    {this.props.img_links.map((link, index) => (
-                        <div key={index} style={{width: 70, height: 70, position: 'relative',
-                            marginLeft: index === 0 ? 0 : 5}}>
-                            <ImgWithLoader style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover'
-                            }} src={link}/>
-                            <Button onClick={()=>{
-                                this.props.removeImage(index);
-                            }} mini variant="fab" color="inherit" aria-label="add" classes={{
-                                root: this.props.classes.root
-                            }}>
-                                <RemoveIcon style={{
-                                    height: 20, width: 20
-                                }} />
-                            </Button>
-                        </div>
-                    ))}
-
+                    <Reorder
+                        reorderId="my-list" // Unique ID that is used internally to track this list (required)
+                        draggedClassName="dragged" // Class name to be applied to dragged elements (optional), defaults to 'dragged'
+                        component={SmallImageContainer}
+                        lock="vertical" // Lock the dragging direction (optional): vertical, horizontal (do not use with groups)
+                        holdTime={1} // Default hold time before dragging begins (mouse & touch) (optional), defaults to 0
+                        onReorder={this.props.callback} // Callback when an item is dropped (you will need this to update your state)
+                        autoScroll={true} // Enable auto-scrolling when the pointer is close to the edge of the Reorder component (optional), defaults to true
+                        disableContextMenus={true} // Disable context menus when holding on touch devices (optional), defaults to true
+                    >
+                        {this.props.img_links.map((link, index) => (
+                            <div key={index} style={{width: 70, height: 70, position: 'relative',
+                                marginLeft: index === 0 ? 0 : 5}}>
+                                <ImgWithLoader style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'cover'
+                                }} src={link}/>
+                                <Button onClick={()=>{
+                                    this.props.removeImage(index);
+                                }} mini variant="fab" color="inherit" aria-label="add" classes={{
+                                    root: this.props.classes.root
+                                }}>
+                                    <RemoveIcon style={{
+                                        height: 20, width: 20
+                                    }} />
+                                </Button>
+                            </div>
+                        ))}
+                    </Reorder>
                     <div style={{
                         height: 70,
                         width: 70,

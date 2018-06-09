@@ -14,6 +14,7 @@ import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import MessageBox from "../../common/MessageBox";
+import {deepCloneObject} from "../../helpers/helpers";
 
 const styles = {
     mainDiv: {
@@ -127,7 +128,7 @@ class AddShop extends Component {
 
         const {id} = this.props.match.params;
         if (id) {
-            const shop = this.props.cachedShops[id];
+            const shop = deepCloneObject(this.props.cachedShops[id]);
             if (shop) {
                 this.state.fields = this.updateShopFields(shop);
                 this.state.img_links = shop.img_links;
@@ -140,7 +141,7 @@ class AddShop extends Component {
             } else {
                 this.state.initLoading = true;
                 this.props.actions.findShopById(id).then(() => {
-                    const shop = this.props.cachedShops[this.props.match.params.id];
+                    const shop = deepCloneObject(this.props.cachedShops[this.props.match.params.id]);
                     if (shop !== undefined) {
                         this.setState({
                            fields: this.updateShopFields(shop),
@@ -375,7 +376,7 @@ class AddShop extends Component {
             const {id} = this.props.match.params;
             if (id) {
                 this.props.actions.alterShop(id, shop,  this.props.authentication.token).then(() => {
-                    // this.props.history.push('/results/' + this.props.lastAddedId)
+                    this.props.history.push('/results/' + this.props.lastAddedId)
                 });
             } else {
                 this.props.actions.addShop(shop, this.props.authentication.token).then(() => {
@@ -407,6 +408,14 @@ class AddShop extends Component {
         this.props.history.push('/');
     };
 
+    changeImageOrder = (_, from, to) => {
+        const imgLinks = this.state.img_links;
+        const tmpImage = imgLinks[from];
+        imgLinks.splice(from, 1);
+        imgLinks.splice(to, 0, tmpImage);
+        this.setState({img_links: imgLinks});
+    };
+
     render() {
         return (
             <div style={styles.mainDiv}>
@@ -428,7 +437,9 @@ class AddShop extends Component {
                                         textChanged={this.textChanged}
                                         fromAddShop={true}
                                         fields={this.state.fields}/>
-                    <ImgUploader removeImage={this.removeImage} addImage={this.addImage} storageRef={this.state.storageRef}
+                    <ImgUploader
+                        callback={this.changeImageOrder}
+                        removeImage={this.removeImage} addImage={this.addImage} storageRef={this.state.storageRef}
                                  img_links={this.state.img_links}/>
                     <p/>
                     <Captcha style={{

@@ -5,6 +5,17 @@ import CartIcon from '@material-ui/icons/ShoppingCart';
 import {Badge} from "@material-ui/core/index";
 import {MenuItem, MenuList} from "@material-ui/core/es/index";
 import './SpecificShop.css'
+import ImgWithLoader from "../common/ImgWithLoader";
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const styles = {
+  badge: {
+      backgroundColor: 'red',
+      position: 'absolute',
+      left: 0,
+      top: 0
+  }
+};
 
 class CartControl extends Component {
     constructor(props, context) {
@@ -19,6 +30,25 @@ class CartControl extends Component {
     };
 
     render() {
+        let badgeNumber = 0;
+        const actualTransactions = [];
+        this.props.transactions.forEach(transaction => {
+            if (!transaction.used) {
+                badgeNumber++;
+                const index = actualTransactions.map(t => t.img).indexOf(transaction.img);
+                if (index === -1)
+                    actualTransactions.push(Object.assign({}, transaction, {count: 1}));
+                else
+                    actualTransactions[index].count++;
+            }
+        });
+        actualTransactions.sort((a,b) => {
+            if (a.name > b.name)
+                return -1;
+            else if (b.name > a.name)
+                return 1;
+            return 0;
+        });
         return (
             <div style={{
                 minHeight: 50,
@@ -27,14 +57,14 @@ class CartControl extends Component {
                 position: 'fixed',
                 zIndex: 999
             }}>
-                <Badge color="secondary" badgeContent={this.props.transactions.length}>
+                <Badge color="secondary" badgeContent={badgeNumber}>
                     <Button onClick={this.toggleOpen} variant={'fab'} mini style={{
                         backgroundColor: 'white',
                         height: 50,
                         width: 50,
                         margin: '0 auto'
                     }}>
-                        <CartIcon />
+                        <CartIcon/>
                     </Button>
                 </Badge>
                 <Collapse in={this.state.open}>
@@ -47,22 +77,46 @@ class CartControl extends Component {
                         borderRadius: 10,
                     }}>
                         <MenuList>
-                            {this.props.transactions.map((item, index) => (
-                                <MenuItem onClick={()=>{
-                                    this.props.selector(item);
-                                }} key={index}>
-                                    <div style={{display: 'flex'}}>
-                                        <img style={{
-                                            height: 40,
-                                            width: 40,
-                                            backgroundColor: 'red'
-                                        }} alt={''} />
-                                        <span style={{flex: 1, marginRight: 10, marginLeft: 10}}>{item.name}</span>
-                                    </div>
-                                </MenuItem>
+                            {actualTransactions.map((item, index) => (
+                                !item.used &&
+                                (item.count > 1 ? <Badge key={index} classes={{
+                                        badge: this.props.classes.badge
+                                    }}  color="secondary" badgeContent={item.count}>
+                                    <MenuItem onClick={() => {
+                                        this.props.selector(item);
+                                    }} key={index}>
+                                        <div style={{display: 'flex'}}>
+                                            <ImgWithLoader style={{
+                                                height: 40,
+                                                width: 40,
+                                                objectFit: 'contain'
+                                            }} src={item.img} alt={''}/>
+                                            <span style={{
+                                                flex: 1,
+                                                marginRight: 10,
+                                                marginLeft: 10
+                                            }}>{item.name}</span>
+                                        </div>
+                                    </MenuItem>
+                                </Badge> :
+                                    <MenuItem onClick={() => {
+                                        this.props.selector(item);
+                                    }} key={index}>
+                                        <div style={{display: 'flex'}}>
+                                            <ImgWithLoader style={{
+                                                height: 40,
+                                                width: 40,
+                                                objectFit: 'contain'
+                                            }} src={item.img} alt={''}/>
+                                            <span style={{
+                                                flex: 1,
+                                                marginRight: 10,
+                                                marginLeft: 10
+                                            }}>{item.name}</span>
+                                        </div>
+                                    </MenuItem>)
                             ))}
                         </MenuList>
-
                     </div>
                 </Collapse>
             </div>
@@ -70,4 +124,4 @@ class CartControl extends Component {
     }
 }
 
-export default CartControl;
+export default withStyles(styles)(CartControl);

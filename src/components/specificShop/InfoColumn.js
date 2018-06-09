@@ -112,12 +112,14 @@ class InfoColumn extends Component {
                              color={colorFromShop(this.props.shop)}
                     />}
                     {this.props.ownShop &&
-                    <Link to={'/addshop/' + this.props.match.params.id}>
+                    <Link style={{
+                        zIndex: 10
+                    }} to={'/addshop/' + this.props.match.params.id}>
                         <img src="/assets/pencil.png" alt={''} style={{
                             width: 40,
                             height: 40,
                             objectFit: 'contain',
-                            marginRight: 10
+                            marginRight: 10,
                         }} />
                     </Link> }
                     {this.props.admin && <SubmitButton image={'authorize'} submit={() => {

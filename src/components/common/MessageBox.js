@@ -1,5 +1,6 @@
 import React from 'react';
-import {Dialog,
+import {
+    Dialog,
     DialogTitle,
     DialogContent,
     DialogActions,
@@ -7,6 +8,7 @@ import {Dialog,
 } from "@material-ui/core/index";
 import TedooButton from "./TedooButton";
 import withStyles from "@material-ui/core/styles/withStyles";
+import RefreshIndicator from "./RefreshIndicator";
 
 const styles = {
     paper: {
@@ -27,7 +29,9 @@ const styles = {
     },
     rootContent: {
         paddingBottom: 10,
-    },dialogLabel: {
+        display: 'flex',
+        justifyContent: 'center'
+    }, dialogLabel: {
         textAlign: 'center',
         fontSize: '1.2em',
         color: '#3CBF95',
@@ -56,6 +60,14 @@ const MessageBox = props => {
             <DialogContent classes={{
                 root: classes.rootContent
             }}>
+                {props.loading === 1 && <RefreshIndicator style={{alignSelf: 'center'}}/>}
+                {props.loading === 2 &&
+                <img style={{height: 30,
+                    width: 30,
+                    objectFit: 'contains'
+                }}
+                     alt={''}
+                     src={'/assets/check.png'}/>}
                 <DialogContentText classes={{
                     root: classes.dialogLabel
                 }} id="alert-dialog-description">
@@ -70,14 +82,16 @@ const MessageBox = props => {
                              selectedTextColor={'white'}
                              selectedBackground={'#3CBF95'}
                              onClick={props.onClose}
-                                                  text={props.cancelText || 'Cancel'}
+                             text={props.cancelText || 'Cancel'}
                 />}
+                {props.okText !== '' &&
                 <TedooButton style={styles.button} selected={true}
                              selectedTextColor={'#3CBF95'}
                              selectedBackground={'white'}
                              onClick={props.onOk}
                              text={props.okText || 'Ok'}
-                />
+                />}
+
             </DialogActions>
         </Dialog>
     );

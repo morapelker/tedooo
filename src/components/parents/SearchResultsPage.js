@@ -6,11 +6,21 @@ import GenericShopsPage from "../common/GenericShopsPage";
 
 class SearchResultsPage extends Component {
     render() {
+        let resultTitle;
+        if (this.props.results) {
+            if (this.props.results.length === 1)
+                resultTitle = '1 Result';
+            else if (this.props.results.length === 0)
+                resultTitle = 'Results';
+            else
+                resultTitle = this.props.results.length + ' Results';
+        } else
+            resultTitle = 'Results';
         return (
             <div style={{height: '100%', overflow: 'auto'}}>
                 <GenericShopsPage history={this.props.history}
                                   addHistoryAction={this.props.actions.addShopHistory}
-                                  name={'Results'} shops={this.props.results}/>
+                                  name={resultTitle} shops={this.props.results}/>
             </div>
         );
     }

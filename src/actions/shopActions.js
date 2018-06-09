@@ -1,8 +1,15 @@
 import {
     ADD_SHOP_FAVORITE,
-    ADD_SHOP_HISTORY, ADD_SHOP_SUCCESS, DELETE_FAVORITE_SHOP,
+    ADD_SHOP_HISTORY,
+    ADD_SHOP_SUCCESS,
+    DELETE_FAVORITE_SHOP,
     DELETE_HISTORY_SHOP,
-    FIND_SHOP_SUCCESS, SHOP_ALTERED, SHOP_DELETED, UPDATE_AVATAR, UPDATE_MY_SHOPS
+    FIND_SHOP_SUCCESS,
+    ITEM_PLACED,
+    SHOP_ALTERED,
+    SHOP_DELETED,
+    UPDATE_AVATAR,
+    UPDATE_MY_SHOPS
 } from "./shopConstants";
 import shopApi from '../api/shopApi';
 
@@ -38,6 +45,13 @@ export function addShopSuccess(shop) {
     return {
         type: ADD_SHOP_SUCCESS,
         shop
+    }
+}
+
+export function itemPlaced(item, replacedItem) {
+    return {
+        type: ITEM_PLACED,
+        item, replacedItem
     }
 }
 
@@ -121,6 +135,17 @@ export function deleteShop(id, token) {
     return function(dispatch) {
         return shopApi.deleteShop(id, token).then(shop => {
             dispatch(deleteShopSuccess(shop._id));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function placeItem(props, token, replacedItem) {
+    return function(dispatch) {
+        return shopApi.placeItem(props, token).then(shop => {
+            dispatch(itemPlaced(props.item, replacedItem));
+            dispatch(alterShopSuccess(shop));
         }).catch(error => {
             throw(error);
         });

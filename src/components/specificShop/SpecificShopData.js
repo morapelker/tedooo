@@ -59,7 +59,11 @@ const SpecificShopData = (props) => {
             height: '100%',
             position: 'relative'
         }}>
-            <StoreImageLayout selector={props.placeImageSelector} edit={props.edit} purchasedItems={props.shop.purchased_items} />
+            <StoreImageLayout
+                deleteImage={props.deleteImage}
+                loadingImage={props.loadingImage}
+                ownShop={props.ownShop}
+                selector={props.placeImageSelector} edit={props.edit} shop={props.shop} />
             <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>
@@ -83,7 +87,7 @@ const SpecificShopData = (props) => {
                                 ownShop={props.ownShop} shop={props.shop} />
                 </div>
             </MediaQuery>
-            {props.transactions && props.transactions.length > 0 &&
+            {props.ownShop && props.transactions && props.transactions.length > 0 &&
             <CartControl selector={props.editSelector} transactions={props.transactions} />
             }
         </div>

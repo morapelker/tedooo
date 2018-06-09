@@ -3,6 +3,7 @@ export default class TransactionApi {
         try {
             const response = await fetch(
                 'https://baloofeathers.herokuapp.com/transactions/', {
+                // 'http://localhost:3030/transactions/', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -15,6 +16,22 @@ export default class TransactionApi {
         } catch (error) {
             return [];
         }
+    }
 
+    static async purchaseItem(item, token) {
+        const response = await fetch(
+            'https://baloofeathers.herokuapp.com/transactions/', {
+            // 'http://localhost:3030/transactions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify(item)
+            }
+        );
+        if (!response.ok)
+            throw new Error('Couldn\'t finish purchase');
+        return await response.json();
     }
 }
