@@ -6,6 +6,7 @@ import * as transactionActions from '../../../actions/storeActions'
 import StoreItem from "./StoreItem";
 import RefreshIndicator from "../../common/RefreshIndicator";
 import MessageBox from "../../common/MessageBox";
+import CartControl from "../../specificShop/CartControl";
 
 class StorePage extends Component {
     constructor(props, context) {
@@ -19,6 +20,8 @@ class StorePage extends Component {
             })
         } else
             this.state = {loading: false, buying: 0};
+        if (!this.props.transactions && this.props.authentication.token.length > 0)
+            this.props.transactionActions.loadTransactions(this.props.authentication.token)
     }
 
     buyItem = item => {
@@ -45,20 +48,27 @@ class StorePage extends Component {
                 <p/>
                 <h3>Store</h3>
                 <p/>
-                {this.state.loading ?
-                    <RefreshIndicator style={{margin: '0 auto'}}/> :
-                    <div style={{width: '100%', display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'space-around'}}>
-                        {this.props.items && this.props.items.map((item, index) =>
-                            <StoreItem
-                                onClick={this.buyItem}
-                                size={300} key={index} item={item} />)}
+                {this.props.authentication.token === '' ? <h3>Not authenticated</h3> :
+                    <div>
+                        {this.state.loading ?
+                            <RefreshIndicator style={{margin: '0 auto'}}/> :
+                            <div style={{width: '100%', display: 'flex',
+                                flexWrap: 'wrap',
+                                justifyContent: 'space-around'}}>
+                                {this.props.items && this.props.items.map((item, index) =>
+                                    <StoreItem
+                                        onClick={this.buyItem}
+                                        size={300} key={index} item={item} />)}
+                            </div>}
+                        {this.state.error && <h3 color={'red'}>{this.state.error}</h3>}
+                        <MessageBox open={this.state.buying > 0} okText={''}
+                                    title={this.state.buying === 1 ? 'Buying Item..' : 'Item Bought'}
+                                    loading={this.state.buying} />
+                        {this.props.transactions && this.props.transactions.length > 0 &&
+                        <CartControl selector={()=>{}} transactions={this.props.transactions} />
+                        }
                     </div>}
-                {this.state.error && <h3 color={'red'}>{this.state.error}</h3>}
-                <MessageBox open={this.state.buying > 0} okText={''}
-                            title={this.state.buying === 1 ? 'Buying Item..' : 'Item Bought'}
-                            loading={this.state.buying} />
+
             </div>
         );
     }
@@ -67,7 +77,8 @@ class StorePage extends Component {
 function mapStateToProps(state) {
     return {
         items: state.manager.items,
-        authentication: state.saved.authentication
+        authentication: state.saved.authentication,
+        transactions: state.transactions.transactions
     };
 }
 

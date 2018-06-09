@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutPage = () => {
     return (
-        <div>
+        <div style={{overflow: 'auto', width: '100%', height: '100%'}}>
             <span style={{color: 'white'}}>
                      Originally founded by two brothers, Michelle and Mor Apelker.
             </span> <span style={{color: 'white'}}>
