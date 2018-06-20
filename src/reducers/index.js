@@ -7,20 +7,21 @@ import {persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authentication from "./authentication";
 import transactions from "./transactionReducer";
+import session from "./sessionReducer";
 
 const persistConfig = {
     key: 'root',
     storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, combineReducers({local, authentication}));
+const persistedReducer = persistReducer(persistConfig, combineReducers({local, authentication, manager}));
 
 const rootReducer = combineReducers({
     shops,
     saved: persistedReducer,
-    manager,
     firebase,
-    transactions
+    transactions,
+    session
 });
 
 export default rootReducer;

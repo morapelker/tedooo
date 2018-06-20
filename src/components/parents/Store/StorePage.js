@@ -76,7 +76,7 @@ class StorePage extends Component {
 
 function mapStateToProps(state) {
     return {
-        items: state.manager.items,
+        items: state.saved.manager.items,
         authentication: state.saved.authentication,
         transactions: state.transactions.transactions
     };

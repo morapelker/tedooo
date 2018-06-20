@@ -490,7 +490,7 @@ class AddShop extends Component {
 
 function mapStateToProps(state) {
     return {
-        manager: state.manager,
+        manager: state.saved.manager,
         authentication: state.saved.authentication,
         lastAddedId: state.shops.lastAddedId,
         firebase: state.firebase,

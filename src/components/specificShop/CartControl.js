@@ -3,10 +3,9 @@ import Collapse from "@material-ui/core/Collapse/Collapse";
 import Button from "@material-ui/core/Button/Button";
 import CartIcon from '@material-ui/icons/ShoppingCart';
 import {Badge} from "@material-ui/core/index";
-import {MenuItem, MenuList} from "@material-ui/core/es/index";
 import './SpecificShop.css'
-import ImgWithLoader from "../common/ImgWithLoader";
 import withStyles from "@material-ui/core/styles/withStyles";
+import CartItem from "./CartItem";
 
 const styles = {
   badge: {
@@ -75,48 +74,14 @@ class CartControl extends Component {
                         marginTop: 10,
                         width: 300,
                         borderRadius: 10,
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        flexWrap: 'wrap',
+                        padding: 5
                     }}>
-                        <MenuList>
-                            {actualTransactions.map((item, index) => (
-                                !item.used &&
-                                (item.count > 1 ? <Badge key={index} classes={{
-                                        badge: this.props.classes.badge
-                                    }}  color="secondary" badgeContent={item.count}>
-                                    <MenuItem onClick={() => {
-                                        this.props.selector(item);
-                                    }} key={index}>
-                                        <div style={{display: 'flex'}}>
-                                            <ImgWithLoader style={{
-                                                height: 40,
-                                                width: 40,
-                                                objectFit: 'contain'
-                                            }} src={item.img} alt={''}/>
-                                            <span style={{
-                                                flex: 1,
-                                                marginRight: 10,
-                                                marginLeft: 10
-                                            }}>{item.name}</span>
-                                        </div>
-                                    </MenuItem>
-                                </Badge> :
-                                    <MenuItem onClick={() => {
-                                        this.props.selector(item);
-                                    }} key={index}>
-                                        <div style={{display: 'flex'}}>
-                                            <ImgWithLoader style={{
-                                                height: 40,
-                                                width: 40,
-                                                objectFit: 'contain'
-                                            }} src={item.img} alt={''}/>
-                                            <span style={{
-                                                flex: 1,
-                                                marginRight: 10,
-                                                marginLeft: 10
-                                            }}>{item.name}</span>
-                                        </div>
-                                    </MenuItem>)
-                            ))}
-                        </MenuList>
+                        {actualTransactions.map((item, index) => (
+                            !item.used && <CartItem index={index} item={item} key={index} />
+                        ))}
                     </div>
                 </Collapse>
             </div>

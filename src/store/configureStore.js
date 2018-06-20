@@ -14,5 +14,4 @@ export default function configureStore(initialState) {
         applyMiddleware(thunk, reduxImmutableStateInvariant()));
     const persistor = persistStore(store);
     return { store, persistor }
-
 };

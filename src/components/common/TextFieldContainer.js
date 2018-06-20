@@ -34,7 +34,7 @@ const renderField = (field, index, props) => (
             <div
                 style={{
                     marginRight: props.fromAddShop ? 41 : 'unset',
-                    marginLeft: props.fromAddShop ? 41 : 'unset'
+                    marginLeft: props.fromAddShop ? 41 : 'unset',
                 }}>
                 <AutoCompleteField
                     value={field.value || ''}
@@ -105,8 +105,6 @@ const TextFieldContainer = (props) => {
                         {renderField(field, index, props)}
                     </div>);
                 }
-
-
             })}
         </Form>
     );

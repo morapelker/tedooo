@@ -11,6 +11,18 @@ class managerApi {
         }
     }
 
+    static async loadCategories() {
+        try{
+            let response = await fetch(
+                'https://baloofeathers.herokuapp.com/categories/'
+            );
+            const json = await response.json();
+            return json.data;
+        } catch (error) {
+            return [];
+        }
+    }
+
     static async loadStoreItems() {
         try {
             let response = await fetch(

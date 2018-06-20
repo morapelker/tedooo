@@ -19,6 +19,24 @@ function marketNamesFromMarkets(markets) {
     return marketNames.map(market => ({label: market}));
 }
 
+function categoriesFrom(categories) {
+    let categoryNames = [];
+    categories.forEach(category => {
+        if (!categoryNames.includes(category.parent))
+            categoryNames.push(category.parent);
+    });
+    return categoryNames.map(category => ({label: category}));
+}
+
+function subcategoriesFor(categories, parent) {
+    let subCategories = [];
+    categories.forEach(category => {
+        if (category.parent === parent)
+            subCategories.push(category.name)
+    });
+    return subCategories.map(category => ({label: category}));
+}
+
 function citiesFromMarkets(markets) {
     let cities = [];
     markets.forEach(market => {
@@ -34,6 +52,9 @@ class SearchPage extends Component {
         this.state = {
             error: false,
             busy: false,
+            lastCategoryName: '',
+            selectedCategoryId: '',
+            lastSubCatName: '',
             generalFields: [
                 {
                     name: 'marketName',
@@ -41,7 +62,7 @@ class SearchPage extends Component {
                     value: '',
                     type: 'select',
                     suggestions: marketNamesFromMarkets(this.props.manager.markets),
-                    selector: this.marketChanged
+                    selector: this.marketChanged,
                 },
                 {
                     name: 'shopNumber',
@@ -51,7 +72,20 @@ class SearchPage extends Component {
                 {
                     name: 'category',
                     placeholder: 'Category',
-                    value: ''
+                    value: '',
+                    type: 'select',
+                    suggestions: categoriesFrom(this.props.manager.categories),
+                    selector: this.categoryChanged,
+                    onBlur: this.categoryBlurred
+                },
+                {
+                    name: 'subcategory',
+                    placeholder: 'Subcategory',
+                    value: '',
+                    type: 'select',
+                    suggestions: [],
+                    selector: this.subCategoryChanged,
+                    onBlur: this.subCatBlurred,
                 },
                 {
                     name: 'city',
@@ -73,13 +107,16 @@ class SearchPage extends Component {
         this.textChanged = this.textChanged.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
-        if (this.props.manager.markets.length === 0) {
+        if (!this.props.session.loadedMarkets) {
             this.props.managerActions.loadMarkets().then(() => {
                 const generalFields = this.state.generalFields;
                 generalFields[0].suggestions = marketNamesFromMarkets(this.props.manager.markets);
-                generalFields[3].suggestions = citiesFromMarkets(this.props.manager.markets);
+                generalFields[4].suggestions = citiesFromMarkets(this.props.manager.markets);
                 this.setState({generalFields});
             });
+        }
+        if (!this.props.session.loadedCategories) {
+            this.props.managerActions.loadCategories();
         }
     }
 
@@ -126,8 +163,8 @@ class SearchPage extends Component {
                 searchParams['shop_number'] = this.state.generalFields[1].value;
             if (this.state.generalFields[2].value.length > 0)
                 searchParams['category'] = this.state.generalFields[2].value;
-            if (this.state.generalFields[3].value.length > 0)
-                searchParams['city'] = this.state.generalFields[3].value;
+            if (this.state.generalFields[4].value.length > 0)
+                searchParams['city'] = this.state.generalFields[4].value;
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 
@@ -153,15 +190,64 @@ class SearchPage extends Component {
 
     cityChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
-        generalFields[3].value = newValue;
+        generalFields[4].value = newValue;
         this.setState({generalFields});
     };
 
+    subCatBlurred = () => {
+        if (this.state.generalFields[3] !== this.state.lastSubCatName) {
+            const generalFields = this.state.generalFields;
+            generalFields[3].value = this.state.lastSubCatName;
+            this.setState({generalFields});
+        }
+    };
+
+    categoryBlurred = () => {
+        if (this.state.generalFields[2].value === '') {
+            const generalFields = this.state.generalFields;
+            // generalFields[3].hidden = true;
+            generalFields[3].value = '';
+            this.setState({
+                generalFields,
+                lastCategoryName: '',
+                selectedCategoryId: '',
+                lastSubCatName: ''
+            });
+        } else if (this.state.generalFields[2].value !== this.state.lastCategoryName) {
+            const generalFields = this.state.generalFields;
+            generalFields[2].value = this.state.lastCategoryName;
+            this.setState({generalFields});
+        }
+    };
 
     marketChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
         generalFields[0].value = newValue;
         this.setState({generalFields});
+    };
+
+    categoryChanged = (event, {newValue, method}) => {
+        const generalFields = this.state.generalFields;
+        generalFields[2].value = newValue;
+        if (method !== 'type') {
+            if (this.state.lastCategoryName !== newValue) {
+                generalFields[3].suggestions = subcategoriesFor(this.props.manager.categories, newValue);
+                generalFields[3].value = '';
+                // generalFields[3].hidden = newValue === '';
+                this.setState({generalFields, lastCategoryName: newValue});
+            } else
+                this.setState({generalFields});
+        } else
+            this.setState({generalFields});
+    };
+
+    subCategoryChanged = (event, {newValue, method}) => {
+        const generalFields = this.state.generalFields;
+        generalFields[3].value = newValue;
+        if (method !== 'type')
+            this.setState({generalFields, lastSubCatName: newValue, selectedCategoryId: 'a'});
+        else
+            this.setState({generalFields});
     };
 
     render() {
@@ -210,7 +296,8 @@ class SearchPage extends Component {
 function mapStateToProps(state) {
     return {
         state: state.shops,
-        manager: state.manager,
+        manager: state.saved.manager,
+        session: state.session
     };
 }
 
