@@ -63,9 +63,10 @@ class StoreItem extends Component {
                                 this.props.onClick(this.props.item);
                             }}
                             style={{
+                                textTransform: 'capitalize',
                                 alignSelf: 'center'
                             }}
-                            variant={'raised'} color={'primary'}>Buy</Button>
+                            variant={'raised'} color={'primary'}>Get</Button>
                     </div>
                 </Fade>
             </div>

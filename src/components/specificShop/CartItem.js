@@ -22,6 +22,8 @@ const CartItem = props => {
             background: '#f2f2f2',
             borderRadius: 10,
             marginTop: marginTop
+        }} onClick={() => {
+            props.selector(props.item);
         }}>
             {props.item.count > 1 ? <Badge classes={{
             badge: props.classes.badge

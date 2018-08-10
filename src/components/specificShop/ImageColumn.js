@@ -18,7 +18,7 @@ const styles = {
     imgList: {
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         display: 'flex',
         flexWrap: 'nowrap',
         overflowX: 'auto',
@@ -27,7 +27,7 @@ const styles = {
         paddingLeft: 5,
         zIndex: 10
     }, smallImg: {
-        border: '1px white solid',
+        border: '1px black solid',
         width: 50,
         height: 50,
         marginLeft: 12,
@@ -65,14 +65,14 @@ class ImageColumn extends Component {
                         width: '100%',
                         flexDirection: 'column-reverse',
                         display: 'flex',
-                        backgroundColor: 'white',
+                        backgroundColor: 'black',
                     }}
                     >
 
                         <div style={styles.imgList}>
                             {this.props.shop.img_links.map((link, index) => (
                                 <Img key={index} className={'smallImg'}
-                                     style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'white')})}
+                                     style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
                                      src={link} loader={
                                     <RefreshIndicator/>
                                 } onDragStart={e => {

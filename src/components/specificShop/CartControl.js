@@ -80,7 +80,7 @@ class CartControl extends Component {
                         padding: 5
                     }}>
                         {actualTransactions.map((item, index) => (
-                            !item.used && <CartItem index={index} item={item} key={index} />
+                            !item.used && <CartItem selector={this.props.selector} index={index} item={item} key={index} />
                         ))}
                     </div>
                 </Collapse>
