@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import StoreDescription from "./StoreDescription";
 import StorePrice from "./StorePrice";
 import Fade from "@material-ui/core/Fade/Fade";
-import {Button} from "@material-ui/core/index";
+import TedooButton from "../../common/TedooButton";
 
 class StoreItem extends Component {
     constructor(props, context) {
@@ -28,7 +28,7 @@ class StoreItem extends Component {
                 marginTop: 40,
                 position: 'relative'
             }} onMouseMove={this.mouseEnter}
-                 onMouseLeave={this.mouseLeave} >
+                 onMouseLeave={this.mouseLeave}>
                 <div style={{
                     width: this.props.size,
                     height: this.props.size,
@@ -44,7 +44,7 @@ class StoreItem extends Component {
                     }} src={this.props.item.avatar} alt={''}/>
 
                 </div>
-                <StorePrice />
+                <StorePrice/>
                 <StoreDescription label={this.props.item.label}/>
                 <Fade in={this.state.hover}>
                     <div style={{
@@ -58,15 +58,16 @@ class StoreItem extends Component {
                         left: 0,
                         top: 0
                     }}>
-                        <Button
-                            onClick={()=>{
-                                this.props.onClick(this.props.item);
-                            }}
-                            style={{
-                                textTransform: 'capitalize',
-                                alignSelf: 'center'
-                            }}
-                            variant={'raised'} color={'primary'}>Get</Button>
+                        <TedooButton onClick={() => {
+                            this.props.onClick(this.props.item);
+                        }}
+                                     selectedBackground={'#3CBF95'}
+                                     selectedTextColor={'white'}
+                                     selected={true}
+                                     style={{
+                                         textTransform: 'capitalize',
+                                         alignSelf: 'center'
+                                     }} text={'Get'}/>
                     </div>
                 </Fade>
             </div>

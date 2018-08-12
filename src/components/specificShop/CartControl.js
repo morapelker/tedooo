@@ -82,6 +82,20 @@ class CartControl extends Component {
                         {actualTransactions.map((item, index) => (
                             !item.used && <CartItem selector={this.props.selector} index={index} item={item} key={index} />
                         ))}
+                        {this.props.getMore === 1 && <CartItem selector={this.props.selector} index={actualTransactions.length < 3 ? 1 : 4} item={{
+                            count: 1,
+                            img: '/assets/priceTag.png',
+                            text: 'getMore'
+                        }} />}
+                        {(actualTransactions.length + this.props.getMore) % 3 >= 1 && <CartItem index={actualTransactions.length < 3 ? 1 : 4} item={{
+                            count: 0,
+                            img: ''
+                        }} />}
+                        {(actualTransactions.length + this.props.getMore) % 3 === 1 && <CartItem index={actualTransactions.length < 3 ? 1 : 4} item={{
+                            count: 0,
+                            img: ''
+                        }} />}
+
                     </div>
                 </Collapse>
             </div>

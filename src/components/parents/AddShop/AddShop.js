@@ -63,40 +63,43 @@ class AddShop extends Component {
                     placeholder: 'Category',
                     value: ''
                 }, {
+                    placeholder: 'Shop Description',
+                    value: ''
+                }, {
                     placeholder: 'Phone Number',
                     value: '',
                     expandable: true,
-                    parent: 4,
+                    parent: 5,
                 }, {
                     placeholder: 'Phone Number',
                     value: '',
                     expandable: true,
                     minorable: true,
                     hidden: true,
-                    parent: 4
+                    parent: 5
                 }, {
                     placeholder: 'Phone Number',
                     value: '',
                     hidden: true,
                     minorable: true,
-                    parent: 4
+                    parent: 5
                 }, {
                     placeholder: 'WeChat ID',
                     value: '',
                     expandable: true,
-                    parent: 7
-                }, {
-                    placeholder: 'WeChat ID',
-                    value: '',
-                    hidden: true,
-                    minorable: true,
-                    parent: 7
+                    parent: 8
                 }, {
                     placeholder: 'WeChat ID',
                     value: '',
                     hidden: true,
                     minorable: true,
-                    parent: 7
+                    parent: 8
+                }, {
+                    placeholder: 'WeChat ID',
+                    value: '',
+                    hidden: true,
+                    minorable: true,
+                    parent: 8
                 }
             ],
             market: {
@@ -169,6 +172,7 @@ class AddShop extends Component {
         fields[1].value = shop.name;
         fields[2].value = shop.shop_number;
         fields[3].value = shop.category;
+        fields[4].value = shop.description || '';
         if (shop.contact_info) {
             let phoneCounter = -1;
             let wechatCounter = -1;
@@ -176,18 +180,18 @@ class AddShop extends Component {
                 if (info.type === 1) {
                     phoneCounter++;
                     if (phoneCounter === 0) {
-                        fields[4].value = info.number;
+                        fields[5].value = info.number;
                     } else if (phoneCounter < 3) {
-                        fields[4 + phoneCounter].value = info.number;
-                        fields[4 + phoneCounter].hidden = false;
+                        fields[5 + phoneCounter].value = info.number;
+                        fields[5 + phoneCounter].hidden = false;
                     }
                 } else if (info.type === 2){
                     wechatCounter++;
                     if (wechatCounter === 0) {
-                        fields[7].value = info.number;
+                        fields[8].value = info.number;
                     } else if (wechatCounter < 3) {
-                        fields[7 + wechatCounter].value = info.number;
-                        fields[7 + wechatCounter].hidden = false;
+                        fields[8 + wechatCounter].value = info.number;
+                        fields[8 + wechatCounter].hidden = false;
                     }
                 }
             });
@@ -197,15 +201,15 @@ class AddShop extends Component {
 
     updateFields = (f) => {
         const fields = f || this.state.fields;
-        const num = this.getNumOfItems(4);
-        fields[4] = Object.assign({}, fields[4], {expandable: (num < 3), minorable: (num > 1)});
+        const num = this.getNumOfItems(5);
         fields[5] = Object.assign({}, fields[5], {expandable: (num < 3), minorable: (num > 1)});
         fields[6] = Object.assign({}, fields[6], {expandable: (num < 3), minorable: (num > 1)});
+        fields[7] = Object.assign({}, fields[7], {expandable: (num < 3), minorable: (num > 1)});
 
-        const num2 = this.getNumOfItems(7);
-        fields[7] = Object.assign({}, fields[7], {expandable: (num2 < 3), minorable: (num2 > 1)});
+        const num2 = this.getNumOfItems(8);
         fields[8] = Object.assign({}, fields[8], {expandable: (num2 < 3), minorable: (num2 > 1)});
         fields[9] = Object.assign({}, fields[9], {expandable: (num2 < 3), minorable: (num2 > 1)});
+        fields[10] = Object.assign({}, fields[10], {expandable: (num2 < 3), minorable: (num2 > 1)});
         return fields;
     };
 
@@ -345,7 +349,7 @@ class AddShop extends Component {
             this.setState({error});
         } else {
             let contact_info = [];
-            for (let i = 4; i < 7; i++) {
+            for (let i = 5; i < 8; i++) {
                 if (this.state.fields[i].value !== '' && !this.state.fields[i].hidden) {
                     contact_info.push({
                         type: 1,
@@ -353,7 +357,7 @@ class AddShop extends Component {
                     });
                 }
             }
-            for (let i = 7; i < 10; i++) {
+            for (let i = 8; i < 11; i++) {
                 if (this.state.fields[i].value !== '' && !this.state.fields[i].hidden) {
                     contact_info.push({
                         type: 2,
@@ -365,6 +369,7 @@ class AddShop extends Component {
                 name: this.state.fields[1].value,
                 shop_number: this.state.fields[2].value,
                 category: this.state.fields[3].value,
+                description: this.state.fields[4].value,
                 market_name: this.state.market.name,
                 address: this.state.market.address,
                 city: this.state.market.city,

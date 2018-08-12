@@ -19,21 +19,21 @@ const CartItem = props => {
             width: 90,
             height: 90,
             padding: 10,
-            background: '#f2f2f2',
+            background: props.item.img === '' ? 'white' : '#f2f2f2',
             borderRadius: 10,
-            marginTop: marginTop
+            marginTop: marginTop,
         }} onClick={() => {
-            props.selector(props.item);
+            props.selector && props.selector(props.item);
         }}>
             {props.item.count > 1 ? <Badge classes={{
-            badge: props.classes.badge
-        }}  color="secondary" badgeContent={props.item.count}>
+                    badge: props.classes.badge
+                }} color="secondary" badgeContent={props.item.count}>
                     <ImgWithLoader style={{
                         height: '100%',
                         width: '100%',
                         objectFit: 'contain'
                     }} src={props.item.img} alt={''}/>
-        </Badge> :
+                </Badge> :
                 <ImgWithLoader style={{
                     height: '100%',
                     width: '100%',

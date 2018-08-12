@@ -7,6 +7,7 @@ import SpecificShopData from "./SpecificShopData";
 import RefreshIndicator from "../common/RefreshIndicator";
 import './SpecificShop.css'
 import {alterObject, cloneObjectOrUndefined, deepCloneObject} from "../helpers/helpers";
+import {withRouter} from "react-router-dom";
 
 class SpecificShopPage extends Component {
 
@@ -112,10 +113,14 @@ class SpecificShopPage extends Component {
     };
 
     startEditing = (item) => {
-        this.setState({
-            editing: true,
-            pickedUpItem: item
-        });
+        if (item.text==='getMore')
+            this.props.history.push('/store');
+        else {
+            this.setState({
+                editing: true,
+                pickedUpItem: item
+            });
+        }
     };
 
     render() {
@@ -160,4 +165,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SpecificShopPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SpecificShopPage));

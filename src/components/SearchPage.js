@@ -19,23 +19,6 @@ function marketNamesFromMarkets(markets) {
     return marketNames.map(market => ({label: market}));
 }
 
-function categoriesFrom(categories) {
-    let categoryNames = [];
-    categories.forEach(category => {
-        if (!categoryNames.includes(category.parent))
-            categoryNames.push(category.parent);
-    });
-    return categoryNames.map(category => ({label: category}));
-}
-
-function subcategoriesFor(categories, parent) {
-    let subCategories = [];
-    categories.forEach(category => {
-        if (category.parent === parent)
-            subCategories.push(category.name)
-    });
-    return subCategories.map(category => ({label: category}));
-}
 
 function citiesFromMarkets(markets) {
     let cities = [];
@@ -57,6 +40,15 @@ class SearchPage extends Component {
             lastSubCatName: '',
             generalFields: [
                 {
+                    name: 'text',
+                    placeholder: 'What I\'m looking for',
+                    value: '',
+                    api: true,
+                    type: 'select',
+                    suggestions: props.textSuggestions.items,
+                    selector: this.freeTextChanged,
+                },
+                {
                     name: 'marketName',
                     placeholder: 'Market Name',
                     value: '',
@@ -68,24 +60,6 @@ class SearchPage extends Component {
                     name: 'shopNumber',
                     placeholder: 'Shop Number',
                     value: ''
-                },
-                {
-                    name: 'category',
-                    placeholder: 'Category',
-                    value: '',
-                    type: 'select',
-                    suggestions: categoriesFrom(this.props.manager.categories),
-                    selector: this.categoryChanged,
-                    onBlur: this.categoryBlurred
-                },
-                {
-                    name: 'subcategory',
-                    placeholder: 'Subcategory',
-                    value: '',
-                    type: 'select',
-                    suggestions: [],
-                    selector: this.subCategoryChanged,
-                    onBlur: this.subCatBlurred,
                 },
                 {
                     name: 'city',
@@ -110,8 +84,8 @@ class SearchPage extends Component {
         if (!this.props.session.loadedMarkets) {
             this.props.managerActions.loadMarkets().then(() => {
                 const generalFields = this.state.generalFields;
-                generalFields[0].suggestions = marketNamesFromMarkets(this.props.manager.markets);
-                generalFields[4].suggestions = citiesFromMarkets(this.props.manager.markets);
+                generalFields[1].suggestions = marketNamesFromMarkets(this.props.manager.markets);
+                generalFields[3].suggestions = citiesFromMarkets(this.props.manager.markets);
                 this.setState({generalFields});
             });
         }
@@ -158,13 +132,13 @@ class SearchPage extends Component {
         if (this.state.segStatus === 1) {
             searchParams = {};
             if (this.state.generalFields[0].value.length > 0)
-                searchParams['market_name'] = this.state.generalFields[0].value;
+                searchParams['text'] = this.state.generalFields[0].value;
             if (this.state.generalFields[1].value.length > 0)
-                searchParams['shop_number'] = this.state.generalFields[1].value;
+                searchParams['market_name'] = this.state.generalFields[1].value;
             if (this.state.generalFields[2].value.length > 0)
-                searchParams['category'] = this.state.generalFields[2].value;
-            if (this.state.generalFields[4].value.length > 0)
-                searchParams['city'] = this.state.generalFields[4].value;
+                searchParams['shop_number'] = this.state.generalFields[2].value;
+            if (this.state.generalFields[3].value.length > 0)
+                searchParams['city'] = this.state.generalFields[3].value;
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 
@@ -190,64 +164,30 @@ class SearchPage extends Component {
 
     cityChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
-        generalFields[4].value = newValue;
+        generalFields[3].value = newValue;
         this.setState({generalFields});
-    };
-
-    subCatBlurred = () => {
-        if (this.state.generalFields[3] !== this.state.lastSubCatName) {
-            const generalFields = this.state.generalFields;
-            generalFields[3].value = this.state.lastSubCatName;
-            this.setState({generalFields});
-        }
-    };
-
-    categoryBlurred = () => {
-        if (this.state.generalFields[2].value === '') {
-            const generalFields = this.state.generalFields;
-            // generalFields[3].hidden = true;
-            generalFields[3].value = '';
-            this.setState({
-                generalFields,
-                lastCategoryName: '',
-                selectedCategoryId: '',
-                lastSubCatName: ''
-            });
-        } else if (this.state.generalFields[2].value !== this.state.lastCategoryName) {
-            const generalFields = this.state.generalFields;
-            generalFields[2].value = this.state.lastCategoryName;
-            this.setState({generalFields});
-        }
     };
 
     marketChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
-        generalFields[0].value = newValue;
+        generalFields[1].value = newValue;
         this.setState({generalFields});
     };
 
-    categoryChanged = (event, {newValue, method}) => {
+    freeTextChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
-        generalFields[2].value = newValue;
-        if (method !== 'type') {
-            if (this.state.lastCategoryName !== newValue) {
-                generalFields[3].suggestions = subcategoriesFor(this.props.manager.categories, newValue);
-                generalFields[3].value = '';
-                // generalFields[3].hidden = newValue === '';
-                this.setState({generalFields, lastCategoryName: newValue});
-            } else
-                this.setState({generalFields});
-        } else
+        generalFields[0].value = newValue;
+        this.setState({generalFields});
+        const requestId = this.props.textSuggestions.requestId;
+        this.props.managerActions.startAutoComplete();
+        this.props.managerActions.loadAutoComplete(requestId + 1, newValue).then(() => {
+            const generalFields = this.state.generalFields;
+            generalFields[0].suggestions = [];
+            this.props.textSuggestions.items.forEach(item => {
+                generalFields[0].suggestions.push({label: item})
+            });
             this.setState({generalFields});
-    };
-
-    subCategoryChanged = (event, {newValue, method}) => {
-        const generalFields = this.state.generalFields;
-        generalFields[3].value = newValue;
-        if (method !== 'type')
-            this.setState({generalFields, lastSubCatName: newValue, selectedCategoryId: 'a'});
-        else
-            this.setState({generalFields});
+        });
     };
 
     render() {
@@ -267,9 +207,9 @@ class SearchPage extends Component {
                     />
                     <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
                                  selected={this.state.segStatus === 2}
-                                 selectedTextColor={'#3CBF95'}
                                  deselectedTextColor={'white'}
                                  selectedBackground={'white'}
+                                 selectedTextColor={'#3CBF95'}
                                  clearBackground={'#3CBF95'}
                                  style={{marginLeft: 10, width: 140}}
 
@@ -297,7 +237,8 @@ function mapStateToProps(state) {
     return {
         state: state.shops,
         manager: state.saved.manager,
-        session: state.session
+        session: state.session,
+        textSuggestions: state.session.suggestions
     };
 }
 

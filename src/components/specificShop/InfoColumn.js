@@ -164,6 +164,13 @@ class InfoColumn extends Component {
                                 bgColor='#ffffff'/>
                     </div>
 
+                    <label style={{
+                        width: '100%',
+                        marginLeft: 10,
+                        fontSize: '1.2em',
+                        fontFamily: 'Skia, sans-serif',
+                    }} className='infoLabel'>{this.props.shop.description}</label>
+
                 </div>
 
 

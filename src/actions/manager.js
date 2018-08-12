@@ -1,14 +1,27 @@
 import {
+    AUTO_COMPLETE_LOADED,
     CREATE_MARKET_SUCCESS,
     LOAD_CATEGORY_SUCCESS,
     LOAD_MARKETS_SUCCESS,
-    LOAD_STORE_SUCCESS
+    LOAD_STORE_SUCCESS, START_AUTO_COMPLETE
 } from "./managerConstants";
 import managerApi from "../api/managerApi";
 
 export function loadMarketsSuccess(markets) {
     return {
         type: LOAD_MARKETS_SUCCESS, markets
+    }
+}
+
+export function startAutoComplete() {
+    return {
+        type: START_AUTO_COMPLETE
+    }
+}
+
+export function autoCompleteSuccess(requestId, items) {
+    return {
+        type: AUTO_COMPLETE_LOADED, requestId, items
     }
 }
 
@@ -38,6 +51,16 @@ export function createMarket(market) {
             throw err;
         });
     };
+}
+
+export function loadAutoComplete(requestId, text) {
+    return function(dispatch) {
+        return managerApi.loadAutoComplete(text).then(items => {
+            dispatch(autoCompleteSuccess(requestId, items));
+        }).catch(err=>{
+            throw err;
+        });
+    }
 }
 
 export function loadMarkets() {

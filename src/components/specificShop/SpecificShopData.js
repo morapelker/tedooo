@@ -46,9 +46,11 @@ const styles = {
         flexDirection: 'column',
         flex: 9,
     }, infoCol: {
-        width: '25%'
+        width: '25%',
+        zIndex: 10
     }, infoColSmall: {
-        width: '100%'
+        width: '100%',
+        zIndex: 10
     }
 };
 
@@ -88,7 +90,7 @@ const SpecificShopData = (props) => {
                 </div>
             </MediaQuery>
             {props.ownShop && props.transactions && props.transactions.length > 0 &&
-            <CartControl selector={props.editSelector} transactions={props.transactions} />
+            <CartControl getMore={1} selector={props.editSelector} transactions={props.transactions} />
             }
         </div>
     );

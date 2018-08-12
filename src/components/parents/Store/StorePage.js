@@ -65,7 +65,7 @@ class StorePage extends Component {
                                     title={this.state.buying === 1 ? 'Buying Item..' : 'Item Bought'}
                                     loading={this.state.buying} />
                         {this.props.transactions && this.props.transactions.length > 0 &&
-                        <CartControl selector={()=>{}} transactions={this.props.transactions} />
+                        <CartControl selector={()=>{}} getMore={0} transactions={this.props.transactions} />
                         }
                     </div>}
 

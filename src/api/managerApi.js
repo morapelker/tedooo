@@ -11,6 +11,19 @@ class managerApi {
         }
     }
 
+    static async loadAutoComplete(text) {
+        if (text.length === 0)
+            return [];
+        try {
+            let response = await fetch(
+                'https://baloofeathers.herokuapp.com/autocomplete?text=' + text
+            );
+            return await response.json();
+        } catch (error) {
+            return [];
+        }
+    }
+
     static async loadCategories() {
         try{
             let response = await fetch(

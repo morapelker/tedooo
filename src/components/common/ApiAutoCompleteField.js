@@ -124,7 +124,7 @@ class AutoCompleteField extends React.Component {
                     suggestion: classes.suggestion,
                 }}
                 renderInputComponent={renderInput}
-                suggestions={this.state.suggestions}
+                suggestions={this.props.suggestions}
                 onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
                 renderSuggestionsContainer={renderSuggestionsContainer}

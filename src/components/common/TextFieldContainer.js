@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button/Button";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import withStyles from "@material-ui/core/styles/withStyles";
+import ApiAutoCompleteField from "./ApiAutoCompleteField";
 
 const styles = theme => ({
     root: {
@@ -36,6 +37,16 @@ const renderField = (field, index, props) => (
                     marginRight: props.fromAddShop ? 41 : 'unset',
                     marginLeft: props.fromAddShop ? 41 : 'unset',
                 }}>
+                {field.api ?
+                    <ApiAutoCompleteField
+                        value={field.value || ''}
+                        placeholder={field.placeholder}
+                        suggestions={field.suggestions}
+                        id={index}
+                        name={index}
+                        onBlur={field.onBlur}
+                        onChange={field.selector}/>
+                    :
                 <AutoCompleteField
                     value={field.value || ''}
                     placeholder={field.placeholder}
@@ -43,7 +54,7 @@ const renderField = (field, index, props) => (
                     id={index}
                     name={index}
                     onBlur={field.onBlur}
-                    onChange={field.selector}/>
+                    onChange={field.selector}/>}
             </div>
             :
             <div style={{display: 'flex', flexDirection: 'row-reverse',
