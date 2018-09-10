@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import TedooButton from "./TedooButton";
 import Button from "@material-ui/core/Button/Button";
 import Img from 'react-image'
 import RefreshIndicator from "./RefreshIndicator";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import withStyles from "@material-ui/core/styles/withStyles";
+import shopApi from '../../api/shopApi';
+
 
 const deleteHelper = (realFunc, id) => (
     () => {
         realFunc(id);
     }
 );
+
+
+const styles = () => ({
+    root: {
+        backgroundColor: 'red',
+        color: 'white',
+        cursor: 'pointer',
+        marginLeft: 10,
+        alignSelf: 'center'
+    }, root2: {
+        backgroundColor: 'white',
+        color: '#3CBF95',
+        cursor: 'pointer',
+        marginLeft: 10,
+        alignSelf: 'center'
+    }
+});
 
 const style = {
     container: {
@@ -40,52 +62,104 @@ const capitalize = str => {
     return str.toUpperCase() || str;
 };
 
-const ShopLine = (props) => {
-    const text = (props.shop.favName || props.shop.name) + (props.shop.shop_number ? ' (' + capitalize(props.shop.shop_number) + ')' : '');
-    const avatarUrl = (props.shop.avatar ? props.shop.avatar : (
-        props.shop.img_links && props.shop.img_links.length > 0 ? props.shop.img_links[0] : ''
-    ));
-    return (
-        <div style={style.container}>
-            {props.deleteMethod !== undefined ?
-                <Button style={style.removeIcon}
-                        onClick={deleteHelper(props.deleteMethod, props.shop._id)} variant={'fab'}
-                        color={'inherit'}>
-                    <img src={'assets/x.png'} alt={'delete'} style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain'
-                }}/></Button>
-                : null}
-            {avatarUrl.length > 0 &&
-            <Img style={{
-                borderRadius: '50%',
-                width: 70,
-                height: 70,
-                objectFit: 'cover',
-                marginRight: 10,
-                marginLeft: 10,
-                alignSelf: 'center'
-            }}
-                src={avatarUrl}
-                 loader={<RefreshIndicator style={{
-                     margin: '0 auto',
-                     alignSelf: 'center',
-                     marginLeft: 10,
-                     marginRight: 10,
-                 }} size={70}/>}
-            />
-            }
+class ShopLine extends Component {
 
-            <TedooButton
-                style={style.btnStyle}
-                selected={true}
-                selectedTextColor={'#3CBF95'}
-                selectedBackground={'white'}
-                onClick={props.shopSelected(props.parentData, props.shop)}
-                text={text}/>
-        </div>
-    );
-};
 
-export default ShopLine;
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            ratingLoading: false
+        };
+    }
+
+    changeRating = rating => {
+        if (!this.state.ratingLoading) {
+            this.setState({ratingLoading: true});
+            shopApi.changeRating(this.props.shop._id, rating, this.props.auth.token).then(() => {
+                this.setState({ratingLoading: false});
+            }).catch(err => {
+                console.log(err);
+                this.setState({ratingLoading: false});
+            });
+        }
+    };
+
+    render() {
+        const text = (this.props.shop.favName || this.props.shop.name) + (this.props.shop.shop_number ? ' (' + capitalize(this.props.shop.shop_number) + ')' : '');
+        const avatarUrl = (this.props.shop.avatar ? this.props.shop.avatar : (
+            this.props.shop.img_links && this.props.shop.img_links.length > 0 ? this.props.shop.img_links[0] : ''
+        ));
+        return (
+            <div style={style.container}>
+                {this.props.deleteMethod !== undefined ?
+                    <Button style={style.removeIcon}
+                            onClick={deleteHelper(this.props.deleteMethod, this.props.shop._id)}
+                            variant={'fab'}
+                            color={'inherit'}>
+                        <img src={'assets/x.png'} alt={'delete'} style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain'
+                        }}/></Button>
+                    : null}
+                {avatarUrl.length > 0 &&
+                <Img style={{
+                    borderRadius: '50%',
+                    width: 70,
+                    height: 70,
+                    objectFit: 'cover',
+                    marginRight: 10,
+                    marginLeft: 10,
+                    alignSelf: 'center'
+                }}
+                     src={avatarUrl}
+                     loader={<RefreshIndicator style={{
+                         margin: '0 auto',
+                         alignSelf: 'center',
+                         marginLeft: 10,
+                         marginRight: 10,
+                     }} size={70}/>}
+                />
+                }
+
+                <TedooButton
+                    style={style.btnStyle}
+                    selected={true}
+                    selectedTextColor={'#3CBF95'}
+                    selectedBackground={'white'}
+                    onClick={this.props.shopSelected(this.props.parentData, this.props.shop)}
+                    text={text}/>
+
+                {this.props.auth.admin &&
+                <div
+                    style={{
+                        display: 'flex',
+                    }}>
+                    <Button onClick={() => {
+                        this.changeRating(-1);
+                    }} mini variant="fab" color="inherit" aria-label="add" classes={{
+                        root: this.props.classes.root
+                    }}>
+                        <RemoveIcon style={{
+                            height: 25, width: 25
+                        }}/>
+                    </Button>
+
+                    <Button onClick={() => {
+                        this.changeRating(1);
+                    }} mini variant="fab" color="inherit" aria-label="add" classes={{
+                        root: this.props.classes.root2
+                    }}>
+                        <AddIcon style={{
+                            height: 25, width: 25
+                        }}/>
+                    </Button>
+                </div>}
+
+                {this.state.ratingLoading && <RefreshIndicator style={{marginLeft: 10}}/>}
+            </div>
+        );
+    }
+}
+
+export default withStyles(styles)(ShopLine);

@@ -140,7 +140,7 @@ class ShopApi {
         try {
             response = await fetch(
                 'https://baloofeathers.herokuapp.com/transactions/', {
-                // 'http://localhost:3030/transactions/', {
+                    // 'http://localhost:3030/transactions/', {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ class ShopApi {
         try {
             response = await fetch(
                 'https://baloofeathers.herokuapp.com/shops/' + id, {
-                // 'http://localhost:3030/shops/' + id, {
+                    // 'http://localhost:3030/shops/' + id, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -202,30 +202,60 @@ class ShopApi {
         return responseJson;
     }
 
+    static async changeRating(id, rating, token) {
+        let response;
+        try {
+            response = await fetch(
+                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({rating})
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't change rating");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
+    static hasOwnProperty = (props, property) => {
+        return Object.prototype.hasOwnProperty.call(props, property);
+    };
+
     static async findShop(props) {
         try {
             let url = '';
-            if (props.hasOwnProperty('id'))
+            if (this.hasOwnProperty(props, 'id'))
                 url = `?_id=${props['id']}`;
-            else if (props.hasOwnProperty('userid'))
+            else if (this.hasOwnProperty(props, 'userid'))
                 url = `?userId=${props['userid']}`;
-            else if (props.hasOwnProperty('phoneNumber'))
+            else if (this.hasOwnProperty(props, 'phoneNumber'))
                 url = `?contact_info.number=${props['phoneNumber']}`;
             else {
                 url = '?';
                 for (const property in props) {
-                    if (props.hasOwnProperty(property)) {
+                    // noinspection JSUnfilteredForInLoop
+                    if (this.hasOwnProperty(props, property)) {
+                        // noinspection JSUnfilteredForInLoop
                         url += `&${property}=${props[property]}`;
                     }
                 }
             }
+            url+='&$sort[rating]=-1';
             let response = await fetch(
                 'https://baloofeathers.herokuapp.com/shops' + url
             );
-            let responseJson = await response.json();
-            return responseJson.data;
+            return await response.json();
         } catch (error) {
-            return [];
+            return {total: 0, skip: 0,
+                limit: 10,
+                data: []};
         }
     }
 }

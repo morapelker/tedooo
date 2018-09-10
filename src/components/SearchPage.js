@@ -9,6 +9,7 @@ import {withRouter} from "react-router-dom";
 import RefreshIndicator from "./common/RefreshIndicator";
 import TedooButton from "./common/TedooButton";
 import SubmitButton from "./common/SubmitButton";
+import * as queryString from "query-string";
 
 function marketNamesFromMarkets(markets) {
     let marketNames = [];
@@ -142,24 +143,8 @@ class SearchPage extends Component {
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 
-        this.props.actions.findShop(searchParams).then(() => {
-
-            const results = this.props.state.results;
-            if (results.length === 0) {
-                this.setState({
-                    busy: false,
-                    error: true
-                });
-            } else {
-                this.setState({
-                    busy: false
-                });
-                if (results.length === 1)
-                    this.props.history.push("/results/" + results[0]._id);
-                else
-                    this.props.history.push("/results/");
-            }
-        });
+        const parsed = queryString.stringify(searchParams);
+        this.props.history.push("/results?" + parsed);
     }
 
     cityChanged = (event, {newValue}) => {
@@ -183,8 +168,13 @@ class SearchPage extends Component {
         this.props.managerActions.loadAutoComplete(requestId + 1, newValue).then(() => {
             const generalFields = this.state.generalFields;
             generalFields[0].suggestions = [];
+            let counter = 0;
+            const val = generalFields[0].value;
             this.props.textSuggestions.items.forEach(item => {
-                generalFields[0].suggestions.push({label: item})
+                if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
+                    counter++;
+                    generalFields[0].suggestions.push({label: item});
+                }
             });
             this.setState({generalFields});
         });

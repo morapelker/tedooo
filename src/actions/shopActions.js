@@ -104,7 +104,7 @@ export function findShopById(id) {
 export function findShop(props) {
     return function(dispatch) {
         return shopApi.findShop(props).then(shops => {
-            dispatch(findShopSuccess(shops));
+            dispatch(findShopSuccess(shops.data));
         }).catch(error => {
             throw(error);
         });
