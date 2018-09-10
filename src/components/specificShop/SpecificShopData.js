@@ -55,6 +55,7 @@ const styles = {
 };
 
 const SpecificShopData = (props) => {
+    const st = Object.assign({}, styles.imgCol, {zIndex: props.ownShop ? 'unset' : 10});
     return (
         <div style={{
             width: '100%',
@@ -69,7 +70,7 @@ const SpecificShopData = (props) => {
             <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>
-                        <ImageColumn style={styles.imgCol} shop={props.shop}/>
+                        <ImageColumn style={st} shop={props.shop}/>
                         <FavoriteManagement style={styles.favs} addFavoritesAction={props.addFavoritesAction}
                                             shop={props.shop}/>
                     </div>
@@ -81,7 +82,7 @@ const SpecificShopData = (props) => {
                 <div style={styles.rootSmall}>
 
                     <div style={styles.leftDivSmall}>
-                        <ImageColumn style={styles.imgCol} shop={props.shop}/>
+                        <ImageColumn style={st} shop={props.shop}/>
                         <FavoriteManagement style={styles.favs} addFavoritesAction={props.addFavoritesAction}
                                             shop={props.shop}/>
                     </div>
