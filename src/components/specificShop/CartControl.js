@@ -51,12 +51,15 @@ class CartControl extends Component {
         return (
             <div style={{
                 minHeight: 50,
-                right: 100,
+                right: 10,
                 top: 30,
                 position: 'fixed',
                 zIndex: 999
             }}>
-                <Badge color="secondary" badgeContent={badgeNumber}>
+                <Badge color="secondary" badgeContent={badgeNumber} style={{
+                    marginTop: 30,
+                    marginRight: 10
+                }}>
                     <Button onClick={this.toggleOpen} variant={'fab'} mini style={{
                         backgroundColor: 'white',
                         height: 50,
