@@ -72,7 +72,10 @@ class ImageColumn extends Component {
                         <div style={styles.imgList}>
                             {this.props.shop.img_links.map((link, index) => (
                                 <Img key={index} className={'smallImg'}
-                                     style={Object.assign({}, styles.smallImg, {borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
+                                     style={Object.assign({}, styles.smallImg, {
+                                         borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black'),
+                                        zIndex: 10
+                                     })}
                                      src={link} loader={
                                     <RefreshIndicator/>
                                 } onDragStart={e => {
