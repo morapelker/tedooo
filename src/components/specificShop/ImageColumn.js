@@ -30,6 +30,7 @@ const styles = {
         border: '1px black solid',
         width: 50,
         height: 50,
+        minWidth: 50,
         marginLeft: 12,
         objectFit: 'cover',
         borderWidth: 3,
@@ -73,9 +74,7 @@ class ImageColumn extends Component {
                             {this.props.shop.img_links.map((link, index) => (
                                 <Img key={index} className={'smallImg'}
                                      style={Object.assign({}, styles.smallImg, {
-                                         borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black'),
-                                        zIndex: 10
-                                     })}
+                                         borderColor: (this.state.bigImgUrl === link ? '#3CBF95' : 'black')})}
                                      src={link} loader={
                                     <RefreshIndicator/>
                                 } onDragStart={e => {

@@ -52,9 +52,12 @@ class CartControl extends Component {
             <div style={{
                 minHeight: 50,
                 right: 10,
-                top: 30,
+                top: 60,
                 position: 'fixed',
-                zIndex: 999
+                zIndex: 999,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end'
             }}>
                 <Badge color="secondary" badgeContent={badgeNumber} style={{
                     marginTop: 30,

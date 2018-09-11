@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/specificShop/CartControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/CartControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -52,17 +54,17 @@
       <file leaf-file-name="SpecificShopData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+            <state relative-caret-position="334">
+              <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageColumn.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageColumn.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
+            <state relative-caret-position="301">
+              <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -78,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CartControl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CartControl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/CartControl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
+            <state relative-caret-position="263">
+              <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -104,7 +106,7 @@
       <file leaf-file-name="SpecificShopPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3224">
+            <state relative-caret-position="-44">
               <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
             </state>
           </provider>
@@ -229,9 +231,9 @@
         <option value="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" />
         <option value="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" />
         <option value="$PROJECT_DIR$/src/components/common/ShopLine.js" />
-        <option value="$PROJECT_DIR$/src/components/specificShop/CartControl.js" />
-        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" />
+        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" />
+        <option value="$PROJECT_DIR$/src/components/specificShop/CartControl.js" />
       </list>
     </option>
   </component>
@@ -595,7 +597,7 @@
       <workItem from="1536608995852" duration="15000" />
       <workItem from="1536612734502" duration="760000" />
       <workItem from="1536691584990" duration="1377000" />
-      <workItem from="1536694574416" duration="362000" />
+      <workItem from="1536694574416" duration="902000" />
     </task>
     <task id="LOCAL-00001" summary="sd">
       <created>1526908926159</created>
@@ -765,11 +767,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536693313445</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sd">
+      <created>1536694960875</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1536694960875</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="323308000" />
+    <option name="totallyTimeSpent" value="323848000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1096,13 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3224">
-          <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parents/Store/StorePage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1112,27 +1114,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/CartControl.js">
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="301">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="133" column="33" selection-start-line="133" selection-start-column="33" selection-end-line="133" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="84" column="29" selection-start-line="84" selection-start-column="29" selection-end-line="84" selection-end-column="29" />
+        <state relative-caret-position="334">
+          <caret line="93" column="21" lean-forward="true" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/ImageColumn.js">
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/CartControl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="76" column="50" selection-start-line="76" selection-start-column="50" selection-end-line="76" selection-end-column="50" />
+        <state relative-caret-position="263">
+          <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
