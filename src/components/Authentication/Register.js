@@ -4,7 +4,6 @@ import * as actions from '../../actions/authenticationActions'
 import {bindActionCreators} from 'redux';
 import TextFieldContainer from "../common/TextFieldContainer";
 import SubmitButton from "../common/SubmitButton";
-import Captcha from "../common/Captcha";
 import RefreshIndicator from "../common/RefreshIndicator";
 import {withRouter} from "react-router-dom";
 
@@ -24,7 +23,7 @@ class Register extends Component {
         super(props, context);
         this.state = {
             busy: false,
-            captchaComplete: false,
+            captchaComplete: true,
             fields: [
                 {
                     placeholder: 'Username',
@@ -50,18 +49,6 @@ class Register extends Component {
             ]
         };
     }
-
-    onChange = () => {
-        this.setState({
-            captchaComplete: true
-        });
-    };
-
-    onExpired = () => {
-        this.setState({
-            captchaComplete: false
-        });
-    };
 
     textChanged = e => {
         const index = e.target.id;
@@ -130,12 +117,6 @@ class Register extends Component {
                     <TextFieldContainer textChanged={this.textChanged}
                                         fields={this.state.fields}/>
                     <p/>
-                    <Captcha style={{
-                        alignSelf: 'center',
-                        marginBottom: 20
-                    }} onChange={this.onChange}
-                             onExpired={this.onExpired}
-                    />
                     {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
                     {this.state.busy ? <RefreshIndicator style={{
                         alignSelf: 'center'

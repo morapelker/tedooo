@@ -206,7 +206,7 @@ class ShopApi {
         let data = new FormData();
         data.append("uri", img);
         try {
-            const res = await fetch("https://baloofeathers.herokuapp.com/upload", {
+            const res = await fetch("http://localhost:3030/upload", {
                 method: "POST",
                 headers: {
                     'Authorization': token

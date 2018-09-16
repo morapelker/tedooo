@@ -112,7 +112,7 @@ const resize = (file, callback) => {
             const image = new Image();
             image.onload = () => {
                 let canvas = document.createElement('canvas'),
-                    max_size = 400,
+                    max_size = 700,
                     width = image.width,
                     height = image.height;
                 if (width > height) {
