@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import withStyles from "@material-ui/core/styles/withStyles";
 import ApiAutoCompleteField from "./ApiAutoCompleteField";
+import TedooButton from "./TedooButton";
 
 const styles = theme => ({
     root: {
@@ -80,10 +81,21 @@ const renderField = (field, index, props) => (
                 }}>
                     <RemoveIcon/>
                 </Button>}
+                {field.qrSelector && <TedooButton
+                    clearBackground={'white'}
+                    selected={false}
+                    deselectedTextColor={'#3CBF95'}
+                    onClick={field.qrSelector}
+                    text={'Scan'} style={{
+                    alignSelf: 'flex-end',
+                    width: '20%',
+                    marginRight: '41px'
+                }}/>}
                 <Input className={'inputField'}
                        style={{
                            borderRadius: 10,
-                           flex: 1
+                           flex: 1,
+                           marginRight: '10px'
                        }}
                        type={field.type || 'text'}
                        id={index}

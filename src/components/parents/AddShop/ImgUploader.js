@@ -22,7 +22,7 @@ const styles = () => ({
         position: 'absolute',
         top: 5,
         left: 5,
-        zIndex: 999
+        zIndex: 99
     }, root2: {
         height: 25,
         width: 25,
@@ -100,7 +100,7 @@ class ImgUploader extends Component {
                                     root: this.props.classes.root
                                 }}>
                                     <RemoveIcon style={{
-                                        height: 20, width: 20
+                                        height: 20, width: 20, zIndex: 99
                                     }} />
                                 </Button>
                             </div>

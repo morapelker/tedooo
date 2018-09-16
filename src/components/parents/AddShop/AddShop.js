@@ -7,14 +7,14 @@ import * as firebaseActions from '../../../actions/firebaseActions'
 import TextFieldContainer from "../../common/TextFieldContainer";
 import SubmitButton from "../../common/SubmitButton";
 import DeleteIcon from '@material-ui/icons/Delete';
-import Captcha from "../../common/Captcha";
 import RefreshIndicator from "../../common/RefreshIndicator";
-import ImgUploader from "./ImgUploader";
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import MessageBox from "../../common/MessageBox";
 import {deepCloneObject} from "../../helpers/helpers";
+import QrReader from 'react-qr-reader'
+import ImgUploaderAmazon from "./ImgUploaderAmazon";
 
 const styles = {
     mainDiv: {
@@ -100,6 +100,10 @@ class AddShop extends Component {
                     hidden: true,
                     minorable: true,
                     parent: 8
+                }, {
+                    placeholder: 'QR Code',
+                    value: '',
+                    qrSelector: this.startScan
                 }
             ],
             market: {
@@ -123,7 +127,7 @@ class AddShop extends Component {
         }
 
         if (!this.props.firebase.storageRef)
-            this.props.firebaseActions.initFirebase().then(()=>{
+            this.props.firebaseActions.initFirebase().then(() => {
                 this.state.storageRef = firebase.storage().ref('web_images');
             });
         else
@@ -147,11 +151,11 @@ class AddShop extends Component {
                     const shop = deepCloneObject(this.props.cachedShops[this.props.match.params.id]);
                     if (shop !== undefined) {
                         this.setState({
-                           fields: this.updateShopFields(shop),
+                            fields: this.updateShopFields(shop),
                             initLoading: false,
                             img_links: shop.img_links,
                             market: {
-                               name: shop.market_name,
+                                name: shop.market_name,
                                 address: shop.address,
                                 city: shop.city
                             },
@@ -173,6 +177,7 @@ class AddShop extends Component {
         fields[2].value = shop.shop_number;
         fields[3].value = shop.category;
         fields[4].value = shop.description || '';
+        fields[11].value = shop.qr_code;
         if (shop.contact_info) {
             let phoneCounter = -1;
             let wechatCounter = -1;
@@ -185,7 +190,7 @@ class AddShop extends Component {
                         fields[5 + phoneCounter].value = info.number;
                         fields[5 + phoneCounter].hidden = false;
                     }
-                } else if (info.type === 2){
+                } else if (info.type === 2) {
                     wechatCounter++;
                     if (wechatCounter === 0) {
                         fields[8].value = info.number;
@@ -310,16 +315,16 @@ class AddShop extends Component {
     }
 
     validate = () => {
-        let err = '';
-        const result = this.state.fields.every(prop => {
-            if (prop.value === '' && !prop.hidden) {
-                err = prop.placeholder + ' is required';
-                return false;
-            }
-            return true;
-        });
-        if (!result)
-            return err;
+        // let err = '';
+        // const result = this.state.fields.every(prop => {
+        //     if (prop.value === '' && !prop.hidden) {
+        //         err = prop.placeholder + ' is required';
+        //         return false;
+        //     }
+        //     return true;
+        // });
+        // if (!result)
+        //     return err;
         // if (!this.state.captchaComplete)
         //     return 'You must complete the captcha before submitting';
         return undefined;
@@ -333,7 +338,7 @@ class AddShop extends Component {
         const {id} = this.props.match.params;
         if (id) {
             this.setState({trashBusy: true, deleteConfirmOpen: false});
-            this.props.actions.deleteShop(id,  this.props.authentication.token).then(() => {
+            this.props.actions.deleteShop(id, this.props.authentication.token).then(() => {
                 this.setState({deleteOpen: true});
             });
         }
@@ -373,14 +378,14 @@ class AddShop extends Component {
                 market_name: this.state.market.name,
                 address: this.state.market.address,
                 city: this.state.market.city,
-                qr_code: 'www.tedooo.com',
                 img_links: this.state.img_links,
-                contact_info2: contact_info
+                contact_info2: contact_info,
+                qr_code: this.state.fields[11].value
             };
             this.setState({busy: true});
             const {id} = this.props.match.params;
             if (id) {
-                this.props.actions.alterShop(id, shop,  this.props.authentication.token).then(() => {
+                this.props.actions.alterShop(id, shop, this.props.authentication.token).then(() => {
                     this.props.history.push('/results/' + this.props.lastAddedId)
                 });
             } else {
@@ -393,14 +398,6 @@ class AddShop extends Component {
 
         }
     }
-
-    onChange = () => {
-        this.setState({captchaComplete: true, error: undefined});
-    };
-
-    onExpired = () => {
-        this.setState({captchaComplete: false});
-    };
 
     removeImage = index => {
         const {img_links} = this.state;
@@ -421,13 +418,33 @@ class AddShop extends Component {
         this.setState({img_links: imgLinks});
     };
 
+    handleScan = (data) => {
+        if (data != null) {
+            const {fields} = this.state;
+            fields[11].value = data;
+            this.setState({fields, scanning: false});
+        }
+    };
+
+    handleError = () => {
+    };
+
+    startScan = () => {
+        this.setState({scanning: true});
+    };
+
     render() {
         return (
             <div style={styles.mainDiv}>
+                {this.state.scanning && <QrReader
+                    delay={2000}
+                    onError={this.handleError}
+                    onScan={this.handleScan}
+                />}
                 <p/>
                 <h3>{this.props.match.params.id ? 'Edit' : 'Add'} Shop</h3>
                 <p/>
-                {this.state.initLoading && <RefreshIndicator style={{margin: '0 auto'}} />}
+                {this.state.initLoading && <RefreshIndicator style={{margin: '0 auto'}}/>}
                 {this.state.initError && <h3 style={{color: 'red'}}>Can't edit shop</h3>}
                 {!this.state.initLoading && !this.state.initError &&
                 <div style={{
@@ -442,17 +459,14 @@ class AddShop extends Component {
                                         textChanged={this.textChanged}
                                         fromAddShop={true}
                                         fields={this.state.fields}/>
-                    <ImgUploader
+                    <ImgUploaderAmazon
                         callback={this.changeImageOrder}
-                        removeImage={this.removeImage} addImage={this.addImage} storageRef={this.state.storageRef}
-                                 img_links={this.state.img_links}/>
-                    <p/>
-                    <Captcha style={{
-                        alignSelf: 'center',
-                        marginBottom: 20
-                    }} onChange={this.onChange}
-                             onExpired={this.onExpired}
+                        removeImage={this.removeImage}
+                        token={this.props.authentication.token}
+                        addImage={this.addImage}
+                        img_links={this.state.img_links}
                     />
+                    <p/>
                     {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
                     {!this.state.busy ? <SubmitButton submit={this.submit}/> :
                         <RefreshIndicator style={{alignSelf: 'center'}}/>}
@@ -468,7 +482,8 @@ class AddShop extends Component {
                             size={50}
                         />
                     </div>}
-                    {this.props.match.params.id && !this.state.trashBusy && <IconButton onClick={this.delete} style={{
+                    {this.props.match.params.id && !this.state.trashBusy &&
+                    <IconButton onClick={this.delete} style={{
                         position: 'absolute',
                         right: 30,
                         height: 50,
@@ -479,15 +494,19 @@ class AddShop extends Component {
                         <DeleteIcon style={{
                             width: 30,
                             height: 30
-                        }} />
+                        }}/>
                     </IconButton>}
                 </div>
                 }
-                <MessageBox title={'Delete Shop'} label={'Are you sure you want to delete "' + this.state.originalName + '"?'}
+                <MessageBox title={'Delete Shop'}
+                            label={'Are you sure you want to delete "' + this.state.originalName + '"?'}
                             cancelText={'No'}
                             okText={'Yes, Delete Shop'}
-                            onOk={this.deleteShop} onClose={this.cancelDelete} open={this.state.deleteConfirmOpen} />
-                <MessageBox title={'Shop Deleted'} label={'Shop successfully deleted'} onOk={this.onClose} onClose={this.onClose} open={this.state.deleteOpen} />
+                            onOk={this.deleteShop} onClose={this.cancelDelete}
+                            open={this.state.deleteConfirmOpen}/>
+                <MessageBox title={'Shop Deleted'} label={'Shop successfully deleted'}
+                            onOk={this.onClose} onClose={this.onClose}
+                            open={this.state.deleteOpen}/>
             </div>
         );
     }

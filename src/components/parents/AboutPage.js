@@ -14,7 +14,7 @@ const AboutPage = () => {
             without.
             </span> <span style={{color: 'white'}}>
 
-            So they built an extensive suite of tools to help privet/business succeed reaching their
+            So they built an extensive suite of tools to help privates/business succeed reaching their
             needs in the best and easy way. Since then, the company has continued in the same vein,
             continually building comprehensive solutions that power the free people that want to
             import/export and also the privet that just want to buy for the best value.

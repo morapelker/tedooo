@@ -202,6 +202,23 @@ class ShopApi {
         return responseJson;
     }
 
+    static async uploadImage(img, token) {
+        let data = new FormData();
+        data.append("uri", img);
+        try {
+            const res = await fetch("http://localhost:3030/upload", {
+                method: "POST",
+                headers: {
+                    'Authorization': token
+                },
+                body: data
+            });
+            return await res.json();
+        }catch (err) {
+            throw Error('couldn\'t upload image');
+        }
+    }
+
     static async changeRating(id, rating, token) {
         let response;
         try {
