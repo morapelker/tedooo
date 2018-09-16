@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/mor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/mor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/shopApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/shopApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parents/AboutPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/AboutPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parents/SettingsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/SettingsPage.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shopApi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="shopApi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="218" column="9" selection-start-line="218" selection-start-column="9" selection-end-line="218" selection-end-column="9" />
+            <state relative-caret-position="449">
+              <caret line="208" column="79" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -115,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImgUploaderAmazon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImgUploaderAmazon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
+            <state relative-caret-position="2467">
               <caret line="190" column="69" lean-forward="true" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="69" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -242,11 +233,11 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/api/shopApi.js" />
         <option value="$PROJECT_DIR$/src/components/parents/SettingsPage.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" />
         <option value="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js" />
+        <option value="$PROJECT_DIR$/src/api/shopApi.js" />
       </list>
     </option>
   </component>
@@ -611,7 +602,7 @@
       <workItem from="1537030219935" duration="5490000" />
       <workItem from="1537067185399" duration="5015000" />
       <workItem from="1537074060069" duration="240000" />
-      <workItem from="1537074497775" duration="4861000" />
+      <workItem from="1537074497775" duration="5744000" />
     </task>
     <task id="LOCAL-00001" summary="sd">
       <created>1526908926159</created>
@@ -795,11 +786,25 @@
       <option name="project" value="LOCAL" />
       <updated>1536695534017</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="sd">
+      <created>1537092177371</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1537092177371</updated>
+    </task>
+    <task id="LOCAL-00028" summary="sd">
+      <created>1537092990342</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1537092990342</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="341424000" />
+    <option name="totallyTimeSpent" value="342307000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -814,7 +819,7 @@
     <frame x="1" y="23" width="1680" height="946" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.19529837" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32924837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -822,7 +827,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32924837" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23123486" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23123486" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" sideWeight="0.38608307" side_tool="true" weight="0.22528554" />
       <window_info anchor="bottom" id="TypeScript" order="7" />
@@ -1069,13 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="218" column="9" selection-start-line="218" selection-start-column="9" selection-end-line="218" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/shopActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -1134,11 +1132,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
+        <state relative-caret-position="2467">
           <caret line="190" column="69" lean-forward="true" selection-start-line="190" selection-start-column="37" selection-end-line="190" selection-end-column="69" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="208" column="79" selection-start-line="208" selection-start-column="79" selection-end-line="208" selection-end-column="79" />
         </state>
       </provider>
     </entry>
