@@ -3,12 +3,15 @@ import ShopLine from "./ShopLine";
 import Pagination from "react-js-pagination";
 import RefreshIndicator from "./RefreshIndicator";
 import {connect} from "react-redux";
+import '../common/commonCss.css';
 
 const style = {
     width: '40%',
     minWidth: 300,
     marginTop: '20px',
     margin: 'auto',
+    height: '100%',
+    overflow: 'scroll',
 };
 
 const shopSelected = (props, shop) => {
@@ -39,7 +42,7 @@ const GenericShopsPage = (props) => {
             )) : <h2>No shops</h2>}
             {props.totalPages > MAX_SHOPS &&
             <Pagination
-                hideFirstLastPages={true}
+                hideFirstLastPages={false}
                 activeLinkClass={'active'}
                 activePage={props.currentPage}
                 itemsCountPerPage={MAX_SHOPS}

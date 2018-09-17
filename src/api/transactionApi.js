@@ -1,9 +1,11 @@
+import {URL} from './apiConstants';
+
+
 export default class TransactionApi {
     static async loadTransactions(token) {
         try {
             const response = await fetch(
-                'https://baloofeathers.herokuapp.com/transactions/', {
-                // 'http://localhost:3030/transactions/', {
+                URL + 'transactions/', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -20,8 +22,7 @@ export default class TransactionApi {
 
     static async purchaseItem(item, token) {
         const response = await fetch(
-            'https://baloofeathers.herokuapp.com/transactions/', {
-            // 'http://localhost:3030/transactions', {
+            URL + 'transactions/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -27,7 +27,7 @@ class MyShops extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{height: '100%'}}>
                 {this.props.shops === undefined && this.props.authentication.token !== '' &&
                 <div style={{display: 'flex', flexDirection: 'column'}}>
                     <RefreshIndicator style={{alignSelf: 'center'}} />

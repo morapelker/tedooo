@@ -10,6 +10,8 @@ import RefreshIndicator from "./common/RefreshIndicator";
 import TedooButton from "./common/TedooButton";
 import SubmitButton from "./common/SubmitButton";
 import * as queryString from "query-string";
+import {debounce, throttle} from "throttle-debounce";
+import managerApi from "../api/managerApi";
 
 function marketNamesFromMarkets(markets) {
     let marketNames = [];
@@ -79,6 +81,9 @@ class SearchPage extends Component {
             ],
             segStatus: 1,
         };
+        this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
+        this.autocompleteSearchThrottled = throttle(500, this.autoComplete);
+
         this.textChanged = this.textChanged.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
@@ -143,6 +148,7 @@ class SearchPage extends Component {
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 
+        searchParams.page = 1;
         const parsed = queryString.stringify(searchParams);
         this.props.history.push("/results?" + parsed);
     }
@@ -159,25 +165,39 @@ class SearchPage extends Component {
         this.setState({generalFields});
     };
 
+    autoComplete = newValue => {
+        if (!newValue || newValue.length === 0)
+            return;
+        this.waitingFor = newValue;
+        managerApi.loadAutoComplete(newValue).then(arr => {
+            if (this.waitingFor === newValue) {
+                const generalFields = this.state.generalFields;
+                generalFields[0].suggestions = [];
+                let counter = 0;
+                const val = generalFields[0].value;
+                arr.forEach(item => {
+                    if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
+                        counter++;
+                        generalFields[0].suggestions.push({label: item});
+                    }
+                });
+                this.setState({generalFields});
+            }
+        });
+    };
+
     freeTextChanged = (event, {newValue}) => {
         const generalFields = this.state.generalFields;
         generalFields[0].value = newValue;
-        this.setState({generalFields});
-        const requestId = this.props.textSuggestions.requestId;
-        this.props.managerActions.startAutoComplete();
-        this.props.managerActions.loadAutoComplete(requestId + 1, newValue).then(() => {
-            const generalFields = this.state.generalFields;
-            generalFields[0].suggestions = [];
-            let counter = 0;
-            const val = generalFields[0].value;
-            this.props.textSuggestions.items.forEach(item => {
-                if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
-                    counter++;
-                    generalFields[0].suggestions.push({label: item});
-                }
-            });
-            this.setState({generalFields});
+        this.setState({generalFields}, () => {
+            const q = this.state.generalFields[0].value;
+            if (q.length < 5) {
+                this.autocompleteSearchThrottled(q);
+            } else {
+                this.autocompleteSearchDebounced(q);
+            }
         });
+
     };
 
     render() {

@@ -17,18 +17,18 @@ class SearchResultsPage extends Component {
         this.state = {
             loading: true,
             resultTitle: '',
-            page: 1,
             results: [],
-            smallLoading: false
+            smallLoading: false,
         };
         this.searchParams = queryString.parse(this.props.location.search);
+        this.state.page = parseInt(this.searchParams.page || '1', 0);
+        delete this.searchParams.page;
         this.searchParams.$limit = MAX_SHOPS;
-        this.searchParams.$skip = 0;
-        this.findShops(0);
+        this.findShops(this.state.page);
     }
 
     findShops = page => {
-        this.searchParams.$skip = page * MAX_SHOPS;
+        this.searchParams.$skip = (page - 1) * MAX_SHOPS;
         shopApi.findShop(this.searchParams).then(shops => {
             if (shops.total === 1)
                 this.props.history.replace('results/' + shops.data[0]._id);
@@ -47,14 +47,35 @@ class SearchResultsPage extends Component {
 
     handlePageChange = (page) => {
         if (page !== this.state.page) {
-            this.setState({smallLoading: true, page});
-            this.findShops(page - 1);
+            const s = Object.assign({}, this.searchParams);
+            s.page = page;
+            this.props.history.push('/results?' +
+                queryString.stringify(s));
         }
+    };
+
+    componentWillReceiveProps(nextProps) {
+        this.reloadShops(nextProps);
+    }
+
+    reloadShops = (props) => {
+        this.searchParams = queryString.parse(props.location.search);
+        const p = parseInt(this.searchParams.page || '1', 0);
+        this.setState({
+            loading: true,
+            resultTitle: '',
+            results: [],
+            smallLoading: false,
+            page: p
+        });
+        delete this.searchParams.page;
+        this.searchParams.$limit = MAX_SHOPS;
+        this.findShops(p);
     };
 
     render() {
         return (
-            <div style={{height: '100%', overflow: 'auto'}}>
+            <div style={{height: '100%'}}>
                 {this.state.loading ? <RefreshIndicator/> :
                     <GenericShopsPage history={this.props.history}
                                       pageChangeSelector={this.handlePageChange}

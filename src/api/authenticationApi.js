@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode';
+import {URL} from './apiConstants';
 
 class authenticationApi {
 
@@ -6,7 +7,7 @@ class authenticationApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/users/', {
+                URL + 'users/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ class authenticationApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/authentication/', {
+                URL + 'authentication/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

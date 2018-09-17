@@ -23,6 +23,10 @@ ul.pagination li a {
     border-radius: 5px;
 }
 
+div {
+    -webkit-overflow-scrolling: touch;
+}
+
 ul.pagination li a.active {
     background-color: white;
     color: #3CBF95;

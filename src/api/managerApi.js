@@ -1,8 +1,11 @@
+import {URL} from './apiConstants';
+
+
 class managerApi {
     static async loadMarkets() {
         try {
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/markets/'
+                URL + 'markets/'
             );
             let responseJson = await response.json();
             return responseJson.data;
@@ -16,8 +19,10 @@ class managerApi {
             return [];
         try {
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/autocomplete?text=' + text
+                URL + 'autocomplete?text=' + text
             );
+            if (!response.ok)
+                return [];
             return await response.json();
         } catch (error) {
             return [];
@@ -27,7 +32,7 @@ class managerApi {
     static async loadCategories() {
         try{
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/categories/'
+                URL + 'categories/'
             );
             const json = await response.json();
             return json.data;
@@ -39,7 +44,7 @@ class managerApi {
     static async loadStoreItems() {
         try {
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/store/'
+                URL + 'store/'
             );
             let responseJson = await response.json();
             return responseJson.data;
@@ -51,7 +56,7 @@ class managerApi {
     static async createMarket(market) {
         try {
             const response = await fetch(
-                'https://baloofeathers.herokuapp.com/markets/', {
+                URL + 'markets/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

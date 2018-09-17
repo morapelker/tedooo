@@ -87,12 +87,13 @@ const shops = [
 ];
 
 */
+import {URL} from './apiConstants';
 
 class ShopApi {
     static async getAllShops() {
         try {
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/'
+                URL + 'shops/'
             );
             let responseJson = await response.json();
             return responseJson.data;
@@ -105,7 +106,7 @@ class ShopApi {
     static async findShopById(id) {
         try {
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/' + id
+                URL + 'shops/' + id
             );
             return await response.json();
         } catch (error) {
@@ -117,7 +118,7 @@ class ShopApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/', {
+                URL + 'shops/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -139,7 +140,7 @@ class ShopApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/transactions/', {
+                URL + 'transactions/', {
                     // 'http://localhost:3030/transactions/', {
                     method: 'PATCH',
                     headers: {
@@ -162,7 +163,7 @@ class ShopApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                URL + 'shops/' + id, {
                     // 'http://localhost:3030/shops/' + id, {
                     method: 'PATCH',
                     headers: {
@@ -185,7 +186,7 @@ class ShopApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                URL + 'shops/' + id, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -223,7 +224,7 @@ class ShopApi {
         let response;
         try {
             response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops/' + id, {
+                URL + 'shops/' + id, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -266,7 +267,7 @@ class ShopApi {
             }
             url+='&$sort[rating]=-1';
             let response = await fetch(
-                'https://baloofeathers.herokuapp.com/shops' + url
+                URL + 'shops' + url
             );
             return await response.json();
         } catch (error) {
