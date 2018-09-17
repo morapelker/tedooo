@@ -81,6 +81,8 @@ class SearchPage extends Component {
             ],
             segStatus: 1,
         };
+        this.cached = {};
+        this.active = true;
         this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
         this.autocompleteSearchThrottled = throttle(500, this.autoComplete);
 
@@ -98,6 +100,11 @@ class SearchPage extends Component {
         if (!this.props.session.loadedCategories) {
             this.props.managerActions.loadCategories();
         }
+    }
+
+
+    componentWillUnmount() {
+        this.active = false;
     }
 
     generalClicked = () => {
@@ -169,19 +176,35 @@ class SearchPage extends Component {
         if (!newValue || newValue.length === 0)
             return;
         this.waitingFor = newValue;
+        if (this.cached[newValue]) {
+            const arr = this.cached[newValue];
+            const generalFields = this.state.generalFields;
+            generalFields[0].suggestions = [];
+            let counter = 0;
+            const val = generalFields[0].value;
+            arr.forEach(item => {
+                if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
+                    counter++;
+                    generalFields[0].suggestions.push({label: item});
+                }
+            });
+            this.setState({generalFields});
+        }
         managerApi.loadAutoComplete(newValue).then(arr => {
             if (this.waitingFor === newValue) {
                 const generalFields = this.state.generalFields;
                 generalFields[0].suggestions = [];
                 let counter = 0;
                 const val = generalFields[0].value;
+                this.cached[newValue] = arr;
                 arr.forEach(item => {
                     if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
                         counter++;
                         generalFields[0].suggestions.push({label: item});
                     }
                 });
-                this.setState({generalFields});
+                if (this.active)
+                    this.setState({generalFields});
             }
         });
     };
@@ -191,7 +214,7 @@ class SearchPage extends Component {
         generalFields[0].value = newValue;
         this.setState({generalFields}, () => {
             const q = this.state.generalFields[0].value;
-            if (q.length < 5) {
+            if (q.length < 5 || q.endsWith(' ')) {
                 this.autocompleteSearchThrottled(q);
             } else {
                 this.autocompleteSearchDebounced(q);
