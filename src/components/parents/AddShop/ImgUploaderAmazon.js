@@ -227,7 +227,7 @@ class ImgUploaderAmazon extends Component {
                         draggedClassName="dragged" // Class name to be applied to dragged elements (optional), defaults to 'dragged'
                         component={SmallImageContainer}
                         lock="vertical" // Lock the dragging direction (optional): vertical, horizontal (do not use with groups)
-                        holdTime={1} // Default hold time before dragging begins (mouse & touch) (optional), defaults to 0
+                        holdTime={500} // Default hold time before dragging begins (mouse & touch) (optional), defaults to 0
                         onReorder={this.props.callback} // Callback when an item is dropped (you will need this to update your state)
                         autoScroll={true} // Enable auto-scrolling when the pointer is close to the edge of the Reorder component (optional), defaults to true
                         disableContextMenus={true} // Disable context menus when holding on touch devices (optional), defaults to true
@@ -238,7 +238,8 @@ class ImgUploaderAmazon extends Component {
                                 <ImgWithLoader style={{
                                     width: '100%',
                                     height: '100%',
-                                    objectFit: 'cover'
+                                    objectFit: 'cover',
+                                    pointerEvents: 'none'
                                 }} src={link}/>
                                 <Button onClick={()=>{
                                     this.props.removeImage(index);

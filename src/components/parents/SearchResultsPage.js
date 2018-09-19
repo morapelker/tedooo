@@ -48,6 +48,8 @@ class SearchResultsPage extends Component {
     handlePageChange = (page) => {
         if (page !== this.state.page) {
             const s = Object.assign({}, this.searchParams);
+            delete s.$limit;
+            delete s.$skip;
             s.page = page;
             this.props.history.push('/results?' +
                 queryString.stringify(s));

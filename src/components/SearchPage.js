@@ -12,6 +12,7 @@ import SubmitButton from "./common/SubmitButton";
 import * as queryString from "query-string";
 import {debounce, throttle} from "throttle-debounce";
 import managerApi from "../api/managerApi";
+import QrReader from 'react-qr-reader'
 
 function marketNamesFromMarkets(markets) {
     let marketNames = [];
@@ -223,45 +224,104 @@ class SearchPage extends Component {
 
     };
 
+    startScan = () => {
+        this.setState({scanning: true});
+    };
+
+    stopScan = () => {
+        this.setState({scanning: false});
+    };
+
+    handleScan = (data) => {
+        if (data != null) {
+            if (this.state.busy)
+                return;
+            this.setState({
+                busy: true,
+                error: false,
+                scanning: false
+            });
+            const searchParams = {qrCode: data};
+
+            searchParams.page = 1;
+            const parsed = queryString.stringify(searchParams);
+            this.props.history.push("/results?" + parsed);
+        }
+    };
+
+    handleError = () => {
+    };
+
+
     render() {
         return (
-            <div className='searchContainer'>
-                <p/>
-                <h3>Search</h3>
-                <p/>
-                <div className='segContainer'>
-                    <TedooButton onClick={this.generalClicked} text={"General"}
-                                 selected={this.state.segStatus === 1}
-                                 selectedTextColor={'#3CBF95'}
-                                 deselectedTextColor={'white'}
-                                 selectedBackground={'white'}
-                                 clearBackground={'#3CBF95'}
-                                 style={{width: 140}}
-                    />
-                    <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
-                                 selected={this.state.segStatus === 2}
-                                 deselectedTextColor={'white'}
-                                 selectedBackground={'white'}
-                                 selectedTextColor={'#3CBF95'}
-                                 clearBackground={'#3CBF95'}
-                                 style={{marginLeft: 10, width: 140}}
-
+            this.state.scanning ?
+                <div className={'searchContainer'}>
+                    <TedooButton
+                        clearBackground={'white'}
+                        selected={false}
+                        deselectedTextColor={'#3CBF95'}
+                        onClick={this.stopScan}
+                        text={'Cancel'}/>
+                    <QrReader
+                        delay={2000}
+                        onError={this.handleError}
+                        onScan={this.handleScan}
                     />
                 </div>
+                :
+                <div className='searchContainer'>
+                    <p/>
+                    <h3>Search</h3>
+                    <p/>
 
-                {this.state.segStatus === 1 ?
-                    <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
-                                        fields={this.state.generalFields}/> :
-                    <TextFieldContainer enterClicked={this.submit} textChanged={this.textChanged}
-                                        fields={this.state.specificFields}/>}
-                <p/>
-                {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
-                    <SubmitButton submit={this.submit}/>
-                }
-                {this.state.error &&
-                <h3 style={{color: 'red', fontWeight: 'normal', marginTop: 10}}>No shops found</h3>}
+                    <div className='segContainer'>
+                        <TedooButton onClick={this.generalClicked} text={"General"}
+                                     selected={this.state.segStatus === 1}
+                                     selectedTextColor={'#3CBF95'}
+                                     deselectedTextColor={'white'}
+                                     selectedBackground={'white'}
+                                     clearBackground={'#3CBF95'}
+                                     style={{width: 140}}
+                        />
+                        <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
+                                     selected={this.state.segStatus === 2}
+                                     deselectedTextColor={'white'}
+                                     selectedBackground={'white'}
+                                     selectedTextColor={'#3CBF95'}
+                                     clearBackground={'#3CBF95'}
+                                     style={{marginLeft: 10, width: 140}}
 
-            </div>
+                        />
+                    </div>
+
+                    {this.state.segStatus === 1 ?
+                        <TextFieldContainer enterClicked={this.submit}
+                                            textChanged={this.textChanged}
+                                            fields={this.state.generalFields}/> :
+                        <div>
+                            <TextFieldContainer enterClicked={this.submit}
+                                                textChanged={this.textChanged}
+                                                fields={this.state.specificFields}/>
+
+                            <p/>
+                            <TedooButton
+                                clearBackground={'white'}
+                                selected={false}
+                                deselectedTextColor={'#3CBF95'}
+                                onClick={this.startScan}
+                                text={'Scan QR Code'}/>
+                        </div>
+                    }
+                    <p/>
+                    {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
+                        <SubmitButton submit={this.submit}/>
+                    }
+                    {this.state.error &&
+                    <h3 style={{color: 'red', fontWeight: 'normal', marginTop: 10}}>No shops
+                        found</h3>}
+
+                </div>
         );
     }
 }
