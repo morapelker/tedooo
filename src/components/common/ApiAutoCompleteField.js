@@ -66,7 +66,7 @@ function getSuggestions(value, suggestions) {
             const s = (suggestion.label || '').toLowerCase();
             const keep =
                 count < 5 && s.includes(inputValue)
-            && s !== inputValue;
+                && s !== inputValue;
             if (keep) {
                 count += 1;
             }
@@ -137,6 +137,11 @@ class AutoCompleteField extends React.Component {
                     value: this.props.value,
                     onChange: this.props.onChange,
                     onBlur: this.props.onBlur,
+                    onKeyPress: e => {
+                        if (e.key === 'Enter' && this.props.onEnter) {
+                            this.props.onEnter();
+                        }
+                    },
                     id: this.props.id,
                     name: this.props.name,
                     style: {

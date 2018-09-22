@@ -44,11 +44,6 @@ const TedooDrawer = props => {
 
     if (props.auth.admin === true) {
         data.push({
-            text: 'Manage Categories',
-            selector: props.handleNavigation,
-            parameter: '/categories'
-        });
-        data.push({
             text: 'Manage Markets',
             selector: props.handleNavigation,
             parameter: '/markets'
@@ -69,7 +64,7 @@ const TedooDrawer = props => {
                 <DrawerTitle title={props.title}/>
                 <List style={{paddingTop: 0}}>
                     {data.map((item, index) => {
-                        if (item.parameter === '/categories') {
+                        if (item.parameter === '/markets') {
                             return <div key={index} style={{display: 'flex', flexDirection: 'column'}}>
                                 <h3 style={{color: 'red', textAlign: 'center', marginTop: 10}}>Admin actions</h3>
                                 <ListItem button divider={false}  onClick={() => {

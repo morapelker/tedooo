@@ -120,8 +120,8 @@ class InfoColumn extends Component {
                             height: 40,
                             objectFit: 'contain',
                             marginRight: 10,
-                        }} />
-                    </Link> }
+                        }}/>
+                    </Link>}
                     {this.props.admin && <SubmitButton image={'authorize'} submit={() => {
                         this.setState({open: true});
                     }}/>}
@@ -159,10 +159,14 @@ class InfoColumn extends Component {
 
                     {this.props.shop.contact_info && <InfoLabelContainer img='/assets/phone.png'
                                                                          labels={this.props.shop.contact_info.map(info => info.number)}/>}
-                    <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}>
+
+                    {this.props.shop.qr_code
+                    && this.props.shop.qr_code !== 'www.tedooo.com' && this.props.shop.qr_code.length !== 0
+                    && <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}>
                         <QRCode value={this.props.shop.qr_code} fgColor='#3CBF95'
                                 bgColor='#ffffff'/>
-                    </div>
+                    </div>}
+
 
                     <label style={{
                         width: '100%',

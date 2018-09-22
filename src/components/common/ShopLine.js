@@ -77,8 +77,7 @@ class ShopLine extends Component {
             this.setState({ratingLoading: true});
             shopApi.changeRating(this.props.shop._id, rating, this.props.auth.token).then(() => {
                 this.setState({ratingLoading: false});
-            }).catch(err => {
-                console.log(err);
+            }).catch(() => {
                 this.setState({ratingLoading: false});
             });
         }
@@ -102,6 +101,7 @@ class ShopLine extends Component {
                             objectFit: 'contain'
                         }}/></Button>
                     : null}
+
                 {avatarUrl.length > 0 &&
                 <Img style={{
                     borderRadius: '50%',
@@ -130,7 +130,7 @@ class ShopLine extends Component {
                     onClick={this.props.shopSelected(this.props.parentData, this.props.shop)}
                     text={text}/>
 
-                {this.props.auth.admin &&
+                {this.props.auth.admin && false &&
                 <div
                     style={{
                         display: 'flex',

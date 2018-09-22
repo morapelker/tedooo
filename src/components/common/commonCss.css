@@ -8,12 +8,12 @@
 }
 
 ul.pagination {
-    display: inline-block;
+    display: flex;
     padding: 0;
     margin: 0;
 }
 
-ul.pagination li {display: inline;}
+ul.pagination li {display: inline;flex: 1;}
 
 ul.pagination li a {
     color: black;

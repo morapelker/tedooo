@@ -151,8 +151,22 @@ class SearchPage extends Component {
                 searchParams['market_name'] = this.state.generalFields[1].value;
             if (this.state.generalFields[2].value.length > 0)
                 searchParams['shop_number'] = this.state.generalFields[2].value;
-            if (this.state.generalFields[3].value.length > 0)
-                searchParams['city'] = this.state.generalFields[3].value;
+            if (this.state.generalFields[3].value.length > 0) {
+                const c = this.state.generalFields[3].value.toLowerCase().trim();
+                const suggestions = this.state.generalFields[3].suggestions;
+                let found = false;
+                if (suggestions && suggestions.length > 0) {
+                    for (let i = 0; i < suggestions.length; i++) {
+                        if (suggestions[i].label.toLowerCase() === c) {
+                            found = true;
+                            searchParams['city'] = suggestions[i].label;
+                            break;
+                        }
+                    }
+                }
+                if (!found)
+                    searchParams['city'] = this.state.generalFields[3].value;
+            }
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 

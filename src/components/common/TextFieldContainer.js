@@ -45,6 +45,7 @@ const renderField = (field, index, props) => (
                         suggestions={field.suggestions}
                         id={index}
                         name={index}
+                        onEnter={props.enterClicked}
                         onBlur={field.onBlur}
                         onChange={field.selector}/>
                     :
@@ -54,6 +55,7 @@ const renderField = (field, index, props) => (
                     suggestions={field.suggestions}
                     id={index}
                     name={index}
+                    onEnter={props.enterClicked}
                     onBlur={field.onBlur}
                     onChange={field.selector}/>}
             </div>
@@ -95,7 +97,6 @@ const renderField = (field, index, props) => (
                        style={{
                            borderRadius: 10,
                            flex: 1,
-                           marginRight: '10px'
                        }}
                        type={field.type || 'text'}
                        id={index}
