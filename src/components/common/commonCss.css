@@ -10,10 +10,13 @@
 ul.pagination {
     display: flex;
     padding: 0;
-    margin: 0;
+    margin: auto;
+    justify-content: center;
 }
 
-ul.pagination li {display: inline;flex: 1;}
+ul.pagination li {
+    flex-shrink: 1;
+}
 
 ul.pagination li a {
     color: black;

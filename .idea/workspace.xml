@@ -3,14 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/firebaseActions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/shopApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/shopApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/AutoCompleteField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/AutoCompleteField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ShopLine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ShopLine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/common/commonCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/commonCss.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/firebase.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,100 +30,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GenericShopsPage.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
+      <file leaf-file-name="commonCss.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="832">
-              <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="326">
+              <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShopLine.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
+            <state relative-caret-position="525">
               <caret line="34" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/search.css">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="SpecificShopData.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="67">
+              <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImgWithLoader.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/ImgWithLoader.js">
+      <file leaf-file-name="InfoColumn.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/specificShop/InfoColumn.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="3" selection-start-line="3" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpecificShopPage.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apiConstants.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="52">
-              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="commonCss.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
+      <file leaf-file-name="SearchResultsPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+            <state relative-caret-position="248">
+              <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawerTitle.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Drawer/DrawerTitle.js">
+      <file leaf-file-name="shopApi.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="286">
+              <caret line="258" column="28" selection-start-line="258" selection-start-column="28" selection-end-line="258" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ButtonAppBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Drawer/ButtonAppBar.js">
+      <file leaf-file-name="GenericShopsPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TedooDrawer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
-              <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+            <state relative-caret-position="-932">
+              <caret lean-forward="true" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -143,10 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateFields()</find>
-      <find>PNG</find>
-      <find>props.action</find>
-      <find>props.cached</find>
       <find>results</find>
       <find>img</find>
       <find>localhost</find>
@@ -173,6 +163,10 @@
       <find>autoc</find>
       <find>autocomple</find>
       <find>marketname</find>
+      <find>withstylesa</find>
+      <find>withstyles</find>
+      <find>storageref</find>
+      <find>marketchange</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -196,14 +190,11 @@
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/SmallImageContainer.js" />
         <option value="$PROJECT_DIR$/src/reducers/transactionReducer.js" />
         <option value="$PROJECT_DIR$/src/actions/shopActions.js" />
-        <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/reducers/manager.js" />
         <option value="$PROJECT_DIR$/src/store/configureStore.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/InfoLabelContainer.js" />
-        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" />
         <option value="$PROJECT_DIR$/src/components/parents/Store/StorePage.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/CartItem.js" />
-        <option value="$PROJECT_DIR$/src/components/parents/Store/StoreItem.js" />
         <option value="$PROJECT_DIR$/src/components/common/ShopLineC.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/ImageColumn.js" />
         <option value="$PROJECT_DIR$/src/components/specificShop/CartControl.js" />
@@ -213,7 +204,6 @@
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/src/components/parents/SettingsPage.js" />
-        <option value="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" />
         <option value="$PROJECT_DIR$/src/components/Authentication/Register.js" />
         <option value="$PROJECT_DIR$/src/components/parents/MyShops.js" />
         <option value="$PROJECT_DIR$/src/actions/genericConstants.js" />
@@ -223,22 +213,26 @@
         <option value="$PROJECT_DIR$/src/actions/managerConstants.js" />
         <option value="$PROJECT_DIR$/src/reducers/sessionReducer.js" />
         <option value="$PROJECT_DIR$/src/api/managerApi.js" />
-        <option value="$PROJECT_DIR$/src/api/apiConstants.js" />
         <option value="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/addshop.css" />
         <option value="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" />
-        <option value="$PROJECT_DIR$/src/api/shopApi.js" />
-        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" />
-        <option value="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" />
         <option value="$PROJECT_DIR$/src/components/SearchPage.js" />
-        <option value="$PROJECT_DIR$/src/components/common/AutoCompleteField.js" />
-        <option value="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" />
         <option value="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" />
         <option value="$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js" />
-        <option value="$PROJECT_DIR$/src/components/common/commonCss.css" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/common/ShopLine.js" />
+        <option value="$PROJECT_DIR$/src/components/parents/Store/StoreItem.js" />
+        <option value="$PROJECT_DIR$/src/reducers/index.js" />
+        <option value="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" />
+        <option value="$PROJECT_DIR$/src/components/common/AutoCompleteField.js" />
+        <option value="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" />
+        <option value="$PROJECT_DIR$/src/components/common/commonCss.css" />
+        <option value="$PROJECT_DIR$/src/api/apiConstants.js" />
+        <option value="$PROJECT_DIR$/src/api/shopApi.js" />
+        <option value="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" />
+        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js" />
+        <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js" />
       </list>
     </option>
   </component>
@@ -258,7 +252,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1680" />
     <option name="height" value="946" />
@@ -359,6 +353,14 @@
               <item name="balooreact" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="parents" type="462c0819:PsiDirectoryNode" />
+              <item name="Store" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="balooreact" type="b2602c69:ProjectViewProjectNode" />
+              <item name="balooreact" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="specificShop" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -389,7 +391,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="generic&#9;FILE&#9;file:///Users/mor/Documents/dev/balooreact/src/components/common/GenericShopsPage.js&#10;GenericS&#9;FILE&#9;file:///Users/mor/Documents/dev/balooreact/src/components/common/GenericShopsPage.js" />
+    <property name="SearchEverywhereHistoryKey" value="Generic&#9;FILE&#9;file:///Users/mor/Documents/dev/balooreact/src/components/common/GenericShopsPage.js&#10;generic&#9;FILE&#9;file:///Users/mor/Documents/dev/balooreact/src/components/common/GenericShopsPage.js&#10;GenericS&#9;FILE&#9;file:///Users/mor/Documents/dev/balooreact/src/components/common/GenericShopsPage.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -616,7 +618,10 @@
       <workItem from="1537264725779" duration="2090000" />
       <workItem from="1537355704666" duration="3865000" />
       <workItem from="1537624444133" duration="3608000" />
-      <workItem from="1537637285908" duration="594000" />
+      <workItem from="1537637285908" duration="1034000" />
+      <workItem from="1537684144932" duration="621000" />
+      <workItem from="1537698088578" duration="721000" />
+      <workItem from="1537701320461" duration="3343000" />
     </task>
     <task id="LOCAL-00001" summary="sd">
       <created>1526908926159</created>
@@ -870,11 +875,18 @@
       <option name="project" value="LOCAL" />
       <updated>1537357905788</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="sd">
+      <created>1537643217335</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1537643217336</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364440000" />
+    <option name="totallyTimeSpent" value="369565000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -886,7 +898,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="946" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="946" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32924837" />
@@ -927,54 +939,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/CartItem.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/AboutPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="92" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-firebase-file-uploader/lib/index.js" />
-    <entry file="file://$PROJECT_DIR$/src/load-image.all.min.js" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_cdn.rawgit.com_asvd_dragscroll_master_dragscroll.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/load-image.all.min.js" />
-    <entry file="file://$PROJECT_DIR$/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/SettingsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4134">
-          <caret line="159" column="6" selection-start-line="159" selection-start-column="6" selection-end-line="159" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Authentication/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3198">
-          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parents/MyShops.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -995,9 +959,6 @@
           <caret line="13404" column="12" selection-start-line="13404" selection-start-column="12" selection-end-line="13404" selection-end-column="12" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/firebaseActions.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/authenticationApi.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1032,9 +993,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/localStuff.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/authentication.js">
@@ -1076,121 +1034,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/addshop.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" selection-start-line="15" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4498">
-          <caret line="261" column="47" selection-start-line="261" selection-start-column="47" selection-end-line="261" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2262">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/specificShop/InfoColumn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3978">
-          <caret line="163" column="103" selection-start-line="163" selection-start-column="103" selection-end-line="163" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="316" column="43" lean-forward="true" selection-start-line="316" selection-start-column="43" selection-end-line="316" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="139" column="38" lean-forward="true" selection-start-line="139" selection-start-column="38" selection-end-line="139" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/AutoCompleteField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1555">
-          <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/TextFieldContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-js-pagination/dist/Pagination.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Drawer/DrawerTitle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Drawer/ButtonAppBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1248">
           <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
+    <entry file="file://$PROJECT_DIR$/src/components/parents/PendingShops.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-543">
+          <caret line="137" column="4" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/search.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/firebase.js" />
+    <entry file="file://$PROJECT_DIR$/src/actions/firebaseActions.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/parents/AboutPage.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/Store/StoreItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1201,36 +1085,155 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
+    <entry file="file://$PROJECT_DIR$/src/components/common/TedooButton.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
+    <entry file="file://$PROJECT_DIR$/src/components/common/TipView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/TextFieldContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/TitleLabel.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Authentication/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="51" column="6" lean-forward="true" selection-start-line="51" selection-start-column="6" selection-end-line="51" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/addshop.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="143" column="87" selection-start-line="143" selection-start-column="87" selection-end-line="143" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="279" column="22" selection-start-line="279" selection-start-column="22" selection-end-line="279" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/AutoCompleteField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="141" column="28" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-932">
+          <caret lean-forward="true" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
+        <state relative-caret-position="525">
           <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/search.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
+    <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="52">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/shopApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="258" column="28" selection-start-line="258" selection-start-column="28" selection-end-line="258" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="31" column="22" lean-forward="true" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/InfoColumn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="3" selection-start-line="3" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

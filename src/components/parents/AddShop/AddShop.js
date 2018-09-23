@@ -3,13 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../../actions/shopActions'
 import * as managerActions from '../../../actions/manager'
-import * as firebaseActions from '../../../actions/firebaseActions'
 import TextFieldContainer from "../../common/TextFieldContainer";
 import SubmitButton from "../../common/SubmitButton";
 import DeleteIcon from '@material-ui/icons/Delete';
 import RefreshIndicator from "../../common/RefreshIndicator";
-import * as firebase from 'firebase/app';
-import 'firebase/storage';
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import MessageBox from "../../common/MessageBox";
 import {deepCloneObject} from "../../helpers/helpers";
@@ -113,7 +110,6 @@ class AddShop extends Component {
             },
             lastMarketString: '',
             img_links: [],
-            storageRef: undefined,
             originalName: ''
         };
         this.textChanged = this.textChanged.bind(this);
@@ -125,13 +121,6 @@ class AddShop extends Component {
                 this.setState({fields});
             });
         }
-
-        if (!this.props.firebase.storageRef)
-            this.props.firebaseActions.initFirebase().then(() => {
-                this.state.storageRef = firebase.storage().ref('web_images');
-            });
-        else
-            this.state.storageRef = firebase.storage().ref('web_images');
 
         const {id} = this.props.match.params;
         if (id) {
@@ -517,7 +506,6 @@ function mapStateToProps(state) {
         manager: state.saved.manager,
         authentication: state.saved.authentication,
         lastAddedId: state.shops.lastAddedId,
-        firebase: state.firebase,
         cachedShops: state.shops.cachedShops
     };
 }
@@ -526,7 +514,6 @@ function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(actions, dispatch),
         managerActions: bindActionCreators(managerActions, dispatch),
-        firebaseActions: bindActionCreators(firebaseActions, dispatch),
     };
 }
 

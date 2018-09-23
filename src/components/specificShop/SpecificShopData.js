@@ -60,21 +60,24 @@ const SpecificShopData = (props) => {
         <div style={{
             width: '100%',
             height: '100%',
-            position: 'relative'
+            position: 'relative',
         }}>
             <StoreImageLayout
                 deleteImage={props.deleteImage}
                 loadingImage={props.loadingImage}
                 ownShop={props.ownShop}
-                selector={props.placeImageSelector} edit={props.edit} shop={props.shop} />
+                selector={props.placeImageSelector} edit={props.edit} shop={props.shop}/>
+
             <MediaQuery query="(min-width: 520px)">
                 <div style={styles.root}>
                     <div style={styles.leftDiv}>
                         <ImageColumn style={styles.imgCol} shop={props.shop}/>
-                        <FavoriteManagement style={styles.favs} addFavoritesAction={props.addFavoritesAction}
+                        <FavoriteManagement style={styles.favs}
+                                            addFavoritesAction={props.addFavoritesAction}
                                             shop={props.shop}/>
                     </div>
-                    <InfoColumn style={styles.infoCol} token={props.token} actions={props.actions} admin={props.admin}
+                    <InfoColumn style={styles.infoCol} token={props.token} actions={props.actions}
+                                admin={props.admin}
                                 ownShop={props.ownShop} shop={props.shop}/>
                 </div>
             </MediaQuery>
@@ -83,15 +86,18 @@ const SpecificShopData = (props) => {
 
                     <div style={styles.leftDivSmall}>
                         <ImageColumn style={styles.imgCol} shop={props.shop}/>
-                        <FavoriteManagement style={styles.favs} addFavoritesAction={props.addFavoritesAction}
+                        <FavoriteManagement style={styles.favs}
+                                            addFavoritesAction={props.addFavoritesAction}
                                             shop={props.shop}/>
                     </div>
-                    <InfoColumn style={styles.infoColSmall} token={props.token} actions={props.actions} admin={props.admin}
-                                ownShop={props.ownShop} shop={props.shop} />
+                    <InfoColumn style={styles.infoColSmall} token={props.token}
+                                actions={props.actions} admin={props.admin}
+                                ownShop={props.ownShop} shop={props.shop}/>
                 </div>
             </MediaQuery>
             {props.ownShop && props.transactions && props.transactions.length > 0 &&
-            <CartControl getMore={1} selector={props.editSelector} transactions={props.transactions} />
+            <CartControl getMore={1} selector={props.editSelector}
+                         transactions={props.transactions}/>
             }
         </div>
     );

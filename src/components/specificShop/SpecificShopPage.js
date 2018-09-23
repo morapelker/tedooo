@@ -16,7 +16,7 @@ class SpecificShopPage extends Component {
         this.state = {
             addingToFavorites: false,
             editing: false,
-            loadingImage: {}
+            loadingImage: {},
         };
         const shop = deepCloneObject(this.props.cachedShops[this.props.match.params.id]);
         if (shop) {
@@ -113,7 +113,7 @@ class SpecificShopPage extends Component {
     };
 
     startEditing = (item) => {
-        if (item.text==='getMore')
+        if (item.text === 'getMore')
             this.props.history.push('/store');
         else {
             this.setState({
@@ -131,20 +131,22 @@ class SpecificShopPage extends Component {
                 {this.state.busy ?
                     <RefreshIndicator/>
                     : this.state.shop === undefined ? 'no data' :
-                        <SpecificShopData imgSelected={this.imageSelected}
-                                          addFavoritesAction={this.props.actions.addShopFavorites}
-                                          bigImgSrc={this.state.bigImgSrc}
-                                          ownShop={this.state.ownShop}
-                                          admin={this.props.authentication.admin}
-                                          actions={this.props.actions}
-                                          token={this.props.authentication.token}
-                                          transactions={this.props.transactions}
-                                          edit={this.state.editing}
-                                          editSelector={this.startEditing}
-                                          placeImageSelector={this.placeImage}
-                                          deleteImage={this.deleteImage}
-                                          loadingImage={this.state.loadingImage}
-                                          shop={this.state.shop}/>}
+                        <div style={{width: '100%', height: '100%'}}>
+                            <SpecificShopData imgSelected={this.imageSelected}
+                                              addFavoritesAction={this.props.actions.addShopFavorites}
+                                              bigImgSrc={this.state.bigImgSrc}
+                                              ownShop={this.state.ownShop}
+                                              admin={this.props.authentication.admin}
+                                              actions={this.props.actions}
+                                              token={this.props.authentication.token}
+                                              transactions={this.props.transactions}
+                                              edit={this.state.editing}
+                                              editSelector={this.startEditing}
+                                              placeImageSelector={this.placeImage}
+                                              deleteImage={this.deleteImage}
+                                              loadingImage={this.state.loadingImage}
+                                              shop={this.state.shop}/>
+                        </div>}
             </div>
         );
     }

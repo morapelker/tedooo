@@ -163,7 +163,7 @@ class InfoColumn extends Component {
                     {this.props.shop.qr_code
                     && this.props.shop.qr_code !== 'www.tedooo.com' && this.props.shop.qr_code.length !== 0
                     && <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}>
-                        <QRCode value={this.props.shop.qr_code} fgColor='#3CBF95'
+                        <QRCode value={this.props.shop.qr_code} fgColor='#000000'
                                 bgColor='#ffffff'/>
                     </div>}
 

@@ -137,8 +137,13 @@ class AutoCompleteField extends React.Component {
                     onChange: this.props.onChange,
                     onBlur: this.props.onBlur,
                     onKeyPress: e => {
-                        if (e.key === 'Enter' && this.props.onEnter) {
-                            this.props.onEnter();
+                        if (e.key === 'Enter') {
+                            const s = this.props.value && this.props.suggestions ? getSuggestions(this.props.value, this.props.suggestions) : [];
+                            if (s.length === 1 && s[0].label !== this.props.value)
+                                this.props.onChange(undefined, {newValue: s[0].label})
+                            else if (this.props.onEnter)
+                                this.props.onEnter();
+
                         }
                     },
                     id: this.props.id,

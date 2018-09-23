@@ -1,6 +1,5 @@
 import {combineReducers} from 'redux'
 import shops from './shopReducer'
-import firebase from './firebase'
 import manager from './manager'
 import local from './localStuff'
 import {persistReducer} from "redux-persist";
@@ -19,7 +18,6 @@ const persistedReducer = persistReducer(persistConfig, combineReducers({local, a
 const rootReducer = combineReducers({
     shops,
     saved: persistedReducer,
-    firebase,
     transactions,
     session
 });

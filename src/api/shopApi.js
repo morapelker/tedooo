@@ -256,7 +256,7 @@ class ShopApi {
             else if (this.hasOwnProperty(props, 'phoneNumber'))
                 url = `?contact_info.number=${props['phoneNumber']}`;
             else if (this.hasOwnProperty(props, 'qrCode'))
-                url = `?qrCode=${props['qrCode']}`;
+                url = `?qr_code=${props['qrCode']}`;
             else {
                 url = '?';
                 for (const property in props) {
