@@ -16,7 +16,6 @@ const styles = {
     }, rootSmall: {
         display: 'flex',
         flexDirection: 'column',
-        margin: 'auto',
         height: '100%',
         marginTop: 20,
         width: '100%'

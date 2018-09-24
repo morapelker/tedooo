@@ -34,7 +34,8 @@
 
 @media only screen and (max-width: 800px) {
     .specificShopContainer {
-        overflow: auto;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 }
 

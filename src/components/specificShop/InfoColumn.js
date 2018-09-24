@@ -90,6 +90,14 @@ class InfoColumn extends Component {
     };
 
     render() {
+        const labels = [this.props.shop.address];
+        if (this.props.shop.address !== this.props.shop.market_name)
+            labels.push(this.props.shop.market_name);
+        labels.push('Shop Number: ' + this.props.shop.shop_number);
+        if (this.props.shop.category && this.props.shop.category.length > 0 &&
+            this.props.shop.description && this.props.shop.description.length > 0)
+            labels.push('Category: ' + this.props.shop.category);
+
         return (
             <div className={'infoRoot'} style={this.props.style}>
                 <div style={{
@@ -150,12 +158,7 @@ class InfoColumn extends Component {
                     </Dialog>
                 </div>
                 <div>
-                    <InfoLabelContainer img='/assets/infoIcon.png' labels={[
-                        this.props.shop.address,
-                        this.props.shop.market_name,
-                        'Shop Number: ' + this.props.shop.shop_number,
-                        'Category: ' + this.props.shop.category
-                    ]}/>
+                    <InfoLabelContainer img='/assets/infoIcon.png' labels={labels}/>
 
                     {this.props.shop.contact_info && <InfoLabelContainer img='/assets/phone.png'
                                                                          labels={this.props.shop.contact_info.map(info => info.number)}/>}
@@ -173,7 +176,8 @@ class InfoColumn extends Component {
                         marginLeft: 10,
                         fontSize: '1.2em',
                         fontFamily: 'Skia, sans-serif',
-                    }} className='infoLabel'>{this.props.shop.description}</label>
+                    }} className='infoLabel'>{this.props.shop.description && this.props.shop.description.length > 0 ?
+                    this.props.shop.description : this.props.shop.category}</label>
 
                 </div>
 
