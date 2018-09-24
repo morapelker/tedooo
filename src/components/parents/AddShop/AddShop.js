@@ -12,15 +12,15 @@ import MessageBox from "../../common/MessageBox";
 import {deepCloneObject} from "../../helpers/helpers";
 import QrReader from 'react-qr-reader'
 import ImgUploaderAmazon from "./ImgUploaderAmazon";
+import TedooButton from "../../common/TedooButton";
 
 const styles = {
     mainDiv: {
         display: 'flex',
         flexDirection: 'column',
-        width: '40%',
+        width: '100%',
+        overflowY: 'scroll',
         height: '100%',
-        margin: '0 auto',
-        minWidth: 300
     }
 };
 
@@ -418,6 +418,11 @@ class AddShop extends Component {
     handleError = () => {
     };
 
+
+    stopScan = () => {
+        this.setState({scanning: false});
+    };
+
     startScan = () => {
         this.setState({scanning: true});
     };
@@ -425,77 +430,92 @@ class AddShop extends Component {
     render() {
         return (
             <div style={styles.mainDiv}>
-                {this.state.scanning && <QrReader
-                    delay={2000}
-                    onError={this.handleError}
-                    onScan={this.handleScan}
-                />}
-                <p/>
-                <h3>{this.props.match.params.id ? 'Edit' : 'Add'} Shop</h3>
-                <p/>
-                {this.state.initLoading && <RefreshIndicator style={{margin: '0 auto'}}/>}
-                {this.state.initError && <h3 style={{color: 'red'}}>Can't edit shop</h3>}
-                {!this.state.initLoading && !this.state.initError &&
-                <div style={{
-                    width: '100%',
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'auto',
-                    marginBottom: 10
-                }}>
-                    <TextFieldContainer onMinor={this.onMinor} onExtend={this.onExtend}
-                                        textChanged={this.textChanged}
-                                        fromAddShop={true}
-                                        fields={this.state.fields}/>
-                    <ImgUploaderAmazon
-                        callback={this.changeImageOrder}
-                        removeImage={this.removeImage}
-                        token={this.props.authentication.token}
-                        addImage={this.addImage}
-                        img_links={this.state.img_links}
-                    />
-                    <p/>
-                    {this.state.error && <span style={{color: 'red'}}>{this.state.error}</span>}
-                    {!this.state.busy ? <SubmitButton submit={this.submit}/> :
-                        <RefreshIndicator style={{alignSelf: 'center'}}/>}
-                    {this.state.trashBusy && <div style={{
-                        width: 50,
-                        height: 50,
-                        position: 'absolute',
-                        top: 15,
-                        right: 30,
-                    }}>
-                        <RefreshIndicator
-                            loadingColor={'#cf392b'}
-                            size={50}
+                {this.state.scanning ?
+                    <div style={{width: '40%', margin: '0 auto'}}>
+                        <TedooButton
+                            clearBackground={'white'}
+                            selected={false}
+                            deselectedTextColor={'#3CBF95'}
+                            onClick={this.stopScan}
+                            style={{width: '100%'}}
+                            text={'Cancel'}/>
+                        <QrReader
+                            delay={2000}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
                         />
+                    </div> :
+                    <div style={{
+                        minWidth: 300,
+                        width: '40%', display: 'flex', flexDirection: 'column', margin: '0 auto'
+                    }}>
+                        <p/>
+                        <h3>{this.props.match.params.id ? 'Edit' : 'Add'} Shop</h3>
+                        <p/>
+                        {this.state.initLoading && <RefreshIndicator style={{margin: '0 auto'}}/>}
+                        {this.state.initError && <h3 style={{color: 'red'}}>Can't edit shop</h3>}
+                        {!this.state.initLoading && !this.state.initError &&
+                        <div style={{
+                            width: '100%',
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginBottom: 10
+                        }}>
+                            <TextFieldContainer onMinor={this.onMinor} onExtend={this.onExtend}
+                                                textChanged={this.textChanged}
+                                                fromAddShop={true}
+                                                fields={this.state.fields}/>
+                            <ImgUploaderAmazon
+                                callback={this.changeImageOrder}
+                                removeImage={this.removeImage}
+                                token={this.props.authentication.token}
+                                addImage={this.addImage}
+                                img_links={this.state.img_links}
+                            />
+                            <p/>
+                            {this.state.error &&
+                            <span style={{color: 'red'}}>{this.state.error}</span>}
+                            {!this.state.busy ? <SubmitButton submit={this.submit}/> :
+                                <RefreshIndicator style={{alignSelf: 'center'}}/>}
+                            {this.state.trashBusy && <div style={{
+                                width: 50,
+                                height: 50,
+                                position: 'absolute',
+                                top: 15,
+                                right: 30,
+                            }}>
+                                <RefreshIndicator
+                                    loadingColor={'#cf392b'}
+                                    size={50}
+                                />
+                            </div>}
+                            {this.props.match.params.id && !this.state.trashBusy &&
+                            <IconButton onClick={this.delete} style={{
+                                position: 'absolute',
+                                right: 30,
+                                height: 50,
+                                width: 50,
+                                top: 15,
+                                color: '#cf392b',
+                            }} aria-label="Delete">
+                                <DeleteIcon style={{
+                                    width: 30,
+                                    height: 30
+                                }}/>
+                            </IconButton>}
+                        </div>
+                        }
+                        <MessageBox title={'Delete Shop'}
+                                    label={'Are you sure you want to delete "' + this.state.originalName + '"?'}
+                                    cancelText={'No'}
+                                    okText={'Yes, Delete Shop'}
+                                    onOk={this.deleteShop} onClose={this.cancelDelete}
+                                    open={this.state.deleteConfirmOpen}/>
+                        <MessageBox title={'Shop Deleted'} label={'Shop successfully deleted'}
+                                    onOk={this.onClose} onClose={this.onClose}
+                                    open={this.state.deleteOpen}/>
                     </div>}
-                    {this.props.match.params.id && !this.state.trashBusy &&
-                    <IconButton onClick={this.delete} style={{
-                        position: 'absolute',
-                        right: 30,
-                        height: 50,
-                        width: 50,
-                        top: 15,
-                        color: '#cf392b',
-                    }} aria-label="Delete">
-                        <DeleteIcon style={{
-                            width: 30,
-                            height: 30
-                        }}/>
-                    </IconButton>}
-                </div>
-                }
-                <MessageBox title={'Delete Shop'}
-                            label={'Are you sure you want to delete "' + this.state.originalName + '"?'}
-                            cancelText={'No'}
-                            okText={'Yes, Delete Shop'}
-                            onOk={this.deleteShop} onClose={this.cancelDelete}
-                            open={this.state.deleteConfirmOpen}/>
-                <MessageBox title={'Shop Deleted'} label={'Shop successfully deleted'}
-                            onOk={this.onClose} onClose={this.onClose}
-                            open={this.state.deleteOpen}/>
             </div>
         );
     }

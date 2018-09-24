@@ -91,7 +91,7 @@ const renderField = (field, index, props) => (
                     text={'Scan'} style={{
                     alignSelf: 'flex-end',
                     width: '20%',
-                    marginRight: '41px'
+                    marginLeft: '10px'
                 }}/>}
                 <Input className={'inputField'}
                        style={{
