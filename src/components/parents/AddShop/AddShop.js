@@ -24,6 +24,7 @@ const styles = {
     }
 };
 
+
 function marketNamesFromMarkets(markets) {
     let suggestions = [];
     markets.forEach(market => {
@@ -98,6 +99,13 @@ class AddShop extends Component {
                     minorable: true,
                     parent: 8
                 }, {
+                    placeholder: 'Search Keyword',
+                    type: 'infinite',
+                    values: [''],
+                    extend: this.extendKeyword,
+                    remove: this.removeKeyword,
+                    change: this.changeKeyword
+                }, {
                     placeholder: 'QR Code',
                     value: '',
                     qrSelector: this.startScan
@@ -159,6 +167,7 @@ class AddShop extends Component {
 
     }
 
+
     updateShopFields = (shop) => {
         const {fields} = this.state;
         fields[0].value = shop.market_name + (shop.city ? ' - ' + shop.city : '');
@@ -166,7 +175,11 @@ class AddShop extends Component {
         fields[2].value = shop.shop_number;
         fields[3].value = shop.category;
         fields[4].value = shop.description || '';
-        fields[11].value = shop.qr_code;
+        fields[12].value = shop.qr_code;
+        if (!Array.isArray(shop.keywords) || shop.keywords.length === 0)
+            fields[11].values = [''];
+        else
+            fields[11].values = shop.keywords;
         if (shop.contact_info) {
             let phoneCounter = -1;
             let wechatCounter = -1;
@@ -359,6 +372,12 @@ class AddShop extends Component {
                     });
                 }
             }
+            const keywords = [];
+            this.state.fields[11].values.forEach(item => {
+                if (item.length > 0)
+                    keywords.push(item);
+            });
+
             const shop = {
                 name: this.state.fields[1].value,
                 shop_number: this.state.fields[2].value,
@@ -369,7 +388,8 @@ class AddShop extends Component {
                 city: this.state.market.city,
                 img_links: this.state.img_links,
                 contact_info2: contact_info,
-                qr_code: this.state.fields[11].value
+                keywords,
+                qr_code: this.state.fields[12].value
             };
             this.setState({busy: true});
             const {id} = this.props.match.params;
@@ -410,7 +430,7 @@ class AddShop extends Component {
     handleScan = (data) => {
         if (data != null) {
             const {fields} = this.state;
-            fields[11].value = data;
+            fields[12].value = data;
             this.setState({fields, scanning: false});
         }
     };
@@ -425,6 +445,28 @@ class AddShop extends Component {
 
     startScan = () => {
         this.setState({scanning: true});
+    };
+
+
+    extendKeyword = index => {
+        const {fields} = this.state;
+        fields[11].values.splice(index + 1, 0, '');
+        this.setState({fields});
+    };
+
+    removeKeyword = index => {
+        const {fields} = this.state;
+        if (fields[11].values.length === 1)
+            fields[11].values[0] = '';
+        else
+            fields[11].values.splice(index, 1);
+        this.setState({fields});
+    };
+
+    changeKeyword = (value, index) => {
+        const {fields} = this.state;
+        fields[11].values[index] = value;
+        this.setState({fields});
     };
 
     render() {
@@ -466,6 +508,7 @@ class AddShop extends Component {
                                                 textChanged={this.textChanged}
                                                 fromAddShop={true}
                                                 fields={this.state.fields}/>
+
                             <ImgUploaderAmazon
                                 callback={this.changeImageOrder}
                                 removeImage={this.removeImage}

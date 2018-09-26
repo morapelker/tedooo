@@ -98,9 +98,6 @@ class SearchPage extends Component {
                 this.setState({generalFields});
             });
         }
-        if (!this.props.session.loadedCategories) {
-            this.props.managerActions.loadCategories();
-        }
     }
 
 

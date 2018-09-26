@@ -1,7 +1,0 @@
-.fade-in {
-    height: 0;
-}
-.fade-in.visible {
-    transition: height 1s;
-    height: 40px;
-}

@@ -176,8 +176,9 @@ class InfoColumn extends Component {
                         marginLeft: 10,
                         fontSize: '1.2em',
                         fontFamily: 'Skia, sans-serif',
-                    }} className='infoLabel'>{this.props.shop.description && this.props.shop.description.length > 0 ?
-                    this.props.shop.description : this.props.shop.category}</label>
+                    }}
+                           className='infoLabel'>{this.props.shop.description && this.props.shop.description.length > 0 ?
+                        this.props.shop.description : this.props.shop.category}</label>
 
                 </div>
 

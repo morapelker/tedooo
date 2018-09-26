@@ -1,54 +1,76 @@
-import React, {Component} from 'react';
-import ContactField from "./ContactField";
+import React from 'react';
+import {Input} from "reactstrap";
+import Collapse from "@material-ui/core/Collapse/Collapse";
+import Button from "@material-ui/core/Button/Button";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
-class InfiniteFields extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            values: ['']
-        };
+import withStyles from "@material-ui/core/styles/withStyles";
+
+
+const styles = theme => ({
+    root: {
+        height: 25,
+        width: 25,
+        minHeight: 0,
+        minWidth: 0,
+        margin: theme.spacing.unit,
+        backgroundColor: 'white',
+        color: '#3CBF95'
+    }, root2: {
+        height: 25,
+        width: 25,
+        minHeight: 0,
+        minWidth: 0,
+        margin: theme.spacing.unit,
+        backgroundColor: 'white',
+        color: '#3CBF95'
     }
+});
+const InfiniteFields = props => {
+    const a = [];
+    for (let i = 0; i < props.max_items; i++)
+        a.push(0);
+    return (
+        <div style={props.style}>
+            {a.map((_, index) =>
+                <Collapse in={props.values.length > index} style={{marginLeft: 41}}>
+                    <div style={{display: 'flex', flexDirection: 'row-reverse', marginTop: index > 0 ? 10 : 0}}>
+                        <Button onClick={() => {
+                            props.extend(index);
+                        }} mini variant="fab" color="inherit" aria-label="add" classes={{
+                            root: props.classes.root2
+                        }} disabled={props.values.length === props.max_items}>
+                            <AddIcon/>
+                        </Button>
 
-    addClicked = index => {
-        const values = this.state.values;
-        values.splice(index + 1, 0, '');
-        this.setState({values});
-    };
+                        {(props.values.length > 1 || props.values[0].length > 0) &&
+                        <Button onClick={() => {
+                            props.remove(index);
+                        }} mini variant="fab" color="inherit" aria-label="add" classes={{
+                            root: props.classes.root2
+                        }}>
+                            <RemoveIcon/>
+                        </Button>}
 
-    removeClicked = index => {
-        const values = this.state.values;
-        values.splice(index, 1);
-        this.setState({values});
-    };
+                        <Input className={'inputField'}
+                               style={{
+                                   borderRadius: 10,
+                                   flex: 1,
+                               }}
+                               type={props.type || 'text'}
+                               id={index}
+                               onChange={e => {
+                                   props.onChange(e.target.value, index);
+                               }}
+                               value={props.values[index]}
+                               placeholder={props.placeholder}
+                        />
+                    </div>
+                </Collapse>
+            )}
+        </div>
+    );
+};
 
-    onChange = (value, index) => {
-        const values = this.state.values;
-        values[index] = value;
-        this.setState({
-            values
-        });
-    };
-
-    render() {
-        return (
-            <div style={{width: '100%'}}>
-                {this.state.values.map((value, index) => <ContactField
-                    key={index}
-                    value={value}
-                    changeSelector={e => {
-                        this.onChange(e.target.value, index)
-                    }}
-                    addSelector={() => {
-                        this.addClicked(index);
-                    }}
-                    removeSelector={() => {
-                        this.removeClicked(index);
-                    }}
-                    withRemove={this.state.values.length > 1}
-                />)}
-            </div>
-        );
-    }
-}
-
-export default InfiniteFields;
+export default withStyles(styles)(InfiniteFields);

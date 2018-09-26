@@ -29,18 +29,6 @@ class managerApi {
         }
     }
 
-    static async loadCategories() {
-        try{
-            let response = await fetch(
-                URL + 'categories/'
-            );
-            const json = await response.json();
-            return json.data;
-        } catch (error) {
-            return [];
-        }
-    }
-
     static async loadStoreItems() {
         try {
             let response = await fetch(
