@@ -59,11 +59,12 @@ function getSuggestions(value, suggestions) {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
-
     return inputLength === 0
         ? []
         : suggestions.filter(suggestion => {
-            const s = (suggestion.label || '').toLowerCase();
+            if (!suggestion.label)
+                return false;
+            const s = suggestion.label.toLowerCase();
             const keep =
                 count < 5 && s.includes(inputValue)
                 && s !== inputValue;
