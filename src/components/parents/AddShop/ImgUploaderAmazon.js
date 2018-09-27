@@ -12,7 +12,6 @@ import Reorder from 'react-reorder';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 
-
 const styles = () => ({
     root: {
         height: 20,
@@ -189,19 +188,23 @@ class ImgUploaderAmazon extends Component {
         resize(arr[index], img => {
             shopApi.uploadImage(img, this.props.token).then(res => {
                 this.props.addImage('https://tedooo.s3.amazonaws.com/' + res.id);
-                if (index === arr.length - 1)
+                if (index === arr.length - 1) {
+                    this.props.stopUpload();
                     this.setState({uploading: false});
-                else
+                } else
                     this.uploadImages(arr, index + 1);
             }).catch(() => {
+                this.props.stopUpload();
                 this.setState({uploading: false});
             });
         });
     };
 
     onD = (accepted) => {
-        if (accepted && accepted.length >= 1)
+        if (accepted && accepted.length >= 1) {
+            this.props.startUpload();
             this.uploadImages(accepted, 0);
+        }
     };
 
     openUploadDialog = () => {
@@ -233,22 +236,24 @@ class ImgUploaderAmazon extends Component {
                         disableContextMenus={true} // Disable context menus when holding on touch devices (optional), defaults to true
                     >
                         {this.props.img_links.map((link, index) => (
-                            <div key={index} style={{width: 70, height: 70, position: 'relative',
-                                marginLeft: index === 0 ? 0 : 5}}>
+                            <div key={index} style={{
+                                width: 70, height: 70, position: 'relative',
+                                marginLeft: index === 0 ? 0 : 5
+                            }}>
                                 <ImgWithLoader style={{
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'cover',
                                     pointerEvents: 'none'
                                 }} src={link}/>
-                                <Button onClick={()=>{
+                                <Button onClick={() => {
                                     this.props.removeImage(index);
                                 }} mini variant="fab" color="inherit" aria-label="add" classes={{
                                     root: this.props.classes.root
                                 }}>
                                     <RemoveIcon style={{
                                         height: 20, width: 20, zIndex: 99
-                                    }} />
+                                    }}/>
                                 </Button>
                             </div>
                         ))}
@@ -261,13 +266,14 @@ class ImgUploaderAmazon extends Component {
                         justifyContent: 'center',
                         marginLeft: this.props.img_links.length === 0 ? 0 : 5
                     }}>
-                        {this.state.uploading ? <RefreshIndicator style={{marginLeft: 10, alignSelf: 'center'}}/> :
+                        {this.state.uploading ?
+                            <RefreshIndicator style={{marginLeft: 10, alignSelf: 'center'}}/> :
                             <Button onClick={() => {
                                 dropZone.open();
                             }} mini variant="fab" color="inherit" aria-label="add" classes={{
                                 root: this.props.classes.root2
                             }}>
-                                <AddIcon />
+                                <AddIcon/>
                             </Button>}
 
                         }
@@ -287,7 +293,7 @@ class ImgUploaderAmazon extends Component {
                 }}/>}
                 <Dropzone style={{display: 'none'}} ref={dropArea => {
                     dropZone = dropArea
-                }} onDrop={this.onD} />
+                }} onDrop={this.onD}/>
             </div>
         );
     }

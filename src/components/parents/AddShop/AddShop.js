@@ -220,6 +220,14 @@ class AddShop extends Component {
         return fields;
     };
 
+    startUploadLoading = () => {
+        this.setState({busy: true});
+    };
+
+    stopUploadLoading = () => {
+        this.setState({busy: false});
+    };
+
     addImage = link => {
         const {img_links} = this.state;
         img_links.push(link);
@@ -510,6 +518,8 @@ class AddShop extends Component {
                                                 fields={this.state.fields}/>
 
                             <ImgUploaderAmazon
+                                startUpload={this.startUploadLoading}
+                                stopUpload={this.stopUploadLoading}
                                 callback={this.changeImageOrder}
                                 removeImage={this.removeImage}
                                 token={this.props.authentication.token}
