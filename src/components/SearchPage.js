@@ -221,15 +221,17 @@ class SearchPage extends Component {
         });
     };
 
-    freeTextChanged = (event, {newValue}) => {
+    freeTextChanged = (event, {newValue, method}) => {
         const generalFields = this.state.generalFields;
         generalFields[0].value = newValue;
         this.setState({generalFields}, () => {
-            const q = this.state.generalFields[0].value;
-            if (q.length < 5 || q.endsWith(' ')) {
-                this.autocompleteSearchThrottled(q);
-            } else {
-                this.autocompleteSearchDebounced(q);
+            if (method === 'type') {
+                const q = this.state.generalFields[0].value;
+                if (q.length < 5 || q.endsWith(' ')) {
+                    this.autocompleteSearchThrottled(q);
+                } else {
+                    this.autocompleteSearchDebounced(q);
+                }
             }
         });
 

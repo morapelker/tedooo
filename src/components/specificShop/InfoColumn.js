@@ -170,7 +170,6 @@ class InfoColumn extends Component {
                                 bgColor='#ffffff'/>
                     </div>}
 
-
                     <label style={{
                         width: '100%',
                         marginLeft: 10,

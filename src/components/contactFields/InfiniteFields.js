@@ -34,7 +34,7 @@ const InfiniteFields = props => {
     return (
         <div style={props.style}>
             {a.map((_, index) =>
-                <Collapse in={props.values.length > index} style={{marginLeft: 41}}>
+                <Collapse in={props.values.length > index} style={{marginLeft: 41}} key={index}>
                     <div style={{display: 'flex', flexDirection: 'row-reverse', marginTop: index > 0 ? 10 : 0}}>
                         <Button onClick={() => {
                             props.extend(index);
