@@ -7,7 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import withStyles from "@material-ui/core/styles/withStyles";
 import shopApi from '../../api/shopApi';
-
+import stem from 'stem-porter';
 
 const deleteHelper = (realFunc, id) => (
     () => {
@@ -51,7 +51,7 @@ const style = {
         alignSelf: 'center'
     },
     btnStyle: {
-        flexGrow: 1,
+        width: '100%',
         minWidth: 0,
         height: 45,
         margin: 'auto'
@@ -60,6 +60,26 @@ const style = {
 
 const capitalize = str => {
     return str.toUpperCase() || str;
+};
+
+const doesFieldContainStemWord = (text, sWord) => {
+    const arr = text.split(' ');
+    return arr.some(item => {
+        return stem(item).toLowerCase().includes(sWord);
+    });
+};
+
+const missingWords = (shop, words) => {
+    return words.filter(word => {
+        const s = stem(word).toLowerCase();
+        if (shop.description && doesFieldContainStemWord(shop.description, s))
+            return false;
+        if (shop.category && doesFieldContainStemWord(shop.category, s))
+            return false;
+        if (shop.keywords)
+            return !(shop.keywords.some(kw => stem(kw).includes(s)));
+        return true;
+    });
 };
 
 class ShopLine extends Component {
@@ -88,6 +108,7 @@ class ShopLine extends Component {
         const avatarUrl = (this.props.shop.avatar ? this.props.shop.avatar : (
             this.props.shop.img_links && this.props.shop.img_links.length > 0 ? this.props.shop.img_links[0] : ''
         ));
+        const mWords = this.props.words ? missingWords(this.props.shop, this.props.words) : [];
         return (
             <div style={style.container}>
                 {this.props.deleteMethod !== undefined ?
@@ -122,14 +143,23 @@ class ShopLine extends Component {
                 />
                 }
 
-
-                <TedooButton
-                    style={style.btnStyle}
-                    selected={true}
-                    selectedTextColor={'#3CBF95'}
-                    selectedBackground={'white'}
-                    onClick={this.props.shopSelected(this.props.parentData, this.props.shop)}
-                    text={text}/>
+                <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+                    <TedooButton
+                        style={style.btnStyle}
+                        selected={true}
+                        selectedTextColor={'#3CBF95'}
+                        selectedBackground={'white'}
+                        onClick={this.props.shopSelected(this.props.parentData, this.props.shop)}
+                        text={text}/>
+                    <span style={{
+                        textDecoration: 'line-through',
+                        color: '#0059b3',
+                        alignSelf: 'flex-end',
+                    }}>{mWords.length > 0 &&
+                    <span>Missing: </span>} {mWords.length > 0 && mWords.map((item, index) =>
+                        <span
+                            key={index}>{item} {index === mWords.length - 1 ? '' : ', '}</span>)}</span>
+                </div>
 
                 {this.props.auth.admin && false &&
                 <div

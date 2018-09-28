@@ -22,7 +22,17 @@ const shopSelected = (props, shop) => {
 
 const MAX_SHOPS = 10;
 
+const filterIrrelevant = line => {
+    if (line.includes('  '))
+        return filterIrrelevant(line.replace('  ', ' '));
+    if (line.includes(','))
+        return filterIrrelevant(line.replace(',', ' '));
+    return line.trim();
+};
+
 const GenericShopsPage = (props) => {
+    const words = props.text ? filterIrrelevant(props.text).split(' ').filter(item => item.length > 1) : undefined;
+
     return (
         <div style={{
             width: '100%',
@@ -36,6 +46,7 @@ const GenericShopsPage = (props) => {
                 {props.shops && props.shops.length > 0 ? props.shops.map((result, index) => (
                     <div key={index}>
                         <ShopLine
+                            words={words}
                             auth={props.auth}
                             deleteMethod={props.deleteMethod} parentData={props}
                             shopSelected={shopSelected}

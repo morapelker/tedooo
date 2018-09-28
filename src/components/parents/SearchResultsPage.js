@@ -80,6 +80,7 @@ class SearchResultsPage extends Component {
             <div style={{height: '100%'}}>
                 {this.state.loading ? <RefreshIndicator/> :
                     <GenericShopsPage history={this.props.history}
+                                      text={this.searchParams.text}
                                       pageChangeSelector={this.handlePageChange}
                                       currentPage={this.state.page}
                                       smallLoading={this.state.smallLoading}
