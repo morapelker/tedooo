@@ -30,6 +30,7 @@ class SearchResultsPage extends Component {
     findShops = page => {
         this.searchParams.$skip = (page - 1) * MAX_SHOPS;
         shopApi.findShop(this.searchParams).then(shops => {
+            console.log(shops);
             if (shops.total === 1)
                 this.props.history.replace('results/' + shops.data[0]._id);
             else {

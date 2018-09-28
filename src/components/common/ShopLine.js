@@ -122,6 +122,7 @@ class ShopLine extends Component {
                 />
                 }
 
+
                 <TedooButton
                     style={style.btnStyle}
                     selected={true}

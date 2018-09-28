@@ -267,16 +267,15 @@ class ShopApi {
                     }
                 }
             }
-            url+='&$sort[rating]=-1';
             let response = await fetch(
                 URL + 'shops' + url
             );
-            return await response.json();
-        } catch (error) {
-            return {total: 0, skip: 0,
-                limit: 10,
-                data: []};
-        }
+            if (response.ok)
+                return await response.json();
+        } catch (err) {}
+        return {total: 0, skip: 0,
+            limit: 10,
+            data: []};
     }
 }
 
