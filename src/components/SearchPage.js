@@ -232,7 +232,8 @@ class SearchPage extends Component {
                 } else {
                     this.autocompleteSearchDebounced(q);
                 }
-            }
+            } else
+                this.waitingFor = '';
         });
 
     };

@@ -99,9 +99,19 @@ const styles = theme => ({
 });
 
 class AutoCompleteField extends React.Component {
-    state = {
-        suggestions: [],
-    };
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {
+            suggestions: [],
+        };
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            suggestions: getSuggestions(props.value, props.suggestions)
+        });
+    }
 
     handleSuggestionsFetchRequested = ({value}) => {
         this.setState({
@@ -126,7 +136,7 @@ class AutoCompleteField extends React.Component {
                     suggestion: classes.suggestion,
                 }}
                 renderInputComponent={renderInput}
-                suggestions={this.props.suggestions}
+                suggestions={this.state.suggestions}
                 onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
                 renderSuggestionsContainer={renderSuggestionsContainer}
