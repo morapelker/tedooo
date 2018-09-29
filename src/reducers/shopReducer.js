@@ -63,7 +63,7 @@ export default (state = {results: [], cachedShops: {}, myShops: undefined, pendi
                 if (!cachedShops.hasOwnProperty(shop._id))
                     cachedShops[shop._id] = shop;
             });
-            return Object.assign({}, state, {myShops: action.shops, cachedShops});
+            return Object.assign({}, state, {cachedShops});
         }
         default:
             return state;

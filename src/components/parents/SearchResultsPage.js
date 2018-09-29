@@ -41,12 +41,6 @@ class SearchResultsPage extends Component {
         });
     };
 
-    getResultTitle = () => {
-        if (this.state.results.total === 1)
-            return 1 + " Result";
-        return this.state.results.total + " Results";
-    };
-
     handlePageChange = (page) => {
         if (page !== this.state.page) {
             const s = Object.assign({}, this.searchParams);
@@ -77,6 +71,12 @@ class SearchResultsPage extends Component {
         this.findShops(p);
     };
 
+    getResultTitle = () => {
+        if (this.state.results.total === 1)
+            return 1 + " Result";
+        return this.state.results.total + " Results";
+    };
+
     render() {
         return (
             <div style={{height: '100%'}}>
@@ -85,8 +85,8 @@ class SearchResultsPage extends Component {
                                       text={this.searchParams.text}
                                       pageChangeSelector={this.handlePageChange}
                                       currentPage={this.state.page}
-                                      smallLoading={this.state.smallLoading}
                                       totalPages={this.state.results.total}
+                                      smallLoading={this.state.smallLoading}
                                       addHistoryAction={this.props.actions.addShopHistory}
                                       name={this.getResultTitle()} shops={this.state.results.data}/>
                 }

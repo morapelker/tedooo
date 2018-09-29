@@ -248,23 +248,20 @@ class ShopApi {
 
     static async findShop(props) {
         try {
-            let url = '';
-            if (this.hasOwnProperty(props, 'id'))
-                url = `?_id=${props['id']}`;
-            else if (this.hasOwnProperty(props, 'userid'))
-                url = `?userId=${props['userid']}`;
-            else if (this.hasOwnProperty(props, 'phoneNumber'))
-                url = `?contact_info.number=${props['phoneNumber']}`;
-            else if (this.hasOwnProperty(props, 'qrCode'))
-                url = `?qr_code=${props['qrCode']}`;
-            else {
-                url = '?';
-                for (const property in props) {
-                    // noinspection JSUnfilteredForInLoop
-                    if (this.hasOwnProperty(props, property)) {
-                        // noinspection JSUnfilteredForInLoop
+            let url = '?';
+            for (const property in props) {
+                // noinspection JSUnfilteredForInLoop
+                if (this.hasOwnProperty(props, property)) {
+                    if (property === 'id')
+                        url = `?_id=${props['id']}`;
+                    else if (property === 'userid')
+                        url = `?userId=${props['userid']}`;
+                    else if (property === 'phoneNumber')
+                        url = `?contact_info.number=${props['phoneNumber']}`;
+                    else if (property === 'qrCode')
+                        url = `?qr_code=${props['qrCode']}`;
+                    else
                         url += `&${property}=${props[property]}`;
-                    }
                 }
             }
             let response = await fetch(

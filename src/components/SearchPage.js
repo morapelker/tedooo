@@ -36,6 +36,7 @@ function citiesFromMarkets(markets) {
 class SearchPage extends Component {
     constructor(props, context) {
         super(props, context);
+        document.title = 'Tedooo';
         this.state = {
             error: false,
             busy: false,
