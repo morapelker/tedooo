@@ -69,15 +69,25 @@ const doesFieldContainStemWord = (text, sWord) => {
     });
 };
 
+const stemLine = line => {
+    return line.split(' ').reduce((total, value) => {
+        if (value.length > 1)
+            return total + stem(value).toLowerCase();
+        return total;
+    });
+};
+
 const missingWords = (shop, words) => {
     return words.filter(word => {
         const s = stem(word).toLowerCase();
-        if (shop.description && doesFieldContainStemWord(shop.description, s))
+        if (shop.description && (doesFieldContainStemWord(shop.description, s) ||
+            shop.description.toLowerCase().includes(word.toLowerCase())))
             return false;
-        if (shop.category && doesFieldContainStemWord(shop.category, s))
+        if (shop.category && (doesFieldContainStemWord(shop.category, s)||
+            shop.category.toLowerCase().includes(word.toLowerCase())))
             return false;
         if (shop.keywords)
-            return !(shop.keywords.some(kw => stem(kw).includes(s)));
+            return !(shop.keywords.some(kw => stemLine(kw).includes(s)));
         return true;
     });
 };

@@ -204,6 +204,7 @@ class SearchPage extends Component {
                 }
             });
             this.setState({generalFields});
+            return;
         }
         managerApi.loadAutoComplete(newValue).then(arr => {
             if (this.waitingFor === newValue) {

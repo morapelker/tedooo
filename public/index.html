@@ -11,7 +11,18 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
+    <style>
+      body {
+        background-color: #3CBF95;
+        height: 100%;
+        cursor: pointer;
+      }
+      @media only screen and (min-width: 600px) {
+        body {
+          cursor: default;
+        }
+      }
+    </style>
 
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -24,7 +35,7 @@
     -->
     <title>Tedooo</title>
   </head>
-  <body style="background-color: #3CBF95; height: 100%;">
+  <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
