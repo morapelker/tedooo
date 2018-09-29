@@ -25,6 +25,8 @@ class SearchResultsPage extends Component {
         delete this.searchParams.page;
         this.searchParams.$limit = MAX_SHOPS;
         this.findShops(this.state.page);
+        if (this.searchParams.text)
+            document.title = 'Tedooo - ' + this.searchParams.text;
     }
 
     findShops = page => {
