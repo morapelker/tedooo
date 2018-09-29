@@ -13,7 +13,8 @@ function renderInput(inputProps) {
     return (
         <input
             className={'inputField'}
-            autoComplete={'afa'}
+            autoComplete={'off'}
+            name={'search'}
             {...other}
         />
     );
@@ -107,10 +108,12 @@ class AutoCompleteField extends React.Component {
         };
     }
 
-    componentWillReceiveProps(props) {
-        this.setState({
-            suggestions: getSuggestions(props.value, props.suggestions)
-        });
+    componentWillReceiveProps({value, suggestions, method}) {
+        if (method === 'type') {
+            this.setState({
+                suggestions: getSuggestions(value, suggestions)
+            });
+        }
     }
 
     handleSuggestionsFetchRequested = ({value}) => {

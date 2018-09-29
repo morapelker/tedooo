@@ -51,6 +51,7 @@ class SearchPage extends Component {
                     type: 'select',
                     suggestions: props.textSuggestions.items,
                     selector: this.freeTextChanged,
+                    method: 'type'
                 },
                 {
                     name: 'marketName',
@@ -187,6 +188,8 @@ class SearchPage extends Component {
     autoComplete = newValue => {
         if (!newValue || newValue.length === 0)
             return;
+        if (newValue.endsWith(' '))
+            newValue = newValue.trim() + '_';
         this.waitingFor = newValue;
         if (this.cached[newValue]) {
             const arr = this.cached[newValue];
@@ -224,16 +227,19 @@ class SearchPage extends Component {
     freeTextChanged = (event, {newValue, method}) => {
         const generalFields = this.state.generalFields;
         generalFields[0].value = newValue;
+        generalFields[0].method = method;
+        if (method !== 'type')
+            this.waitingFor = '';
+
         this.setState({generalFields}, () => {
             if (method === 'type') {
-                const q = this.state.generalFields[0].value;
-                if (q.length < 5 || q.endsWith(' ')) {
+                const q = newValue;
+                if (q.length < 5 || q.endsWith('_')) {
                     this.autocompleteSearchThrottled(q);
                 } else {
                     this.autocompleteSearchDebounced(q);
                 }
-            } else
-                this.waitingFor = '';
+            }
         });
 
     };

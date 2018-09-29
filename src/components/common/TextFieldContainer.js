@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Input} from "reactstrap";
+import {Input} from "reactstrap";
 import './commonCss.css'
 import AutoCompleteField from "./AutoCompleteField";
 import Collapse from "@material-ui/core/Collapse/Collapse";
@@ -56,6 +56,7 @@ const renderField = (field, index, props) => (
                             name={index}
                             onEnter={props.enterClicked}
                             onBlur={field.onBlur}
+                            method={field.method}
                             onChange={field.selector}/>
                         :
                         <AutoCompleteField
@@ -128,7 +129,7 @@ const renderField = (field, index, props) => (
 
 const TextFieldContainer = (props) => {
     return (
-        <Form>
+        <div style={{marginTop: 20}}>
             {props.fields.map((field, index) => {
                 if (field.hidden !== undefined) {
                     return (<Collapse in={!field.hidden} key={index}>
@@ -140,7 +141,7 @@ const TextFieldContainer = (props) => {
                     </div>);
                 }
             })}
-        </Form>
+        </div>
     );
 };
 
