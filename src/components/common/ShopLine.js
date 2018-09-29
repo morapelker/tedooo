@@ -152,12 +152,13 @@ class ShopLine extends Component {
                         onClick={this.props.shopSelected(this.props.parentData, this.props.shop)}
                         text={text}/>
                     <span style={{
-                        textDecoration: 'line-through',
                         color: '#0059b3',
                         alignSelf: 'flex-end',
                     }}>{mWords.length > 0 &&
                     <span>Missing: </span>} {mWords.length > 0 && mWords.map((item, index) =>
-                        <span
+                        <span style={{
+                            textDecoration: 'line-through',
+                        }}
                             key={index}>{item} {index === mWords.length - 1 ? '' : ', '}</span>)}</span>
                 </div>
 

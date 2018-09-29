@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="sd">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/apiConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiConstants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/common/ShopLine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ShopLine.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,36 +19,36 @@
     <session id="-1482841505">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="5" />
+          <entry key="project.open.time.8" value="6" />
           <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="15" />
+          <entry key="project.opened" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="132" />
-          <entry key="js" value="9129" />
+          <entry key="js" value="9529" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="132" />
-          <entry key="JavaScript" value="9129" />
+          <entry key="JavaScript" value="9529" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="4" />
-          <entry key="js" value="64" />
+          <entry key="js" value="67" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="JavaScript" value="64" />
+          <entry key="JavaScript" value="67" />
         </counts>
       </usages-collector>
     </session>
@@ -75,8 +75,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="226" column="5" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
+            <state relative-caret-position="4654">
+              <caret line="193" selection-start-line="193" selection-end-line="193" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/api/managerApi.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="416">
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/common/TextFieldContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3354">
+              <caret line="140" column="7" selection-start-line="140" selection-start-column="7" selection-end-line="140" selection-end-column="7" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,8 +105,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
+            <state relative-caret-position="2730">
+              <caret line="113" column="51" selection-start-line="113" selection-start-column="51" selection-end-line="113" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -93,39 +123,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+            <state relative-caret-position="675">
+              <caret line="159" column="59" selection-start-line="159" selection-start-column="59" selection-end-line="159" selection-end-column="59" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1092">
-              <caret line="47" column="31" lean-forward="true" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/specificShop/SpecificShopData.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/actions/shopActions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#267#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -246,7 +247,6 @@
         <option value="$PROJECT_DIR$/src/components/specificShop/SpecificShop.css" />
         <option value="$PROJECT_DIR$/src/reducers/manager.js" />
         <option value="$PROJECT_DIR$/src/components/contactFields/InfiniteFields2.js" />
-        <option value="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" />
         <option value="$PROJECT_DIR$/src/api/managerApi.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/AddShop.js" />
         <option value="$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js" />
@@ -256,9 +256,10 @@
         <option value="$PROJECT_DIR$/src/components/specificShop/InfoColumn.js" />
         <option value="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" />
         <option value="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" />
-        <option value="$PROJECT_DIR$/src/components/common/ShopLine.js" />
-        <option value="$PROJECT_DIR$/src/components/SearchPage.js" />
         <option value="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" />
+        <option value="$PROJECT_DIR$/src/components/common/TextFieldContainer.js" />
+        <option value="$PROJECT_DIR$/src/components/SearchPage.js" />
+        <option value="$PROJECT_DIR$/src/components/common/ShopLine.js" />
         <option value="$PROJECT_DIR$/src/api/apiConstants.js" />
       </list>
     </option>
@@ -290,7 +291,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -415,6 +415,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -665,14 +666,8 @@
       <workItem from="1538151461031" duration="626000" />
       <workItem from="1538172139944" duration="4016000" />
       <workItem from="1538179289893" duration="418000" />
-      <workItem from="1538208618202" duration="3010000" />
-    </task>
-    <task id="LOCAL-00001" summary="sd">
-      <created>1526908926159</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1526908926159</updated>
+      <workItem from="1538208618202" duration="6469000" />
+      <workItem from="1538234858899" duration="672000" />
     </task>
     <task id="LOCAL-00002" summary="sd">
       <created>1526996450528</created>
@@ -1003,11 +998,25 @@
       <option name="project" value="LOCAL" />
       <updated>1538177822895</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="sd">
+      <created>1538217481970</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1538217481970</updated>
+    </task>
+    <task id="LOCAL-00050" summary="sd">
+      <created>1538220624282</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1538220624282</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="405440000" />
+    <option name="totallyTimeSpent" value="409571000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1056,9 +1065,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="sd" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/Drawer/ButtonAppBar.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Drawer/TedooDrawer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1248">
@@ -1172,13 +1178,6 @@
     <entry file="file://$PROJECT_DIR$/src/components/specificShop/InfoLabelContainer.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/TextFieldContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5018">
@@ -1197,13 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1222">
           <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/managerApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -1277,11 +1269,46 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/shopActions.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="4654">
+          <caret line="193" selection-start-line="193" selection-end-line="193" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/managerApi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/TextFieldContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3354">
+          <caret line="140" column="7" selection-start-line="140" selection-start-column="7" selection-end-line="140" selection-end-column="7" />
           <folding>
-            <element signature="e#0#267#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2730">
+          <caret line="113" column="51" selection-start-line="113" selection-start-column="51" selection-end-line="113" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-autosuggest/dist/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -1301,28 +1328,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="132" column="35" selection-start-line="132" selection-start-column="35" selection-end-line="132" selection-end-column="35" />
+        <state relative-caret-position="675">
+          <caret line="159" column="59" selection-start-line="159" selection-start-column="59" selection-end-line="159" selection-end-column="59" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="226" column="5" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="111" column="53" selection-start-line="111" selection-start-column="53" selection-end-line="111" selection-end-column="53" />
         </state>
       </provider>
     </entry>
