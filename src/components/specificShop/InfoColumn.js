@@ -9,6 +9,7 @@ import Input from "@material-ui/core/Input/Input";
 import Button from "@material-ui/core/Button/Button";
 import {withRouter} from "react-router-dom";
 import {Link} from "react-router-dom/umd/react-router-dom";
+import Modal from "@material-ui/core/Modal/Modal";
 
 const typeFromShop = shop => {
     switch (shop.authorized) {
@@ -65,8 +66,16 @@ const imageSourceFromShop = shop => {
 class InfoColumn extends Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {open: false, text: ''};
+        this.state = {open: false, text: '', qrModalOpen: false};
     }
+
+    closeModal = () => {
+        this.setState({qrModalOpen: false});
+    };
+
+    openModal = () => {
+        this.setState({qrModalOpen: true});
+    };
 
     closeWindow = () => {
         this.setState({open: false});
@@ -165,7 +174,8 @@ class InfoColumn extends Component {
 
                     {this.props.shop.qr_code
                     && this.props.shop.qr_code !== 'www.tedooo.com' && this.props.shop.qr_code.length !== 0
-                    && <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}>
+                    && <div className='infoBox' style={{marginTop: 15, marginBottom: 15}}
+                            onClick={this.openModal}>
                         <QRCode value={this.props.shop.qr_code} fgColor='#000000'
                                 bgColor='#ffffff'/>
                     </div>}
@@ -181,7 +191,23 @@ class InfoColumn extends Component {
 
                 </div>
 
-
+                <Modal open={this.state.qrModalOpen} onClose={this.closeModal}>
+                    <div onClick={this.closeModal} style={{
+                        width: '100%',
+                        flexDirection: 'column',
+                        background: '#3CBF95',
+                        height: '100%',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }}>
+                        <QRCode value={this.props.shop.qr_code} fgColor='#000000'
+                                bgColor='#ffffff'
+                                style={{
+                                    width: '90vmin', height: '90vmin',
+                                    alignSelf: 'center'
+                                }}/>
+                    </div>
+                </Modal>
             </div>
         );
     }
