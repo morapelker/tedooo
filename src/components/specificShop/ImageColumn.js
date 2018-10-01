@@ -56,6 +56,11 @@ class ImageColumn extends Component {
         }
     }
 
+    componentWillReceiveProps(props, context) {
+        const bigImgUrl = (props.shop.img_links && props.shop.img_links.length > 0) ? props.shop.img_links[0] : '';
+        this.setState({bigImgUrl});
+    }
+
     render() {
         return (
             <div style={this.props.style}>

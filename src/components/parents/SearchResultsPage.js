@@ -27,6 +27,7 @@ class SearchResultsPage extends Component {
         this.findShops(this.state.page);
         if (this.searchParams.text)
             document.title = 'Tedooo - ' + this.searchParams.text;
+        props.actions.resetTripArray();
     }
 
     findShops = page => {
@@ -37,6 +38,7 @@ class SearchResultsPage extends Component {
             else {
                 this.props.actions.findShopSuccess(shops.data);
                 this.setState({results: shops, loading: false, smallLoading: false});
+                this.props.actions.updateTripArray((page - 1) * MAX_SHOPS, shops.data, this.searchParams, shops.total)
             }
         });
     };
@@ -52,7 +54,7 @@ class SearchResultsPage extends Component {
         }
     };
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps, context) {
         this.reloadShops(nextProps);
     }
 

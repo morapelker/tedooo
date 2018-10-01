@@ -292,7 +292,7 @@ class SearchPage extends Component {
                     />
                 </div>
                 :
-                <div className='searchContainer'>
+                <div className='searchContainer' onClick={()=>{}}>
                     <p/>
                     <h3>Search</h3>
                     <p/>

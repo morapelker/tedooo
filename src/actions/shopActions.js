@@ -5,11 +5,11 @@ import {
     DELETE_FAVORITE_SHOP,
     DELETE_HISTORY_SHOP,
     FIND_SHOP_SUCCESS,
-    ITEM_PLACED,
+    ITEM_PLACED, RESET_TRIP_ARRAY,
     SHOP_ALTERED,
     SHOP_DELETED,
     UPDATE_AVATAR,
-    UPDATE_MY_SHOPS
+    UPDATE_MY_SHOPS, UPDATE_TRIP_ARRAY
 } from "./shopConstants";
 import shopApi from '../api/shopApi';
 
@@ -31,6 +31,19 @@ export function alterShopSuccess(shop) {
     return {
         type: SHOP_ALTERED,
         shop
+    }
+}
+
+export function resetTripArray() {
+    return {
+        type: RESET_TRIP_ARRAY
+    }
+}
+
+export function updateTripArray(startIndex, shops, query, total) {
+    return {
+        type: UPDATE_TRIP_ARRAY,
+        startIndex, shops, query, total
     }
 }
 

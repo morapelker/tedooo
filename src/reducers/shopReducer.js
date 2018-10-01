@@ -1,18 +1,47 @@
 import {
     ADD_SHOP_SUCCESS,
-    FIND_SHOP_SUCCESS,
+    FIND_SHOP_SUCCESS, RESET_TRIP_ARRAY,
     SHOP_ALTERED, SHOP_DELETED,
-    UPDATE_MY_SHOPS
+    UPDATE_MY_SHOPS, UPDATE_TRIP_ARRAY
 } from "../actions/shopConstants";
 import {LOGOUT} from "../actions/authenticationConstants";
 
-export default (state = {results: [], cachedShops: {}, myShops: undefined, pendingShops: undefined, lastAddedId: ''}, action) => {
+export default (state = {
+    results: [],
+    cachedShops: {},
+    myShops: undefined,
+    pendingShops: undefined,
+    lastAddedId: ''
+}, action) => {
     switch (action.type) {
         case ADD_SHOP_SUCCESS: {
             const {shop} = action;
             const cachedShops = Object.assign({}, state.cachedShops);
             cachedShops[shop._id] = shop;
             return Object.assign({}, state, {cachedShops, lastAddedId: shop._id});
+        }
+        case RESET_TRIP_ARRAY: {
+            return Object.assign({}, state, {trip: undefined})
+        }
+        case UPDATE_TRIP_ARRAY: {
+            const {startIndex, query} = action;
+            if (Array.isArray(state.trip)) {
+                const trip = [...state.trip];
+                for (let i = 0; i < action.shops.length; i++) {
+                    if (trip.length > startIndex + i)
+                        trip[i + startIndex] = action.shops[i]._id;
+                }
+                return Object.assign({}, state, {trip, query});
+            } else {
+                const trip = [];
+                for (let i = 0; i < action.total; i++) {
+                    if (i >= action.startIndex && i < action.startIndex + action.shops.length)
+                        trip.push(action.shops[i - action.startIndex]._id);
+                    else
+                        trip.push(undefined);
+                }
+                return Object.assign({}, state, {trip, query});
+            }
         }
         case SHOP_DELETED: {
             const {id} = action;
@@ -21,7 +50,7 @@ export default (state = {results: [], cachedShops: {}, myShops: undefined, pendi
             const myShops = Object.assign([], state.myShops);
             const index = myShops.map(shop => shop._id).indexOf(id);
             if (index >= 0)
-                myShops.splice(index,  1);
+                myShops.splice(index, 1);
             return Object.assign({}, state, {cachedShops, myShops});
         }
         case SHOP_ALTERED: {
@@ -43,7 +72,11 @@ export default (state = {results: [], cachedShops: {}, myShops: undefined, pendi
                 if (shop.authorized === '0') {
                     const index = pendingShops.map(shop => shop._id).indexOf(shop._id);
                     if (index === -1)
-                        pendingShops.push({_id: shop._id, name: shop.name, shop_number: shop.shop_number});
+                        pendingShops.push({
+                            _id: shop._id,
+                            name: shop.name,
+                            shop_number: shop.shop_number
+                        });
                 } else if (pendingShops) {
                     const index = pendingShops.map(shop => shop._id).indexOf(shop._id);
                     if (index !== -1)

@@ -8,6 +8,8 @@ import RefreshIndicator from "../common/RefreshIndicator";
 import './SpecificShop.css'
 import {alterObject, cloneObjectOrUndefined, deepCloneObject} from "../helpers/helpers";
 import {withRouter} from "react-router-dom";
+import TripNavigator from "./TripNavigator";
+import shopApi from "../../api/shopApi";
 
 class SpecificShopPage extends Component {
 
@@ -18,28 +20,53 @@ class SpecificShopPage extends Component {
             editing: false,
             loadingImage: {},
         };
-        const shop = deepCloneObject(this.props.cachedShops[this.props.match.params.id]);
+        this.loadShop(props, 1);
+    }
+
+    componentWillReceiveProps(nextProps, context) {
+        if (this.props.match.params.id !== nextProps.match.params.id)
+            this.loadShop(nextProps, 2);
+    }
+
+    loadShop = (props, type) => {
+        const shop = deepCloneObject(props.cachedShops[props.match.params.id]);
         if (shop) {
             document.title = 'Tedooo - ' + shop.shop_number;
-            Object.assign(this.state, {
+            const obj = {
                 shop,
                 busy: false,
                 favoritesName: shop.name,
                 ownShop: shop.userId === props.authentication.userId
-            });
+            };
+            if (type === 1)
+                Object.assign(this.state, obj);
+            else
+                this.setState(Object.assign({}, obj, {
+                    addingToFavorites: false,
+                    editing: false,
+                    loadingImage: {}
+                }));
         } else {
-            Object.assign(this.state, {
+            const obj = {
                 shop: {},
                 busy: true,
                 favoritesName: '',
                 ownShop: false
-            });
-            this.props.actions.findShopById(this.props.match.params.id).then(() => {
-                const shop = deepCloneObject(this.props.cachedShops[this.props.match.params.id]);
+            };
+            if (type === 1)
+                Object.assign(this.state, obj);
+            else
+                this.setState(Object.assign({}, obj, {
+                    addingToFavorites: false,
+                    editing: false,
+                    loadingImage: {}
+                }));
+            props.actions.findShopById(props.match.params.id).then(() => {
+                const shop = deepCloneObject(this.props.cachedShops[props.match.params.id]);
                 if (shop !== undefined) {
                     document.title = 'Tedooo - ' + shop.shop_number;
                     if (shop.img_links && shop.img_links.length > 0)
-                        this.props.actions.updateAvatar(shop._id, shop.img_links[0]);
+                        props.actions.updateAvatar(shop._id, shop.img_links[0]);
                     this.setState({
                         busy: false,
                         shop,
@@ -54,9 +81,9 @@ class SpecificShopPage extends Component {
                 }
             });
         }
-        if (!this.props.transactions && this.props.authentication.token.length > 0)
-            this.props.transactionActions.loadTransactions(this.props.authentication.token)
-    }
+        if (!props.transactions && props.authentication.token.length > 0)
+            props.transactionActions.loadTransactions(props.authentication.token)
+    };
 
     deleteImage = index => {
         const shop = this.state.shop;
@@ -76,7 +103,6 @@ class SpecificShopPage extends Component {
                 loadingImage: alterObject(this.state.loadingImage, index, false)
             });
         }).catch(err => {
-            console.log(err);
             this.setState({
                 editing: false,
                 loadingImage: alterObject(this.state.loadingImage, index, false)
@@ -105,7 +131,6 @@ class SpecificShopPage extends Component {
                 loadingImage: alterObject(this.state.loadingImage, index, false)
             });
         }).catch(err => {
-            console.log(err);
             this.setState({
                 editing: false,
                 loadingImage: alterObject(this.state.loadingImage, index, false)
@@ -125,7 +150,66 @@ class SpecificShopPage extends Component {
         }
     };
 
+    leftClicked = () => {
+        const curId = this.props.match.params.id;
+        const index = this.props.trip.indexOf(curId);
+        if (this.props.trip[index - 1])
+            this.props.history.replace('/results/' + this.props.trip[index - 1]);
+        else {
+            const query = Object.assign({}, this.props.query);
+            query.$limit = 10;
+            query.$skip = index - 10 < 0 ? 0 : (index - 10);
+            this.setState({busy: true, shop: undefined});
+            shopApi.findShop(query).then(shops => {
+                this.props.actions.findShopSuccess(shops.data);
+                this.props.actions.updateTripArray(query.$skip, shops.data, query, shops.total);
+                if (this.props.trip[index - 1])
+                    this.props.history.replace('/results/' + this.props.trip[index - 1]);
+                else
+                    this.setState({busy: false});
+            });
+        }
+    };
+
+    rightClicked = () => {
+        const curId = this.props.match.params.id;
+        const index = this.props.trip.indexOf(curId);
+        if (this.props.trip[index + 1])
+            this.props.history.replace('/results/' + this.props.trip[index + 1]);
+        else {
+            const query = Object.assign({}, this.props.query);
+            query.$limit = 10;
+            query.$skip = index + 1;
+            this.setState({busy: true, shop: undefined});
+            shopApi.findShop(query).then(shops => {
+                this.props.actions.findShopSuccess(shops.data);
+                this.props.actions.updateTripArray(query.$skip, shops.data, query, shops.total);
+                if (this.props.trip[index + 1])
+                    this.props.history.replace('/results/' + this.props.trip[index + 1]);
+                else
+                    this.setState({busy: false});
+            });
+        }
+    };
+
     render() {
+        let right, left;
+        if (this.props.trip) {
+            left = true;
+            right = true;
+            const curId = this.props.match.params.id;
+            const index = this.props.trip.indexOf(curId);
+            if (index === -1) {
+                left = false;
+                right = false;
+            } else {
+                left = (index !== 0);
+                right = (index !== this.props.trip.length);
+            }
+        } else {
+            left = false;
+            right = false;
+        }
         return (
             <div className={'specificShopContainer'} style={{
                 height: '100%'
@@ -134,6 +218,10 @@ class SpecificShopPage extends Component {
                     <RefreshIndicator/>
                     : this.state.shop === undefined ? 'no data' :
                         <div style={{width: '100%', height: '100%'}}>
+                            {(right || left) &&
+                            <TripNavigator right={right} left={left} leftClicked={this.leftClicked}
+                                           rightClicked={this.rightClicked}/>
+                            }
                             <SpecificShopData imgSelected={this.imageSelected}
                                               addFavoritesAction={this.props.actions.addShopFavorites}
                                               bigImgSrc={this.state.bigImgSrc}
@@ -158,7 +246,9 @@ function mapStateToProps(state) {
     return {
         authentication: state.saved.authentication,
         cachedShops: state.shops.cachedShops,
-        transactions: state.transactions.transactions
+        transactions: state.transactions.transactions,
+        trip: state.shops.trip,
+        query: state.shops.query
     };
 }
 
