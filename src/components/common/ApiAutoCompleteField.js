@@ -58,22 +58,17 @@ function getSuggestionValue(suggestion) {
 
 function getSuggestions(value, suggestions) {
     const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
     let count = 0;
-    return inputLength === 0
-        ? []
-        : suggestions.filter(suggestion => {
+    if (inputValue.length === 0)
+        return [];
+    const arr = inputValue.split(' ');
+    return suggestions.filter(suggestion => {
             if (!suggestion.label)
                 return false;
-            const s = suggestion.label.toLowerCase();
-            const keep =
-                count < 5 && s.includes(inputValue)
-                && s !== inputValue;
-            if (keep) {
-                count += 1;
-            }
-
-            return keep;
+            if (count >= 5)
+                return false;
+            const lCase = suggestion.label.toLowerCase();
+            return arr.every(item => lCase.includes(item));
         });
 }
 

@@ -80,15 +80,19 @@ const stemLine = line => {
 const missingWords = (shop, words) => {
     return words.filter(word => {
         const s = stem(word).toLowerCase();
+        const w = word.toLowerCase();
         if (shop.description && (doesFieldContainStemWord(shop.description, s) ||
-            shop.description.toLowerCase().includes(word.toLowerCase())))
+            shop.description.toLowerCase().includes(w)))
             return false;
-        if (shop.category && (doesFieldContainStemWord(shop.category, s)||
-            shop.category.toLowerCase().includes(word.toLowerCase())))
+        if (shop.category && (doesFieldContainStemWord(shop.category, s) ||
+            shop.category.toLowerCase().includes(w)))
             return false;
-        if (shop.keywords)
-            return !(shop.keywords.some(kw => stemLine(kw).includes(s)));
-        return true;
+        if (shop.keywords && (shop.keywords.some(kw => stemLine(kw).includes(s))))
+            return false;
+        if (shop.city && shop.city.toLowerCase().includes(w))
+            return false;
+        return !(shop.market_name && shop.market_name.toLowerCase().includes(w));
+
     });
 };
 
@@ -169,7 +173,7 @@ class ShopLine extends Component {
                         <span style={{
                             textDecoration: 'line-through',
                         }}
-                            key={index}>{item} {index === mWords.length - 1 ? '' : ', '}</span>)}</span>
+                              key={index}>{item} {index === mWords.length - 1 ? '' : ', '}</span>)}</span>
                 </div>
 
                 {this.props.auth.admin && false &&

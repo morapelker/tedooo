@@ -13,25 +13,7 @@ import * as queryString from "query-string";
 import {debounce, throttle} from "throttle-debounce";
 import managerApi from "../api/managerApi";
 import QrReader from 'react-qr-reader'
-
-function marketNamesFromMarkets(markets) {
-    let marketNames = [];
-    markets.forEach(market => {
-        if (!marketNames.includes(market.name))
-            marketNames.push(market.name);
-    });
-    return marketNames.map(market => ({label: market}));
-}
-
-
-function citiesFromMarkets(markets) {
-    let cities = [];
-    markets.forEach(market => {
-        if (!cities.includes(market.city))
-            cities.push(market.city);
-    });
-    return cities.map(city => ({label: city}));
-}
+import ApiAutoCompleteField from "./common/ApiAutoCompleteField";
 
 class SearchPage extends Component {
     constructor(props, context) {
@@ -43,39 +25,10 @@ class SearchPage extends Component {
             lastCategoryName: '',
             selectedCategoryId: '',
             lastSubCatName: '',
-            generalFields: [
-                {
-                    name: 'text',
-                    placeholder: 'What I\'m looking for',
-                    value: '',
-                    api: true,
-                    type: 'select',
-                    suggestions: props.textSuggestions.items,
-                    selector: this.freeTextChanged,
-                    method: 'type'
-                },
-                {
-                    name: 'marketName',
-                    placeholder: 'Market Name',
-                    value: '',
-                    type: 'select',
-                    suggestions: marketNamesFromMarkets(this.props.manager.markets),
-                    selector: this.marketChanged,
-                },
-                {
-                    name: 'shopNumber',
-                    placeholder: 'Shop Number',
-                    value: ''
-                },
-                {
-                    name: 'city',
-                    placeholder: 'City',
-                    value: '',
-                    type: 'select',
-                    suggestions: citiesFromMarkets(this.props.manager.markets),
-                    selector: this.cityChanged
-                }
-            ], specificFields: [
+            textValue: '',
+            textSuggestions: [],
+            textMethod: '',
+            specificFields: [
                 {
                     name: 'phoneNumber',
                     placeholder: 'Phone Number/WeChat ID',
@@ -89,17 +42,8 @@ class SearchPage extends Component {
         this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
         this.autocompleteSearchThrottled = throttle(500, this.autoComplete);
 
-        this.textChanged = this.textChanged.bind(this);
         this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
-        if (!this.props.session.loadedMarkets) {
-            this.props.managerActions.loadMarkets().then(() => {
-                const generalFields = this.state.generalFields;
-                generalFields[1].suggestions = marketNamesFromMarkets(this.props.manager.markets);
-                generalFields[3].suggestions = citiesFromMarkets(this.props.manager.markets);
-                this.setState({generalFields});
-            });
-        }
     }
 
 
@@ -121,19 +65,6 @@ class SearchPage extends Component {
         });
     }
 
-    textChanged(e) {
-        const index = e.target.id;
-        if (this.state.segStatus === 1) {
-            const generalFields = this.state.generalFields;
-            generalFields[index].value = e.target.value;
-            this.setState({generalFields});
-        } else {
-            const specificFields = this.state.specificFields;
-            specificFields[index].value = e.target.value;
-            this.setState({specificFields});
-        }
-    }
-
     submit() {
         if (this.state.busy)
             return;
@@ -144,28 +75,8 @@ class SearchPage extends Component {
         let searchParams;
         if (this.state.segStatus === 1) {
             searchParams = {};
-            if (this.state.generalFields[0].value.length > 0)
-                searchParams['text'] = this.state.generalFields[0].value;
-            if (this.state.generalFields[1].value.length > 0)
-                searchParams['market_name'] = this.state.generalFields[1].value;
-            if (this.state.generalFields[2].value.length > 0)
-                searchParams['shop_number'] = this.state.generalFields[2].value;
-            if (this.state.generalFields[3].value.length > 0) {
-                const c = this.state.generalFields[3].value.toLowerCase().trim();
-                const suggestions = this.state.generalFields[3].suggestions;
-                let found = false;
-                if (suggestions && suggestions.length > 0) {
-                    for (let i = 0; i < suggestions.length; i++) {
-                        if (suggestions[i].label.toLowerCase() === c) {
-                            found = true;
-                            searchParams['city'] = suggestions[i].label;
-                            break;
-                        }
-                    }
-                }
-                if (!found)
-                    searchParams['city'] = this.state.generalFields[3].value;
-            }
+            if (this.state.textValue.length > 0)
+                searchParams['text'] = this.state.textValue;
         } else
             searchParams = {phoneNumber: this.state.specificFields[0].value};
 
@@ -173,18 +84,6 @@ class SearchPage extends Component {
         const parsed = queryString.stringify(searchParams);
         this.props.history.push("/results?" + parsed);
     }
-
-    cityChanged = (event, {newValue}) => {
-        const generalFields = this.state.generalFields;
-        generalFields[3].value = newValue;
-        this.setState({generalFields});
-    };
-
-    marketChanged = (event, {newValue}) => {
-        const generalFields = this.state.generalFields;
-        generalFields[1].value = newValue;
-        this.setState({generalFields});
-    };
 
     autoComplete = newValue => {
         if (!newValue || newValue.length === 0)
@@ -194,46 +93,44 @@ class SearchPage extends Component {
         this.waitingFor = newValue;
         if (this.cached[newValue]) {
             const arr = this.cached[newValue];
-            const generalFields = this.state.generalFields;
-            generalFields[0].suggestions = [];
+            const textSuggestions = [];
             let counter = 0;
-            const val = generalFields[0].value;
+            const val = this.state.textValue;
             arr.forEach(item => {
                 if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
                     counter++;
-                    generalFields[0].suggestions.push({label: item});
+                    textSuggestions.push({label: item});
                 }
             });
-            this.setState({generalFields});
+            this.setState({textSuggestions});
             return;
         }
         managerApi.loadAutoComplete(newValue).then(arr => {
             if (this.waitingFor === newValue) {
-                const generalFields = this.state.generalFields;
-                generalFields[0].suggestions = [];
+                const textSuggestions = [];
                 let counter = 0;
-                const val = generalFields[0].value;
+                const val = this.state.textValue;
                 this.cached[newValue] = arr;
                 arr.forEach(item => {
                     if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
                         counter++;
-                        generalFields[0].suggestions.push({label: item});
+                        textSuggestions.push({label: item});
                     }
                 });
                 if (this.active)
-                    this.setState({generalFields});
+                    this.setState({textSuggestions});
             }
         });
     };
 
     freeTextChanged = (event, {newValue, method}) => {
-        const generalFields = this.state.generalFields;
-        generalFields[0].value = newValue;
-        generalFields[0].method = method;
         if (method !== 'type')
             this.waitingFor = '';
 
-        this.setState({generalFields}, () => {
+        this.setState({
+            textValue: newValue,
+            textMethod: method
+        }, () => {
             if (method === 'type') {
                 const q = newValue;
                 if (q.length < 5 || q.endsWith('_')) {
@@ -292,7 +189,8 @@ class SearchPage extends Component {
                     />
                 </div>
                 :
-                <div className='searchContainer' onClick={()=>{}}>
+                <div className='searchContainer' onClick={() => {
+                }}>
                     <p/>
                     <h3>Search</h3>
                     <p/>
@@ -318,9 +216,16 @@ class SearchPage extends Component {
                     </div>
 
                     {this.state.segStatus === 1 ?
-                        <TextFieldContainer enterClicked={this.submit}
-                                            textChanged={this.textChanged}
-                                            fields={this.state.generalFields}/> :
+                        <div style={{marginTop: 20}}>
+                            <ApiAutoCompleteField
+                                value={this.state.textValue}
+                                placeholder={'What are you looking for?'}
+                                suggestions={this.state.textSuggestions}
+                                onEnter={this.submit}
+                                method={this.state.textMethod}
+                                onChange={this.freeTextChanged}/>
+                        </div>
+                        :
                         <div>
                             <TextFieldContainer enterClicked={this.submit}
                                                 textChanged={this.textChanged}
