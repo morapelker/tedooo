@@ -33,6 +33,7 @@ const DrawerTitle = (props) => {
             <div style={{display: 'flex'}}>
                 <h3 style={{
                     flex: 1,
+                    color: 'white',
                     marginTop: 10,
                     textAlign: 'center',
                     marginRight: 2,

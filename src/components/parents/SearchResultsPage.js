@@ -33,15 +33,25 @@ class SearchResultsPage extends Component {
     findShops = page => {
         this.searchParams.$skip = (page - 1) * MAX_SHOPS;
         shopApi.findShop(this.searchParams).then(shops => {
-            if (shops.total === 1)
-                this.props.history.replace('results/' + shops.data[0]._id);
-            else {
-                this.props.actions.findShopSuccess(shops.data);
-                this.setState({results: shops, loading: false, smallLoading: false});
-                this.props.actions.updateTripArray((page - 1) * MAX_SHOPS, shops.data, this.searchParams, shops.total)
+            if (this.active) {
+                if (shops.total === 1)
+                    this.props.history.replace('results/' + shops.data[0]._id);
+                else {
+                    this.props.actions.findShopSuccess(shops.data);
+                    this.setState({results: shops, loading: false, smallLoading: false});
+                    this.props.actions.updateTripArray((page - 1) * MAX_SHOPS, shops.data, this.searchParams, shops.total)
+                }
             }
         });
     };
+
+    componentWillMount() {
+        this.active = true;
+    }
+
+    componentWillUnmount() {
+        this.active = false;
+    }
 
     handlePageChange = (page) => {
         if (page !== this.state.page) {
@@ -81,7 +91,7 @@ class SearchResultsPage extends Component {
 
     render() {
         return (
-            <div style={{height: '100%'}}>
+            <div style={{height: '100%', marginTop: 10}}>
                 {this.state.loading ? <RefreshIndicator/> :
                     <GenericShopsPage history={this.props.history}
                                       text={this.searchParams.text}

@@ -33,13 +33,21 @@ const styles = {
     dotContainer: {
         display: 'flex',
         width: 310,
+        cursor: 'pointer',
         marginTop: 10,
         margin: '0 auto',
         justifyContent: 'space-around'
     }
 };
 
+
+
 function ButtonAppBar(props) {
+    const navClick = () => {
+        if (props.history.location.pathname !== '/')
+            props.history.push('/');
+    };
+
     const {classes} = props;
     return (
         <div className={classes.root}>
@@ -49,13 +57,23 @@ function ButtonAppBar(props) {
                                 style={{alignSelf: 'flex-start'}} color="inherit" aria-label="Menu">
                         <MenuIcon/>
                     </IconButton>
-                    <div style={{flex: 1, marginTop: 10, flexDirection: 'column'}}>
-                        <div style={styles.dotContainer}>
+                    <div style={{
+                        flex: 1,
+                        marginTop: 10,
+                        flexDirection: 'column'
+                    }}>
+                        <div style={styles.dotContainer} onClick={navClick}>
                             <span style={styles.dot}/>
                             <span style={styles.dot}/>
                             <span style={styles.dot}/>
                         </div>
-                        <h1 style={{marginTop: 5}}>Tedooo</h1>
+                        <h1 style={{
+                            cursor: 'pointer',
+                            marginTop: 5,
+                            color: 'white',
+                            width: '100%',
+                            textAlign: 'center'
+                        }} onClick={navClick}>Tedooo</h1>
                     </div>
                     <IconButton disabled={true} onClick={props.openMenu}
                                 className={classes.menuButton} color="inherit" aria-label="Menu">

@@ -20,10 +20,11 @@ const styles = {
 
 const TedooDrawer = props => {
     let data = [];
+    data.push({text: 'Home', selector: props.handleNavigation, parameter: '/'});
+
     if (props.auth.token === '')
         data.push({text: 'Login', selector: props.handleNavigation, parameter: '/login'});
 
-    data.push({text: 'Search', selector: props.handleNavigation, parameter: '/'});
     data.push({text: 'Favorites', selector: props.handleNavigation, parameter: '/favorites'});
 
     if (props.auth.token !== ''){

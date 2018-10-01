@@ -1,13 +1,6 @@
 .searchContainer {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
+    max-width: 1000px;
     min-width: 300px;
-}
-
-.segContainer {
-    margin: 0 auto;
-}
-
-Form {
-    margin-top: 20px;
 }

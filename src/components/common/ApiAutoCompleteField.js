@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import {withStyles} from '@material-ui/core/styles';
 import './commonCss.css'
+import {bgColor} from "../../api/apiConstants";
 
 function renderInput(inputProps) {
     const {...other} = inputProps;
@@ -159,7 +160,9 @@ class AutoCompleteField extends React.Component {
                     id: this.props.id,
                     name: this.props.name,
                     style: {
-                        borderRadius: 10,
+                        borderRadius: 0,
+                        borderWidth: 3,
+                        borderColor: bgColor,
                         fontFamily: 'Skia, sans-serif',
                     }
                 }}

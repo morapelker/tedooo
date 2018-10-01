@@ -3,17 +3,32 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../actions/shopActions'
 import * as managerActions from '../actions/manager'
-import TextFieldContainer from "./common/TextFieldContainer";
 import './search.css';
 import {withRouter} from "react-router-dom";
 import RefreshIndicator from "./common/RefreshIndicator";
 import TedooButton from "./common/TedooButton";
-import SubmitButton from "./common/SubmitButton";
 import * as queryString from "query-string";
 import {debounce, throttle} from "throttle-debounce";
 import managerApi from "../api/managerApi";
 import QrReader from 'react-qr-reader'
 import ApiAutoCompleteField from "./common/ApiAutoCompleteField";
+import Button from "@material-ui/core/Button/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import SearchIcon from '@material-ui/icons/Search';
+import {bgColor} from "../api/apiConstants";
+
+const styles = {
+  button: {
+      background: bgColor,
+      borderRadius: 0,
+      '&:focus': {
+          backgroundColor: bgColor,
+      },
+      '&:hover': {
+          backgroundColor: bgColor,
+      },
+  }
+};
 
 class SearchPage extends Component {
     constructor(props, context) {
@@ -35,34 +50,17 @@ class SearchPage extends Component {
                     value: ''
                 }
             ],
-            segStatus: 1,
         };
         this.cached = {};
         this.active = true;
         this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
         this.autocompleteSearchThrottled = throttle(500, this.autoComplete);
 
-        this.specificClicked = this.specificClicked.bind(this);
         this.submit = this.submit.bind(this);
     }
 
-
     componentWillUnmount() {
         this.active = false;
-    }
-
-    generalClicked = () => {
-        this.setState({
-            segStatus: 1,
-            error: false
-        });
-    };
-
-    specificClicked() {
-        this.setState({
-            segStatus: 2,
-            error: false
-        });
     }
 
     submit() {
@@ -72,14 +70,10 @@ class SearchPage extends Component {
             busy: true,
             error: false
         });
-        let searchParams;
-        if (this.state.segStatus === 1) {
-            searchParams = {};
-            if (this.state.textValue.length > 0)
-                searchParams['text'] = this.state.textValue;
-        } else
-            searchParams = {phoneNumber: this.state.specificFields[0].value};
 
+        const searchParams = {};
+        if (this.state.textValue.length > 0)
+            searchParams['text'] = this.state.textValue;
         searchParams.page = 1;
         const parsed = queryString.stringify(searchParams);
         this.props.history.push("/results?" + parsed);
@@ -189,65 +183,37 @@ class SearchPage extends Component {
                     />
                 </div>
                 :
-                <div className='searchContainer' onClick={() => {
+                <div style={{
+                    width: '90%',
+                    margin: '0 auto',
+                    maxWidth: 500,
+                    minWidth: 300
+                }} onClick={() => {
                 }}>
-                    <p/>
-                    <h3>Search</h3>
-                    <p/>
-
-                    <div className='segContainer'>
-                        <TedooButton onClick={this.generalClicked} text={"General"}
-                                     selected={this.state.segStatus === 1}
-                                     selectedTextColor={'#3CBF95'}
-                                     deselectedTextColor={'white'}
-                                     selectedBackground={'white'}
-                                     clearBackground={'#3CBF95'}
-                                     style={{width: 140}}
-                        />
-                        <TedooButton onClick={this.specificClicked} text={"Specific Shop"}
-                                     selected={this.state.segStatus === 2}
-                                     deselectedTextColor={'white'}
-                                     selectedBackground={'white'}
-                                     selectedTextColor={'#3CBF95'}
-                                     clearBackground={'#3CBF95'}
-                                     style={{marginLeft: 10, width: 140}}
-
-                        />
-                    </div>
-
-                    {this.state.segStatus === 1 ?
-                        <div style={{marginTop: 20}}>
+                    <div style={{marginTop: 20}}>
+                        <div style={{display: 'flex'}}>
                             <ApiAutoCompleteField
                                 value={this.state.textValue}
                                 placeholder={'What are you looking for?'}
                                 suggestions={this.state.textSuggestions}
                                 onEnter={this.submit}
+                                style={{flex: 1}}
                                 method={this.state.textMethod}
                                 onChange={this.freeTextChanged}/>
+                            {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
+                                <Button variant="flat" className={this.props.classes.button} onClick={this.submit}>
+                                    <SearchIcon />
+                                </Button>
+                            }
                         </div>
-                        :
-                        <div>
-                            <TextFieldContainer enterClicked={this.submit}
-                                                textChanged={this.textChanged}
-                                                fields={this.state.specificFields}/>
-
-                            <p/>
-                            <TedooButton
-                                clearBackground={'white'}
-                                selected={false}
-                                deselectedTextColor={'#3CBF95'}
-                                onClick={this.startScan}
-                                text={'Scan QR Code'}/>
-                        </div>
-                    }
-                    <p/>
-                    {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
-                        <SubmitButton submit={this.submit}/>
-                    }
-                    {this.state.error &&
-                    <h3 style={{color: 'red', fontWeight: 'normal', marginTop: 10}}>No shops
-                        found</h3>}
-
+                        <p/>
+                        <TedooButton
+                            clearBackground={'white'}
+                            selected={false}
+                            deselectedTextColor={'#3CBF95'}
+                            onClick={this.startScan}
+                            text={'Scan QR Code'}/>
+                    </div>
                 </div>
         );
     }
@@ -269,4 +235,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPage));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPage)));
