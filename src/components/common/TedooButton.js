@@ -24,7 +24,7 @@ const TedooButton = (props) => {
 
 
     return (
-        <Button style={Object.assign({}, defaultStyle, style, props.style)} onClick={props.onClick}
+        <Button style={Object.assign({}, defaultStyle, style, props.style)} onClick={props.onClick} disabled={props.disabled}
                 variant={'raised'}>
             {props.text}
         </Button>

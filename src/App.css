@@ -9,6 +9,22 @@
     height: 80px;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 3pt 2pt #3CBF95;
+}
+
+.inputField:focus {
+    box-shadow: 0 0 3pt 2pt #000000;
+    outline: none;
+}
+
 h1, h2, h3 {
     color: #3CBF95;
     font-family: Skia, sans-serif;

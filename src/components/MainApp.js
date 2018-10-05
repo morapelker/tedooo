@@ -21,6 +21,7 @@ import Register from "./Authentication/Register";
 import Layout from "./helpers/Layout";
 import SettingsPage from "./parents/SettingsPage";
 import StorePage from "./parents/Store/StorePage";
+import Topup from "./parents/TopUp/Topup";
 
 class MainApp extends Component {
     render() {
@@ -63,6 +64,7 @@ class MainApp extends Component {
                                 <Route exact path='/markets' component={Markets}/>
                                 <Route exact path='/about' component={AboutPage}/>
                                 <Route exact path='/layout' component={Layout}/>
+                                <Route exact path='/topup' component={Topup}/>
                                 <Route path='/results/:id' component={SpecificShop}/>
                             </Switch>
                         </div>

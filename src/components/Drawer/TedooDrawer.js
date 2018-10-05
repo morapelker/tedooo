@@ -34,6 +34,7 @@ const TedooDrawer = props => {
     }
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
 
+    data.push({text: 'WeChat TopUp Service', selector: props.handleNavigation, parameter: '/topup'});
     if (props.auth.token !== '') {
         data.push({text: 'Account Settings', selector: props.handleNavigation, parameter: '/settings'});
     }
