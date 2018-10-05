@@ -6,7 +6,6 @@ import TedooButton from "../../common/TedooButton";
 class Stage2 extends Component {
     constructor(props, context) {
         super(props, context);
-        console.log('construct');
         this.state = {
             wechatId: props.wechatId,
             neverEnteredWeChat: props.wechatId === '',

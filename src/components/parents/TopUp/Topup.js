@@ -29,7 +29,7 @@ class Topup extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            stage: 4,
+            stage: 1,
             topUp: true,
             wechatId: '',
             money: ''
