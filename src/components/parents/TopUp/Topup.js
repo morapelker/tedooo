@@ -7,6 +7,7 @@ import Stage2 from "./Stage2";
 import Button from "@material-ui/core/Button/Button";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PaymentStage from "./PaymentStage";
+import SuccessPage from "./SuccessPage";
 
 
 const styles = {
@@ -28,15 +29,31 @@ class Topup extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            stage: 1,
+            stage: 4,
             topUp: true,
             wechatId: '',
             money: ''
         };
+        this.finalize = this.finalize.bind(this);
     }
 
     proceedToStage3 = (wechatId, money) => {
         this.setState({stage: 3, wechatId, money});
+    };
+
+    finalize = card => {
+        const v = this;
+        return new Promise(function (resolve, err) {
+            // setTimeout(resolve.bind(null, 'Request could not be completed'), 1000);
+            setTimeout(() => {
+                resolve.bind(null, 'Request could not be completed');
+                v.setState({stage: 4});
+            }, 1000);
+        });
+    };
+
+    clearPage = topUp => {
+        this.setState({stage: 2, loading: false, wechatId: '', money: '', topUp});
     };
 
     render() {
@@ -59,7 +76,7 @@ class Topup extends Component {
                     <p/>
                 </Collapse>
 
-                {this.state.stage > 1 &&
+                {this.state.stage > 1 && this.state.stage !== 4 &&
                 <Button variant="fab" aria-label="s"
                         className={this.props.classes.button} onClick={() => {
                     this.setState({stage: this.state.stage - 1});
@@ -70,13 +87,19 @@ class Topup extends Component {
                 <TedooButton selected={this.state.stage === 1 || this.state.topUp}
                              selectedBackground={bgColor}
                              selectedTextColor={'white'} text={'Top Up'} onClick={() => {
-                    this.setState(Object.assign({}, {topUp: true}, this.state.stage === 1 ? {stage: 2} : {}));
+                    if (this.state.stage === 4)
+                        this.clearPage(true);
+                    else
+                        this.setState(Object.assign({}, {topUp: true}, this.state.stage === 1 ? {stage: 2} : {}));
                 }}/>
                 <TedooButton style={{marginLeft: 10}}
                              selected={this.state.stage === 1 || !this.state.topUp}
                              selectedBackground={bgColor}
                              selectedTextColor={'white'} text={'Pay Direct'} onClick={() => {
-                    this.setState(Object.assign({}, {topUp: false}, this.state.stage === 1 ? {stage: 2} : {}));
+                    if (this.state.stage === 4)
+                        this.clearPage(false);
+                    else
+                        this.setState(Object.assign({}, {topUp: false}, this.state.stage === 1 ? {stage: 2} : {}));
                 }}/>
                 {this.state.stage === 2 &&
                 <Stage2
@@ -86,8 +109,8 @@ class Topup extends Component {
                     onProceed={this.proceedToStage3}
                 />
                 }
-                {this.state.stage === 3 && <PaymentStage/>}
-
+                {this.state.stage === 3 && <PaymentStage onProceed={this.finalize}/>}
+                {this.state.stage === 4 && <SuccessPage/>}
             </div>
         );
     }
