@@ -19,7 +19,7 @@ class Stage2 extends Component {
         const stage2Invalid = this.state.wechatId === '' || money < 1;
         return (
             <div style={{
-                width: '90vh',
+                width: '90%',
                 height: 500,
                 maxWidth: 600,
                 margin: 'auto',

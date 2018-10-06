@@ -102,13 +102,16 @@ class PaymentStage extends Component {
                                    style={{borderRadius: 7, marginLeft: 5, flex: 1}}/>
                         </div>
                     </div>
-                    <Cards
-                        number={this.state.number}
-                        name={this.state.name}
-                        expiry={this.state.expiry}
-                        cvc={this.state.cvc}
-                        focused={this.state.focused}
-                    />
+                    <div style={{margin: 'auto', marginTop: 10}}>
+                        <Cards
+                            number={this.state.number}
+                            name={this.state.name}
+                            expiry={this.state.expiry}
+                            cvc={this.state.cvc}
+                            focused={this.state.focused}
+                        />
+                    </div>
+
                 </div>
                 {this.state.error && <h4 style={{
                     marginTop: 10,

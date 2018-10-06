@@ -5,6 +5,8 @@ const CategoryBox = props => {
     return (
         <div style={{
             width: '30vmin',
+            minWidth: 150,
+            minHeight: 150,
             marginTop: 10,
             height: '30vmin',
             maxWidth: 300,

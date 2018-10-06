@@ -26,6 +26,8 @@ const style = {
         flexDirection: 'column',
         width: '30vmin',
         marginTop: 10,
+        minWidth: 150,
+        minHeight: 150,
         maxWidth: 300,
         background: '#e6e6e6',
         cursor: 'pointer'
@@ -85,11 +87,11 @@ class ShopLine extends Component {
         ));
         let height1, height2;
 
-        if (this.props.shop.description && this.props.shop.description.length === 0) {
+        if (!this.props.shop.description || this.props.shop.description.length === 0) {
             height1 = 120;
             height2 = 0;
         } else {
-            if (this.props.shop.category && this.props.shop.category.length === 0) {
+            if (!this.props.shop.category || this.props.shop.category.length === 0) {
                 height1 = 0;
                 height2 = 120;
             } else {
