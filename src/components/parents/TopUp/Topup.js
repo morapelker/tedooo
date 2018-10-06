@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import TedooButton from "../../common/TedooButton";
-import {bgColor} from "../../../api/apiConstants";
+import {bgColor, URL} from "../../../api/apiConstants";
 import Collapse from "@material-ui/core/Collapse/Collapse";
 import Stage2 from "./Stage2";
 import Button from "@material-ui/core/Button/Button";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PaymentStage from "./PaymentStage";
 import SuccessPage from "./SuccessPage";
+import {bindActionCreators} from "redux";
+import {fetchPendingRequestsCount} from "../../../actions/manager";
 
 
 const styles = {
@@ -43,12 +45,38 @@ class Topup extends Component {
 
     finalize = card => {
         const v = this;
-        return new Promise(function (resolve, err) {
-            // setTimeout(resolve.bind(null, 'Request could not be completed'), 1000);
-            setTimeout(() => {
-                resolve.bind(null, 'Request could not be completed');
-                v.setState({stage: 4});
-            }, 1000);
+        return new Promise(function (resolve, reject) {
+            try {
+                fetch(
+                    URL + 'topup/', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': v.props.authentication.token
+                        },
+                        body: JSON.stringify({
+                            card,
+                            topUp: v.state.topUp,
+                            wechatId: v.state.wechatId,
+                            money: v.state.money
+                        })
+                    }
+                ).then(response => {
+                    if (!response.ok) {
+                        reject('error');
+                    } else {
+                        response.json().then(res => {
+                            resolve(res);
+                            v.setState({stage: 4});
+                            v.props.moneyAction[0](v.props.authentication.token);
+                        });
+                    }
+                }).catch(err => {
+                    reject(err);
+                });
+            } catch (error) {
+                reject(error);
+            }
         });
     };
 
@@ -122,8 +150,10 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps() {
-    return {};
+function mapDispatchToProps(dispatch) {
+    return {
+        moneyAction: bindActionCreators([fetchPendingRequestsCount], dispatch)
+    };
 }
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Topup));

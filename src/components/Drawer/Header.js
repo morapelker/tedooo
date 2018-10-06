@@ -32,7 +32,7 @@ const styles = {
     },
     rootContent: {
         paddingBottom: 10,
-    },dialogLabel: {
+    }, dialogLabel: {
         textAlign: 'center',
         fontSize: '1.2em',
         color: '#3CBF95',
@@ -76,8 +76,11 @@ class Header extends Component {
         const {classes} = this.props;
         return (
             <div>
-                <ButtonAppBar history={this.props.history} openMenu={this.openMenu} />
-                <TedooDrawer logout={this.handleOpen} handleNavigation={this.handleNavigation} title={this.props.title} auth={this.props.auth} open={this.state.open} closeMenu={this.closeMenu} />
+                <ButtonAppBar history={this.props.history} openMenu={this.openMenu}/>
+                <TedooDrawer pendingCount={this.props.pendingCount}
+                             logout={this.handleOpen} handleNavigation={this.handleNavigation}
+                             title={this.props.title} auth={this.props.auth} open={this.state.open}
+                             closeMenu={this.closeMenu}/>
                 <Dialog
                     open={this.state.logoutOpen}
                     onClose={this.handleClose}

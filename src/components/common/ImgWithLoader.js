@@ -7,11 +7,14 @@ const ImgWithLoader = (props) => {
         <Img style={props.style}
              src={props.src}
              alt={props.alt || ''}
-             loader={<RefreshIndicator style={{
-                marginTop: 10,
-                 marginLeft: 10,
-                 marginRight: 10,
-             }} size={props.size || 50} />} />
+             loader={<div style={props.style}>
+                 <RefreshIndicator style={{
+                     margin: 'auto',
+                     marginTop: 10,
+                     marginLeft: 10,
+                     marginRight: 10,
+                 }} size={props.size || 50} />
+             </div>} />
     );
 };
 

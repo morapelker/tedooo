@@ -10,7 +10,6 @@ import {alterObject, cloneObjectOrUndefined, deepCloneObject} from "../helpers/h
 import {withRouter} from "react-router-dom";
 import TripNavigator from "./TripNavigator";
 import shopApi from "../../api/shopApi";
-import {bgColor} from "../../api/apiConstants";
 
 class SpecificShopPage extends Component {
 
@@ -214,7 +213,6 @@ class SpecificShopPage extends Component {
         return (
             <div className={'specificShopContainer'} style={{
                 height: '100%',
-                background: bgColor
             }}>
                 {this.state.busy ?
                     <RefreshIndicator/>

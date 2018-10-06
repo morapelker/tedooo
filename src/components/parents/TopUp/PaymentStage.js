@@ -68,7 +68,7 @@ class PaymentStage extends Component {
             <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
                 <div style={{display: 'flex', width: '100%', flexWrap: 'wrap', marginTop: 20}}>
                     <div style={{flex: 1, minWidth: 300, marginRight: 10, alignSelf: 'center'}}>
-                        <Input className={'inputField'} name={'name'}
+                        <input className={'inputField'} name={'name'}
                                onKeyUp={this.handleInputChange}
                                onFocus={this.handleInputFocus}
                                onBlur={this.blurred}

@@ -16,18 +16,19 @@ import Button from "@material-ui/core/Button/Button";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SearchIcon from '@material-ui/icons/Search';
 import {bgColor} from "../api/apiConstants";
+import CategoryBox from "./common/CategoryBox";
 
 const styles = {
-  button: {
-      background: bgColor,
-      borderRadius: 0,
-      '&:focus': {
-          backgroundColor: bgColor,
-      },
-      '&:hover': {
-          backgroundColor: bgColor,
-      },
-  }
+    button: {
+        background: bgColor,
+        borderRadius: 0,
+        '&:focus': {
+            backgroundColor: bgColor,
+        },
+        '&:hover': {
+            backgroundColor: bgColor,
+        },
+    }
 };
 
 class SearchPage extends Component {
@@ -37,9 +38,6 @@ class SearchPage extends Component {
         this.state = {
             error: false,
             busy: false,
-            lastCategoryName: '',
-            selectedCategoryId: '',
-            lastSubCatName: '',
             textValue: '',
             textSuggestions: [],
             textMethod: '',
@@ -165,6 +163,21 @@ class SearchPage extends Component {
     handleError = () => {
     };
 
+    catClicked = text => {
+        const searchParams = {text};
+        searchParams.page = 1;
+        const parsed = queryString.stringify(searchParams);
+        this.props.history.push("/results?" + parsed);
+    };
+    /*
+    *
+                            {/*<TedooButton*/
+    /*clearBackground={'white'}*/
+    /*selected={false}*/
+    /*deselectedTextColor={'#3CBF95'}*/
+    /*onClick={this.startScan}*/
+
+    /*text={'Scan QR Code'}/>*/
 
     render() {
         return (
@@ -186,12 +199,13 @@ class SearchPage extends Component {
                 <div style={{
                     width: '90%',
                     margin: '0 auto',
-                    maxWidth: 500,
-                    minWidth: 300
+                    minWidth: 300,
+                    height: '90%',
+                    overflow: 'auto'
                 }} onClick={() => {
                 }}>
-                    <div style={{marginTop: 20}}>
-                        <div style={{display: 'flex'}}>
+                    <div style={{marginTop: 20, width: '100%'}}>
+                        <div style={{display: 'flex', maxWidth: 500, margin: 'auto'}}>
                             <ApiAutoCompleteField
                                 value={this.state.textValue}
                                 placeholder={'What are you looking for?'}
@@ -201,18 +215,24 @@ class SearchPage extends Component {
                                 method={this.state.textMethod}
                                 onChange={this.freeTextChanged}/>
                             {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
-                                <Button variant="flat" className={this.props.classes.button} onClick={this.submit}>
-                                    <SearchIcon />
+                                <Button variant="flat" className={this.props.classes.button}
+                                        onClick={this.submit}>
+                                    <SearchIcon/>
                                 </Button>
                             }
                         </div>
                         <p/>
-                        <TedooButton
-                            clearBackground={'white'}
-                            selected={false}
-                            deselectedTextColor={'#3CBF95'}
-                            onClick={this.startScan}
-                            text={'Scan QR Code'}/>
+                        <div style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: 'space-evenly',
+                            width: '100%',
+                        }}>
+                            {Array.isArray(this.props.manager.categories) && this.props.manager.categories.map((category, index) =>
+                                <CategoryBox src={category.img} key={index}
+                                             onClick={this.catClicked}
+                                             name={category.name}/>)}
+                        </div>
                     </div>
                 </div>
         );

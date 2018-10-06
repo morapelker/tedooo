@@ -11,6 +11,7 @@ import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop/AddShop";
 import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
+import {fetchPendingRequestsCount, loadCategories} from "../actions/manager";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
@@ -22,8 +23,17 @@ import Layout from "./helpers/Layout";
 import SettingsPage from "./parents/SettingsPage";
 import StorePage from "./parents/Store/StorePage";
 import Topup from "./parents/TopUp/Topup";
+import MoneyAdmin from "./parents/MoneyAdmin";
 
 class MainApp extends Component {
+    constructor(props, context) {
+        super(props, context);
+        if (props.pendingCount === -1 && props.state.token !== '')
+            props.managerActions[0](props.state.token);
+        if (!props.loadedCategories)
+            props.managerActions[1]();
+    }
+
     render() {
         const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
 
@@ -36,12 +46,13 @@ class MainApp extends Component {
                         display: 'flex',
                         flexDirection: 'column'
                     }}>
-                        <Header logOut={this.props.actions.logOut} history={this.props.history}
+                        <Header pendingCount={this.props.pendingCount}
+                                logOut={this.props.actions.logOut} history={this.props.history}
                                 auth={this.props.state} title={title}/>
                         <MediaQuery query="(min-width: 801px)">
                             <div style={{
                                 marginTop: 50
-                            }} />
+                            }}/>
                         </MediaQuery>
                         <div style={{
                             flex: 1,
@@ -65,6 +76,7 @@ class MainApp extends Component {
                                 <Route exact path='/about' component={AboutPage}/>
                                 <Route exact path='/layout' component={Layout}/>
                                 <Route exact path='/topup' component={Topup}/>
+                                <Route exact path='/money' component={MoneyAdmin}/>
                                 <Route path='/results/:id' component={SpecificShop}/>
                             </Switch>
                         </div>
@@ -80,13 +92,16 @@ class MainApp extends Component {
 
 function mapStateToProps(state) {
     return {
-        state: state.saved.authentication
+        state: state.saved.authentication,
+        pendingCount: state.session.pendingMoneyRequest,
+        loadedCategories: state.session.loadedCategories
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        actions: bindActionCreators(actions, dispatch),
+        managerActions: bindActionCreators([fetchPendingRequestsCount, loadCategories], dispatch),
     };
 }
 

@@ -1,11 +1,13 @@
 import {
     LOAD_CATEGORY_SUCCESS,
-    LOAD_MARKETS_SUCCESS
+    LOAD_MARKETS_SUCCESS, PENDING_LOADED
 } from "../actions/managerConstants";
 
-export default (state = {loadedMarkets: false, loadedCategories: false,
+export default (state = {pendingMoneyRequest: -1, loadedMarkets: false, loadedCategories: false,
     suggestions: {requestId: 0, items: []}}, action) => {
     switch (action.type) {
+        case PENDING_LOADED:
+            return Object.assign({}, state, {pendingMoneyRequest: action.count});
         case LOAD_MARKETS_SUCCESS:
             if (state.loadedMarkets)
                 return state;

@@ -40,7 +40,7 @@ class Markets extends Component {
             city: this.state.fields[2].value
         };
         console.log(market);
-        this.props.actions.createMarket(market).then(mar=>{
+        this.props.actions.createMarket(market, this.props.auth.token).then(mar=>{
             console.log(mar);
             this.setState({
                 busy: false

@@ -2,7 +2,7 @@ import {
     CREATE_MARKET_SUCCESS,
     LOAD_CATEGORY_SUCCESS,
     LOAD_MARKETS_SUCCESS,
-    LOAD_STORE_SUCCESS
+    LOAD_STORE_SUCCESS, PENDING_LOADED
 } from "./managerConstants";
 import managerApi from "../api/managerApi";
 
@@ -30,10 +30,26 @@ export function loadStoreSuccess(items) {
     }
 }
 
-export function createMarket(market) {
+export function moneyPendingLoaded(count) {
+    return {
+        type: PENDING_LOADED, count
+    }
+}
+
+export function createMarket(market, token) {
     return function(dispatch) {
-        return managerApi.createMarket(market).then(market => {
+        return managerApi.createMarket(market, token).then(market => {
             dispatch(createMarketSuccess(market));
+        }).catch(err=>{
+            throw err;
+        });
+    };
+}
+
+export function fetchPendingRequestsCount(token) {
+    return function(dispatch) {
+        return managerApi.fetchPendingMoneyCount(token).then(count => {
+            dispatch(moneyPendingLoaded(count));
         }).catch(err=>{
             throw err;
         });

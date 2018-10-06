@@ -3,6 +3,7 @@ import {ListItem, ListItemText, List, Drawer} from "@material-ui/core";
 import DrawerTitle from "./DrawerTitle";
 import {withStyles} from '@material-ui/core/styles';
 import {Divider} from "@material-ui/core/index";
+import Badge from "@material-ui/core/Badge/Badge";
 
 const styles = {
     divider: {
@@ -15,6 +16,13 @@ const styles = {
         opacity: 1,
         fontFamily: 'Skia, sans-serif',
         fontWeight: 'lighter'
+    },
+    badge: {
+        left: 5,
+        top: 5,
+    },
+    margin: {
+        marginLeft: 10
     }
 };
 
@@ -27,21 +35,37 @@ const TedooDrawer = props => {
 
     data.push({text: 'Favorites', selector: props.handleNavigation, parameter: '/favorites'});
 
-    if (props.auth.token !== ''){
+    if (props.auth.token !== '') {
         data.push({text: 'My Shops', selector: props.handleNavigation, parameter: '/myshops'});
         data.push({text: 'Add Shop', selector: props.handleNavigation, parameter: '/addshop'});
         data.push({text: 'Store', selector: props.handleNavigation, parameter: '/store'});
     }
     data.push({text: 'History', selector: props.handleNavigation, parameter: '/history'});
 
-    data.push({text: 'WeChat TopUp Service', selector: props.handleNavigation, parameter: '/topup'});
+    data.push({
+        text: 'WeChat TopUp Service',
+        selector: props.handleNavigation,
+        parameter: '/topup'
+    });
     if (props.auth.token !== '') {
-        data.push({text: 'Account Settings', selector: props.handleNavigation, parameter: '/settings'});
+        data.push({
+            text: 'Account Settings',
+            selector: props.handleNavigation,
+            parameter: '/settings'
+        });
     }
     data.push({text: 'About Us', selector: props.handleNavigation, parameter: '/about'});
 
     if (props.auth.token !== '') {
         data.push({text: 'Logout', selector: props.logout});
+    }
+
+    if (props.auth.token !== '' && (!props.auth.admin || props.pendingCount > 0)) {
+        data.push({
+            text: 'Pending Money Requests',
+            selector: props.handleNavigation,
+            parameter: '/money'
+        });
     }
 
     if (props.auth.admin === true) {
@@ -51,8 +75,14 @@ const TedooDrawer = props => {
             parameter: '/markets'
         });
         data.push({text: 'Pending Shops', selector: props.handleNavigation, parameter: '/pending'});
+        data.push({
+            text: 'Manage Categories',
+            selector: props.handleNavigation,
+            parameter: '/categories'
+        });
     }
-    const { classes } = props;
+
+    const {classes} = props;
 
 
     return (
@@ -67,9 +97,11 @@ const TedooDrawer = props => {
                 <List style={{paddingTop: 0}}>
                     {data.map((item, index) => {
                         if (item.parameter === '/markets') {
-                            return <div key={index} style={{display: 'flex', flexDirection: 'column'}}>
-                                <h3 style={{color: 'red', textAlign: 'center', marginTop: 10}}>Admin actions</h3>
-                                <ListItem button divider={false}  onClick={() => {
+                            return <div key={index}
+                                        style={{display: 'flex', flexDirection: 'column'}}>
+                                <h3 style={{color: 'red', textAlign: 'center', marginTop: 10}}>Admin
+                                    actions</h3>
+                                <ListItem button divider={false} onClick={() => {
                                     item.selector(item.parameter);
                                 }}>
                                     <ListItemText classes={{
@@ -78,8 +110,24 @@ const TedooDrawer = props => {
                                 </ListItem>
                                 <Divider style={styles.divider}/>
                             </div>
+                        } else if (item.parameter === '/money') {
+                            return <div key={index}
+                                style={{display: 'flex', flexDirection: 'column'}}>
+                                <Badge color={"secondary"} classes={{badge: classes.badge}} badgeContent={props.pendingCount}>
+                                    <ListItem classes={{root: classes.margin}} divider={false} button onClick={() => {
+                                        item.selector(item.parameter);
+                                    }}>
+                                        <ListItemText classes={{
+                                            primary: classes.primary
+                                        }} primary={item.text}/>
+                                    </ListItem>
+                                </Badge>
+
+                                <Divider style={styles.divider}/>
+                            </div>
                         } else {
-                            return <div key={index} style={{display: 'flex', flexDirection: 'column'}}>
+                            return <div key={index}
+                                        style={{display: 'flex', flexDirection: 'column'}}>
                                 <ListItem divider={false} button onClick={() => {
                                     item.selector(item.parameter);
                                 }}>

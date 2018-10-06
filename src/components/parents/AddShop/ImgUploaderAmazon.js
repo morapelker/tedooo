@@ -102,7 +102,7 @@ function getOrientation(file, callback) {
     reader.readAsArrayBuffer(file);
 }
 
-const resize = (file, callback) => {
+export const resize = (file, callback) => {
     // Ensure it's an image
     if (file.type.match(/image.*/)) {
         const reader = new FileReader();

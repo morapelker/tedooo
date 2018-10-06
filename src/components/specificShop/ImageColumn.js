@@ -18,7 +18,7 @@ const styles = {
     imgList: {
         marginLeft: 10,
         marginRight: 10,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         display: 'flex',
         flexWrap: 'nowrap',
         overflowX: 'auto',
@@ -71,7 +71,7 @@ class ImageColumn extends Component {
                         width: '100%',
                         flexDirection: 'column-reverse',
                         display: 'flex',
-                        backgroundColor: 'black',
+                        backgroundColor: 'white',
                     }}
                     >
 

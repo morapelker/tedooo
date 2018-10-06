@@ -13,7 +13,7 @@ function renderInput(inputProps) {
     const {...other} = inputProps;
     return (
         <input
-            className={'inputField'}
+            className={'inputField2'}
             autoComplete={'off'}
             name={'search'}
             {...other}
