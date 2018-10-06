@@ -58,6 +58,7 @@ class Stage2 extends Component {
                             marginLeft: 10
                         }}>{this.props.topUp ? 'TopUp Amount:' : 'Transfer Amount: '}</span>
                             <input value={this.state.money}
+                                   type={'tel'}
                                    style={{
                                        width: 100,
                                        borderWidth: 1,
