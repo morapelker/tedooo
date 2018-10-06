@@ -87,7 +87,7 @@ class Topup extends Component {
     render() {
         return (
             <div style={{
-                width: '90vmin',
+                width: '90%',
                 maxWidth: 600,
                 height: '100%',
                 position: 'relative',
