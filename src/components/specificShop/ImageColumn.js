@@ -71,7 +71,7 @@ class ImageColumn extends Component {
                         width: '100%',
                         flexDirection: 'column-reverse',
                         display: 'flex',
-                        backgroundColor: 'white',
+                        backgroundColor: 'black',
                     }}
                     >
 

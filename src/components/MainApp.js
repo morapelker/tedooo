@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import SearchPage from "./SearchPage";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import SearchResults from "./parents/SearchResultsPage";
-import SpecificShop from "./specificShop/SpecificShopPage";
+import SpecificShop from "./specificShopNew/SpecificShopPage";
 import HistoryPage from "./parents/HistoryPage";
 import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";

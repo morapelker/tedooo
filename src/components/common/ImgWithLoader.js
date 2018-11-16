@@ -7,14 +7,11 @@ const ImgWithLoader = (props) => {
         <Img style={props.style}
              src={props.src}
              alt={props.alt || ''}
-             loader={<div style={props.style}>
-                 <RefreshIndicator style={{
-                     margin: 'auto',
-                     marginTop: 10,
-                     marginLeft: 10,
-                     marginRight: 10,
-                 }} size={props.size || 50} />
-             </div>} />
+             decode={false}
+             {...props.otherProps}
+             loader={<div style={{...props.style, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                 <RefreshIndicator size={props.size || 20} color={props.color || 'black'} />
+             </div>}/>
     );
 };
 
