@@ -9,14 +9,15 @@ const defaultStyle = {
     }
 ;
 
-const TedooButton = (props) => {
-    const style = props.selected ? {
-        backgroundColor: props.selectedBackground,
-        color: props.selectedTextColor,
+const TedooButton = ({selected, selectedBackground, selectedTextColor,
+                         style, onClick, disabled, text, deselectedTextColor, clearBackground}) => {
+    const s = selected ? {
+        backgroundColor: selectedBackground,
+        color: selectedTextColor,
 
     } : {
-        backgroundColor: props.clearBackground,
-        color: props.deselectedTextColor,
+        backgroundColor: clearBackground,
+        color: deselectedTextColor,
         borderWidth: 1,
         borderStyle: 'solid',
         boxShadow: 'none',
@@ -24,9 +25,9 @@ const TedooButton = (props) => {
 
 
     return (
-        <Button style={Object.assign({}, defaultStyle, style, props.style)} onClick={props.onClick} disabled={props.disabled}
+        <Button style={Object.assign({}, defaultStyle, s, style)} onClick={onClick} disabled={disabled}
                 variant={'raised'}>
-            {props.text}
+            {text}
         </Button>
     );
 };

@@ -4,10 +4,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 const starIcon = 'star';
 const emptyIcon = ['far', 'star'];
 
-const CommentStars = () => {
+const CommentStars = ({stars, setStars}) => {
 
     const [hoverStars, setHoverStars] = useState(3);
-    const [stars, setStars] = useState(3);
 
     const starClicked = index => () => {
         setStars(index);
@@ -34,11 +33,12 @@ const CommentStars = () => {
                     }} color={'#ffcc00'} key={index}
                                             onClick={starClicked(index)}
                                             style={{cursor: 'pointer'}}
-                                            icon={stars >= index ? starIcon : emptyIcon}
+                                            icon={stars > index ? starIcon : emptyIcon}
                                             size={'2x'}/>;
                 }
 
             })}
+            <span>{hoverStars === -1 ? stars : hoverStars + 1}/5</span>
         </div>
     );
 };

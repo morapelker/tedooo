@@ -103,6 +103,28 @@ class ShopApi {
 
     }
 
+    static async postReview(review, token) {
+        let response;
+        try {
+            response = await fetch(
+                URL + 'review/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(review)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't add");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async getReviewsForShop(id, userId, page, reqId) {
         try {
             const userIdQuery = (userId && userId.length > 1) ? '&userId=' + userId : '';

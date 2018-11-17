@@ -17,7 +17,7 @@ const SpecificShopData = (props) => {
                             admin={props.admin}
                             ownShop={props.ownShop} shop={props.shop} />
             </div>
-            <CommentSection userId={props.userId} shop={props.shop} />
+            <CommentSection token={props.token} userId={props.userId} shop={props.shop} />
         </div>
     );
 };
