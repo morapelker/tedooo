@@ -1,7 +1,6 @@
 .root {
     width: 100%;
     display: flex;
-    flex-direction: column;
 }
 
 .comment_root {
@@ -29,6 +28,9 @@
         width: 100%;
     }
 
+    .root {
+        flex-direction: column;
+    }
     .main_image {
         max-height: 200px;
     }
