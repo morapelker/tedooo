@@ -136,7 +136,6 @@ class InfoColumn extends Component {
                             width: 40,
                             height: 40,
                             objectFit: 'contain',
-                            marginRight: 10,
                         }}/>
                     </Link>}
                     {this.props.admin && <SubmitButton image={'authorize'} submit={() => {

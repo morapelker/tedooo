@@ -1,0 +1,67 @@
+.shop_line_root {
+    width: 200px;
+    height: 250px;
+    background: white;
+    border: 1px solid #c3c3c3;
+    border-radius: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.shop_line_number {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.shop_line_stars {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.shop_line_cat {
+    width: 90%;
+    text-align: left;
+    font-size: 0.8em;
+    white-space: nowrap;
+    font-weight: bold;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+.rating {
+    margin-left: 5px;
+    color: blue;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.shop_line_cat.empty {
+    visibility: hidden;
+}
+
+.shop_line_image {
+    width: 80%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.shop_line_city {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.shop_line_desc {
+    flex: 1;
+    font-size: 0.8em;
+    text-align: left;
+    width: 90%;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-top: 5px;
+}

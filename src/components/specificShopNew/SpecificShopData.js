@@ -2,13 +2,14 @@ import React from 'react';
 import ImageColumn from "./ImageColumn";
 import './SpecificShop.css';
 import InfoColumn from "../specificShop/InfoColumn";
+import CommentSection from "./Comments/CommentSection";
 
 const SpecificShopData = (props) => {
     return (
         <div style={{
             width: '100%',
             height: '100%',
-            position: 'relative',
+            overflowY: 'scroll',
         }}>
             <div className={'root'}>
                 <ImageColumn shop={props.shop}/>
@@ -16,6 +17,7 @@ const SpecificShopData = (props) => {
                             admin={props.admin}
                             ownShop={props.ownShop} shop={props.shop} />
             </div>
+            <CommentSection userId={props.userId} shop={props.shop} />
         </div>
     );
 };

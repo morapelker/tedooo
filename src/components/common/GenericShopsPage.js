@@ -3,7 +3,7 @@ import Pagination from "react-js-pagination";
 import RefreshIndicator from "./RefreshIndicator";
 import {connect} from "react-redux";
 import '../common/commonCss.css';
-import ShopLineV2 from "./ShopLineV2";
+import ShopLine from "./ShopLine";
 
 const shopSelected = (props, shop) => {
     return () => {
@@ -27,32 +27,31 @@ const GenericShopsPage = (props) => {
     const words = props.text ? filterIrrelevant(props.text).split(' ').filter(item => item.length > 1) : undefined;
 
     return (
-        <div style={{
-            width: '100%',
-            height: '100%',
-            overflowY: 'auto',
-            display: 'flex',
-            flexDirection: 'column',
-        }}>
-            <h3>{props.name}</h3>
+        <div style={{width: '100%', height: '100%', overflowY: 'auto', overflowX: 'hidden'}}>
             <div style={{
-                display: 'flex',
                 width: '100%',
-                flexWrap: 'wrap',
-                justifyContent: 'space-evenly'
+                display: 'flex',
+                flexDirection: 'column',
             }}>
-                {props.shops && props.shops.length > 0 ? props.shops.map((result, index) => (
-                    <div key={index}>
-                        <ShopLineV2
+                <h3>{props.name}</h3>
+                <div style={{
+                    display: 'flex',
+                    width: '100%',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center'
+                }}>
+                    {props.shops && props.shops.length > 0 ? props.shops.map((result, index) => (
+                        <ShopLine
                             words={words}
                             auth={props.auth}
+                            key={index}
                             deleteMethod={props.deleteMethod} parentData={props}
                             shopSelected={shopSelected}
                             shop={result}/>
-                        <br/>
-                    </div>
-                )) : <h2>No shops</h2>}
-                <p/>
+                    )) : <h2>No shops</h2>}
+                    {[1,1,1,1,1,1,1,1,1].map((_, index) => <div className={'empty_grid_filler'} key={index} />)}
+                </div>
+                <div style={{height: 40}} />
                 {props.totalPages > MAX_SHOPS &&
                 <Pagination
                     hideFirstLastPages={false}
@@ -64,10 +63,10 @@ const GenericShopsPage = (props) => {
                     onChange={props.pageChangeSelector}
                 />
                 }
-                <p/>
+                {props.smallLoading && <RefreshIndicator/>}
             </div>
-            {props.smallLoading && <RefreshIndicator/>}
         </div>
+
     );
 };
 

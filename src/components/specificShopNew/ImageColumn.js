@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import './SpecificShop.css';
 import ImgWithLoader from "../common/ImgWithLoader";
 
 const maxSmallImages = 6;
@@ -16,17 +15,16 @@ class ImageColumn extends Component {
     }
 
     componentWillReceiveProps(props, context) {
-        const bigImgUrl = (props.shop.img_links && props.shop.img_links.length > 0) ? props.shop.img_links[0] : '';
-        this.setState({bigImgUrl});
+        if (props.shop && this.props.shop && props.shop._id !== this.props.shop._id) {
+            const bigImgUrl = (props.shop.img_links && props.shop.img_links.length > 0) ? props.shop.img_links[0] : '';
+            this.setState({bigImgUrl, startIndex: 0});
+        }
     }
 
     render() {
         return (
-            <div style={{
-                width: '50%',
-                maxHeight: 70 * maxSmallImages,
-                display: 'flex',
-                paddingTop: 50
+            <div className={'specific_image_root'} style={{
+                maxHeight: 70 * maxSmallImages + 200,
             }}>
                 <div style={{
                     display: 'flex',
@@ -35,6 +33,18 @@ class ImageColumn extends Component {
                     alignItems: 'center',
                     flexDirection: 'column'
                 }}>
+                    {this.state.startIndex === 0 ? <div style={{width: 40, height: 40}} /> :
+                    <img style={{
+                        width: 40,
+                        height: 40,
+                        alignSelf: 'center',
+                        cursor: 'pointer',
+                        background: 'white'
+                    }} src={'/assets/up.png'} alt={''} onClick={() => {
+                        this.setState(prevState => ({
+                            startIndex: prevState.startIndex - maxSmallImages < 0 ? 0 : prevState.startIndex - maxSmallImages
+                        }));
+                    }} />}
                     {this.props.shop.img_links.map((link, index) => {
                         if (index >= this.state.startIndex && index < this.state.startIndex + maxSmallImages) {
                             return <ImgWithLoader key={index} style={{
@@ -43,7 +53,6 @@ class ImageColumn extends Component {
                                 marginTop: (index === this.state.startIndex ? 0 : 10),
                                 borderRadius: 10,
                                 border: '1px black solid',
-                                marginLeft: 12,
                                 objectFit: 'cover',
                                 borderWidth: 3,
                                 cursor: 'pointer',
@@ -61,9 +70,21 @@ class ImageColumn extends Component {
                         }
                         return undefined;
                     })}
+                    {this.state.startIndex + maxSmallImages < this.props.shop.img_links.length  &&
+                    <img style={{
+                        width: 40,
+                        height: 40,
+                        marginTop: 10,
+                        alignSelf: 'center',
+                        background: 'white',
+                        cursor: 'pointer'
+                    }} src={'/assets/down.png'} alt={''} onClick={() => {
+                        this.setState(prevState => ({
+                          startIndex: prevState.startIndex + maxSmallImages
+                        }));
+                    }} />}
                 </div>
-                <ImgWithLoader
-                    style={{flexShrink: 1, objectFit: 'contain', maxHeight: 400, overflow: 'hidden'}}
+                <ImgWithLoader otherProps={{className: 'main_image'}}
                     src={this.state.bigImgUrl}/>
             </div>
         );

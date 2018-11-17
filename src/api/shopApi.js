@@ -103,6 +103,20 @@ class ShopApi {
 
     }
 
+    static async getReviewsForShop(id, userId, page, reqId) {
+        try {
+            const userIdQuery = (userId && userId.length > 1) ? '&userId=' + userId : '';
+            let response = await fetch(
+                URL + 'review?shop=' + id + userIdQuery + '&skip=' + (page * 10)
+            );
+            const json = await response.json();
+            json.reqId = reqId;
+            return json;
+        } catch (error) {
+            return [];
+        }
+    }
+
     static async findShopById(id) {
         try {
             let response = await fetch(
@@ -215,7 +229,7 @@ class ShopApi {
                 body: data
             });
             return await res.json();
-        }catch (err) {
+        } catch (err) {
             throw Error('couldn\'t upload image');
         }
     }
@@ -269,10 +283,13 @@ class ShopApi {
             );
             if (response.ok)
                 return await response.json();
-        } catch (err) {}
-        return {total: 0, skip: 0,
+        } catch (err) {
+        }
+        return {
+            total: 0, skip: 0,
             limit: 10,
-            data: []};
+            data: []
+        };
     }
 }
 

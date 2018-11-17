@@ -1,0 +1,8 @@
+.comment_stars_container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.comment_root {
+}

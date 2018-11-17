@@ -73,6 +73,7 @@ class SpecificShopPage extends Component {
                         favoritesName: shop.name,
                         ownShop: shop.userId === props.authentication.userId,
                     });
+
                 } else {
                     this.setState({
                         shop: undefined,
@@ -232,6 +233,7 @@ class SpecificShopPage extends Component {
                                               token={this.props.authentication.token}
                                               transactions={this.props.transactions}
                                               edit={this.state.editing}
+                                              userId={this.props.authentication.userId}
                                               editSelector={this.startEditing}
                                               placeImageSelector={this.placeImage}
                                               deleteImage={this.deleteImage}

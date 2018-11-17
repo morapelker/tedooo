@@ -5,12 +5,10 @@ import ReactTooltip from 'react-tooltip'
 const TipView = (props) => {
     return (
         <div style={props.style}>
-            <a data-tip={props.text} data-event='click focus'>
-                <Button style={{width: '100%', height: '100%', backgroundColor: props.color}} className={'btnSubmit'}
-                        variant={'fab'}>
-                    <img src={props.imageSource} alt='' id='tipImg'/>
-                </Button>
-            </a>
+            <Button style={{width: '100%', height: '100%', backgroundColor: props.color}} className={'btnSubmit'}
+                    variant={'fab'}>
+                <img src={props.imageSource} alt='' id='tipImg'/>
+            </Button>
             <ReactTooltip globalEventOff='click' place='left' type={props.type} effect='solid' />
         </div>
     );
