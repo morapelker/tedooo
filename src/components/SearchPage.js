@@ -200,8 +200,6 @@ class SearchPage extends Component {
                     width: '90%',
                     margin: '0 auto',
                     minWidth: 300,
-                    height: '90%',
-                    overflow: 'auto'
                 }} onClick={() => {
                 }}>
                     <div style={{marginTop: 20, width: '100%'}}>

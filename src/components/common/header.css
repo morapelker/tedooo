@@ -1,0 +1,10 @@
+.logo_parent {
+    min-width: 15%;
+    height: 100%;
+}
+
+.action_parent,
+.search_parent {
+    flex: 1;
+    height: 100%;
+}

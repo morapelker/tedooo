@@ -9,13 +9,12 @@ import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
 import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop/AddShop";
-import Header from "./Drawer/Header";
+import Header from "./common/Header";
 import * as actions from "../actions/authenticationActions";
 import {fetchPendingRequestsCount, loadCategories} from "../actions/manager";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
-import MediaQuery from "react-responsive";
 import Markets from "./parents/Markets";
 import AboutPage from "./parents/AboutPage";
 import Register from "./Authentication/Register";
@@ -36,51 +35,40 @@ class MainApp extends Component {
 
     render() {
         const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
-
+/*
+* <Header pendingCount={this.props.pendingCount}
+                                    logOut={this.props.actions.logOut} history={this.props.history}
+                                    auth={this.props.state} title={title}/>*/
         return (
-            <div style={{height: '100%'}}>
+            <div style={{height: '100%', width: '100%'}}>
                 <BrowserRouter>
                     <div style={{
-                        width: '100%',
                         height: '100%',
-                        display: 'flex',
-                        flexDirection: 'column'
+                        overflow: 'auto',
+                        width: '100%',
                     }}>
-                        <Header pendingCount={this.props.pendingCount}
-                                logOut={this.props.actions.logOut} history={this.props.history}
-                                auth={this.props.state} title={title}/>
-                        <MediaQuery query="(min-width: 801px)">
-                            <div style={{
-                                marginTop: 50
-                            }}/>
-                        </MediaQuery>
-                        <div style={{
-                            flex: 1,
-                            overflow: 'hidden'
-                        }}>
-                            <Switch>
-                                <Route exact path='/' component={SearchPage}/>
-                                <Route exact path='/results' component={SearchResults}/>
-                                <Route exact path='/history' component={HistoryPage}/>
-                                <Route exact path='/favorites' component={FavoritesPage}/>
-                                <Route exact path='/login' component={AuthenticationPage}/>
-                                <Route exact path='/register' component={Register}/>
-                                <Route exact path='/myshops' component={MyShops}/>
-                                <Route exact path='/addshop' component={AddShop}/>
-                                <Route exact path='/addshop/:id' component={AddShop}/>
-                                <Route exact path='/pending' component={PendingShops}/>
-                                <Route exact path='/store' component={StorePage}/>
-                                <Route exact path='/settings' component={SettingsPage}/>
-                                <Route exact path='/categories' component={Categories}/>
-                                <Route exact path='/markets' component={Markets}/>
-                                <Route exact path='/about' component={AboutPage}/>
-                                <Route exact path='/layout' component={Layout}/>
-                                <Route exact path='/topup' component={Topup}/>
-                                <Route exact path='/money' component={MoneyAdmin}/>
-                                <Route path='/results/:id' component={SpecificShop}/>
-                            </Switch>
-                        </div>
-
+                        <Header />
+                        <Switch>
+                            <Route exact path='/' component={SearchPage}/>
+                            <Route exact path='/results' component={SearchResults}/>
+                            <Route exact path='/history' component={HistoryPage}/>
+                            <Route exact path='/favorites' component={FavoritesPage}/>
+                            <Route exact path='/login' component={AuthenticationPage}/>
+                            <Route exact path='/register' component={Register}/>
+                            <Route exact path='/myshops' component={MyShops}/>
+                            <Route exact path='/addshop' component={AddShop}/>
+                            <Route exact path='/addshop/:id' component={AddShop}/>
+                            <Route exact path='/pending' component={PendingShops}/>
+                            <Route exact path='/store' component={StorePage}/>
+                            <Route exact path='/settings' component={SettingsPage}/>
+                            <Route exact path='/categories' component={Categories}/>
+                            <Route exact path='/markets' component={Markets}/>
+                            <Route exact path='/about' component={AboutPage}/>
+                            <Route exact path='/layout' component={Layout}/>
+                            <Route exact path='/topup' component={Topup}/>
+                            <Route exact path='/money' component={MoneyAdmin}/>
+                            <Route path='/results/:id' component={SpecificShop}/>
+                        </Switch>
                     </div>
 
                 </BrowserRouter>
