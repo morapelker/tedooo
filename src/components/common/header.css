@@ -3,8 +3,12 @@
     height: 100%;
 }
 
-.action_parent,
+.action_parent {
+    min-width: 15%;
+    height: 100%;
+}
 .search_parent {
     flex: 1;
     height: 100%;
+    display: flex;
 }

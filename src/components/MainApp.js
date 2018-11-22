@@ -34,7 +34,7 @@ class MainApp extends Component {
     }
 
     render() {
-        const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
+        // const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
 /*
 * <Header pendingCount={this.props.pendingCount}
                                     logOut={this.props.actions.logOut} history={this.props.history}
