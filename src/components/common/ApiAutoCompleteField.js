@@ -7,17 +7,24 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import {withStyles} from '@material-ui/core/styles';
 import './commonCss.css'
-import {bgColor} from "../../api/apiConstants";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function renderInput(inputProps) {
+const renderInput = (onEnter) => (inputProps) => {
     const {...other} = inputProps;
     return (
-        <input
-            className={'inputField2'}
-            autoComplete={'off'}
-            name={'search'}
-            {...other}
-        />
+        <div className="inner-addon right-addon" style={{display: 'flex', alignItems: 'center'}}>
+            <FontAwesomeIcon
+                style={{position: 'absolute', right: 20, color: 'gray', cursor: 'pointer'}}
+                onClick={onEnter}
+                icon={'search'}/>
+            <input
+                className={'inputField2'}
+                autoComplete={'off'}
+                name={'search'}
+                {...other}
+            />
+        </div>
+
     );
 }
 
@@ -64,13 +71,13 @@ function getSuggestions(value, suggestions) {
         return [];
     const arr = inputValue.split(' ');
     return suggestions.filter(suggestion => {
-            if (!suggestion.label)
-                return false;
-            if (count >= 5)
-                return false;
-            const lCase = suggestion.label.toLowerCase();
-            return arr.every(item => lCase.includes(item));
-        });
+        if (!suggestion.label)
+            return false;
+        if (count >= 5)
+            return false;
+        const lCase = suggestion.label.toLowerCase();
+        return arr.every(item => lCase.includes(item));
+    });
 }
 
 const styles = theme => ({
@@ -134,7 +141,7 @@ class AutoCompleteField extends React.Component {
                     suggestionsList: classes.suggestionsList,
                     suggestion: classes.suggestion,
                 }}
-                renderInputComponent={renderInput}
+                renderInputComponent={renderInput(this.props.onEnter)}
                 suggestions={this.state.suggestions}
                 onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
@@ -160,9 +167,8 @@ class AutoCompleteField extends React.Component {
                     id: this.props.id,
                     name: this.props.name,
                     style: {
-                        borderRadius: 0,
-                        borderWidth: 3,
-                        borderColor: bgColor,
+                        borderWidth: 1,
+                        borderColor: '#c3c3c3',
                         fontFamily: 'Skia, sans-serif',
                     }
                 }}

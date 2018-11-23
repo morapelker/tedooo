@@ -36,19 +36,20 @@ h1, h2, h3 {
 }
 
 .inputField::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #3CBF95;
+    color: #777777;
     opacity: 1; /* Firefox */
 }
 
 .inputField2::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #3CBF95;
+    color: #777777;
     opacity: 1; /* Firefox */
 }
 
 .inputField2 {
     width: 100%;
     display: block;
-    padding: 0.375rem 0.75rem;
+    padding: 10px;
+    border-radius: 20px;
     font-size: 1rem;
     line-height: 1.5;
     color: #495057;

@@ -213,9 +213,7 @@ class SpecificShopPage extends Component {
             right = false;
         }
         return (
-            <div className={'specificShopContainer'} style={{
-                height: '100%',
-            }}>
+            <div className={'specificShopContainer'}>
                 {this.state.busy ?
                     <RefreshIndicator/>
                     : this.state.shop === undefined ? 'no data' :

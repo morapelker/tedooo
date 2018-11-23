@@ -32,9 +32,11 @@ const GenericShopsPage = (props) => {
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
+                paddingLeft: '10%',
+                paddingRight: '10%'
             }}>
-                <h3>{props.name}</h3>
-                <div style={{
+                <h3 style={{textAlign: 'left', marginLeft: '10%', padding: '30px 0 10px 0'}}>{props.name}</h3>
+                <div className={'shop_list'} style={{
                     display: 'flex',
                     width: '100%',
                     flexWrap: 'wrap',

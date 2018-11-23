@@ -17,8 +17,6 @@ ul.pagination {
 .empty_grid_filler {
     width:200px;
     height:0;
-    margin-left: 5px;
-    margin-right: 5px;
 }
 
 ul.pagination li {

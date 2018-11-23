@@ -1,0 +1,58 @@
+.logo_parent1 {
+    min-width: 15%;
+    height: 100%;
+    display: flex;
+    padding-left: 10px;
+    align-items: center;
+}
+
+.logo_parent2 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.action_parent {
+    height: 100%;
+    display: flex;
+    padding-right: 30px;
+    padding-left: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.search_parent {
+    flex: 1;
+    height: 100%;
+    display: flex;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyph {
+    position: absolute;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0;
+}
+
+.right-addon .glyphicon {
+    right: 0;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}

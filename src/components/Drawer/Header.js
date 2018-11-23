@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
-import ButtonAppBar from "./ButtonAppBar";
+import {bgColor} from "../../api/apiConstants";
+import ApiAutoCompleteField from "../common/ApiAutoCompleteField";
+import managerApi from "../../api/managerApi";
+import * as queryString from "query-string";
+import {debounce, throttle} from "throttle-debounce";
+import './header.css';
+import {withRouter} from "react-router";
+import ImgWithLoader from "../common/ImgWithLoader";
 import TedooDrawer from "./TedooDrawer";
-import {withRouter} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
-    DialogTitle,
+    DialogTitle
 } from "@material-ui/core";
-import withStyles from "@material-ui/core/styles/withStyles";
 import TedooButton from "../common/TedooButton";
+import withStyles from "@material-ui/core/styles/withStyles";
+
 
 const styles = {
     paper: {
@@ -40,23 +48,40 @@ const styles = {
     }
 };
 
+
+const dotStyle = {
+    backgroundColor: 'white',
+    width: 30,
+    height: 30,
+    marginLeft: 10,
+    borderRadius: 40
+};
+
 class Header extends Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = {open: false, logoutOpen: false};
+    constructor(props) {
+        super(props);
+        this.state = {
+            textValue: '',
+            textSuggestions: [],
+            textMethod: '',
+            logoutOpen: false,
+            open: false
+        };
+        this.cached = {};
+        this.active = true;
+        this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
+        this.autocompleteSearchThrottled = throttle(500, this.autoComplete);
     }
 
-    handleNavigation = url => {
-        this.props.history.push(url);
-    };
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.textValue !== this.props.textValue) {
+            this.setState({textValue: nextProps.textValue});
+        }
+    }
 
-    openMenu = () => {
-        this.setState({open: true});
-    };
-
-    closeMenu = () => {
-        this.setState({open: false});
-    };
+    componentWillUnmount() {
+        this.active = false;
+    }
 
     logout = () => {
         this.props.logOut();
@@ -72,15 +97,225 @@ class Header extends Component {
         this.setState({logoutOpen: false})
     };
 
+    openMenu = () => {
+        this.setState({open: true});
+    };
+
+    closeMenu = () => {
+        this.setState({open: false});
+    };
+
+    submit = () => {
+        this.setState({
+            error: false
+        });
+
+        const searchParams = {};
+        if (this.state.textValue.length > 0)
+            searchParams['text'] = this.state.textValue;
+        searchParams.page = 1;
+        const parsed = queryString.stringify(searchParams);
+        this.props.history.push("/results?" + parsed);
+    };
+
+    autoComplete = newValue => {
+        if (!newValue || newValue.length === 0)
+            return;
+        if (newValue.endsWith(' '))
+            newValue = newValue.trim() + '_';
+        this.waitingFor = newValue;
+        if (this.cached[newValue]) {
+            const arr = this.cached[newValue];
+            const textSuggestions = [];
+            let counter = 0;
+            const val = this.state.textValue;
+            arr.forEach(item => {
+                if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
+                    counter++;
+                    textSuggestions.push({label: item});
+                }
+            });
+            this.setState({textSuggestions});
+            return;
+        }
+        managerApi.loadAutoComplete(newValue).then(arr => {
+            if (this.waitingFor === newValue) {
+                const textSuggestions = [];
+                let counter = 0;
+                const val = this.state.textValue;
+                this.cached[newValue] = arr;
+                arr.forEach(item => {
+                    if (counter < 5 && item.toLowerCase() !== val.toLowerCase()) {
+                        counter++;
+                        textSuggestions.push({label: item});
+                    }
+                });
+                if (this.active)
+                    this.setState({textSuggestions});
+            }
+        });
+    };
+
+    freeTextChanged = (event, {newValue, method}) => {
+        if (method !== 'type')
+            this.waitingFor = '';
+
+        this.setState({
+            textValue: newValue,
+            textMethod: method
+        }, () => {
+            if (method === 'type') {
+                const q = newValue;
+                if (q.length < 5 || q.endsWith('_')) {
+                    this.autocompleteSearchThrottled(q);
+                } else {
+                    this.autocompleteSearchDebounced(q);
+                }
+            }
+        });
+
+    };
+
+    handleNavigation = url => {
+        this.props.history.push(url);
+    };
+
     render() {
-        const {classes} = this.props;
+        const {classes, favCount, user} = this.props;
         return (
-            <div>
-                <ButtonAppBar history={this.props.history} openMenu={this.openMenu}/>
+            <div style={{
+                borderBottom: '1px solid #c3c3c3',
+                width: '100%',
+                height: 200,
+                background: 'white',
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
                 <TedooDrawer pendingCount={this.props.pendingCount}
                              logout={this.handleOpen} handleNavigation={this.handleNavigation}
                              title={this.props.title} auth={this.props.auth} open={this.state.open}
                              closeMenu={this.closeMenu}/>
+                <div style={{width: '100%', flex: 1, background: bgColor}}>
+                    <ImgWithLoader src={'/assets/banner.png'}
+                                   style={{height: '100%', width: '100%', objectFit: 'cover'}}/>
+                </div>
+                <div style={{width: '100%', flex: 1, display: 'flex'}}>
+                    <div className={'logo_parent1'}
+                         style={{background: bgColor, cursor: 'pointer'}}>
+                        <FontAwesomeIcon color={'#fff'}
+                                         onClick={this.openMenu}
+                                         icon={'bars'}
+                                         size={'2x'}/>
+                        <div className={'logo_parent2'} onClick={() => {
+                            this.props.history.push('/');
+                            this.setState({textValue: ''});
+                        }}>
+                            <span
+                                style={{
+                                    color: 'white',
+                                    fontSize: '2em',
+                                    fontWeight: 100
+                                }}>Tedooo</span>
+                            <div style={{display: 'flex', justifyContent: 'center', marginTop: 10}}>
+                                <div style={dotStyle}/>
+                                <div style={dotStyle}/>
+                                <div style={dotStyle}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={'search_parent'}
+                         style={{display: 'flex', justifyContent: 'center'}}>
+                        <div style={{
+                            display: 'flex',
+                            flex: 1,
+                            maxWidth: 500,
+                            alignItems: 'flex-end',
+                            paddingBottom: 20
+                        }}>
+                            <ApiAutoCompleteField
+                                value={this.state.textValue}
+                                placeholder={'What are you looking for?'}
+                                suggestions={this.state.textSuggestions}
+                                onEnter={this.submit}
+                                method={this.state.textMethod}
+                                onChange={this.freeTextChanged}/>
+                        </div>
+                    </div>
+                    <div className={'action_parent'}>
+                        <FontAwesomeIcon
+                            onClick={() => {
+                                if (!user)
+                                    this.props.history.push('login');
+                            }}
+                            color={'#c6c6c6'}
+                                         style={{cursor: 'pointer'}}
+                                         icon={['far', 'user']} size={'2x'}/>
+                        {user ? <div style={{
+                                marginLeft: 10,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                color: '#000',
+                                fontWeight: 'bold',
+                                alignItems: 'flex-start',
+                            }}>
+                                <span>{user}</span>
+                                <span onClick={this.handleOpen} style={{
+                                    cursor: 'pointer',
+                                }}>Sign Out</span>
+                            </div> :
+                            <div
+                                onClick={() => {
+                                    this.props.history.push('login');
+                                }}
+                                style={{
+                                    marginLeft: 10,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    color: '#000',
+                                    cursor: 'pointer',
+                                    alignItems: 'flex-start'
+                                }}>
+                                <span>{'Sign In | Join Free'}</span>
+                                <span>My Tedooo</span>
+                            </div>
+                        }
+
+                        <FontAwesomeIcon
+                            onClick={() => {
+                                this.props.history.push('/favorites')
+                            }}
+                            color={'#c6c6c6'}
+                            style={{cursor: 'pointer', marginLeft: 20}}
+                            icon={['far', 'heart']} size={'2x'}/>
+                        <div onClick={() => {
+                            this.props.history.push('/favorites')
+                        }} style={{
+                            marginLeft: 10,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            color: '#000',
+                            alignItems: 'flex-start',
+                            cursor: 'pointer'
+                        }}>
+                            <div style={{
+                                color: 'white',
+                                background: 'gray',
+                                width: 30,
+                                height: 30,
+                                borderRadius: 15,
+                                padding: 5,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <span>{favCount || 0}</span>
+                            </div>
+                            <span>Favorites</span>
+                        </div>
+                        <span style={{marginLeft: 10}}> | Get the App</span>
+                        <span style={{marginLeft: 10}}> | English</span>
+                    </div>
+                </div>
                 <Dialog
                     open={this.state.logoutOpen}
                     onClose={this.handleClose}

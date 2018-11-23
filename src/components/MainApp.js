@@ -9,7 +9,7 @@ import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
 import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop/AddShop";
-import Header from "./common/Header";
+import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
 import {fetchPendingRequestsCount, loadCategories} from "../actions/manager";
 import {bindActionCreators} from 'redux';
@@ -31,25 +31,40 @@ class MainApp extends Component {
             props.managerActions[0](props.state.token);
         if (!props.loadedCategories)
             props.managerActions[1]();
+        this.state = {
+            textValue: ''
+        }
     }
 
+    categoryClicked = text => {
+        this.setState({textValue: text});
+    };
+
     render() {
-        // const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
-/*
-* <Header pendingCount={this.props.pendingCount}
-                                    logOut={this.props.actions.logOut} history={this.props.history}
-                                    auth={this.props.state} title={title}/>*/
+        const title = (this.props.state.token === '' ? 'Tedooo' : ((this.props.state.admin ? 'Hey boss ' : 'Welcome back ') + this.props.state.firstName) + '!');
+        /*
+        * <Header pendingCount={this.props.pendingCount}
+                                            logOut={this.props.actions.logOut} history={this.props.history}
+                                            auth={this.props.state} title={title}/>*/
         return (
-            <div style={{height: '100%', width: '100%'}}>
+            <div style={{height: '100%', width: '100%', display: 'flex', flexDirection: 'column'}}>
                 <BrowserRouter>
                     <div style={{
                         height: '100%',
                         overflow: 'auto',
                         width: '100%',
                     }}>
-                        <Header />
+                        <Header
+                            user={this.props.state && this.props.state.firstName}
+                            textValue={this.state.textValue} title={title}
+                                pendingCount={this.props.pendingCount}
+                                favCount={Array.isArray(this.props.favorites) && this.props.favorites.length}
+                                logOut={this.props.actions.logOut} history={this.props.history}
+                                auth={this.props.state}
+                        />
                         <Switch>
-                            <Route exact path='/' component={SearchPage}/>
+                            <Route exact path='/' render={() => <SearchPage
+                                catClicked={this.categoryClicked}/>}/>
                             <Route exact path='/results' component={SearchResults}/>
                             <Route exact path='/history' component={HistoryPage}/>
                             <Route exact path='/favorites' component={FavoritesPage}/>
@@ -72,6 +87,7 @@ class MainApp extends Component {
                     </div>
 
                 </BrowserRouter>
+                <div style={{height: 30}} />
             </div>
 
         );
@@ -82,7 +98,8 @@ function mapStateToProps(state) {
     return {
         state: state.saved.authentication,
         pendingCount: state.session.pendingMoneyRequest,
-        loadedCategories: state.session.loadedCategories
+        loadedCategories: state.session.loadedCategories,
+        favorites: state.saved.local.favorites
     };
 }
 

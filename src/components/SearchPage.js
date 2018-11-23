@@ -5,16 +5,12 @@ import * as actions from '../actions/shopActions'
 import * as managerActions from '../actions/manager'
 import './search.css';
 import {withRouter} from "react-router-dom";
-import RefreshIndicator from "./common/RefreshIndicator";
 import TedooButton from "./common/TedooButton";
 import * as queryString from "query-string";
 import {debounce, throttle} from "throttle-debounce";
 import managerApi from "../api/managerApi";
 import QrReader from 'react-qr-reader'
-import ApiAutoCompleteField from "./common/ApiAutoCompleteField";
-import Button from "@material-ui/core/Button/Button";
 import withStyles from "@material-ui/core/styles/withStyles";
-import SearchIcon from '@material-ui/icons/Search';
 import {bgColor} from "../api/apiConstants";
 import CategoryBox from "./common/CategoryBox";
 
@@ -167,17 +163,11 @@ class SearchPage extends Component {
         const searchParams = {text};
         searchParams.page = 1;
         const parsed = queryString.stringify(searchParams);
+        this.props.catClicked && this.props.catClicked(text);
         this.props.history.push("/results?" + parsed);
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     };
-    /*
-    *
-                            {/*<TedooButton*/
-    /*clearBackground={'white'}*/
-    /*selected={false}*/
-    /*deselectedTextColor={'#3CBF95'}*/
-    /*onClick={this.startScan}*/
-
-    /*text={'Scan QR Code'}/>*/
 
     render() {
         return (
@@ -196,34 +186,13 @@ class SearchPage extends Component {
                     />
                 </div>
                 :
-                <div style={{
-                    width: '90%',
-                    margin: '0 auto',
-                    minWidth: 300,
-                }} onClick={() => {
+                <div className={'category_root'} onClick={() => {
                 }}>
                     <div style={{marginTop: 20, width: '100%'}}>
-                        <div style={{display: 'flex', maxWidth: 500, margin: 'auto'}}>
-                            <ApiAutoCompleteField
-                                value={this.state.textValue}
-                                placeholder={'What are you looking for?'}
-                                suggestions={this.state.textSuggestions}
-                                onEnter={this.submit}
-                                style={{flex: 1}}
-                                method={this.state.textMethod}
-                                onChange={this.freeTextChanged}/>
-                            {this.state.busy ? <RefreshIndicator style={{margin: '0 auto'}}/> :
-                                <Button variant="flat" className={this.props.classes.button}
-                                        onClick={this.submit}>
-                                    <SearchIcon/>
-                                </Button>
-                            }
-                        </div>
-                        <p/>
+                        <h4 style={{textAlign: 'left', marginLeft: 50}}>My Markets</h4>
                         <div style={{
                             display: 'flex',
                             flexWrap: 'wrap',
-                            justifyContent: 'space-evenly',
                             width: '100%',
                         }}>
                             {Array.isArray(this.props.manager.categories) && this.props.manager.categories.map((category, index) =>

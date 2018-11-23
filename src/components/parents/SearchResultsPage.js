@@ -91,7 +91,7 @@ class SearchResultsPage extends Component {
 
     render() {
         return (
-            <div style={{height: '100%', marginTop: 10}}>
+            <div style={{marginTop: 10}}>
                 {this.state.loading ? <RefreshIndicator/> :
                     <GenericShopsPage history={this.props.history}
                                       text={this.searchParams.text}
