@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import SearchPage from "./SearchPage";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import SearchResults from "./parents/SearchResultsPage";
-import SpecificShop from "./specificShopNew/SpecificShopPage";
+import SpecificShop from "./specificShop/SpecificShopPage";
 import HistoryPage from "./parents/HistoryPage";
 import FavoritesPage from "./parents/FavoritesPage";
 import AuthenticationPage from "./Authentication/AuthenticationPage";
@@ -55,7 +55,8 @@ class MainApp extends Component {
                         width: '100%',
                     }}>
                         <Header
-                            user={this.props.state && this.props.state.firstName}
+                            userName={this.props.state && this.props.state.firstName}
+                            avatar={this.props.state && this.props.state.avatar}
                             textValue={this.state.textValue} title={title}
                                 pendingCount={this.props.pendingCount}
                                 favCount={Array.isArray(this.props.favorites) && this.props.favorites.length}
@@ -84,10 +85,11 @@ class MainApp extends Component {
                             <Route exact path='/money' component={MoneyAdmin}/>
                             <Route path='/results/:id' component={SpecificShop}/>
                         </Switch>
+                        <div style={{height: 30}} />
+
                     </div>
 
                 </BrowserRouter>
-                <div style={{height: 30}} />
             </div>
 
         );

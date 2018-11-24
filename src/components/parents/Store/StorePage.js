@@ -9,8 +9,8 @@ import MessageBox from "../../common/MessageBox";
 import CartControl from "../../specificShop/CartControl";
 
 class StorePage extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         if (!props.items) {
             this.state = {loading: true, buying: 0};
             props.actions.loadStoreItems().then(()=>{

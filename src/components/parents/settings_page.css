@@ -1,0 +1,33 @@
+.settings_root {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.settings_top_area {
+    display: flex;
+    align-items: center;
+}
+
+.username_label{
+    font-size: 1.5em;
+    margin-left: 30px;
+}
+
+.avatar_container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar {
+    min-width: 100%;
+    min-height: 100%;
+    cursor: pointer;
+    object-fit: cover;
+}

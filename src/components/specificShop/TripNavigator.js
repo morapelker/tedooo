@@ -25,7 +25,7 @@ const styles = {
 
 const TripNavigator = props => {
     return (
-        <div style={{display: 'flex', margin: 'auto', width: 150}}>
+        <div style={{display: 'flex', margin: 'auto', marginTop: 10, width: 150}}>
             <Button disabled={!props.left} variant="fab" aria-label="s" className={props.classes.button} onClick={props.leftClicked}>
                 <img src={'/assets/left.png'} alt={''} style={{width: '100%', height: '100%'}}/>
             </Button>

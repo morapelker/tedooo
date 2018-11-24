@@ -49,8 +49,8 @@ class authenticationApi {
         const token = responseJson.accessToken;
         const decoded = jwt_decode(token);
         const firstName = decoded.username;
-        const { userId, admin } = decoded;
-        return {token, firstName, admin, userId};
+        const {userId, admin, avatar} = decoded;
+        return {token, firstName, admin, userId, avatar};
     }
 }
 

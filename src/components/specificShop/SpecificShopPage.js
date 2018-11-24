@@ -73,6 +73,7 @@ class SpecificShopPage extends Component {
                         favoritesName: shop.name,
                         ownShop: shop.userId === props.authentication.userId,
                     });
+
                 } else {
                     this.setState({
                         shop: undefined,
@@ -212,9 +213,7 @@ class SpecificShopPage extends Component {
             right = false;
         }
         return (
-            <div className={'specificShopContainer'} style={{
-                height: '100%',
-            }}>
+            <div className={'specificShopContainer'}>
                 {this.state.busy ?
                     <RefreshIndicator/>
                     : this.state.shop === undefined ? 'no data' :
@@ -228,10 +227,12 @@ class SpecificShopPage extends Component {
                                               bigImgSrc={this.state.bigImgSrc}
                                               ownShop={this.state.ownShop}
                                               admin={this.props.authentication.admin}
+                                              history={this.props.history}
                                               actions={this.props.actions}
                                               token={this.props.authentication.token}
                                               transactions={this.props.transactions}
                                               edit={this.state.editing}
+                                              userId={this.props.authentication.userId}
                                               editSelector={this.startEditing}
                                               placeImageSelector={this.placeImage}
                                               deleteImage={this.deleteImage}

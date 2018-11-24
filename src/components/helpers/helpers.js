@@ -27,3 +27,19 @@ export function deepCloneObject(obj) {
         return undefined;
     return JSON.parse(JSON.stringify(obj));
 }
+
+
+export function loadImage(url) {
+    const r = (img, resolve) => () => {
+        img.removeEventListener('load', r);
+        img.removeEventListener('error', r);
+        resolve()
+    };
+
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.addEventListener('load', r(img, resolve));
+        img.addEventListener('error', r(img, reject));
+        img.src = url;
+    });
+}

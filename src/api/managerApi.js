@@ -14,6 +14,24 @@ class managerApi {
         }
     }
 
+    static async changeAvatar(token, avatar, id) {
+        if (token.length === 0 || id.length === 0)
+            throw new Error('');
+        const response = await fetch(
+            URL + 'users/' + id, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify({
+                    avatar
+                })
+            }
+        );
+        return response.ok;
+    }
+
     static async loadCategories() {
         try {
             let response = await fetch(

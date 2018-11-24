@@ -103,6 +103,28 @@ class ShopApi {
 
     }
 
+    static async updateReview(review, id, token) {
+        let response;
+        try {
+            response = await fetch(
+                URL + 'review/' + id, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(review)
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't update");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async postReview(review, token) {
         let response;
         try {
@@ -243,7 +265,7 @@ class ShopApi {
         let data = new FormData();
         data.append("uri", img);
         try {
-            const res = await fetch("https://baloofeathers.herokuapp.com/upload", {
+            const res = await fetch(URL + "upload", {
                 method: "POST",
                 headers: {
                     'Authorization': token
@@ -252,6 +274,7 @@ class ShopApi {
             });
             return await res.json();
         } catch (err) {
+            console.log('err', err);
             throw Error('couldn\'t upload image');
         }
     }

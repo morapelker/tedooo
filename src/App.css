@@ -58,6 +58,10 @@ h1, h2, h3 {
     border: 1px solid #ced4da;
 }
 
+img {
+    max-width: 100%;
+}
+
 .inputField {
     width: 100%;
     display: block;

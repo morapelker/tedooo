@@ -181,7 +181,7 @@ class Header extends Component {
     };
 
     render() {
-        const {classes, favCount, user} = this.props;
+        const {classes, favCount, userName, avatar} = this.props;
         return (
             <div style={{
                 borderBottom: '1px solid #c3c3c3',
@@ -242,30 +242,43 @@ class Header extends Component {
                         </div>
                     </div>
                     <div className={'action_parent'}>
-                        <FontAwesomeIcon
-                            onClick={() => {
-                                if (!user)
-                                    this.props.history.push('login');
-                            }}
-                            color={'#c6c6c6'}
-                                         style={{cursor: 'pointer'}}
-                                         icon={['far', 'user']} size={'2x'}/>
-                        {user ? <div style={{
+                        {
+                            avatar ?
+                                <div className={'avatar_header_container'}>
+                                    <img src={avatar} alt={''} className={'avatar_header'}
+                                         onClick={() => {
+                                             this.props.history.push('/settings');
+                                         }}/>
+                                </div>
+                                : <FontAwesomeIcon
+                                    onClick={() => {
+                                        if (userName)
+                                            this.props.history.push('/settings');
+                                        else
+                                            this.props.history.push('/login');
+                                    }}
+                                    color={'#c6c6c6'}
+                                    style={{cursor: 'pointer'}}
+                                    icon={['far', 'user']} size={'2x'}/>
+                        }
+
+                        {userName ? <div style={{
                                 marginLeft: 10,
                                 display: 'flex',
                                 flexDirection: 'column',
                                 color: '#000',
                                 fontWeight: 'bold',
                                 alignItems: 'flex-start',
+                                cursor: 'pointer'
                             }}>
-                                <span>{user}</span>
-                                <span onClick={this.handleOpen} style={{
-                                    cursor: 'pointer',
-                                }}>Sign Out</span>
+                                <span onClick={() => {
+                                    this.props.history.push('/settings');
+                                }}>{userName}</span>
+                                <span onClick={this.handleOpen}>Sign Out</span>
                             </div> :
                             <div
                                 onClick={() => {
-                                    this.props.history.push('login');
+                                    this.props.history.push('/login');
                                 }}
                                 style={{
                                     marginLeft: 10,

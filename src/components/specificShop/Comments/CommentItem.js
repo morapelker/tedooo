@@ -17,7 +17,7 @@ const CommentItem = ({item, secondary}) => {
             marginTop: 20
         }}>
             <div style={{display: 'flex', alignItems: 'center'}}>
-                <ImgWithLoader style={{width: 40, height: 40, borderRadius: 20}} src={item.avatar}/>
+                <ImgWithLoader style={{width: 40, height: 40, borderRadius: 20, objectFit: 'cover'}} src={item.avatar}/>
                 <h4 style={{margin: '0 0 0 10px'}}>{item.name}</h4>
             </div>
             {!secondary &&

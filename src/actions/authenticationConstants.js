@@ -1,3 +1,4 @@
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const LOGOUT = 'LOGOUT';
