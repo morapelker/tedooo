@@ -64,6 +64,18 @@ class SearchResultsPage extends Component {
         }
     };
 
+    handleFilter = stars => {
+        const s = Object.assign({}, this.searchParams);
+        delete s.$limit;
+        delete s.$skip;
+        if (stars)
+            s.stars = stars;
+        else
+            delete s.stars;
+        this.props.history.push('/results?' +
+            queryString.stringify(s));
+    };
+
     componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps.location.search !== this.props.location.search)
             this.reloadShops(nextProps);
@@ -100,6 +112,7 @@ class SearchResultsPage extends Component {
                                       currentPage={this.state.page}
                                       totalPages={this.state.results.total}
                                       smallLoading={this.state.smallLoading}
+                                      handleFilter={this.handleFilter}
                                       addHistoryAction={this.props.actions.addShopHistory}
                                       name={this.getResultTitle()} shops={this.state.results.data}/>
                 }
