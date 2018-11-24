@@ -49,5 +49,18 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
     max-height: 100%;
 }
 
+.generic_shops_root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10%;
+}
+
+@media only screen and (max-width: 850px) {
+    .generic_shops_root {
+        padding: 0;
+    }
+}
+
 
 

@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import TedooButton from "../common/TedooButton";
 import withStyles from "@material-ui/core/styles/withStyles";
+import {LargeScreen} from "../common/ScreenSizes";
 
 
 const styles = {
@@ -241,93 +242,96 @@ class Header extends Component {
                                 onChange={this.freeTextChanged}/>
                         </div>
                     </div>
-                    <div className={'action_parent'}>
-                        {
-                            avatar ?
-                                <div className={'avatar_header_container'}>
-                                    <img src={avatar} alt={''} className={'avatar_header'}
-                                         onClick={() => {
-                                             this.props.history.push('/settings');
-                                         }}/>
-                                </div>
-                                : <FontAwesomeIcon
-                                    onClick={() => {
-                                        if (userName)
-                                            this.props.history.push('/settings');
-                                        else
-                                            this.props.history.push('/login');
-                                    }}
-                                    color={'#c6c6c6'}
-                                    style={{cursor: 'pointer'}}
-                                    icon={['far', 'user']} size={'2x'}/>
-                        }
+                    <LargeScreen>
+                        <div className={'action_parent'}>
+                            {
+                                avatar ?
+                                    <div className={'avatar_header_container'}>
+                                        <img src={avatar} alt={''} className={'avatar_header'}
+                                             onClick={() => {
+                                                 this.props.history.push('/settings');
+                                             }}/>
+                                    </div>
+                                    : <FontAwesomeIcon
+                                        onClick={() => {
+                                            if (userName)
+                                                this.props.history.push('/settings');
+                                            else
+                                                this.props.history.push('/login');
+                                        }}
+                                        color={'#c6c6c6'}
+                                        style={{cursor: 'pointer'}}
+                                        icon={['far', 'user']} size={'2x'}/>
+                            }
 
-                        {userName ? <div style={{
-                                marginLeft: 10,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                color: '#000',
-                                fontWeight: 'bold',
-                                alignItems: 'flex-start',
-                                cursor: 'pointer'
-                            }}>
-                                <span onClick={() => {
-                                    this.props.history.push('/settings');
-                                }}>{userName}</span>
-                                <span onClick={this.handleOpen}>Sign Out</span>
-                            </div> :
-                            <div
-                                onClick={() => {
-                                    this.props.history.push('/login');
-                                }}
-                                style={{
+                            {userName ? <div style={{
                                     marginLeft: 10,
                                     display: 'flex',
                                     flexDirection: 'column',
                                     color: '#000',
-                                    cursor: 'pointer',
-                                    alignItems: 'flex-start'
+                                    fontWeight: 'bold',
+                                    alignItems: 'flex-start',
+                                    cursor: 'pointer'
                                 }}>
-                                <span>{'Sign In | Join Free'}</span>
-                                <span>My Tedooo</span>
-                            </div>
-                        }
+                                <span onClick={() => {
+                                    this.props.history.push('/settings');
+                                }}>{userName}</span>
+                                    <span onClick={this.handleOpen}>Sign Out</span>
+                                </div> :
+                                <div
+                                    onClick={() => {
+                                        this.props.history.push('/login');
+                                    }}
+                                    style={{
+                                        marginLeft: 10,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        color: '#000',
+                                        cursor: 'pointer',
+                                        alignItems: 'flex-start'
+                                    }}>
+                                    <span>{'Sign In | Join Free'}</span>
+                                    <span>My Tedooo</span>
+                                </div>
+                            }
 
-                        <FontAwesomeIcon
-                            onClick={() => {
+                            <FontAwesomeIcon
+                                onClick={() => {
+                                    this.props.history.push('/favorites')
+                                }}
+                                color={'#c6c6c6'}
+                                style={{cursor: 'pointer', marginLeft: 20}}
+                                icon={['far', 'heart']} size={'2x'}/>
+                            <div onClick={() => {
                                 this.props.history.push('/favorites')
-                            }}
-                            color={'#c6c6c6'}
-                            style={{cursor: 'pointer', marginLeft: 20}}
-                            icon={['far', 'heart']} size={'2x'}/>
-                        <div onClick={() => {
-                            this.props.history.push('/favorites')
-                        }} style={{
-                            marginLeft: 10,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            color: '#000',
-                            alignItems: 'flex-start',
-                            cursor: 'pointer'
-                        }}>
-                            <div style={{
-                                color: 'white',
-                                background: 'gray',
-                                width: 30,
-                                height: 30,
-                                borderRadius: 15,
-                                padding: 5,
+                            }} style={{
+                                marginLeft: 10,
                                 display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
+                                flexDirection: 'column',
+                                color: '#000',
+                                alignItems: 'flex-start',
+                                cursor: 'pointer'
                             }}>
-                                <span>{favCount || 0}</span>
+                                <div style={{
+                                    color: 'white',
+                                    background: 'gray',
+                                    width: 30,
+                                    height: 30,
+                                    borderRadius: 15,
+                                    padding: 5,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <span>{favCount || 0}</span>
+                                </div>
+                                <span>Favorites</span>
                             </div>
-                            <span>Favorites</span>
+                            <span style={{marginLeft: 10}}> | Get the App</span>
+                            <span style={{marginLeft: 10}}> | English</span>
                         </div>
-                        <span style={{marginLeft: 10}}> | Get the App</span>
-                        <span style={{marginLeft: 10}}> | English</span>
-                    </div>
+                    </LargeScreen>
+
                 </div>
                 <Dialog
                     open={this.state.logoutOpen}

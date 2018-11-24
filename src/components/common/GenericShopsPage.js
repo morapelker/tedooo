@@ -28,13 +28,7 @@ const GenericShopsPage = (props) => {
 
     return (
         <div style={{width: '100%', height: '100%', overflowY: 'auto', overflowX: 'hidden'}}>
-            <div style={{
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                paddingLeft: '10%',
-                paddingRight: '10%'
-            }}>
+            <div className={'generic_shops_root'}>
                 <h3 style={{textAlign: 'left', marginLeft: '10%', padding: '30px 0 10px 0'}}>{props.name}</h3>
                 <div className={'shop_list'} style={{
                     display: 'flex',
