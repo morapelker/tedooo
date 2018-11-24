@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3f6a36fa-593a-462c-b183-9e938f486a65" name="Default" comment="sd">
-      <change afterPath="$PROJECT_DIR$/public/assets/banner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Drawer/header.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MainApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SearchPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ApiAutoCompleteField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/CategoryBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/CategoryBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Drawer/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ShopLineV2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/commonCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/commonCss.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/header.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/shopline.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/shopline.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShop.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShop.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShopData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShopData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShopPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShopNew/SpecificShopPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/specificShopNew/TripNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/specificShopNew/TripNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/apiConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/apiConstants.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,7 +22,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/MainApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
+            <state relative-caret-position="858">
               <caret line="57" column="80" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -57,20 +37,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/localStuff.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#153#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
+            <state>
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -78,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Drawer/Header.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="5902">
               <caret line="246" column="37" selection-start-line="246" selection-start-column="37" selection-end-line="246" selection-end-column="37" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -90,10 +59,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="52">
+              <caret line="2" column="42" lean-forward="true" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
+            <state relative-caret-position="26">
               <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
             </state>
           </provider>
@@ -111,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="832">
               <caret line="37" column="89" selection-start-line="37" selection-start-column="89" selection-end-line="37" selection-end-column="89" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -123,7 +101,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
+            <state relative-caret-position="2262">
               <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
             </state>
           </provider>
@@ -132,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-566">
+            <state relative-caret-position="416">
               <caret line="16" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
@@ -228,7 +206,6 @@
         <option value="$PROJECT_DIR$/src/api/shopApi.js" />
         <option value="$PROJECT_DIR$/src/components/specificShopNew/Comments/CommentSection2.js" />
         <option value="$PROJECT_DIR$/src/components/specificShopNew/Comments/CommentSection.js" />
-        <option value="$PROJECT_DIR$/src/api/apiConstants.js" />
         <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/common/header.css" />
         <option value="$PROJECT_DIR$/src/components/parents/SearchResultsPage.js" />
@@ -249,6 +226,7 @@
         <option value="$PROJECT_DIR$/src/components/common/GenericShopsPage.js" />
         <option value="$PROJECT_DIR$/src/components/MainApp.js" />
         <option value="$PROJECT_DIR$/src/components/Drawer/Header.js" />
+        <option value="$PROJECT_DIR$/src/api/apiConstants.js" />
       </list>
     </option>
   </component>
@@ -258,10 +236,10 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="946" />
+    <option name="width" value="2560" />
+    <option name="height" value="1336" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -269,6 +247,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -374,7 +353,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -659,21 +637,8 @@
       <workItem from="1542663463467" duration="2154000" />
       <workItem from="1542887118895" duration="33000" />
       <workItem from="1542921369673" duration="5957000" />
-      <workItem from="1542984873411" duration="3384000" />
-    </task>
-    <task id="LOCAL-00023" summary="sd">
-      <created>1536613804346</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1536613804346</updated>
-    </task>
-    <task id="LOCAL-00024" summary="sd">
-      <created>1536693313444</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1536693313445</updated>
+      <workItem from="1542984873411" duration="4494000" />
+      <workItem from="1543049468147" duration="54000" />
     </task>
     <task id="LOCAL-00025" summary="sd">
       <created>1536694960875</created>
@@ -1004,11 +969,25 @@
       <option name="project" value="LOCAL" />
       <updated>1542887141861</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="sd">
+      <created>1542989496488</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1542989496488</updated>
+    </task>
+    <task id="LOCAL-00073" summary="sd">
+      <created>1542990184177</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1542990184177</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="523508000" />
+    <option name="totallyTimeSpent" value="524672000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1020,10 +999,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="946" extended-state="6" />
+    <frame x="0" y="23" width="2560" height="1336" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.1392405" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.0909807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.38608307" side_tool="true" weight="0.22528554" />
@@ -1036,7 +1015,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32924837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.27918172" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.1900082" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32924837" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1114,13 +1093,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1359,26 +1331,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLineV2.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/MainApp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="57" column="80" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/authentication.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
+        <state>
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLineV2.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Drawer/Header.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="109" column="15" selection-start-line="109" selection-start-column="15" selection-end-line="109" selection-end-column="15" />
+        <state relative-caret-position="5902">
+          <caret line="246" column="37" selection-start-line="246" selection-start-column="37" selection-end-line="246" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
+    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-566">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="26">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1389,23 +1378,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/common/ShopLine.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/common/GenericShopsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
+        <state relative-caret-position="832">
           <caret line="37" column="89" selection-start-line="37" selection-start-column="89" selection-end-line="37" selection-end-column="89" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
@@ -1413,26 +1388,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/authentication.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/MainApp.js">
+    <entry file="file://$PROJECT_DIR$/src/components/parents/SearchResultsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="57" column="80" selection-start-line="57" selection-start-column="80" selection-end-line="57" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2262">
+          <caret line="95" column="34" lean-forward="true" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Drawer/Header.js">
+    <entry file="file://$PROJECT_DIR$/src/components/common/commonCss.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="246" column="37" selection-start-line="246" selection-start-column="37" selection-end-line="246" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="416">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/apiConstants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="2" column="42" lean-forward="true" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
         </state>
       </provider>
     </entry>
