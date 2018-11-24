@@ -68,7 +68,7 @@ class Login extends Component {
                                 textAlign: 'right',
                                 flex: 1
                             }}>
-                                <span>Register</span>
+                                <span style={{color: 'black'}}>Register</span>
                             </Link>
                         </div>
                         }
