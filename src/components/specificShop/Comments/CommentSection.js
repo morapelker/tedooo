@@ -26,6 +26,7 @@ class CommentSection extends Component {
     }
 
     componentDidMount() {
+        this.active = true;
         this.fetchReviews();
     }
 
@@ -36,25 +37,32 @@ class CommentSection extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.active = false;
+    }
+
 
     fetchReviews = () => {
         const randId = Math.random() * 10;
         this.setState({loading: true});
         ShopApi.getReviewsForShop(this.props.shop._id, this.props.userId, 0, randId, this.state.filter).then(res => {
-            if (res && res.reqId === randId) {
-                this.setState({
-                    avg: res.avg || 0,
-                    total: res.total,
-                    reviews: Array.isArray(res.data) ? res.data : [],
-                    statistics: Array.isArray(res.totalStars) ? res.totalStars.reverse() : [],
-                    edited: res.userEdited,
-                    loading: false
-                });
-            } else {
-                this.setState({loading: false});
+            if (this.active) {
+                if (res && res.reqId === randId) {
+                    this.setState({
+                        avg: res.avg || 0,
+                        total: res.total,
+                        reviews: Array.isArray(res.data) ? res.data : [],
+                        statistics: Array.isArray(res.totalStars) ? res.totalStars.reverse() : [],
+                        edited: res.userEdited,
+                        loading: false
+                    });
+                } else {
+                    this.setState({loading: false});
+                }
             }
         }).catch(() => {
-            this.setState({loading: false});
+            if (this.active)
+                this.setState({loading: false});
         });
     };
 
@@ -205,7 +213,8 @@ class CommentSection extends Component {
                                     <div style={{flex: 1}}/>
                                     <TedooButton
                                         text={this.state.expanded === 2 ?
-                                            <RefreshIndicator size={20}/> : userAlreadyCommented ? 'Update' : 'Submit'}
+                                            <RefreshIndicator
+                                                size={20}/> : userAlreadyCommented ? 'Update' : 'Submit'}
                                         onClick={this.submitReview(!userAlreadyCommented, reviewIndex)}
                                         selectedTextColor={'white'}
                                         selectedBackground={bgColor}

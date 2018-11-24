@@ -64,8 +64,9 @@ class SearchResultsPage extends Component {
         }
     };
 
-    componentWillReceiveProps(nextProps, context) {
-        this.reloadShops(nextProps);
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.location.search !== this.props.location.search)
+            this.reloadShops(nextProps);
     }
 
     reloadShops = (props) => {

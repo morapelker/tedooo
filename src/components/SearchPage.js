@@ -73,6 +73,10 @@ class SearchPage extends Component {
         this.props.history.push("/results?" + parsed);
     }
 
+    componentDidMount() {
+        this.props.catClicked && this.props.catClicked('');
+    }
+
     autoComplete = newValue => {
         if (!newValue || newValue.length === 0)
             return;
@@ -165,8 +169,6 @@ class SearchPage extends Component {
         const parsed = queryString.stringify(searchParams);
         this.props.catClicked && this.props.catClicked(text);
         this.props.history.push("/results?" + parsed);
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     };
 
     render() {

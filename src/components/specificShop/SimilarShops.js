@@ -3,6 +3,30 @@ import ShopLine from "../common/ShopLine";
 import ShopApi from "../../api/shopApi";
 import RefreshIndicator from "../common/RefreshIndicator";
 
+export const cancellablePromise = promise => {
+    let hasCanceled_ = false;
+
+    const wrappedPromise = new Promise((resolve, reject) => {
+        promise.then((val) => {
+                if (!hasCanceled_)
+                    resolve(val)
+            }
+        );
+        promise.catch(error => {
+                if (!hasCanceled_)
+                    reject(error);
+            }
+        );
+    });
+
+    return {
+        promise: wrappedPromise,
+        cancel() {
+            hasCanceled_ = true;
+        },
+    };
+};
+
 const SimilarShops = ({text, historyAction, history, currentId}) => {
 
     const [shops, setShops] = useState([]);
@@ -17,17 +41,28 @@ const SimilarShops = ({text, historyAction, history, currentId}) => {
 
     useEffect(() => {
         setLoading(true);
-        ShopApi.getSimilarShops(text).then(res => {
-            if (Array.isArray(res))
-                setShops(res.filter(item => item._id !== currentId));
+        const t = text;
+        const a = cancellablePromise(ShopApi.getSimilarShops(text));
+        a.promise.then(res => {
+            if (t === text && loading) {
+                if (Array.isArray(res))
+                    setShops(res.filter(item => item._id !== currentId));
+            }
         }).finally(() => {
             setLoading(false);
         });
+        return () => {
+            a.cancel();
+        };
     }, [text]);
 
     return (
         <div style={{flex: 1, flexDirection: 'column', marginTop: 30, minHeight: 500}}>
-            <h4 style={{visibility: loading ? 'hidden' : '', fontWeight: 'bold', marginTop: 50}}>Customers who
+            <h4 style={{
+                visibility: loading ? 'hidden' : '',
+                fontWeight: 'bold',
+                marginTop: 50
+            }}>Customers who
                 viewed this also viewed</h4>
             {loading ? <RefreshIndicator/> :
                 <div style={{
