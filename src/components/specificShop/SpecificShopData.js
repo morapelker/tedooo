@@ -3,6 +3,9 @@ import ImageColumn from "./ImageColumn";
 import './SpecificShop.css';
 import InfoColumn from "./InfoColumn";
 import CommentSection from "./Comments/CommentSection";
+import SimilarShops from "./SimilarShops";
+
+const textFromShop = shop => (shop.category || '') + (shop.description || '');
 
 const SpecificShopData = (props) => {
     return (
@@ -16,7 +19,10 @@ const SpecificShopData = (props) => {
                             admin={props.admin}
                             ownShop={props.ownShop} shop={props.shop} />
             </div>
-            <CommentSection token={props.token} userId={props.userId} shop={props.shop} history={props.history} />
+            <div style={{width: '100%', display: 'flex'}}>
+                <CommentSection token={props.token} userId={props.userId} shop={props.shop} history={props.history} />
+                <SimilarShops historyAction={props.addHistoryAction} text={textFromShop(props.shop)} history={props.history} currentId={props.shop._id} />
+            </div>
         </div>
     );
 };

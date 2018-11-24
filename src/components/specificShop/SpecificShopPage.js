@@ -13,8 +13,8 @@ import shopApi from "../../api/shopApi";
 
 class SpecificShopPage extends Component {
 
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         this.state = {
             addingToFavorites: false,
             editing: false,
@@ -224,6 +224,7 @@ class SpecificShopPage extends Component {
                             }
                             <SpecificShopData imgSelected={this.imageSelected}
                                               addFavoritesAction={this.props.actions.addShopFavorites}
+                                              addHistoryAction={this.props.actions.addShopHistory}
                                               bigImgSrc={this.state.bigImgSrc}
                                               ownShop={this.state.ownShop}
                                               admin={this.props.authentication.admin}

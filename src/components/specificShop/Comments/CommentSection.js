@@ -7,6 +7,8 @@ import RefreshIndicator from "../../common/RefreshIndicator";
 import ShopApi from "../../../api/shopApi";
 import Stars from "../../common/Stars";
 import CommentList from "./CommentList";
+import CommentsStatistics from "./CommentsStatistics";
+import './comments.css';
 
 class CommentSection extends Component {
     constructor(props, context) {
@@ -17,7 +19,9 @@ class CommentSection extends Component {
             total: 0,
             avg: 0,
             reviewText: '',
-            title: ''
+            title: '',
+            filter: 0,
+            edited: false
         };
     }
 
@@ -26,22 +30,31 @@ class CommentSection extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.shop._id !== this.props.shop._id)
+        if (prevProps.shop._id !== this.props.shop._id) {
+            this.setState({reviews: undefined, expanded: 0});
             this.fetchReviews();
+        }
     }
 
 
     fetchReviews = () => {
         const randId = Math.random() * 10;
-        this.setState({reviews: undefined, expanded: 0});
-        ShopApi.getReviewsForShop(this.props.shop._id, this.props.userId, 0, randId).then(res => {
+        this.setState({loading: true});
+        ShopApi.getReviewsForShop(this.props.shop._id, this.props.userId, 0, randId, this.state.filter).then(res => {
             if (res && res.reqId === randId) {
                 this.setState({
                     avg: res.avg || 0,
                     total: res.total,
-                    reviews: Array.isArray(res.data) ? res.data : []
+                    reviews: Array.isArray(res.data) ? res.data : [],
+                    statistics: Array.isArray(res.totalStars) ? res.totalStars.reverse() : [],
+                    edited: res.userEdited,
+                    loading: false
                 });
+            } else {
+                this.setState({loading: false});
             }
+        }).catch(() => {
+            this.setState({loading: false});
         });
     };
 
@@ -64,6 +77,8 @@ class CommentSection extends Component {
                 review.avatar = res.avatar || '';
                 const r = this.state.reviews;
                 r.splice(0, 0, review);
+                const {statistics} = this.state;
+                statistics[5 - this.state.stars]++;
                 this.setState(prevState => ({
                     reviews: r,
                     reviewText: '',
@@ -71,6 +86,7 @@ class CommentSection extends Component {
                     expanded: 0,
                     avg: (prevState.avg * prevState.total + this.state.stars) / (prevState.total + 1),
                     total: prevState.total + 1,
+                    statistics
                 }));
             }).catch(() => this.setState({expanded: 0}));
         } else {
@@ -82,12 +98,16 @@ class CommentSection extends Component {
                 const prevStars = this.state.reviews[index].star;
                 const r = this.state.reviews;
                 r[index] = Object.assign({}, r[index], review);
+                const {statistics} = this.state;
+                statistics[5 - this.state.stars]++;
+                statistics[5 - prevStars]--;
                 this.setState(prevState => ({
                     reviews: r,
                     reviewText: '',
                     title: '',
                     expanded: 0,
                     avg: (prevState.avg * prevState.total - prevStars + review.star) / (prevState.total),
+                    statistics
                 }));
             }).catch(() => this.setState({expanded: 0}));
         }
@@ -97,6 +117,12 @@ class CommentSection extends Component {
         if (!Array.isArray(reviews) || !userId)
             return undefined;
         return reviews.map(item => item.userId).indexOf(userId);
+    };
+
+    filterStars = stars => {
+        this.setState({filter: stars}, () => {
+            this.fetchReviews();
+        });
     };
 
     render() {
@@ -122,7 +148,7 @@ class CommentSection extends Component {
                                              selectedBackground={bgColor}
                                              selectedTextColor={'white'}
                                              style={{marginLeft: 10}}/> :
-                                !this.state.expanded &&
+                                !this.state.expanded && (!this.state.edited || userAlreadyCommented) &&
                                 <TedooButton
                                     text={userAlreadyCommented ? 'Edit Review' : 'Add Review'}
                                     onClick={() => {
@@ -179,7 +205,7 @@ class CommentSection extends Component {
                                     <div style={{flex: 1}}/>
                                     <TedooButton
                                         text={this.state.expanded === 2 ?
-                                            <RefreshIndicator size={20}/> : 'Submit'}
+                                            <RefreshIndicator size={20}/> : userAlreadyCommented ? 'Update' : 'Submit'}
                                         onClick={this.submitReview(!userAlreadyCommented, reviewIndex)}
                                         selectedTextColor={'white'}
                                         selectedBackground={bgColor}
@@ -199,7 +225,23 @@ class CommentSection extends Component {
                             <span
                                 style={{marginLeft: 10, color: 'blue'}}>{this.state.avg} out of 5 stars</span>
                         </div>
-                        <CommentList items={this.state.reviews}/>
+                        <CommentsStatistics starSelector={this.filterStars}
+                                            totals={this.state.statistics} sum={this.state.total}/>
+                        <div style={{height: 10}}/>
+                        {this.state.filter !== 0 ?
+                            <span
+                                style={{visibility: this.state.loading ? 'hidden' : 'unset'}}>Showing {this.state.reviews.length} of {this.state.statistics[5 - this.state.filter]} Reviews ({this.state.filter} star)
+                            <span style={{marginLeft: 10, color: 'blue', cursor: 'pointer'}}
+                                  onClick={() => {
+                                      this.filterStars(0);
+                                  }}> Show all {this.state.total} Reviews</span><br/></span> :
+                            <div style={{height: 10}}/>}
+                        {this.state.reviews && this.state.loading ?
+                            <div style={{height: 300, marginTop: 5}}>
+                                <RefreshIndicator/>
+                            </div> :
+                            <CommentList items={this.state.reviews}/>
+                        }
                     </div>
                     : <RefreshIndicator/>}
             </div>

@@ -6,7 +6,7 @@ import Collapse from "@material-ui/core/Collapse/Collapse";
 import CommentList from "./CommentList";
 import ImgWithLoader from "../../common/ImgWithLoader";
 
-const CommentItem = ({item, secondary}) => {
+const CommentItem = ({item, secondary, index}) => {
     const hasReplies = item.replies && item.replies.length > 0;
     const [expanded, setExpanded] = useState(false);
     return (
@@ -14,7 +14,7 @@ const CommentItem = ({item, secondary}) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            marginTop: 20
+            marginTop: index === 0 ? 5 : 20
         }}>
             <div style={{display: 'flex', alignItems: 'center'}}>
                 <ImgWithLoader style={{width: 40, height: 40, borderRadius: 20, objectFit: 'cover'}} src={item.avatar}/>

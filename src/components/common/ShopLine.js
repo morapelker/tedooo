@@ -7,7 +7,7 @@ const capitalize = str => {
     return (str && str.toUpperCase()) || str;
 };
 
-export default ({shop, parentData, shopSelected}) => {
+export default ({shop, parentData, shopSelected, className}) => {
     const avatarUrl = (shop.avatar ? shop.avatar : (
         shop.img_links && shop.img_links.length > 0 ? shop.img_links[0] : ''
     ));

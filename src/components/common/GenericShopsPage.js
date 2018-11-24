@@ -24,12 +24,16 @@ const filterIrrelevant = line => {
 };
 
 const GenericShopsPage = (props) => {
-    const words = props.text ? filterIrrelevant(props.text).split(' ').filter(item => item.length > 1) : undefined;
-
+    // const words = props.text ? filterIrrelevant(props.text).split(' ').filter(item => item.length > 1) : undefined;
+    const words = '';
     return (
         <div style={{width: '100%', height: '100%', overflowY: 'auto', overflowX: 'hidden'}}>
             <div className={'generic_shops_root'}>
-                <h3 style={{textAlign: 'left', marginLeft: '10%', padding: '30px 0 10px 0'}}>{props.name}</h3>
+                <h3 style={{
+                    textAlign: 'left',
+                    marginLeft: '10%',
+                    padding: '30px 0 10px 0'
+                }}>{props.name}</h3>
                 <div className={'shop_list'} style={{
                     display: 'flex',
                     width: '100%',
@@ -45,9 +49,10 @@ const GenericShopsPage = (props) => {
                             shopSelected={shopSelected}
                             shop={result}/>
                     )) : <h2>No shops</h2>}
-                    {[1,1,1,1,1,1,1,1,1].map((_, index) => <div className={'empty_grid_filler'} key={index} />)}
+                    {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => <div
+                        className={'empty_grid_filler'} key={index}/>)}
                 </div>
-                <div style={{height: 40}} />
+                <div style={{height: 40}}/>
                 {props.totalPages > MAX_SHOPS &&
                 <Pagination
                     hideFirstLastPages={false}

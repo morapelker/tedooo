@@ -1,8 +1,14 @@
-.comment_stars_container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.comment_statistic_root {
+    width: 300px;
+    margin: 10px auto 0 auto;
 }
 
-.comment_root {
+.statistic_line_root {
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.statistic_pbar {
+    width: 200px;
 }

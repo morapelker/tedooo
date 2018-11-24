@@ -125,6 +125,27 @@ class ShopApi {
         return responseJson;
     }
 
+    static async getSimilarShops(text) {
+        let response;
+        try {
+            response = await fetch(
+                URL + 'autocomplete', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({text})
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't add");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error('');
+        return responseJson;
+    }
+
     static async postReview(review, token) {
         let response;
         try {
@@ -147,11 +168,11 @@ class ShopApi {
         return responseJson;
     }
 
-    static async getReviewsForShop(id, userId, page, reqId) {
+    static async getReviewsForShop(id, userId, page, reqId, filter) {
         try {
             const userIdQuery = (userId && userId.length > 1) ? '&userId=' + userId : '';
             let response = await fetch(
-                URL + 'review?shop=' + id + userIdQuery + '&skip=' + (page * 10)
+                URL + 'review?shop=' + id + userIdQuery + '&skip=' + (page * 10) + (filter > 0 ? '&star=' + filter : '')
             );
             const json = await response.json();
             json.reqId = reqId;

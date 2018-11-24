@@ -276,7 +276,7 @@ class Header extends Component {
                                 <span onClick={() => {
                                     this.props.history.push('/settings');
                                 }}>{userName}</span>
-                                    <span onClick={this.handleOpen}>Sign Out</span>
+                                    <span style={{fontWeight: 200}} onClick={this.handleOpen}>Sign Out</span>
                                 </div> :
                                 <div
                                     onClick={() => {

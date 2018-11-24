@@ -24,7 +24,7 @@ class ImageColumn extends Component {
     render() {
         return (
             <div className={'specific_image_root'} style={{
-                maxHeight: 70 * maxSmallImages + 200,
+                height: 500
             }}>
                 <div style={{
                     display: 'flex',
@@ -35,8 +35,8 @@ class ImageColumn extends Component {
                 }}>
                     {this.state.startIndex === 0 ? <div style={{width: 40, height: 40}} /> :
                     <img style={{
-                        width: 40,
-                        height: 40,
+                        width: 30,
+                        height: 30,
                         alignSelf: 'center',
                         cursor: 'pointer',
                         background: 'white'
@@ -72,8 +72,8 @@ class ImageColumn extends Component {
                     })}
                     {this.state.startIndex + maxSmallImages < this.props.shop.img_links.length  &&
                     <img style={{
-                        width: 40,
-                        height: 40,
+                        width: 30,
+                        height: 30,
                         marginTop: 10,
                         alignSelf: 'center',
                         background: 'white',
