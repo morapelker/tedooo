@@ -223,7 +223,7 @@ class CommentSection extends Component {
                         }}>
                             <Stars rating={-2} stars={this.state.avg} size={'2x'}/>
                             <span
-                                style={{marginLeft: 10, color: 'blue'}}>{this.state.avg} out of 5 stars</span>
+                                style={{marginLeft: 10, color: bgColor}}>{this.state.avg} out of 5 stars</span>
                         </div>
                         <CommentsStatistics starSelector={this.filterStars}
                                             totals={this.state.statistics} sum={this.state.total}/>
@@ -231,7 +231,7 @@ class CommentSection extends Component {
                         {this.state.filter !== 0 ?
                             <span
                                 style={{visibility: this.state.loading ? 'hidden' : 'unset'}}>Showing {this.state.reviews.length} of {this.state.statistics[5 - this.state.filter]} Reviews ({this.state.filter} star)
-                            <span style={{marginLeft: 10, color: 'blue', cursor: 'pointer'}}
+                            <span style={{marginLeft: 10, color: bgColor, cursor: 'pointer'}}
                                   onClick={() => {
                                       this.filterStars(0);
                                   }}> Show all {this.state.total} Reviews</span><br/></span> :

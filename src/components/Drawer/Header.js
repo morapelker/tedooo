@@ -52,8 +52,8 @@ const styles = {
 
 const dotStyle = {
     backgroundColor: 'white',
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     marginLeft: 10,
     borderRadius: 40
 };
@@ -217,8 +217,8 @@ class Header extends Component {
                                     fontSize: '2em',
                                     fontWeight: 100
                                 }}>Tedooo</span>
-                            <div style={{display: 'flex', justifyContent: 'center', marginTop: 10}}>
-                                <div style={dotStyle}/>
+                            <div style={{display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center'}}>
+                                <div style={{...dotStyle, marginLeft: 0}}/>
                                 <div style={dotStyle}/>
                                 <div style={dotStyle}/>
                             </div>

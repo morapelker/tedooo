@@ -27,9 +27,15 @@ const SimilarShops = ({text, historyAction, history, currentId}) => {
 
     return (
         <div style={{flex: 1, flexDirection: 'column', marginTop: 30, minHeight: 500}}>
-            <h4 style={{visibility: loading ? 'hidden' : ''}}>Customers who viewed this also viewed</h4>
+            <h4 style={{visibility: loading ? 'hidden' : '', fontWeight: 'bold', marginTop: 50}}>Customers who
+                viewed this also viewed</h4>
             {loading ? <RefreshIndicator/> :
-                <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                    marginTop: 40
+                }}>
                     {shops.map((item, index) => <ShopLine className={'similar_root'}
                                                           shopSelected={shopClicked(index)}
                                                           key={index}
