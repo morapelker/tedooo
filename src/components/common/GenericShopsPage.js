@@ -4,9 +4,6 @@ import RefreshIndicator from "./RefreshIndicator";
 import {connect} from "react-redux";
 import '../common/commonCss.css';
 import ShopLine from "./ShopLine";
-import CommentStars from "../specificShop/Comments/CommentStars";
-import TedooButton from "./TedooButton";
-import {bgColor} from "../../api/apiConstants";
 
 const shopSelected = (props, shop) => {
     return () => {
@@ -31,14 +28,6 @@ const GenericShopsPage = (props) => {
     const words = '';
     return (
         <div style={{width: '100%', height: '100%', overflowY: 'auto', overflowX: 'hidden', display: 'flex'}}>
-            <div style={{width: '20%'}}>
-                <CommentStars stars={0} setStars={index => {
-                    props.handleFilter(index + 1);
-                }} />
-                <TedooButton text={'reset'} selectedBackground={bgColor} selected={true} selectedTextColor={'white'} onClick={() => {
-                    props.handleFilter(0);
-                }} />
-            </div>
             <div className={'generic_shops_root'}>
                 <h3 style={{
                     textAlign: 'left',

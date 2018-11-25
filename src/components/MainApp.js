@@ -11,7 +11,7 @@ import MyShops from "./parents/MyShops";
 import AddShop from "./parents/AddShop/AddShop";
 import Header from "./Drawer/Header";
 import * as actions from "../actions/authenticationActions";
-import {fetchPendingRequestsCount, loadCategories} from "../actions/manager";
+import {fetchPendingRequestsCount, loadCategories, loadMarkets} from "../actions/manager";
 import {bindActionCreators} from 'redux';
 import PendingShops from "./parents/PendingShops";
 import Categories from "./parents/Categories";
@@ -31,6 +31,7 @@ class MainApp extends Component {
             props.managerActions[0](props.state.token);
         if (!props.loadedCategories)
             props.managerActions[1]();
+        props.managerActions[2]();
         this.state = {
             textValue: ''
         }
@@ -108,7 +109,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(actions, dispatch),
-        managerActions: bindActionCreators([fetchPendingRequestsCount, loadCategories], dispatch),
+        managerActions: bindActionCreators([fetchPendingRequestsCount, loadCategories, loadMarkets], dispatch),
     };
 }
 
