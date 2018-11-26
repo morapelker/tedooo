@@ -14,7 +14,7 @@ export default ({shop, parentData, shopSelected, className}) => {
     const catClassName = shop.category && shop.category.length > 0 ? '' : ' empty';
     const shop_number = shop.favName || shop.name || capitalize(shop.shop_number);
     return (
-        <div className={'shop_line_root'} onClick={shopSelected(parentData, shop)}>
+        <div className={'shop_line_root' + (className ? ' ' + className : '')} onClick={shopSelected(parentData, shop)}>
             <span className={'shop_line_number'}>{shop_number}</span>
             <ImgWithLoader otherProps={{className: 'shop_line_image'}} src={avatarUrl} />
             <span className={'shop_line_cat' + catClassName}>{shop.category || 'p'}</span>

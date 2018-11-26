@@ -1,12 +1,23 @@
 .shop_line_root {
-    width: 200px;
+    max-width: 200px;
+    width: 20%;
+    min-width: 150px;
     height: 250px;
     background: white;
-    border: 1px solid #c3c3c3;
+    border-top: 1px solid #c3c3c3;
+    border-left: 1px solid #c3c3c3;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     align-items: center;
+}
+
+.shop_line_root.bottom {
+    border-bottom: 1px solid #c3c3c3;
+}
+
+.shop_line_root.right {
+    border-right: 1px solid #c3c3c3;
 }
 
 .shop_line_number {

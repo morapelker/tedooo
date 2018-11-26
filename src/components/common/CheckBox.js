@@ -4,8 +4,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel/FormControlLabe
 
 const CheckBox = ({checked, text, checkChanged}) => {
     return (
-        <FormControlLabel control={
-            <Checkbox color={"secondary"} onChange={checkChanged} checked={checked}/>}
+        <FormControlLabel style={{marginTop: 0, marginBottom: 0}} control={
+            <Checkbox color={"default"} onChange={checkChanged} checked={checked}/>}
                           label={text}/>
 
     );

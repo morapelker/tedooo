@@ -28,6 +28,18 @@ export function deepCloneObject(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+export const capitalize = text => {
+    if (!text)
+        return undefined;
+    const c = text.split(' ');
+    let s = '';
+    c.forEach(d => s += cap(d) + ' ');
+    return s.trim();
+};
+
+const cap = (text) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+};
 
 export function loadImage(url) {
     const r = (img, resolve) => () => {

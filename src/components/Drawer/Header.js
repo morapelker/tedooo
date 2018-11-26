@@ -19,6 +19,7 @@ import {
 import TedooButton from "../common/TedooButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import {LargeScreen} from "../common/ScreenSizes";
+import {capitalize} from "../helpers/helpers";
 
 
 const styles = {
@@ -68,6 +69,11 @@ class Header extends Component {
             logoutOpen: false,
             open: false
         };
+        if (props.location && props.location.pathname === '/results' && props.location.search) {
+            const q = queryString.parse(props.location.search);
+            if (q.text)
+                this.state.textValue = capitalize(q.text);
+        }
         this.cached = {};
         this.active = true;
         this.autocompleteSearchDebounced = debounce(500, this.autoComplete);
@@ -77,6 +83,10 @@ class Header extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
         if (nextProps.textValue !== this.props.textValue) {
             this.setState({textValue: nextProps.textValue});
+        } else if (nextProps.location && nextProps.location.pathname === '/results' && nextProps.location.search) {
+            const q = queryString.parse(nextProps.location.search);
+            if (q.text && q.text !== this.state.textValue)
+                this.setState({textValue: capitalize(q.text)});
         }
     }
 

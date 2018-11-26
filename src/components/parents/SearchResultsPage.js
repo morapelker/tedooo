@@ -39,30 +39,43 @@ class SearchResultsPage extends Component {
             document.title = 'Tedooo - ' + this.searchParams.text;
         props.actions.resetTripArray();
         if (Array.isArray(props.manager.markets)) {
-            const urlMarkets = this.searchParams.markets;
-            if (urlMarkets) {
-                const arr = urlMarkets.split(',').filter(item => item.length > 0);
-                this.state.markets = [...new Set(props.manager.markets.map(item => item.name))].map(item => ({
-                    name: item,
-                    checked: arr.includes(item)
-                }));
-            } else {
-                this.state.markets = props.manager.markets.map(item => ({
-                    name: item.name,
-                    checked: false
-                }));
-            }
+
+            this.cities = [...new Set(props.manager.markets.map(item => item.city))];
 
             const urlCities = this.searchParams.cities;
             if (urlCities) {
                 const arr = urlCities.split(',').filter(item => item.length > 0);
-                this.state.cities = [...new Set(props.manager.markets.map(item => item.city))].map(item => ({
+                this.state.cities = this.cities.map(item => ({
                     name: item,
                     checked: arr.includes(item)
                 }));
             } else {
-                this.state.cities = [...new Set(props.manager.markets.map(item => item.city))].map(item => ({
+                this.state.cities = this.cities.map(item => ({
                     name: item,
+                    checked: false
+                }));
+            }
+
+            if (urlCities) {
+                this.state.markets = props.manager.markets.filter(item => {
+                    const index = this.cities.indexOf(item.city);
+                    if (index === -1)
+                        return false;
+                    return this.state.cities[index].checked;
+                });
+            } else
+                this.state.markets = props.manager.markets;
+
+            const urlMarkets = this.searchParams.markets;
+            if (urlMarkets) {
+                const arr = urlMarkets.split(',').filter(item => item.length > 0);
+                this.state.markets = this.state.markets.map(item => ({
+                    name: item.name,
+                    checked: arr.includes(item.name)
+                }));
+            } else {
+                this.state.markets = this.state.markets.map(item => ({
+                    name: item.name,
                     checked: false
                 }));
             }
@@ -73,14 +86,18 @@ class SearchResultsPage extends Component {
 
     findShops = page => {
         this.searchParams.$skip = (page - 1) * MAX_SHOPS;
+        this.queryId = Math.floor(Math.random() * 100);
+        const q = this.queryId;
         shopApi.findShop(this.searchParams).then(shops => {
-            if (this.active) {
-                if (shops.total === 1)
-                    this.props.history.replace('results/' + shops.data[0]._id);
-                else {
-                    this.props.actions.findShopSuccess(shops.data);
-                    this.setState({results: shops, loading: false, smallLoading: false});
-                    this.props.actions.updateTripArray((page - 1) * MAX_SHOPS, shops.data, this.searchParams, shops.total)
+            if (q === this.queryId) {
+                if (this.active) {
+                    if (shops.total === 1)
+                        this.props.history.replace('results/' + shops.data[0]._id);
+                    else {
+                        this.props.actions.findShopSuccess(shops.data);
+                        this.setState({results: shops, loading: false, smallLoading: false});
+                        this.props.actions.updateTripArray((page - 1) * MAX_SHOPS, shops.data, this.searchParams, shops.total)
+                    }
                 }
             }
         });
@@ -121,13 +138,30 @@ class SearchResultsPage extends Component {
         } else
             cities.forEach(city => city.checked = false);
 
+
+        const markets = (urlCities ?
+            props.manager.markets.filter(item => {
+                const index = this.cities.indexOf(item.city);
+                if (index === -1)
+                    return false;
+                return this.state.cities[index].checked;
+            })
+            : props.manager.markets).map(item => ({
+            name: item.name
+        }));
+
         const urlMarkets = this.searchParams.markets;
-        let markets = this.state.markets;
         if (urlMarkets) {
-            const arr = urlMarkets.split(',').filter(item => item.length > 0);
+            const mNames = markets.map(item => item.name);
+            const arr = urlMarkets.split(',').filter(item => item.length > 0 && mNames.includes(item));
+            if (arr.length === 0)
+                delete this.searchParams.markets;
+            else
+                this.searchParams.markets = arr.reduce((acc, item) => acc + ',' + item, '');
             markets.forEach(market => market.checked = (arr.includes(market.name)));
         } else
-            markets.forEach(city => city.checked = false);
+            markets.forEach(market => market.checked = false);
+
 
         const p = parseInt(this.searchParams.page || '1', 0);
         this.setState({
@@ -137,7 +171,8 @@ class SearchResultsPage extends Component {
             smallLoading: false,
             stars: parseInt(this.searchParams.stars) || 0,
             page: p,
-            cities
+            cities,
+            markets
         });
         delete this.searchParams.page;
         this.searchParams.$limit = MAX_SHOPS;
@@ -216,12 +251,12 @@ class SearchResultsPage extends Component {
     render() {
         return (
             <div style={{marginTop: 10, display: 'flex', height: '100%'}}>
-                <div style={{width: '15%', marginLeft: 10, height: '100%'}}>
+                <div style={{width: '15%', height: '100%', minWidth: 250}}>
                     <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
                         <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
                               onClick={this.expandMarkets}>Markets</span>
                         <Collapse in={this.state.expandMarkets}>
-                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
                                 {this.state.markets.map((item, index) =>
                                     <CheckBox checkChanged={this.checkChangedMarket(index)}
                                               text={item.name} key={index}
@@ -231,7 +266,7 @@ class SearchResultsPage extends Component {
                         <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
                               onClick={this.expandCities}>City</span>
                         <Collapse in={this.state.expandCities}>
-                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
                                 {this.state.cities.map((item, index) =>
                                     <CheckBox checkChanged={this.checkChangedCity(index)}
                                               text={item.name} key={index}
@@ -241,18 +276,18 @@ class SearchResultsPage extends Component {
                         <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
                               onClick={this.expandRating}>By Rating</span>
                         <Collapse in={this.state.expandRating}>
-                            <table style={{marginTop: 10}}>
+                            <table style={{marginTop: 10, marginLeft: 10}}>
                                 <tbody>
                                 {[4, 3, 2, 1].map((item, index) =>
                                     <tr key={index} onClick={this.handleFilter(item)}
                                         style={{cursor: 'pointer'}}>
-                                        <td><Stars size={'2x'} stars={item} rating={-2}
+                                        <td><Stars iconClass={'star'} size={'1.5em'} stars={item} rating={-2}
                                                    color={this.state.stars === item ? bgColor : undefined}/>
                                         </td>
                                         <td style={{
                                             fontSize: '1.2em',
                                             color: this.state.stars === item ? bgColor : 'black'
-                                        }}>{item} and up
+                                        }}><span style={{marginLeft: 10}}>{item} and up</span>
                                         </td>
                                     </tr>)}
                                 </tbody>
