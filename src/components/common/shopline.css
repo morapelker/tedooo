@@ -72,3 +72,9 @@
     overflow: hidden;
     margin-top: 5px;
 }
+
+@media only screen and (max-width: 850px) {
+    .shop_line_root.conditional_right {
+        border-right: 1px solid #c3c3c3;
+    }
+}

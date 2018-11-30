@@ -12,3 +12,9 @@
 .statistic_pbar {
     width: 200px;
 }
+
+@media only screen and (max-width: 850px) {
+    .comment_root {
+        margin-top: 30px;
+    }
+}

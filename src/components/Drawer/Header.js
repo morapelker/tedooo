@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import TedooButton from "../common/TedooButton";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {LargeScreen} from "../common/ScreenSizes";
+import {LargeScreen, SmallScreen} from "../common/ScreenSizes";
 import {capitalize} from "../helpers/helpers";
 
 
@@ -194,30 +194,29 @@ class Header extends Component {
     render() {
         const {classes, favCount, userName, avatar} = this.props;
         return (
-            <div style={{
-                borderBottom: '1px solid #c3c3c3',
-                width: '100%',
-                height: 200,
-                background: 'white',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
+            <div className={'header_root'}>
                 <TedooDrawer pendingCount={this.props.pendingCount}
                              logout={this.handleOpen} handleNavigation={this.handleNavigation}
                              title={this.props.title} auth={this.props.auth} open={this.state.open}
                              closeMenu={this.closeMenu}/>
-                <div style={{width: '100%', flex: 1, background: bgColor}}>
-                    <ImgWithLoader src={'/assets/banner.png'}
-                                   style={{height: '100%', width: '100%', objectFit: 'cover'}}/>
-                </div>
-                <div style={{width: '100%', flex: 1, display: 'flex'}}>
-                    <div className={'logo_parent1'}
-                         style={{background: bgColor, cursor: 'pointer'}}>
+                <SmallScreen>
+                    <div style={{
+                        width: '100%',
+                        flex: 1,
+                        position: 'relative',
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}>
                         <FontAwesomeIcon color={'#fff'}
+                                         style={{
+                                             position: 'absolute',
+                                             left: 10,
+                                             top: 30
+                                         }}
                                          onClick={this.openMenu}
                                          icon={'bars'}
                                          size={'2x'}/>
-                        <div className={'logo_parent2'} onClick={() => {
+                        <div onClick={() => {
                             this.props.history.push('/');
                             this.setState({textValue: ''});
                         }}>
@@ -227,22 +226,25 @@ class Header extends Component {
                                     fontSize: '2em',
                                     fontWeight: 100
                                 }}>Tedooo</span>
-                            <div style={{display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center'}}>
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                flex: 1,
+                                alignItems: 'center'
+                            }}>
                                 <div style={{...dotStyle, marginLeft: 0}}/>
                                 <div style={dotStyle}/>
                                 <div style={dotStyle}/>
                             </div>
                         </div>
-                    </div>
-                    <div className={'search_parent'}
-                         style={{display: 'flex', justifyContent: 'center'}}>
-                        <div style={{
-                            display: 'flex',
-                            flex: 1,
-                            maxWidth: 500,
-                            alignItems: 'flex-end',
-                            paddingBottom: 20
-                        }}>
+
+                        <div className={'search_parent'}
+                             style={{
+                                 display: 'flex',
+                                 justifyContent: 'center',
+                                 flex: 1,
+                                 marginTop: 20
+                             }}>
                             <ApiAutoCompleteField
                                 value={this.state.textValue}
                                 placeholder={'What are you looking for?'}
@@ -251,8 +253,147 @@ class Header extends Component {
                                 method={this.state.textMethod}
                                 onChange={this.freeTextChanged}/>
                         </div>
+
+                        <div className={'action_parent'}>
+                            {
+                                avatar ?
+                                    <div className={'avatar_header_container'}>
+                                        <img src={avatar} alt={''} className={'avatar_header'}
+                                             onClick={() => {
+                                                 this.props.history.push('/settings');
+                                             }}/>
+                                    </div>
+                                    : <FontAwesomeIcon
+                                        onClick={() => {
+                                            if (userName)
+                                                this.props.history.push('/settings');
+                                            else
+                                                this.props.history.push('/login');
+                                        }}
+                                        color={'#c6c6c6'}
+                                        style={{cursor: 'pointer'}}
+                                        icon={['far', 'user']}/>
+                            }
+
+                            {userName ? <div style={{
+                                    marginLeft: 10,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    color: '#000',
+                                    fontWeight: 'bold',
+                                    alignItems: 'flex-start',
+                                    cursor: 'pointer'
+                                }}>
+                                <span onClick={() => {
+                                    this.props.history.push('/settings');
+                                }}>{userName}</span>
+                                    <span style={{fontWeight: 200}}
+                                          onClick={this.handleOpen}>Sign Out</span>
+                                </div> :
+                                <div
+                                    onClick={() => {
+                                        this.props.history.push('/login');
+                                    }}
+                                    style={{
+                                        marginLeft: 10,
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        color: '#000',
+                                        cursor: 'pointer',
+                                        alignItems: 'flex-start'
+                                    }}>
+                                    <span>{'Sign In | Join Free'}</span>
+                                    <span>My Tedooo</span>
+                                </div>
+                            }
+
+                            <FontAwesomeIcon
+                                onClick={() => {
+                                    this.props.history.push('/favorites')
+                                }}
+                                color={'#c6c6c6'}
+                                style={{cursor: 'pointer', marginLeft: 20, fontSize: '1.5em'}}
+                                icon={['far', 'heart']}/>
+                            <div onClick={() => {
+                                this.props.history.push('/favorites')
+                            }} style={{
+                                marginLeft: 10,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                color: '#000',
+                                alignItems: 'flex-start',
+                                cursor: 'pointer'
+                            }}>
+                                <div style={{
+                                    color: 'white',
+                                    background: 'gray',
+                                    width: 20,
+                                    height: 20,
+                                    borderRadius: 15,
+                                    padding: 5,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <span style={{fontSize: '0.8em'}}>{favCount || 0}</span>
+                                </div>
+                                <span>Favorites</span>
+                            </div>
+                        </div>
                     </div>
-                    <LargeScreen>
+                </SmallScreen>
+                <LargeScreen>
+                    <div style={{width: '100%', flex: 1, background: bgColor}}>
+                        <ImgWithLoader src={'/assets/banner.png'}
+                                       style={{height: '100%', width: '100%', objectFit: 'cover'}}/>
+                    </div>
+                    <div style={{width: '100%', flex: 1, display: 'flex'}}>
+                        <div className={'logo_parent1'}
+                             style={{background: bgColor, cursor: 'pointer'}}>
+                            <FontAwesomeIcon color={'#fff'}
+                                             onClick={this.openMenu}
+                                             icon={'bars'}
+                                             size={'2x'}/>
+                            <div className={'logo_parent2'} onClick={() => {
+                                this.props.history.push('/');
+                                this.setState({textValue: ''});
+                            }}>
+                            <span
+                                style={{
+                                    color: 'white',
+                                    fontSize: '2em',
+                                    fontWeight: 100
+                                }}>Tedooo</span>
+                                <div style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    flex: 1,
+                                    alignItems: 'center'
+                                }}>
+                                    <div style={{...dotStyle, marginLeft: 0}}/>
+                                    <div style={dotStyle}/>
+                                    <div style={dotStyle}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={'search_parent'}
+                             style={{display: 'flex', justifyContent: 'center'}}>
+                            <div style={{
+                                display: 'flex',
+                                flex: 1,
+                                maxWidth: 500,
+                                alignItems: 'flex-end',
+                                paddingBottom: 20
+                            }}>
+                                <ApiAutoCompleteField
+                                    value={this.state.textValue}
+                                    placeholder={'What are you looking for?'}
+                                    suggestions={this.state.textSuggestions}
+                                    onEnter={this.submit}
+                                    method={this.state.textMethod}
+                                    onChange={this.freeTextChanged}/>
+                            </div>
+                        </div>
                         <div className={'action_parent'}>
                             {
                                 avatar ?
@@ -286,7 +427,8 @@ class Header extends Component {
                                 <span onClick={() => {
                                     this.props.history.push('/settings');
                                 }}>{userName}</span>
-                                    <span style={{fontWeight: 200}} onClick={this.handleOpen}>Sign Out</span>
+                                    <span style={{fontWeight: 200}}
+                                          onClick={this.handleOpen}>Sign Out</span>
                                 </div> :
                                 <div
                                     onClick={() => {
@@ -340,9 +482,10 @@ class Header extends Component {
                             <span style={{marginLeft: 10}}> | Get the App</span>
                             <span style={{marginLeft: 10}}> | English</span>
                         </div>
-                    </LargeScreen>
 
-                </div>
+                    </div>
+                </LargeScreen>
+
                 <Dialog
                     open={this.state.logoutOpen}
                     onClose={this.handleClose}

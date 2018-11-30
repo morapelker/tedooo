@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import App from "./App";
 import {PersistGate} from 'redux-persist/integration/react'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import {library} from '@fortawesome/fontawesome-svg-core'
 import {
     faStar,
     faStarHalfAlt,
@@ -15,10 +15,16 @@ import {
     faChevronUp,
     faSearch,
     faBars,
+    faEdit,
+    faInfo,
+    faPhone
 } from '@fortawesome/free-solid-svg-icons'
-import { faStar as emptyStar, faUser, faHeart } from '@fortawesome/free-regular-svg-icons'
+import {faStar as emptyStar, faUser, faHeart} from '@fortawesome/free-regular-svg-icons'
 
-library.add(faStar, faStarHalfAlt, emptyStar, faChevronDown, faChevronUp, faSearch, faBars, faUser, faHeart);
+library.add(faStar, faStarHalfAlt, emptyStar,
+    faChevronDown, faChevronUp,
+    faSearch, faBars,
+    faUser, faHeart, faEdit, faInfo, faPhone);
 const {store, persistor} = configureStore();
 
 /*
@@ -29,7 +35,7 @@ const {store, persistor} = configureStore();
 ReactDOM.render(
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-            <App />
+            <App/>
         </PersistGate>
     </Provider>, document.getElementById('root')
 );

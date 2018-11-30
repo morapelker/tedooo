@@ -21,11 +21,19 @@ class ImageColumn extends Component {
         }
     }
 
+    getHeight = () => {
+        if (!this.props.shop.img_links)
+            return 0;
+        if (this.props.shop.img_links.length > 6)
+            return 500;
+        return this.props.shop.img_links.length * 70
+    };
+
     render() {
+        const h = this.getHeight();
+        const imgLinks = this.props.shop.img_links || [];
         return (
-            <div className={'specific_image_root'} style={{
-                height: 500
-            }}>
+            <div className={'specific_image_root'} style={{height: h}}>
                 <div style={{
                     display: 'flex',
                     paddingRight: 20,
@@ -33,24 +41,25 @@ class ImageColumn extends Component {
                     alignItems: 'center',
                     flexDirection: 'column'
                 }}>
-                    {this.state.startIndex === 0 ? <div style={{width: 40, height: 40}} /> :
-                    <img style={{
-                        width: 30,
-                        height: 30,
-                        alignSelf: 'center',
-                        cursor: 'pointer',
-                        background: 'white'
-                    }} src={'/assets/up.png'} alt={''} onClick={() => {
-                        this.setState(prevState => ({
-                            startIndex: prevState.startIndex - maxSmallImages < 0 ? 0 : prevState.startIndex - maxSmallImages
-                        }));
-                    }} />}
-                    {this.props.shop.img_links.map((link, index) => {
-                        if (index >= this.state.startIndex && index < this.state.startIndex + maxSmallImages) {
+                    {h === 500 &&
+                    (this.state.startIndex === 0 ? <div style={{width: 40, height: 40}}/> :
+                        <img style={{
+                            width: 30,
+                            height: 30,
+                            alignSelf: 'center',
+                            cursor: 'pointer',
+                            background: 'white'
+                        }} src={'/assets/up.png'} alt={''} onClick={() => {
+                            this.setState(prevState => ({
+                                startIndex: prevState.startIndex - maxSmallImages < 0 ? 0 : prevState.startIndex - maxSmallImages
+                            }));
+                        }}/>)}
+                    {imgLinks.slice(this.state.startIndex, this.state.startIndex + maxSmallImages)
+                        .map((link, index) => {
                             return <ImgWithLoader key={index} style={{
                                 width: 60,
                                 height: 60,
-                                marginTop: (index === this.state.startIndex ? 0 : 10),
+                                marginTop: (index === 0 ? 0 : 10),
                                 borderRadius: 10,
                                 border: '1px black solid',
                                 objectFit: 'cover',
@@ -67,10 +76,9 @@ class ImageColumn extends Component {
                                                           });
                                                       }
                                                   }}/>
-                        }
-                        return undefined;
-                    })}
-                    {this.state.startIndex + maxSmallImages < this.props.shop.img_links.length  &&
+
+                        })}
+                    {this.state.startIndex + maxSmallImages < imgLinks.length &&
                     <img style={{
                         width: 30,
                         height: 30,
@@ -80,12 +88,15 @@ class ImageColumn extends Component {
                         cursor: 'pointer'
                     }} src={'/assets/down.png'} alt={''} onClick={() => {
                         this.setState(prevState => ({
-                          startIndex: prevState.startIndex + maxSmallImages
+                            startIndex: prevState.startIndex + maxSmallImages
                         }));
-                    }} />}
+                    }}/>}
                 </div>
-                <ImgWithLoader otherProps={{className: 'main_image'}}
-                    src={this.state.bigImgUrl}/>
+                <div style={{flex: 1, display: 'flex'}}>
+                    <ImgWithLoader otherProps={{className: 'main_image'}}
+                                   src={this.state.bigImgUrl}/>
+                </div>
+
             </div>
         );
     }

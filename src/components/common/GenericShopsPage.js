@@ -23,17 +23,25 @@ const filterIrrelevant = line => {
     return line.trim();
 };
 
-const getClassName = (index, length) => {
-  let cName = (index > length - 6) ? 'bottom' : '';
-  if (index % 5 === 4 || index === length - 1)
-      cName = (cName + ' right').trim();
-  return cName;
+const getClassName = (index, length, small) => {
+    if (small) {
+        let cName = (index > length - 3) ? 'bottom' : '';
+        if (index % 2 === 1 || index === length - 1)
+            cName = (cName + ' right').trim();
+        return cName;
+    } else {
+        let cName = (index > length - 6) ? 'bottom' : '';
+        if (index % 5 === 4 || index === length - 1)
+            cName = (cName + ' right').trim();
+        return cName;
+    }
 };
 
 const GenericShopsPage = (props) => {
     // const words = props.text ? filterIrrelevant(props.text).split(' ').filter(item => item.length > 1) : undefined;
     const words = '';
     const length = props.shops.length;
+    const small = window.innerWidth < 850;
     return (
         <div style={{
             width: '100%',
@@ -57,7 +65,7 @@ const GenericShopsPage = (props) => {
                 }}>
                     {props.shops && length > 0 ? props.shops.map((result, index) => (
                         <ShopLine
-                            className={getClassName(index, length)}
+                            className={getClassName(index, length, small)}
                             words={words}
                             auth={props.auth}
                             key={index}

@@ -71,12 +71,13 @@ const SimilarShops = ({text, historyAction, history, currentId}) => {
                     justifyContent: 'center',
                     marginTop: 40
                 }}>
-                    {shops.map((item, index) => <ShopLine className={'similar_root'}
-                                                          shopSelected={shopClicked(index)}
-                                                          key={index}
-                                                          shop={item}/>)}
-                    {[1, 1, 1, 1, 1].map((item, index) => <div key={index}
-                                                               style={{height: 0, width: 200}}/>)}
+                    {shops.map((item, index) => <ShopLine
+                        className={'bottom ' + (index === shops.length - 1 ? ' right' : '')
+                        + (index % 2 === 1 ? ' conditional_right' : '')}
+                        shopSelected={shopClicked(index)}
+                        key={index}
+                        shop={item}/>)}
+                    {[1, 1, 1, 1, 1].map((item, index) => <div key={index} className={'empty_grid_filler'}/>)}
                 </div>}
         </div>
     );

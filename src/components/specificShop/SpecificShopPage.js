@@ -8,7 +8,6 @@ import RefreshIndicator from "../common/RefreshIndicator";
 import './SpecificShop.css'
 import {alterObject, cloneObjectOrUndefined, deepCloneObject} from "../helpers/helpers";
 import {withRouter} from "react-router-dom";
-import TripNavigator from "./TripNavigator";
 import shopApi from "../../api/shopApi";
 
 class SpecificShopPage extends Component {
@@ -215,30 +214,31 @@ class SpecificShopPage extends Component {
         return (
             <div className={'specificShopContainer'}>
                 {this.state.busy ?
-                    <RefreshIndicator/>
+                    <RefreshIndicator style={{marginTop: 60}}/>
                     : this.state.shop === undefined ? 'no data' :
                         <div style={{width: '100%', height: '100%'}}>
-                            {(right || left) &&
-                            <TripNavigator right={right} left={left} leftClicked={this.leftClicked}
-                                           rightClicked={this.rightClicked}/>
-                            }
-                            <SpecificShopData imgSelected={this.imageSelected}
-                                              addFavoritesAction={this.props.actions.addShopFavorites}
-                                              addHistoryAction={this.props.actions.addShopHistory}
-                                              bigImgSrc={this.state.bigImgSrc}
-                                              ownShop={this.state.ownShop}
-                                              admin={this.props.authentication.admin}
-                                              history={this.props.history}
-                                              actions={this.props.actions}
-                                              token={this.props.authentication.token}
-                                              transactions={this.props.transactions}
-                                              edit={this.state.editing}
-                                              userId={this.props.authentication.userId}
-                                              editSelector={this.startEditing}
-                                              placeImageSelector={this.placeImage}
-                                              deleteImage={this.deleteImage}
-                                              loadingImage={this.state.loadingImage}
-                                              shop={this.state.shop}/>
+                            <SpecificShopData
+                                right={right}
+                                left={left}
+                                leftClicked={this.leftClicked}
+                                rightClicked={this.rightClicked}
+                                imgSelected={this.imageSelected}
+                                addFavoritesAction={this.props.actions.addShopFavorites}
+                                addHistoryAction={this.props.actions.addShopHistory}
+                                bigImgSrc={this.state.bigImgSrc}
+                                ownShop={this.state.ownShop}
+                                admin={this.props.authentication.admin}
+                                history={this.props.history}
+                                actions={this.props.actions}
+                                token={this.props.authentication.token}
+                                transactions={this.props.transactions}
+                                edit={this.state.editing}
+                                userId={this.props.authentication.userId}
+                                editSelector={this.startEditing}
+                                placeImageSelector={this.placeImage}
+                                deleteImage={this.deleteImage}
+                                loadingImage={this.state.loadingImage}
+                                shop={this.state.shop}/>
                         </div>}
             </div>
         );

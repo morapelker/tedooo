@@ -13,6 +13,11 @@
     display: flex;
 }
 
+.specific_shop_other_section {
+    width: 100%;
+    display: flex;
+}
+
 .infoTipView {
     height: 40px;
     width: 40px
@@ -49,14 +54,40 @@
     overflow: hidden;
 }
 
+.trip_root {
+    display: flex;
+    margin: 10px auto auto;
+    width: 150px;
+}
+
 @media only screen and (max-width: 700px) {
     .comment_root {
         width: 100%;
     }
 
-    .root {
+    .trip_root {
+        margin-top: 0;
+    }
+
+    .shop_tip_view {
+        position: absolute;
+        left: 20px;
+        right: unset;
+    }
+
+    .specific_shop_other_section {
         flex-direction: column;
     }
+
+    .specificShopContainer {
+        margin-top: -40px;
+    }
+
+    .root {
+        flex-direction: column;
+        padding-top: 40px;
+    }
+
     .main_image {
         max-height: 200px;
     }

@@ -12,6 +12,7 @@ import {bgColor} from "../../api/apiConstants";
 import Stars from "../common/Stars";
 import Collapse from "@material-ui/core/Collapse/Collapse";
 import CheckBox from "../common/CheckBox";
+import {LargeScreen} from "../common/ScreenSizes";
 
 const MAX_SHOPS = 10;
 
@@ -250,54 +251,56 @@ class SearchResultsPage extends Component {
 
     render() {
         return (
-            <div style={{marginTop: 10, display: 'flex', height: '100%'}}>
-                <div style={{width: '15%', height: '100%', minWidth: 250}}>
-                    <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+            <div style={{marginTop: 10, display: 'flex'}}>
+                <LargeScreen>
+                    <div style={{width: '15%', height: '100%', minWidth: 250}}>
+                        <div style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
                         <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
                               onClick={this.expandMarkets}>Markets</span>
-                        <Collapse in={this.state.expandMarkets}>
-                            <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
-                                {this.state.markets.map((item, index) =>
-                                    <CheckBox checkChanged={this.checkChangedMarket(index)}
-                                              text={item.name} key={index}
-                                              checked={item.checked}/>)}
-                            </div>
-                        </Collapse>
-                        <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
-                              onClick={this.expandCities}>City</span>
-                        <Collapse in={this.state.expandCities}>
-                            <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
-                                {this.state.cities.map((item, index) =>
-                                    <CheckBox checkChanged={this.checkChangedCity(index)}
-                                              text={item.name} key={index}
-                                              checked={item.checked}/>)}
-                            </div>
-                        </Collapse>
-                        <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
-                              onClick={this.expandRating}>By Rating</span>
-                        <Collapse in={this.state.expandRating}>
-                            <table style={{marginTop: 10, marginLeft: 10}}>
-                                <tbody>
-                                {[4, 3, 2, 1].map((item, index) =>
-                                    <tr key={index} onClick={this.handleFilter(item)}
-                                        style={{cursor: 'pointer'}}>
-                                        <td><Stars iconClass={'star'} size={'1.5em'} stars={item} rating={-2}
-                                                   color={this.state.stars === item ? bgColor : undefined}/>
-                                        </td>
-                                        <td style={{
-                                            fontSize: '1.2em',
-                                            color: this.state.stars === item ? bgColor : 'black'
-                                        }}><span style={{marginLeft: 10}}>{item} and up</span>
-                                        </td>
-                                    </tr>)}
-                                </tbody>
-                            </table>
-                        </Collapse>
+                            <Collapse in={this.state.expandMarkets}>
+                                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
+                                    {this.state.markets.map((item, index) =>
+                                        <CheckBox checkChanged={this.checkChangedMarket(index)}
+                                                  text={item.name} key={index}
+                                                  checked={item.checked}/>)}
+                                </div>
+                            </Collapse>
+                            <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
+                                  onClick={this.expandCities}>City</span>
+                            <Collapse in={this.state.expandCities}>
+                                <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
+                                    {this.state.cities.map((item, index) =>
+                                        <CheckBox checkChanged={this.checkChangedCity(index)}
+                                                  text={item.name} key={index}
+                                                  checked={item.checked}/>)}
+                                </div>
+                            </Collapse>
+                            <span style={{background: '#c3c3c3', fontSize: '1.3em', cursor: 'pointer'}}
+                                  onClick={this.expandRating}>By Rating</span>
+                            <Collapse in={this.state.expandRating}>
+                                <table style={{marginTop: 10, marginLeft: 10}}>
+                                    <tbody>
+                                    {[4, 3, 2, 1].map((item, index) =>
+                                        <tr key={index} onClick={this.handleFilter(item)}
+                                            style={{cursor: 'pointer'}}>
+                                            <td><Stars iconClass={'star'} size={'1.5em'} stars={item} rating={-2}
+                                                       color={this.state.stars === item ? bgColor : undefined}/>
+                                            </td>
+                                            <td style={{
+                                                fontSize: '1.2em',
+                                                color: this.state.stars === item ? bgColor : 'black'
+                                            }}><span style={{marginLeft: 10}}>{item} and up</span>
+                                            </td>
+                                        </tr>)}
+                                    </tbody>
+                                </table>
+                            </Collapse>
+                        </div>
+                        <TedooButton style={{marginTop: 30}} text={'reset'} selectedBackground={bgColor}
+                                     selected={true}
+                                     selectedTextColor={'white'} onClick={this.resetFilter}/>
                     </div>
-                    <TedooButton style={{marginTop: 30}} text={'reset'} selectedBackground={bgColor}
-                                 selected={true}
-                                 selectedTextColor={'white'} onClick={this.resetFilter}/>
-                </div>
+                </LargeScreen>
                 <div style={{flex: 1, height: '100%'}}>
                     {this.state.loading ? <RefreshIndicator/> :
                         <GenericShopsPage history={this.props.history}

@@ -6,6 +6,15 @@
     align-items: center;
 }
 
+.header_root {
+    border-bottom: 1px solid #c3c3c3;
+    width: 100%;
+    height: 200px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
 .avatar_header_container {
     border-radius: 50%;
     overflow: hidden;
@@ -75,5 +84,29 @@
 @media only screen and (max-width: 850px) {
     .inputField2 {
         font-size: 13px;
+    }
+
+    .search_parent {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .action_parent {
+        background: #fff;
+        padding-top: 5px;
+        margin-top: 5px;
+        font-size: 1em;
+        justify-content: flex-end;
+    }
+
+    .avatar_header_container {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header_root {
+        height: unset;
+        background: #3CBF95;
+        border-bottom: unset;
     }
 }
