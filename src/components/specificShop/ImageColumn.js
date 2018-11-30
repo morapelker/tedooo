@@ -93,7 +93,7 @@ class ImageColumn extends Component {
                     }}/>}
                 </div>
                 <div style={{flex: 1, display: 'flex'}}>
-                    <ImgWithLoader otherProps={{className: 'main_image'}}
+                    <ImgWithLoader otherProps={{className: 'main_image'}} style={{marginTop: h === 500 ? 50 : 0}}
                                    src={this.state.bigImgUrl}/>
                 </div>
 

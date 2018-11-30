@@ -10,6 +10,7 @@
 
 .specific_image_root {
     width: 50%;
+    min-height: 400px;
     display: flex;
 }
 
@@ -50,7 +51,6 @@
     object-fit: contain;
     max-height: 400px;
     object-position: top;
-    margin-top: 50px;
     overflow: hidden;
 }
 
@@ -89,10 +89,11 @@
     }
 
     .main_image {
-        max-height: 200px;
+        max-height: unset;
     }
 
     .specific_image_root {
         width: 90%;
+        min-height: 0;
     }
 }
