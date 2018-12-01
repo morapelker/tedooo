@@ -23,6 +23,7 @@ import SettingsPage from "./parents/SettingsPage";
 import StorePage from "./parents/Store/StorePage";
 import Topup from "./parents/TopUp/Topup";
 import MoneyAdmin from "./parents/MoneyAdmin";
+import {Redirect} from "react-router";
 
 class MainApp extends Component {
     constructor(props, context) {
@@ -85,6 +86,7 @@ class MainApp extends Component {
                             <Route exact path='/topup' component={Topup}/>
                             <Route exact path='/money' component={MoneyAdmin}/>
                             <Route path='/results/:id' component={SpecificShop}/>
+                            <Route render={() => <Redirect to="/" replace/>}/>
                         </Switch>
                         <div style={{height: 30}} />
 
