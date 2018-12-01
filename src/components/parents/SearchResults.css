@@ -1,0 +1,17 @@
+.search_result_root {
+    margin-top: -40px;
+    display: flex;
+    padding-top: 40px;
+    position: relative;
+}
+
+td {
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 850px) {
+    .search_result_root {
+        flex-direction: column;
+    }
+
+}

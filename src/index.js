@@ -17,13 +17,14 @@ import {
     faBars,
     faEdit,
     faInfo,
-    faPhone
+    faPhone,
+    faFilter
 } from '@fortawesome/free-solid-svg-icons'
 import {faStar as emptyStar, faUser, faHeart} from '@fortawesome/free-regular-svg-icons'
 
 library.add(faStar, faStarHalfAlt, emptyStar,
     faChevronDown, faChevronUp,
-    faSearch, faBars,
+    faSearch, faBars, faFilter,
     faUser, faHeart, faEdit, faInfo, faPhone);
 const {store, persistor} = configureStore();
 
