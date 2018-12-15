@@ -500,7 +500,7 @@ class AddShop extends Component {
                         width: '40%', display: 'flex', flexDirection: 'column', margin: '0 auto'
                     }}>
                         <p/>
-                        <h3>{this.props.match.params.id ? 'Edit' : 'Add'} Shop</h3>
+                        <h3>{this.props.match.params.id ? 'Modify' : 'Add'} Shop</h3>
                         <p/>
                         {this.state.initLoading && <RefreshIndicator style={{margin: '0 auto'}}/>}
                         {this.state.initError && <h3 style={{color: 'red'}}>Can't edit shop</h3>}
