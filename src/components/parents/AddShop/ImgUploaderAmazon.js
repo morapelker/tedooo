@@ -111,7 +111,7 @@ export const resize = (file, callback) => {
             const image = new Image();
             image.onload = () => {
                 let canvas = document.createElement('canvas'),
-                    max_size = 1400,
+                    max_size = 2800,
                     width = image.width,
                     height = image.height;
                 if (width > height) {
