@@ -215,7 +215,7 @@ export const resize = (file, callback) => {
                         default:
                             break;
                     }
-                    ctx.drawImage(image, 0, 0);
+                    ctx.drawImage(image, 0, 0, width, height);
                     const qualitySetting = qualityForSize(canvas, 400000) || 1;   // find the image quality to be under file size 244000
                     const dataUrl = canvas.toDataURL('image/jpeg', qualitySetting);
                     const resizedImage = dataURLToBlob(dataUrl);
