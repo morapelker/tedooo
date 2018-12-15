@@ -117,8 +117,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="116" column="37" lean-forward="true" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+            <state relative-caret-position="533">
+              <caret line="214" column="32" lean-forward="true" selection-start-line="214" selection-start-column="32" selection-end-line="214" selection-end-column="32" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -149,7 +149,6 @@
       <find>300</find>
       <find>ImgWith</find>
       <find>CartControl</find>
-      <find>resize</find>
       <find>inputref.</find>
       <find>loadimage</find>
       <find>specificShop.cs</find>
@@ -171,6 +170,7 @@
       <find>fontawes</find>
       <find>fontawe</find>
       <find>PUT</find>
+      <find>resize</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -680,21 +680,7 @@
       <workItem from="1544475595733" duration="412000" />
       <workItem from="1544566897213" duration="80000" />
       <workItem from="1544875426219" duration="7000" />
-      <workItem from="1544880479424" duration="74000" />
-    </task>
-    <task id="LOCAL-00044" summary="sd">
-      <created>1537987151384</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1537987151384</updated>
-    </task>
-    <task id="LOCAL-00045" summary="sd">
-      <created>1538055799905</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1538055799905</updated>
+      <workItem from="1544880479424" duration="2846000" />
     </task>
     <task id="LOCAL-00046" summary="sd">
       <created>1538128530363</created>
@@ -1025,11 +1011,25 @@
       <option name="project" value="LOCAL" />
       <updated>1543675700196</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="sd">
+      <created>1544880563941</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1544880563942</updated>
+    </task>
+    <task id="LOCAL-00094" summary="sd">
+      <created>1544881924289</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1544881924289</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="587899000" />
+    <option name="totallyTimeSpent" value="590671000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1044,7 +1044,7 @@
     <frame x="0" y="23" width="2560" height="1335" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.14572667" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61391693" visible="true" weight="0.14572667" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" sideWeight="0.38608307" side_tool="true" weight="0.22528554" />
@@ -1057,7 +1057,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32924837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.15819672" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.21557377" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32924837" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -1487,8 +1487,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/parents/AddShop/ImgUploaderAmazon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="116" column="37" lean-forward="true" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+        <state relative-caret-position="533">
+          <caret line="214" column="32" lean-forward="true" selection-start-line="214" selection-start-column="32" selection-end-line="214" selection-end-column="32" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

@@ -89,17 +89,84 @@ function getOrientation(file, callback) {
                         return callback(view.getUint16(offset + (i * 12) + 8, little));
                     }
                 }
-            }
-            else if ((marker & 0xFF00) !== 0xFF00) {
+            } else if ((marker & 0xFF00) !== 0xFF00) {
                 break;
-            }
-            else {
+            } else {
                 offset += view.getUint16(offset, false);
             }
         }
         return callback(-1);
     };
     reader.readAsArrayBuffer(file);
+}
+
+
+// warning try to limit calls to this function as it can cause problems on some systems
+// as they try to keep up with GC
+// This function gets the file size by counting the number of Base64 characters and
+// calculating the number of bytes encoded.
+function getImageFileSize(image, quality) {  // image must be a canvas
+    return Math.floor(image.toDataURL("image/jpeg", quality).length * (3 / 4));
+}
+
+function qualityForSize(image, fileSize) {
+    // These are approximations only
+    // and are the result of using a test image and finding the file size
+    // at quality setting 1 to 0.1 in 0.1 steps
+    const scalingFactors = [
+        5638850 / 5638850,
+        1706816 / 5638850,
+        1257233 / 5638850,
+        844268 / 5638850,
+        685253 / 5638850,
+        531014 / 5638850,
+        474293 / 5638850,
+        363686 / 5638850,
+        243578 / 5638850,
+        121475 / 5638850,
+        0, // this is added to catch the stuff ups.
+    ]
+    var size = getImageFileSize(image, 1); // get file size at best quality;
+    if (size <= fileSize) { // best quality is a pass
+        return 1;
+    }
+    // using size make a guess at the quality setting
+    var index = 0;
+    while (size * scalingFactors[index] > fileSize) {
+        index += 1
+    }
+    if (index === 10) {  // Could not find a quality setting
+        return 0; // this is bad and should not be used as a quality setting
+    }
+    var sizeUpper = size * scalingFactors[index - 1];  // get estimated size at upper quality
+    var sizeLower = size * scalingFactors[index];  // get estimated size at lower quality
+    // estimate quality via linear interpolation
+    var quality = (1 - (index / 10)) + ((fileSize - sizeLower) / (sizeUpper - sizeLower)) * 0.1;
+    var qualityStep = 0.02; // the change in quality (this value gets smaller each try)
+    var numberTrys = 3;  //  number of trys to get as close as posible to the file size
+    var passThreshold = 0.90; // be within 90% of desiered file size
+    var passQualities = []; // array of quality settings that are under file size
+    while (numberTrys--) {
+        var newSize = getImageFileSize(image, quality); // get the file size for quality guess
+        if (newSize <= fileSize && newSize / fileSize > passThreshold) { // does it pass?
+            return quality;  // yes return quality
+        }
+        if (newSize > fileSize) {  // file size too big
+            quality -= qualityStep;  // try lower quality
+            qualityStep /= 2;        // reduce the quality step for next try
+        } else {
+            passQualities.push(quality);  // save this quality incase nothing get within the pass threashold
+            quality += qualityStep;  // step the quality up.
+            qualityStep /= 2;        // reduce the size of the next quality step
+        }
+    }
+    // could not find a quality setting so get the best we did find
+    if (passQualities.length > 0) { //check we did get a pass
+        passQualities.sort();  // sort to get best pass quality
+        return passQualities.pop(); // return best quality that passed
+    }
+    // still no good result so just default to next 0.1 step down
+    return 1 - ((index + 1) / 10);
 }
 
 export const resize = (file, callback) => {
@@ -111,20 +178,9 @@ export const resize = (file, callback) => {
             const image = new Image();
             image.onload = () => {
                 let canvas = document.createElement('canvas'),
-                    max_size = 2800,
-                    width = image.width,
-                    height = image.height;
-                if (width > height) {
-                    if (width > max_size) {
-                        height *= max_size / width;
-                        width = max_size;
-                    }
-                } else {
-                    if (height > max_size) {
-                        width *= max_size / height;
-                        height = max_size;
-                    }
-                }
+                    width = image.width / 3,
+                    height = image.height / 3;
+
                 getOrientation(file, orientation => {
                     const ctx = canvas.getContext('2d');
                     if (4 < orientation && orientation < 9) {
@@ -159,8 +215,9 @@ export const resize = (file, callback) => {
                         default:
                             break;
                     }
-                    ctx.drawImage(image, 0, 0, width, height);
-                    const dataUrl = canvas.toDataURL('image/jpeg');
+                    ctx.drawImage(image, 0, 0);
+                    const qualitySetting = qualityForSize(canvas, 400000);   // find the image quality to be under file size 244000
+                    const dataUrl = canvas.toDataURL('image/jpeg', qualitySetting);
                     const resizedImage = dataURLToBlob(dataUrl);
 
                     callback(resizedImage, dataUrl);
