@@ -23,7 +23,7 @@ const styles = {
         height: 40,
         position: 'absolute',
         left: 0,
-        top: 5
+        top: 40
     }
 };
 
