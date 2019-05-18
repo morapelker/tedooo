@@ -226,7 +226,7 @@ class SpecificShopPage extends Component {
                                 addFavoritesAction={this.props.actions.addShopFavorites}
                                 addHistoryAction={this.props.actions.addShopHistory}
                                 bigImgSrc={this.state.bigImgSrc}
-                                ownShop={this.state.ownShop}
+                                ownShop={this.state.ownShop || this.props.authentication.admin}
                                 admin={this.props.authentication.admin}
                                 history={this.props.history}
                                 actions={this.props.actions}

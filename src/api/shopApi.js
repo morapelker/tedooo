@@ -103,6 +103,50 @@ class ShopApi {
 
     }
 
+    static async claimShop(shopId, linkId, userId, token) {
+        let response;
+        try {
+            response = await fetch(
+                URL + 'shops/' + shopId, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({shopId, linkId, userId})
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't update");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
+    static async createLink(shopId, token) {
+        let response;
+        try {
+            response = await fetch(
+                URL + 'links/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({shopId})
+                }
+            );
+        } catch (error) {
+            throw Error("Couldn't update");
+        }
+        let responseJson = await response.json();
+        if (!response.ok)
+            throw Error(responseJson.data.message);
+        return responseJson;
+    }
+
     static async updateReview(review, id, token) {
         let response;
         try {

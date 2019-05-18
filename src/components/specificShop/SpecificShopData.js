@@ -11,9 +11,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {bgColor} from "../../api/apiConstants";
 import {Link} from "react-router-dom";
 import SubmitButton from "../common/SubmitButton";
-import {Dialog, DialogActions, DialogContent, DialogTitle} from "@material-ui/core";
+import {
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle
+} from "@material-ui/core";
 import Input from "@material-ui/core/Input/Input";
 import Button from "@material-ui/core/Button/Button";
+import ShopApi from "../../api/shopApi";
+import {CopyToClipboard} from "react-copy-to-clipboard";
 
 const textFromShop = shop => (shop.category || '') + (shop.description || '');
 
@@ -73,6 +81,8 @@ const SpecificShopData = (props) => {
 
     const [open, setOpen] = useState(false);
     const [approveText, setApproveText] = useState('');
+    const [link, setLink] = useState(undefined);
+    const [copyText, setCopy] = useState('Copy');
 
     const deny = () => {
         setOpen(false);
@@ -90,6 +100,15 @@ const SpecificShopData = (props) => {
     const closeDialog = () => {
         setOpen(false);
     };
+
+    const createLink = () => {
+        setLink(false);
+        ShopApi.createLink(props.shop._id, props.token)
+            .then(res => setLink('http://www.tedooo.com/claim/' + res._id + '/' + res.shopId))
+            .catch(() => setLink(undefined));
+    };
+
+    const closeClicked = () => setLink(undefined);
 
     return (
         <div style={{
@@ -145,8 +164,8 @@ const SpecificShopData = (props) => {
                         {props.admin && <SubmitButton image={'authorize'} submit={() => {
                             setOpen(true);
                         }}/>}
-                    </div>
-                    }
+                        {props.admin && <SubmitButton image={'link'} submit={createLink}/>}
+                    </div>}
                     {(props.right || props.left) &&
                     <TripNavigator right={props.right} left={props.left}
                                    leftClicked={props.leftClicked}
@@ -175,6 +194,28 @@ const SpecificShopData = (props) => {
                     <Button onClick={approve} color="primary">
                         Approve
                     </Button>
+                </DialogActions>
+            </Dialog>
+
+            <Dialog
+                open={link !== undefined}
+                aria-labelledby="form-dialog-title"
+                onClose={closeClicked}
+            >
+                <DialogTitle id="form-dialog-title">Change ownership link</DialogTitle>
+                <DialogContent style={{display: 'flex'}}>
+                    {link ? <Input value={link}/> : <CircularProgress style={{margin: 'auto'}}/>}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeClicked} color="inherit">
+                        Close
+                    </Button>
+                    <CopyToClipboard text={link}
+                                     onCopy={() => setCopy('Copied')}>
+                        <Button color="secondary">
+                            {copyText}
+                        </Button>
+                    </CopyToClipboard>
                 </DialogActions>
             </Dialog>
 
