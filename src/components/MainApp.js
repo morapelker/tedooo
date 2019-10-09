@@ -24,7 +24,6 @@ import StorePage from "./parents/Store/StorePage";
 import Topup from "./parents/TopUp/Topup";
 import MoneyAdmin from "./parents/MoneyAdmin";
 import {Redirect} from "react-router";
-import ClaimPage from "./parents/ClaimPage";
 
 class MainApp extends Component {
     constructor(props, context) {
@@ -65,7 +64,7 @@ class MainApp extends Component {
                         <Switch>
                             <Route exact path='/' render={() => <SearchPage
                                 catClicked={this.categoryClicked}/>}/>
-                            <Route exact path='/claim/:linkId/:shopId' component={ClaimPage}/>
+                            <Route exact path='/claim/:linkId/:id' component={SpecificShop}/>
                             <Route exact path='/results' component={SearchResults}/>
                             <Route exact path='/history' component={HistoryPage}/>
                             <Route exact path='/favorites' component={FavoritesPage}/>

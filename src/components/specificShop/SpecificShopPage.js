@@ -9,6 +9,7 @@ import './SpecificShop.css'
 import {alterObject, cloneObjectOrUndefined, deepCloneObject} from "../helpers/helpers";
 import {withRouter} from "react-router-dom";
 import shopApi from "../../api/shopApi";
+import ClaimWindow from "./ClaimWindow";
 
 class SpecificShopPage extends Component {
 
@@ -217,6 +218,9 @@ class SpecificShopPage extends Component {
                     <RefreshIndicator style={{marginTop: 60}}/>
                     : this.state.shop === undefined ? 'no data' :
                         <div style={{width: '100%', height: '100%'}}>
+                            {this.props.match.params.linkId &&
+                            <ClaimWindow shopId={this.props.match.params.id}
+                                         linkId={this.props.match.params.linkId}/>}
                             <SpecificShopData
                                 right={right}
                                 left={left}
